@@ -5,3 +5,9 @@
 % If you want to split the blueprint content into several files then
 % the current file can be a simple sequence of \input. Otherwise It
 % can start with a \section or \chapter for instance.
+
+\section{Basic Sidon sets results}
+
+\begin{definition}[Sidon set]\lean{IsSidonSet}\leanok
+    A set $A \subseteq \mathbb{N}$ is called a Sidon set if for all $a, b \in A$ with $a \neq b$ we have $a + b \neq c$ for all $c \in A$.
+\end{definition}
