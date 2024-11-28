@@ -8,6 +8,27 @@
 
 \section{Basic Sidon sets results}
 
-\begin{definition}[Sidon set]\lean{IsSidonSet}\leanok
-    A set $A \subseteq M$, where $M$ is an additive commutative monoid, is called a Sidon set if for all $a, b \in A$ with $a \neq b$ we have $a + b \neq c$ for all $c \in A$.
+\begin{definition}[Sidon set]\lean{IsSidonSet}\leanok\label{def:sidon_set}
+    A set $S \subseteq M$, where $M$ is an additive commutative monoid, is called a Sidon set if for all $a, b, c, d \in S$, then $a + b = c + d \implies \{a, b\} = \{c, d\}$, that is, there are no repeated sums.
 \end{definition}
+
+\begin{theorem}\lean{empty_is_sidon}\leanok\uses{def:sidon_set}
+    The empty set is a Sidon set.
+\end{theorem}
+
+\begin{theorem}\lean{singleton_is_sidon}\leanok\uses{def:sidon_set}
+    A singleton set is a Sidon set.
+\end{theorem}
+
+\begin{theorem}\lean{sidon_subset_is_sidon}\leanok\uses{def:sidon_set}
+    If $S$ is a Sidon set and $T \subseteq S$, then $T$ is a Sidon set.
+\end{theorem}
+
+\begin{theorem}\lean{sidon_set_size_bound}\leanok\uses{def:sidon_set}
+    If $S$ is a Sidon set in a finite additive commutative group $M$, then $|S| \cdot (|S| - 1) \leq |M|$.
+\end{theorem}
+\begin{proof}
+    Let $S = \{a_1, \ldots, a_n\}$. Consider the differences $a_i - a_j$ for $i \neq j$.
+    Since $S$ is Sidon, theses differences are unique, and there are at most $|M|$ of them.
+    By injectivity, the proof follows.
+\end{proof}
