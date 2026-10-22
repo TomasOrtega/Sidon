@@ -1,0 +1,701 @@
+\chapter{Finite Fourier uniformity and size bounds}
+\label{core:chapter}
+
+This chapter expands Sections~2 and~6 and Appendix~A of
+\href{https://arxiv.org/abs/2110.13447}{the Ortega--Prendiville paper}.
+The estimates below use explicit constants to
+make the dependencies of the asymptotic notation inspectable.  The new
+results in this chapter are informal proof specifications; they are not
+marked as Lean-verified.  The interval estimate attributed to Cilleruelo
+is proved here from a finite variance identity, so the sharper Fourier
+estimate has no remaining external interval-discrepancy prerequisite.
+
+\section{Finite sums, correlations, and the averaging kernel}
+
+\begin{definition}[Intervals and finite Fourier sums]
+\label{core:finite-fourier}
+Let $N$ be a positive integer and write
+$J_N=\{n\in\mathbb Z:1\leq n\leq N\}$.
+All cardinalities in real inequalities are coerced to $\mathbb R$.
+A finitely supported function $f:\mathbb Z\to\mathbb C$ has transform
+\[
+ \widehat f(\alpha)=\sum_{x\in\mathbb Z} f(x)e(\alpha x),
+ \qquad e(t)=\exp(2\pi i t),\qquad \alpha\in\mathbb R/\mathbb Z.
+\]
+Each displayed sum over $\mathbb Z$ below has finitely many nonzero
+terms.  In particular, rearrangements never require an infinite-series
+convergence argument.  For two such functions put
+\[
+ C_{f,g}(h)=\sum_x f(x)\overline{g(x+h)},\qquad C_f=C_{f,f}.
+\]
+For a finite $S\subset\mathbb Z$, put
+$r_S(h)=\#\{(x,y)\in S\times S:y-x=h\}$ and
+$D_S=\{y-x:x,y\in S\}$.
+Thus $C_{1_S}(h)=r_S(h)$, with the integer on the right regarded as a
+real or complex number as appropriate.
+\end{definition}
+
+\begin{lemma}[Difference uniqueness]
+\label{core:difference-uniqueness}
+\uses{def:sidon_set,core:finite-fourier}
+Let $S$ be a Sidon subset of an additive commutative group.  If
+$x,y,u,v\in S$, $x\ne y$, and $y-x=v-u$, then $x=u$ and $y=v$.
+Consequently, for a finite Sidon set,
+\[
+ r_S(0)=|S|,\qquad
+ r_S(h)=1_{D_S}(h)\quad(h\ne0).
+\]
+\end{lemma}
+\begin{proof}
+The difference equality gives $y+u=v+x$.  The Sidon property gives
+$\{y,u\}=\{v,x\}$.  Since $y$ belongs to the set on the right, either
+$y=v$ or $y=x$.  The latter alternative contradicts $x\ne y$, so
+$y=v$.  Cancellation in the original equality then gives $x=u$.
+The pairs with difference zero are exactly $(x,x)$ with $x\in S$;
+the map $x\mapsto(x,x)$ is a bijection onto that fibre.  A nonzero
+fibre has at most one member by the argument just given, and has at
+least one member precisely when its index lies in $D_S$.
+Conversely, nonzero-difference uniqueness implies the Sidon property:
+from $a+b=c+d$, either $a=c$ and cancellation gives $b=d$, or
+$a-c=d-b\ne0$ and difference uniqueness gives $a=d$, $c=b$.
+This also records the equivalence of the paper's definition with the
+repository's definition.
+\end{proof}
+
+\begin{definition}[Integer Fej\'er averaging kernel]
+\label{core:fejer-definition}
+For an integer $H\geq1$, define
+\[
+ \mu_H(h)=\frac{\#\{(u,v)\in J_H^2:v-u=h\}}{H^2}
+          =\frac{\max(H-|h|,0)}{H^2}.
+\]
+The first formula is the preferred definition for finite-sum proofs.
+If a real parameter $T\geq1$ is used, the paper's $\mu_T$ is exactly
+this kernel with $H=\lfloor T\rfloor$.
+\end{definition}
+
+\begin{lemma}[Kernel identities]
+\label{core:fejer-identities}
+\uses{core:fejer-definition}
+For $H\geq1$, the kernel is nonnegative and even, is zero unless
+$|h|<H$, and satisfies
+\[
+ \mu_H(0)=\frac1H,\qquad \sum_h\mu_H(h)=1,
+\]
+\[
+ \sum_h\mu_H(h)|h|\leq H,\qquad
+ \sum_h\mu_H(h)\sqrt{|h|}\leq\sqrt H.
+\]
+For any function $A$ on the difference interval,
+\[
+ \sum_h\mu_H(h)A(h)
+   =\frac1{H^2}\sum_{u=1}^H\sum_{v=1}^H A(v-u).
+\]
+\end{lemma}
+\begin{proof}
+For $0\leq h<H$, the choices are $u=1,\ldots,H-h$ with
+$v=u+h$, so there are $H-h$ pairs.  If $h\geq H$ there are none.
+The involution $(u,v)\mapsto(v,u)$ treats negative $h$ and proves
+evenness.  For $h=0$ the $H$ pairs are $(u,u)$, giving $1/H$.
+Partition $J_H^2$ into the disjoint fibres of $(u,v)\mapsto v-u$;
+there are $H^2$ pairs in total.  Summing over those fibres proves
+both the mass-one identity and the weighted-sum identity.  On the
+support, $|h|<H$, so $|h|\leq H$ and $\sqrt{|h|}\leq\sqrt H$.
+Multiply these pointwise inequalities by the nonnegative weights
+and use their total mass one.  These arguments also apply when
+$H=1$: the kernel then has its sole nonzero value at zero.
+\end{proof}
+
+\begin{lemma}[Van der Corput, with a real-valued right side]
+\lean{Sidon.vanDerCorput,Sidon.vanDerCorput_norm,Sidon.fourierSum_sq_le}\leanok
+\label{core:van-der-corput}
+\uses{core:finite-fourier,core:fejer-identities}
+Let $N,H\geq1$ be integers and let $\operatorname{supp}(f)\subset J_N$.
+Then
+\[
+ \left|\sum_x f(x)\right|^2
+ \leq (N+H)\sum_h\mu_H(h)\operatorname{Re} C_f(h).
+\]
+The weighted correlation sum is real and nonnegative.  No hypothesis
+$H\leq N$ is needed.  For every $\alpha\in\mathbb R/\mathbb Z$ one also
+has
+\[
+ |\widehat f(\alpha)|^2
+ \leq (N+H)\sum_h\mu_H(h)|C_f(h)|.
+\]
+\end{lemma}
+\begin{proof}
+Set $G(x)=H^{-1}\sum_{u=1}^H f(x+u)$.  For every fixed $u$, the
+translation $x\mapsto x+u$ is a bijection of $\mathbb Z$, so
+$\sum_xG(x)=\sum_xf(x)$.  If $G(x)\ne0$, at least one summand
+is nonzero.  For its index $u$ one has $1\leq x+u\leq N$,
+and therefore $1-H\leq x\leq N-1$.  This integer interval has
+$N+H-1$ elements.  Complex Cauchy--Schwarz on that interval gives
+\[
+ |\sum_xG(x)|^2\leq (N+H-1)\sum_x|G(x)|^2
+                         \leq (N+H)\sum_x|G(x)|^2.
+\]
+Expand the square and interchange finite sums.  In a term with
+indices $u,v$, set $y=x+u$ and $h=v-u$.  This gives
+\[
+ \sum_x|G(x)|^2
+ =\frac1{H^2}\sum_{u,v\in J_H}\sum_y
+                  f(y)\overline{f(y+v-u)}
+ =\sum_h\mu_H(h)C_f(h).
+\]
+The left side is real and nonnegative; taking real parts gives
+the asserted real identity and the first inequality.  Equivalently,
+$C_f(-h)=\overline{C_f(h)}$ and the kernel's evenness pair the
+nonzero indices, while $C_f(0)=\sum_x|f(x)|^2$ is real.
+
+For the Fourier inequality apply the first assertion to
+$f_\alpha(x)=f(x)e(\alpha x)$.  The character is well-defined on
+$\mathbb R/\mathbb Z$, satisfies $|e(\alpha h)|=1$, and gives
+$C_{f_\alpha}(h)=e(-\alpha h)C_f(h)$.  Hence
+$\operatorname{Re} C_{f_\alpha}(h)\leq|C_f(h)|$ at every $h$.
+Multiply by $\mu_H(h)\geq0$, sum, and use $N+H>0$.
+\end{proof}
+
+\section{Appendix A: an explicit interval size bound}
+
+\begin{lemma}[A quadratic upper bound without a quadratic formula]
+\lean{Sidon.le_add_sqrt_of_sq_le}\leanok
+\label{core:quadratic-bound}
+If $x,b,c\geq0$ and $x^2\leq bx+c$, then $x\leq b+\sqrt c$.
+\end{lemma}
+\begin{proof}
+Suppose instead that $x>b+\sqrt c$.  Then $x>\sqrt c$ and
+$x-b>\sqrt c$.  If $c>0$, multiplying these strict inequalities
+gives $x(x-b)>c$.  If $c=0$, both factors are positive and yield
+the same conclusion.  This contradicts $x(x-b)\leq c$.
+\end{proof}
+
+\begin{theorem}[Erd\H{o}s--Tur\'an interval bound with a fixed constant]
+\lean{IsSidonSet.card_le_sqrt_add_four_mul_rpow,IsSidonSet.card_le_five_mul_sqrt}\leanok
+\label{core:sidon-size}
+\uses{core:difference-uniqueness,core:van-der-corput,core:quadratic-bound}
+Let $a\in\mathbb Z$, $N\geq1$, and let $S\subset\{a+1,\ldots,a+N\}$
+be Sidon.  Then
+\[
+ |S|\leq\sqrt N+4N^{1/4}\leq5\sqrt N.
+\]
+For $N=0$, the interval and $S$ are empty and the same statement
+holds directly.
+\end{theorem}
+\begin{proof}
+Translation by $-a$ is injective, preserves cardinality and equality
+of sums, and sends the interval to $J_N$.  It is therefore enough
+to treat $S\subset J_N$.  Put $m=|S|$ and fix any integer $H\geq1$.
+Apply van der Corput to $1_S$.  Separate $h=0$, where $r_S(0)=m$,
+from $h\ne0$, where $0\leq r_S(h)\leq1$:
+\[
+ m^2\leq(N+H)\sum_h\mu_H(h)r_S(h)
+ \leq(N+H)\left(\frac mH+1-\frac1H\right)
+ \leq\frac{N+H}{H}m+(N+H).
+\]
+Both coefficients on the last line are nonnegative.  The preceding
+lemma gives
+\[
+ m\leq\frac{N+H}{H}+\sqrt{N+H}
+   \leq \sqrt N+\frac H{\sqrt N}+\frac NH+1.
+\]
+For the second inequality, the nonnegative number
+$\sqrt N+H/\sqrt N$ has square
+$N+2H+H^2/N\geq N+H$; monotonicity of the square on nonnegative
+reals justifies the square-root comparison.
+
+Take $H=\lceil N^{3/4}\rceil$.  It is a positive integer and
+$N^{3/4}\leq H\leq N^{3/4}+1$.  Since $N\geq1$,
+\[
+ \frac H{\sqrt N}\leq N^{1/4}+N^{-1/2}\leq2N^{1/4},
+ \qquad \frac NH\leq N^{1/4},\qquad 1\leq N^{1/4}.
+\]
+Their sum gives the stated error $4N^{1/4}$.  Finally
+$N^{1/4}\leq\sqrt N$, proving the coarser bound $5\sqrt N$.
+In fact $H\leq N$: the integer $N$ is an upper bound for
+$N^{3/4}$, and hence also for its ceiling.  The unrestricted-window
+form of van der Corput does not need this extra observation.
+\end{proof}
+
+\begin{corollary}[Local bound, including the empty interval]
+\label{core:local-size}
+\uses{core:sidon-size}
+If $S$ is Sidon and $I$ is an interval consisting of $L$ consecutive
+integers, then $|S\cap I|\leq5\sqrt L$.
+\end{corollary}
+\begin{proof}
+If $L=0$, then $I$ and $S\cap I$ are empty.  If $L\geq1$,
+the subset $S\cap I$ is Sidon and the preceding theorem applied
+to its containing interval gives the claim.
+\end{proof}
+
+\section{Section 2: the four correlation errors}
+
+\begin{lemma}[Mass captured by nonzero Sidon differences]
+\label{core:captured-mass}
+\uses{core:difference-uniqueness,core:van-der-corput}
+If $S\subset J_N$ is Sidon, $m=|S|$, and $H\geq1$, then
+\[
+ W:=\sum_{h\in D_S\setminus\{0\}}\mu_H(h)
+ \geq\frac{m^2}{N+H}-\frac mH.
+\]
+\end{lemma}
+\begin{proof}
+The exact identity
+$\sum_h\mu_H(h)r_S(h)=m/H+W$ follows by separating zero
+and using difference uniqueness at all nonzero indices.
+Van der Corput applied to $1_S$ yields
+$m^2\leq(N+H)(m/H+W)$; divide by the positive number $N+H$.
+
+For completeness, the convolution proof in the paper is the same
+finite counting identity in a different order.  Let
+$c(t)=\#\{(s,u)\in S\times J_H:s+u=t\}$.  Expanding both sides
+shows
+\[
+ \sum_h r_S(h)r_{J_H}(h)=\sum_t c(t)^2.
+\]
+Indeed, the left side counts quadruples with
+$s_2-s_1=u_2-u_1$, equivalently $s_1+u_2=s_2+u_1$;
+pairing $(s_1,u_2)$ and $(s_2,u_1)$ identifies these with the
+pairs counted on the right.  Also $\sum_t c(t)=mH$, and $c$ is
+supported on $\{2,\ldots,N+H\}$, of size $N+H-1$.
+Real Cauchy--Schwarz gives
+$\sum_t c(t)^2\geq(mH)^2/(N+H)$.
+Dividing by $H^2$ proves the same lower bound for
+$\sum_h\mu_H(h)r_S(h)$, and subtracting its zero contribution
+gives the result.
+\end{proof}
+
+\begin{definition}[Normalization and error terms]
+\label{core:errors}
+Let $S\subset J_N$ be Sidon, set
+\[
+ m=|S|,\quad q=\frac m{\sqrt N},\quad
+ \delta=|q-1|,\quad b=\frac{m^2}{N},\quad A=|b-1|,
+\]
+\[
+ f_1=1_S,\qquad f_2=\frac mN1_{J_N},\qquad f=f_1-f_2.
+\]
+For $1\leq H\leq N$ and $i,j\in\{1,2\}$, put
+\[
+ C_{ij}(h)=\sum_x f_i(x)f_j(x+h),\qquad
+ E_{ij}=\sum_h\mu_H(h)|b-C_{ij}(h)|.
+\]
+The functions $f_i$ are real-valued.  In complex Fourier formulas
+they are understood through the canonical embedding into $\mathbb C$.
+\end{definition}
+
+\begin{lemma}[Interval overlap and the two mixed errors]
+\label{core:interval-errors}
+\uses{core:errors,core:fejer-identities,core:local-size}
+One has
+\[
+ E_{22}\leq\frac{m^2H}{N^2},\qquad
+ E_{12}=E_{21}\leq\frac{5m\sqrt H}{N}.
+\]
+\end{lemma}
+\begin{proof}
+Only $|h|<H\leq N$ contributes.  When $0\leq h<N$, the
+intersection $J_N\cap(J_N-h)$ is $\{1,\ldots,N-h\}$; for
+negative $h$ its cardinality is $N-|h|$ by translation, or by
+the substitution $x\mapsto x+h$.  Therefore
+\[
+ C_{22}(h)=\frac{m^2}{N^2}(N-|h|),\qquad
+ |b-C_{22}(h)|=\frac{m^2}{N^2}|h|.
+\]
+The first bound follows from the kernel's first-moment bound.
+
+Define $I_h=J_N\setminus(J_N-h)$.  It is empty for $h=0$.
+For $0<h<N$ it is $\{N-h+1,\ldots,N\}$; for $-N<h<0$
+it is $\{1,\ldots,-h\}$.  Thus it is an interval of $|h|$
+integers, including the empty-interval convention at zero.
+Since $S\subset J_N$,
+\[
+ C_{12}(h)=\frac mN\bigl(m-|S\cap I_h|\bigr),\qquad
+ |b-C_{12}(h)|=\frac mN|S\cap I_h|
+                        \leq\frac{5m}{N}\sqrt{|h|}.
+\]
+Here the absolute value can be removed because the difference is
+nonnegative.  Average with $\mu_H$ and use its square-root-moment
+bound.  Finally substitution $y=x+h$ gives
+$C_{21}(h)=C_{12}(-h)$.  Change $h$ to $-h$ in the finite sum
+and use evenness of $\mu_H$ to obtain $E_{21}=E_{12}$.
+\end{proof}
+
+\begin{lemma}[The self-correlation error and its diagonal]
+\label{core:self-error}
+\uses{core:captured-mass,core:errors,core:fejer-identities}
+The remaining error satisfies
+\[
+ E_{11}\leq 2A+\frac{m^2H}{N^2}+\frac{2m}{H}.
+\]
+\end{lemma}
+\begin{proof}
+For $h\ne0$, put $r=r_S(h)\in\{0,1\}$.  If $r=1$ then
+$|b-r|=A$; if $r=0$ then $|b-r|=b\leq1+A$.
+Both cases are summarized by $|b-r|\leq1-r+A$.
+At zero, $C_{11}(0)=m$, and $m\leq N$ because $S\subset J_N$.
+Consequently $b=m^2/N\leq m$, and
+$\mu_H(0)|b-C_{11}(0)|=(m-b)/H\leq m/H$.
+This contribution is essential: the estimate for nonzero $h$
+cannot be applied to the diagonal.
+
+Summing the nonzero estimate, and using total mass one, gives
+\[
+ E_{11}\leq\frac mH+1-W+A
+ \leq 1-\frac{m^2}{N+H}+\frac{2m}{H}+A.
+\]
+Finally
+\[
+ 1-\frac{m^2}{N+H}
+   =1-b+\frac{bH}{N+H}
+   \leq A+\frac{m^2H}{N^2},
+\]
+because $1-b\leq|1-b|$ and $N+H\geq N>0$.
+Substitute this into the preceding inequality.
+\end{proof}
+
+\begin{lemma}[A common bound before choosing the window]
+\label{core:master-bound}
+\uses{core:sidon-size,core:interval-errors,core:self-error,core:van-der-corput}
+For every integer $1\leq H\leq N$ and every frequency $\alpha$,
+\[
+ |\widehat f(\alpha)|^2
+ \leq24N\delta+\frac{20N^{3/2}}{H}+200\sqrt{NH}.
+\]
+\end{lemma}
+\begin{proof}
+The size bound gives $0\leq q\leq5$, so
+$A=|q^2-1|=|q-1|(q+1)\leq6\delta$.
+It also gives $m^2\leq25N$.  The previous two lemmas therefore
+give
+\[
+ E_{11}+E_{22}+E_{12}+E_{21}
+ \leq12\delta+\frac{50H}{N}
+       +\frac{10\sqrt N}{H}+50\sqrt{H/N}.
+\]
+Since $0\leq H/N\leq1$, one has $H/N\leq\sqrt{H/N}$.
+Thus the right side is at most
+$12\delta+10\sqrt N/H+100\sqrt{H/N}$.
+
+Expanding the real correlation of $f=f_1-f_2$ gives
+$C_f=C_{11}-C_{12}-C_{21}+C_{22}$.
+Insert $b-b-b+b=0$ and use the triangle inequality to bound
+$|C_f(h)|$ by the sum of the four quantities
+$|C_{ij}(h)-b|$.  Average this inequality with the nonnegative
+kernel, apply the Fourier form of van der Corput, and use
+$N+H\leq2N$.  Multiplication by $2N$ gives the asserted constants.
+\end{proof}
+
+\begin{lemma}[Rounding a power-sized window]
+\lean{Sidon.floor_rpow_window_spec}\leanok
+\label{core:rounded-window}
+If $N\geq1$ and $0\leq\theta\leq1$, then
+$H=\lfloor N^\theta\rfloor$ satisfies
+\[
+ 1\leq H\leq N,\qquad \tfrac12N^\theta\leq H\leq N^\theta.
+\]
+\end{lemma}
+\begin{proof}
+First $1\leq N^\theta\leq N$ by monotonicity of real powers
+with base at least one.  If $1\leq x<2$, then $\lfloor x\rfloor=1$
+and hence $\lfloor x\rfloor\geq x/2$.  If $x\geq2$, then
+$\lfloor x\rfloor>x-1\geq x/2$.
+Apply these observations to $x=N^\theta$.  The upper bound
+$H\leq N$ follows because $H\leq N^\theta\leq N$.
+\end{proof}
+
+\begin{theorem}[Fourier uniformity, Theorem 1.2]
+\lean{Sidon.sidon_fourier_uniformity,Sidon.sidon_fourier_uniformity_apply}\leanok
+\label{core:fourier-uniformity}
+\uses{core:master-bound,core:rounded-window}
+For every $N\geq1$ and every Sidon $S\subset J_N$,
+\[
+ \left\|\widehat{1_S}-\frac{|S|}{N}\widehat{1_{J_N}}\right\|_\infty
+ \leq16\sqrt N
+       \left(\left|\frac{|S|}{\sqrt N}-1\right|+N^{-1/6}\right)^{1/2}.
+\]
+\end{theorem}
+\begin{proof}
+Take $H=\lfloor N^{2/3}\rfloor$.  The rounding lemma gives
+$H\geq\frac12N^{2/3}$ and $H\leq N^{2/3}$, so
+\[
+ \frac{N^{3/2}}H\leq2N^{5/6},\qquad
+ \sqrt{NH}\leq N^{5/6}.
+\]
+The master bound consequently gives, at every frequency,
+\[
+ |\widehat f(\alpha)|^2
+ \leq24N\delta+240N^{5/6}
+ \leq240N(\delta+N^{-1/6}).
+\]
+Every term on the last line is nonnegative.  Taking square roots,
+using $\sqrt{240}\leq16$, proves the pointwise bound.
+Linearity of the finite Fourier sum identifies $\widehat f$ with
+the displayed difference.  This finite sum of continuous
+characters is a continuous function on the compact circle, so
+its absolute value attains a finite maximum.  Taking that maximum
+preserves a bound independent of $\alpha$.  Alternatively the
+pointwise bound and the least-upper-bound property give the same
+supremum estimate.  Empty $S$ causes no divisions by $|S|$ and is
+included; $N=1$ is included by $H=1$.
+\end{proof}
+
+\section{The Cilleruelo interval estimate, with a full finite proof}
+
+The original article invokes an interval-discrepancy theorem from
+\href{https://math.colgate.edu/~integers/a11/a11.pdf}{J.~Cilleruelo,
+\emph{Gaps in dense Sidon sets}, Integers 0 (2000), A11}.
+The following proof supplies that input.  Its finite-window variance
+is the one used by Cilleruelo.  For the lower bound we use contracted
+windows, which avoid an additional estimate for boundary intervals.
+Constants are not optimized.  This proof concerns intervals of integer
+points; an interval contained in $J_N$ is represented by its consecutive
+integer endpoints, so no real-endpoint rounding errors are hidden.
+
+\begin{definition}[Window counts and variance]
+\label{core:window-variance-definition}
+For integers $N,H\geq1$ and $S\subset J_N$, write $m=|S|$,
+$T=N+H-1$, and
+\[
+ c_H(t)=|S\cap\{t-H+1,\ldots,t\}|,\qquad
+ v=\frac{Hm}{T},\qquad
+ V_H=\sum_{t=1}^{T}(c_H(t)-v)^2.
+\]
+In the present section put
+$\lambda=\max(0,1-m/\sqrt N)$ and
+$R=1+\sqrt\lambda\,N^{1/8}$.
+The denominator $T$ is positive because $N,H\geq1$.
+\end{definition}
+
+\begin{lemma}[Exact window variance and its Sidon bound]
+\label{core:window-variance-bound}
+\uses{core:window-variance-definition,core:difference-uniqueness,core:sidon-size}
+For a Sidon $S\subset J_N$ one has
+\[
+ V_H=Hm+2\sum_{h=1}^{H-1}(H-h)r_S(h)-\frac{H^2m^2}{T},
+\]
+and consequently
+\[
+ 0\leq V_H\leq 2H^2\lambda+\frac{H^3}{N}+5H\sqrt N.
+\]
+\end{lemma}
+\begin{proof}
+For a fixed $s\in S$, the indices $t$ counted by $c_H(t)$ are
+exactly $s,s+1,\ldots,s+H-1$.  All these $H$ indices lie in $J_T$,
+since $1\leq s\leq N$.  Interchanging the finite sums therefore
+gives $\sum_{t=1}^T c_H(t)=Hm$.
+For an ordered pair $s_1,s_2\in S$, the number of indices counted
+by both windows is $\max(H-|s_2-s_1|,0)$: it is the size of the
+intersection of their two length-$H$ intervals.  The $m$ equal
+pairs contribute $Hm$ to $\sum_t c_H(t)^2$.  For every
+$1\leq h<H$, there are $r_S(h)$ pairs with difference $h$ and,
+by swapping the pair, the same number with difference $-h$;
+each contributes $H-h$.  This proves the second-moment formula.
+Expanding the square in $V_H$, using $\sum_t c_H(t)=Hm$,
+$|J_T|=T$, and $v=Hm/T$, subtracts exactly $H^2m^2/T$ and
+proves the identity.
+
+Every nonzero difference has at most one representation, so
+\[
+ V_H\leq Hm+H(H-1)-H^2m^2/T
+      \leq Hm+H^2(1-m^2/T).
+\]
+The finite arithmetic sum used here is
+$2\sum_{h=1}^{H-1}(H-h)=H(H-1)$; at $H=1$ both sides are zero.
+Put $q=m/\sqrt N\geq0$.  If $q\geq1$, then
+$N-m^2\leq0=2N\lambda$.  If $q\leq1$, then
+$1-q^2=(1-q)(1+q)\leq2(1-q)=2\lambda$, which again gives
+$N-m^2\leq2N\lambda$.  As $T\geq N>0$ and $H-1\geq0$,
+\[
+ 1-\frac{m^2}{T}
+ =\frac{N-m^2+H-1}{T}
+ \leq\frac{2N\lambda+H-1}{T}
+ \leq2\lambda+\frac HN.
+\]
+Finally $m\leq5\sqrt N$ by the size bound.  Substitution proves
+the asserted upper bound; nonnegativity follows directly from
+the definition as a sum of squares.
+\end{proof}
+
+\begin{lemma}[Variance at the three-quarter window]
+\label{core:optimized-variance}
+\uses{core:window-variance-bound,core:rounded-window}
+For $H=\lfloor N^{3/4}\rfloor$ one has
+\[
+ \sqrt{V_H}\leq3N^{5/8}R,\qquad
+ \frac{\sqrt{V_H}}H\leq6N^{-1/8}R,\qquad
+ \frac{Hm}{N}\leq5N^{1/4}.
+\]
+\end{lemma}
+\begin{proof}
+Use $H\leq N^{3/4}$ term by term in the variance bound:
+\[
+ V_H\leq2N^{3/2}\lambda+6N^{5/4}
+       =N^{5/4}(6+2a^2),\qquad a=\sqrt\lambda\,N^{1/8}\geq0.
+\]
+The inequality $6+2a^2\leq9(1+a)^2$ follows because their
+difference is $3+18a+7a^2\geq0$.  Taking nonnegative square
+roots gives the first claim.  Divide by
+$H\geq\frac12N^{3/4}>0$ for the second claim.  The last follows
+from $H\leq N^{3/4}$ and $m\leq5\sqrt N$.
+\end{proof}
+
+\begin{theorem}[Cilleruelo interval estimate, Theorem 6.1]
+\label{core:cilleruelo-input}
+\uses{core:optimized-variance,core:window-variance-definition}
+One may take the absolute constant $C_{\mathrm C}=11$ such that,
+for every $N\geq1$, every Sidon $S\subset J_N$, and every interval
+$I\subset J_N$ of $L$ integers,
+\[
+ \left||S\cap I|-\frac{L|S|}{N}\right|
+ \leq C_{\mathrm C}
+       \bigl(N^{1/4}+\sqrt L\,N^{-1/8}\bigr)
+       \bigl(1+\sqrt{\max(0,1-|S|/\sqrt N)}\,N^{1/8}\bigr).
+\]
+\end{theorem}
+\begin{proof}
+An empty $I$ has zero discrepancy, so suppose $I$ is nonempty.
+It has the form $I=\{a+1,\ldots,b\}$ with integer
+$0\leq a<b\leq N$ and $L=b-a$.  Set $k=|S\cap I|$ and take
+$H=\lfloor N^{3/4}\rfloor$.  In the variance notation write
+$d(t)=c_H(t)-v$ and put
+$B=N^{1/4}+\sqrt L\,N^{-1/8}$.  Thus $R\geq1$ and $B>0$.
+
+For the upper bound use the expanded interval
+$U=\{a+1,\ldots,b+H-1\}\subset J_T$, of size $L+H-1$.
+Every $s\in S\cap I$ contributes all its $H$ indices
+$s,\ldots,s+H-1$ to $\sum_{t\in U}c_H(t)$; other contributions
+are nonnegative.  Hence
+\[
+ Hk\leq\sum_{t\in U}c_H(t)=(L+H-1)\frac{Hm}{T}
+                                      +\sum_{t\in U}d(t).
+\]
+Subtract $HLm/N$ and divide by $H>0$.  The deterministic term
+is
+\[
+ m\left(\frac{L+H-1}{T}-\frac LN\right)
+ =\frac{m(H-1)(N-L)}{NT}\leq\frac{mH}{N},
+\]
+using $0\leq L\leq N$ and $T\geq N$.
+Finite Cauchy--Schwarz and $U\subset J_T$ give
+\[
+ \frac1H\left|\sum_{t\in U}d(t)\right|
+ \leq\frac{\sqrt{|U|}\sqrt{V_H}}H
+ \leq6N^{-1/8}(\sqrt L+\sqrt H)R\leq6BR.
+\]
+Here $\sqrt{L+H-1}\leq\sqrt L+\sqrt H$ follows by squaring
+nonnegative quantities, and $\sqrt H\leq N^{3/8}$.
+Combining these bounds gives
+$k-Lm/N\leq5N^{1/4}+6BR\leq11BR$.
+
+For the lower bound, if $L<H-1$, use $k\geq0$ and
+$Lm/N\leq Hm/N\leq5N^{1/4}\leq11BR$.
+In the remaining case $L\geq H-1$, use the contracted interval
+$W=\{a+H,\ldots,b\}\subset J_T$, with cardinality $L-H+1$;
+it is allowed to be empty.  For each $t\in W$ the entire
+window $\{t-H+1,\ldots,t\}$ lies inside $I$.  Each member of
+$S\cap I$ is counted at most $H$ times, and no member outside
+$I$ is counted.  Consequently
+\[
+ Hk\geq\sum_{t\in W}c_H(t)
+        =(L-H+1)\frac{Hm}{T}+\sum_{t\in W}d(t).
+\]
+After subtraction and division, the magnitude of the possible
+negative deterministic term is
+\[
+ m\left(\frac LN-\frac{L-H+1}{T}\right)
+   =\frac{m(H-1)(N+L)}{NT}\leq\frac{2mH}{N}.
+\]
+Cauchy--Schwarz gives
+$H^{-1}|\sum_Wd(t)|\leq H^{-1}\sqrt L\sqrt{V_H}
+ \leq6\sqrt L\,N^{-1/8}R$.
+Thus $Lm/N-k\leq10N^{1/4}+6\sqrt L\,N^{-1/8}R\leq10BR$.
+Together with the upper bound this proves absolute discrepancy
+at most $11BR$, which is precisely the displayed estimate.
+\end{proof}
+
+\section{Section 6: the sharper Fourier estimate}
+
+\begin{corollary}[Short-boundary estimate, Corollary 6.2]
+\label{core:cilleruelo-short-boundary}
+\uses{core:cilleruelo-input,core:sidon-size,core:errors}
+Use the preceding estimate with constant $C_{\mathrm C}$, and put
+$K=5+2C_{\mathrm C}$.  If $I\subset J_N$ has $L\leq N^{3/4}$
+integers, then
+\[
+ |S\cap I|\leq K\bigl(N^{1/4}+\sqrt\delta\,N^{3/8}\bigr).
+\]
+\end{corollary}
+\begin{proof}
+The main term is bounded by
+$Lm/N\leq N^{3/4}(5\sqrt N)/N=5N^{1/4}$.
+The inequality $L\leq N^{3/4}$ gives
+$\sqrt L\,N^{-1/8}\leq N^{1/4}$.
+Also $0\leq\max(0,1-q)\leq|1-q|=\delta$, so the square-root
+factor in the input is at most $\sqrt\delta$.
+It follows that
+\[
+ |S\cap I|\leq5N^{1/4}
+       +2C_{\mathrm C}N^{1/4}
+       +2C_{\mathrm C}\sqrt\delta\,N^{3/8}.
+\]
+Both coefficients on the last two types of terms are at most $K$.
+This proves the claim, including $L=0$.
+\end{proof}
+
+\begin{theorem}[Improved Fourier uniformity, Theorem 6.3]
+\label{core:improved-fourier-uniformity}
+\uses{core:cilleruelo-short-boundary,core:self-error,core:rounded-window,core:van-der-corput}
+Let $D=290+60C_{\mathrm C}$, where $C_{\mathrm C}=11$ is available
+from the proved interval estimate.  Then
+\[
+ \left\|\widehat{1_S}-\frac{|S|}{N}\widehat{1_{J_N}}\right\|_\infty
+ \leq\sqrt D\sqrt N\bigl(\delta+N^{-1/4}\bigr)^{1/2}.
+\]
+\end{theorem}
+\begin{proof}
+Take $H=\lfloor N^{3/4}\rfloor$ and $K=5+2C_{\mathrm C}$.
+Every boundary interval $I_h$ for a nonzero kernel weight has
+length $|h|<H\leq N^{3/4}$.  Repeat the exact mixed-correlation
+identity from Lemma~\ref{core:interval-errors}, now using the short
+boundary bound:
+\[
+ E_{12}=E_{21}
+ \leq\frac{Km}{N}(N^{1/4}+\sqrt\delta\,N^{3/8})
+ \leq5K\bigl(N^{-1/4}+\sqrt\delta\,N^{-1/8}\bigr).
+\]
+The self-correlation and interval-overlap bounds are unchanged,
+so before inserting this window size van der Corput gives
+\[
+ |\widehat f(\alpha)|^2
+ \leq24N\delta+100H+\frac{20N^{3/2}}H
+             +20KN^{3/4}+20K\sqrt\delta\,N^{7/8}.
+\]
+Here $H\leq N^{3/4}$ and $H\geq\frac12N^{3/4}$, so the second
+and third terms sum to at most $140N^{3/4}$.  Finally
+\[
+ \sqrt\delta\,N^{7/8}
+   =\sqrt{(N\delta)N^{3/4}}
+   \leq\tfrac12(N\delta+N^{3/4}),
+\]
+which follows by expanding the square
+$(\sqrt{N\delta}-\sqrt{N^{3/4}})^2\geq0$.
+Consequently
+\[
+ |\widehat f(\alpha)|^2
+ \leq(24+10K)N\delta+(140+30K)N^{3/4}
+ \leq D N(\delta+N^{-1/4}),
+\]
+because $D=140+30K=290+60C_{\mathrm C}$ is at least $24+10K$.
+Taking nonnegative square roots and then the supremum proceeds
+exactly as in Theorem~\ref{core:fourier-uniformity}.
+\end{proof}
+
+\paragraph{Dependency discipline.}
+The baseline Fourier theorem depends only on finite combinatorics,
+Cauchy--Schwarz, real powers, and elementary circle characters.
+The sharper theorem additionally depends on the finite
+window-variance argument.  The proof of that interval estimate
+uses only the elementary size bound, not either Fourier
+uniformity theorem, so the dependency graph is acyclic.

@@ -1,0 +1,422 @@
+\chapter{A full quantitative counting argument from Hales--Jewett}
+\label{qr:chapter}
+
+The quantitative colouring input to Section 5 can be proved from the
+Hales--Jewett theorem already in mathlib.  This chapter gives the
+single-equation argument, including the finite Deuber construction used
+to obtain the right number of independent parameters.
+The starting point is the proof strategy of Frankl, Graham and R\"odl,
+\emph{Quantitative Theorems for Regular Systems of Equations}, Journal of
+Combinatorial Theory A 47 (1988), 246--261, Theorem 1.  Their Deuber variant
+is attributed to an unpublished manuscript.  We instead expand the
+Hales--Jewett row-focusing argument attributed to Leeb and Pr\"omel, as
+presented by Joel Moreira in his 2014 exposition
+\emph{A proof of Deuber's theorem using Hales--Jewett's theorem}.
+Keeping track of finitely many disjoint-support embeddings replaces the
+original residue encoding.  A separated generator box makes positivity
+and containment in $[N]$ explicit.
+
+The only Ramsey theorem invoked without a new proof here is the existing
+mathlib theorem
+\texttt{Combinatorics.Line.exists\_mono\_in\_high\_dimension}.
+It states that every colouring of words over a fixed finite alphabet, in
+a sufficiently high finite dimension, has a monochromatic combinatorial
+line.  A line has a nonempty set of variable positions, all of which are
+replaced by the same letter; the remaining positions have fixed letters.
+Reindexing its finite coordinate type by $\{0,\ldots,h-1\}$ gives the
+numerical form used below.  Taking any constant colouring shows that
+the resulting $h$ is positive, because a line has a variable position.
+The results in this chapter are detailed proof targets, not declarations
+already checked in Lean.
+
+\section{Finite patterns and their embeddings}
+
+\begin{definition}[Rows of a Deuber pattern]
+\label{qr:deuber-pattern}
+For integers $m\geq0$, $p,c\geq1$ and $z=(z_0,\ldots,z_m)\in\mathbb Z^{m+1}$,
+write $F_p=\{-p,\ldots,p\}$ and put
+\[
+ L(j,p,c;z)=\left\{cz_j+\sum_{i<j}\lambda_i z_i:
+                                  \lambda_i\in F_p\right\},\quad
+ D(m,p,c;z)=\bigcup_{j=0}^mL(j,p,c;z).
+\]
+In particular $L(0,p,c;z)=\{cz_0\}$ is a singleton.
+We will only colour numerical patterns contained in the positive integers.
+This condition implies $z_j>0$ for every $j$, because $cz_j$ belongs to
+the pattern and $c>0$.
+A colouring is $k$-regular, for $0\leq k\leq m$, if each row with
+$m-k<j\leq m$ is monochromatic.  The colours of different rows may differ.
+Every colouring is $0$-regular; an $m$-regular colouring has all its rows
+monochromatic, since row zero is a singleton.
+\end{definition}
+
+\begin{definition}[Disjoint-support generator embeddings]
+\label{qr:block-embedding}
+An integer matrix $T$ with $q$ rows and $M$ columns is a block embedding if
+each row has a nonempty support and the supports of distinct rows are
+disjoint.  For a seed vector $Y\in\mathbb Z^M$, its new generators are
+$y=TY$.  A finite family of such matrices can depend on the pattern
+parameters and the number of colours, but is chosen before the seed
+values and their colouring.
+\end{definition}
+
+\begin{lemma}[Composition preserves the block property]
+\label{qr:block-composition}
+\uses{qr:block-embedding}
+If $T$ and $U$ are block embeddings and their matrix product is defined,
+then $TU$ is a block embedding.  Selecting distinct rows of a block
+embedding also gives a block embedding.
+\end{lemma}
+\begin{proof}
+For a fixed source coordinate $b$, at most one row $a$ of $U$ has
+$U_{ab}\ne0$, because its row supports are disjoint.
+Thus $(TU)_{ib}=\sum_aT_{ia}U_{ab}$ has at most one nonzero summand.
+It is nonzero exactly when $b$ belongs to the support of some row $a$ of
+$U$ for which $T_{ia}\ne0$; there can be no cancellation.
+Consequently the support of row $i$ of $TU$ is the union of those row
+supports of $U$ selected by the support of row $i$ of $T$.
+This union is nonempty, since both matrices have nonempty row supports.
+For different $i$ these unions use disjoint sets of rows of $U$, and
+are therefore disjoint.  Row selection preserves the property directly.
+\end{proof}
+
+\begin{lemma}[One additional monochromatic row]
+\label{qr:one-step}
+\uses{qr:deuber-pattern,qr:block-embedding}
+Fix $m\geq1$, $p,c,r\geq1$ and $0\leq k<m$.
+There are integers $M\geq m$, $P,C\geq1$ and a finite family of block
+embeddings from $M+1$ generators to $m+1$ generators with the following
+property.  If $D(M,P,C;S)$ is positive and its $r$-colouring is $k$-regular,
+some matrix in this family produces generators $s$ for which
+$D(m,p,c;s)$ is a subset of $D(M,P,C;S)$ and is $(k+1)$-regular.
+\end{lemma}
+\begin{proof}
+Put $d=m-k\geq1$.  Apply Hales--Jewett to the alphabet $F_p^d$ and $r$
+colours and choose a positive word length $h$ with its conclusion.
+Set
+\[
+ b=hd,\qquad M=b+k,\qquad
+ P=\max(p^2,pc,c^2),\qquad C=c^2.
+\]
+Since $h\geq1$, $M\geq d+k=m$.
+For a word $a=(a_0,\ldots,a_{h-1})$, with each
+$a_i=(a_{i,0},\ldots,a_{i,d-1})\in F_p^d$, define its colour to be the
+colour of
+\[
+ c\sum_{i<h}\sum_{t<d}a_{i,t}S_{id+t}+c^2S_b.                 \tag{1}
+\]
+This integer lies in row $b$ of the source pattern, since its earlier
+coefficients have absolute value at most $cp\leq P$ and its leading
+coefficient is $C$.  The induced word colouring is therefore well-defined.
+
+Choose a monochromatic line.  Let $A\subset\{0,\ldots,h-1\}$ be its
+nonempty set of variable positions and let $B$ be the complement.
+For $i\in B$ write $w_i\in F_p^d$ for its fixed letter.
+Define the new generators by
+\[
+ s_t=c\sum_{i\in A}S_{id+t}\quad(0\leq t<d),
+\]
+\[
+ s_d=\sum_{i\in B}\sum_{t<d}w_{i,t}S_{id+t}+cS_b,
+ \qquad
+ s_t=cS_{b+t-d}\quad(d<t\leq m).                            \tag{2}
+\]
+These are integer linear combinations of the source generators.
+For each early row $t<d$, its support is
+$\{id+t:i\in A\}$ and is nonempty.  These early supports are mutually
+disjoint.  The middle generator uses only the complementary $B$-blocks
+and the new coordinate $b$, where its coefficient is $c\ne0$.
+The last $k$ generators use respectively the single coordinates
+$b+1,\ldots,b+k$.  All these supports are disjoint.
+Thus (2) defines a block embedding.  There are only finitely many choices
+of the nonempty set $A$ and fixed letters $w_i$, so all resulting
+embeddings form a fixed finite family.
+
+We verify every row inclusion, not only the row made monochromatic.
+For $d<j\leq m$, a point of row $j$ of the new pattern has leading term
+$cs_j=c^2S_{b+j-d}$.
+Every generator $s_t$ with $t<j$ uses source indices strictly below
+$b+j-d$.  Because the generator supports are disjoint, their coefficients
+do not add at any coordinate; each earlier coefficient has modulus at
+most $p\max(p,c)\leq P$.
+Hence
+\[
+ L(j,p,c;s)\subset L(b+j-d,P,C;S).                           \tag{3}
+\]
+These are the last $k$ rows of the source pattern, so they are
+monochromatic by its $k$-regularity.
+
+For row $j=d$, expand using (2): its points are
+\[
+ c\sum_{t<d}\sum_{i\in A}\lambda_tS_{id+t}
+ +c\sum_{i\in B}\sum_{t<d}w_{i,t}S_{id+t}+c^2S_b,
+ \qquad(\lambda_0,\ldots,\lambda_{d-1})\in F_p^d.
+\]
+These are exactly the integers (1) associated with the chosen
+combinatorial line.  They are monochromatic and lie in source row $b$.
+
+Finally let $0\leq j<d$, and let $a=\max A$, which exists because
+$A$ is finite and nonempty.  A point of new row $j$ is
+\[
+ c\sum_{t<j}\lambda_t\sum_{i\in A}S_{id+t}
+       +c^2\sum_{i\in A}S_{id+j}.
+\]
+Its largest source index is $ad+j$, with coefficient $c^2=C$.
+All other nonzero coefficients have earlier indices and modulus at most
+$\max(cp,c^2)\leq P$.  It therefore belongs to source row $ad+j$.
+This proves containment for every remaining row.
+Every new row is consequently positive, as it is contained in the
+positive source pattern; in particular the new generators are positive.
+The last $k$ new rows are monochromatic by (3), and the next row $d$ is
+monochromatic by Hales--Jewett.  The new colouring is $(k+1)$-regular.
+\end{proof}
+
+\begin{theorem}[Finite Deuber extraction with finitely many block embeddings]
+\label{qr:finite-deuber}
+\uses{qr:one-step,qr:block-composition}
+For every number of generators $q\geq1$ and integers $p,c,r\geq1$, there
+are $M\geq q$, $P,C\geq1$, and a finite nonempty family
+$\mathcal F$ of $q$-by-$M$ block embeddings such that every $r$-colouring
+of a positive pattern $D(M-1,P,C;Y)$ contains a monochromatic pattern
+\[
+ D(q-1,p,c;TY)\subset D(M-1,P,C;Y)
+\]
+for some $T\in\mathcal F$.
+\end{theorem}
+\begin{proof}
+If $q=1$, take $M=1$, $P=p$, $C=c$, and the identity embedding.
+The target is its single row $\{cY_0\}$, which is monochromatic.
+Assume $q\geq2$ and set $n=r(q-1)\geq1$.
+Start with $(m_0,p_0,c_0)=(n,p,c)$.
+For $j=1,\ldots,n$, apply Lemma~\ref{qr:one-step} with target parameters
+$(m_{j-1},p_{j-1},c_{j-1})$ and $k=n-j$, and let its source parameters
+be $(m_j,p_j,c_j)$.  This recursion is legitimate: $m_j\geq m_{j-1}\geq n$
+and $0\leq n-j<n\leq m_{j-1}$.
+All parameters and finite embedding families have now been chosen solely
+from $q,p,c,r$.
+
+Take a colouring of a positive $D(m_n,p_n,c_n;Y)$.
+It is $0$-regular.  Use the step with $j=n$ to obtain a $1$-regular
+$(m_{n-1},p_{n-1},c_{n-1})$ pattern inside it.
+Use the step with $j=n-1$ to obtain a $2$-regular pattern inside that one.
+Continuing for all $n$ steps produces an $n$-regular
+$D(n,p,c;z)$ in the original source pattern.
+Every one of its $n+1$ rows is monochromatic, including the singleton
+row zero.  Since $n+1=r(q-1)+1$, the pigeonhole principle supplies $q$
+distinct rows of the same colour, with indices
+$0\leq j_0<\cdots<j_{q-1}\leq n$.
+Put $y_i=z_{j_i}$.  For each target row $i$, a combination
+$cy_i+\sum_{t<i}\lambda_t y_t$ belongs to source row $j_i$: set the
+coefficients of every unselected earlier generator to zero.
+Thus $D(q-1,p,c;y)$ is monochromatic and lies in $D(n,p,c;z)$.
+
+Every generator change was a matrix from a fixed finite family of block
+embeddings.  Composition and the final row selection preserve that property
+by Lemma~\ref{qr:block-composition}.
+There are finitely many compositions and finitely many row selections.
+Let $\mathcal F$ be their set of resulting matrices, and put
+$M=m_n+1$, $P=p_n$, $C=c_n$.
+This family is nonempty, since each Hales--Jewett step has at least one
+possible line and the indicated row selections exist for the constructed
+colourings.  Each matrix in it has $q$ nonempty disjoint row supports, so
+choosing one coordinate in each support injects $q$ rows into $M$ columns;
+hence $M\geq q$.
+The preceding construction proves the claimed extraction for every seed
+and every colouring.
+\end{proof}
+
+\section{A full-dimensional first-entry kernel parametrization}
+
+\begin{lemma}[A kernel matrix whose rows are Deuber coefficients]
+\label{qr:kernel-matrix}
+Let $a_1,\ldots,a_s\in\mathbb Z\setminus\{0\}$, and suppose
+$\sum_{i\in I}a_i=0$ for some nonempty $I\subset\{1,\ldots,s\}$.
+Then $s\geq2$, and for $q=s-1$ there are $p,c\geq1$ and an integer
+matrix $B$ with $s$ rows and $q$ columns such that:
+\begin{enumerate}
+\item $a^{\mathsf T}B=0$;
+\item the map $B:\mathbb Q^q\to\mathbb Q^s$ is injective;
+\item each row of $B$ has last nonzero entry $c$, and every earlier
+      entry has absolute value at most $p$.
+\end{enumerate}
+Consequently each coordinate of $By$ belongs to $D(q-1,p,c;y)$.
+\end{lemma}
+\begin{proof}
+A singleton $I$ cannot have zero sum because every $a_i$ is nonzero.
+Thus $s\geq2$ and $q\geq1$.
+Work first over $\mathbb Q$ in the kernel
+$V=\{v:\sum_i a_iv_i=0\}$.
+For any pivot $i_0$, solving for $v_{i_0}$ gives a linear isomorphism
+between $V$ and $\mathbb Q^{s-1}$; its dimension is therefore $q$.
+
+The vector $u_0=1_I$ is a nonzero element of $V$.
+If $I$ is all indices, retain this one vector as the beginning of a basis.
+If $I$ is proper, choose $i_0\in I$ and define $u_1$ by setting it equal
+to one outside $I$, zero on $I\setminus\{i_0\}$, and
+\[
+ (u_1)_{i_0}=-\frac{\sum_{i\notin I}a_i}{a_{i_0}}.
+\]
+Its weighted coordinate sum is zero, so $u_1\in V$.
+The pair $u_0,u_1$ is linearly independent: any relation first evaluated
+outside $I$ forces the coefficient of $u_1$ to vanish, and then a
+coordinate inside $I$ forces the coefficient of $u_0$ to vanish.
+
+Extend this ordered independent list to a basis of $V$.
+In the matrix with those basis vectors as columns, each row has first
+nonzero entry one: for an index in $I$ it is in column $u_0$;
+for an index outside $I$ it is in column $u_1$.
+Every index is covered by one of these alternatives.
+Clear the finitely many rational denominators by multiplying the whole
+matrix by one positive integer $c$.
+The matrix becomes integral, is still an injective parametrization of
+the kernel, and its row first entries become the common positive integer
+$c$.  Reverse its column order to obtain $B$.
+Now each row has last nonzero entry $c$.
+Choose $p$ to be the maximum of one and all absolute values of its entries.
+All earlier entries are then in $F_p$, and the entries after the indicated
+last column are zero.  This is exactly the coefficient form defining a
+row of $D(q-1,p,c;y)$, proving the last assertion as well.
+\end{proof}
+
+\section{Many independent seed generators and bounded multiplicity}
+
+\begin{lemma}[A positive generator box of the correct size]
+\label{qr:positive-box}
+\uses{qr:deuber-pattern}
+Let $M,P,C\geq1$, put
+\[
+ R=4P+2,\qquad H=(2C+1)R^M,
+\]
+and let $N\geq2H$ be an integer.  There is a set $\mathcal Y_N$ of at
+least $(N/(2H))^M$ integer vectors $Y\in[N]^M$ such that
+$D(M-1,P,C;Y)\subset[N]$ for every $Y\in\mathcal Y_N$.
+\end{lemma}
+\begin{proof}
+Let $L=\lfloor N/H\rfloor\geq N/(2H)\geq1$.
+Independently choose each generator $Y_j$ in the integer interval
+$[LR^j,2LR^j]$, for $j=0,\ldots,M-1$.
+Each interval has at least $L$ choices, so there are at least
+$L^M\geq(N/(2H))^M$ vectors.
+The lower endpoint is positive.  The upper endpoint is at most $N$, since
+$2LR^{M-1}\leq2NR^{M-1}/H\leq N$.
+
+For a point of pattern row $j$, the absolute contribution of all earlier
+terms is at most
+\[
+ P\sum_{i<j}Y_i\leq2PL\sum_{i<j}R^i
+   =2PL\frac{R^j-1}{R-1}<\frac12 LR^j,
+\]
+because $R-1=4P+1>4P$.  For $j=0$ the earlier sum is zero and the strict
+bound is still true.
+The leading term $CY_j$ is at least $CLR^j$, so the whole expression is
+positive.  Its upper bound is
+\[
+ 2CLR^j+\tfrac12LR^j
+ <(2C+1)LR^j
+ \leq(2C+1)\frac NH R^{M-1}=N/R\leq N.
+\]
+Every pattern entry is an integer between one and $N$, as required.
+\end{proof}
+
+\begin{lemma}[The multiplicity bound]
+\label{qr:multiplicity}
+\uses{qr:block-embedding}
+Let $B:\mathbb Q^q\to\mathbb Q^s$ be injective, and let
+$\mathcal F$ be a finite family of $q$-by-$M$ integer block embeddings.
+For any fixed $x\in\mathbb Z^s$ and integer $N\geq1$, the number of
+$Y\in[N]^M$ for which $BTY=x$ for some $T\in\mathcal F$ is at most
+\[
+ |\mathcal F|N^{M-q}.
+\]
+\end{lemma}
+\begin{proof}
+Fix $T$.  If it has any such preimages, injectivity of $B$ implies that
+their intermediate values $TY$ are all the same vector $y$.
+Choose a pivot coordinate $j_i$ in the nonempty support of row $i$ of
+$T$.  Disjointness makes these $q$ coordinates distinct and makes the
+coefficient at $j_i$ zero in every other row.
+Once the remaining $M-q$ coordinates of $Y$ are prescribed, the equation
+$\sum_jT_{ij}Y_j=y_i$ determines $Y_{j_i}$ uniquely, if it has any integer
+solution at all: its coefficient $T_{i,j_i}$ is nonzero, and the other
+pivot coordinates have coefficient zero in that equation.
+Equivalently, two solutions agreeing off the pivots have
+$T_{i,j_i}(Y_{j_i}-Y'_{j_i})=0$, and cancellation in $\mathbb Z$ gives
+equality at the pivot as well.
+Restriction to nonpivot coordinates is therefore injective on the fiber.
+There are $N^{M-q}$ such restrictions.
+Finally take the union over the finite family $\mathcal F$; its cardinality
+is at most the sum of these bounds.  Duplicate preimages only make the
+union smaller, so no uniqueness of $T$ is needed.
+\end{proof}
+
+\begin{theorem}[Quantitative Rado for one homogeneous equation]
+\label{qr:many-monochromatic}
+\uses{qr:finite-deuber,qr:kernel-matrix,qr:positive-box,qr:multiplicity}
+Let $a_1,\ldots,a_s\in\mathbb Z\setminus\{0\}$ have a nonempty zero-sum
+subcollection, and let $r\geq1$.  There are $N_0=N_0(a,r)$ and
+$\delta_0=\delta_0(a,r)>0$ such that every $r$-colouring of $[N]$, for
+$N\geq N_0$, has a colour class $C_j$ with
+\[
+ \#\{x\in C_j^s:\textstyle\sum_i a_i x_i=0\}
+ \geq\delta_0N^{s-1}.
+\]
+In particular this proves the previously external input in
+Lemma~\ref{app:fgr-dependency} from the existing Hales--Jewett theorem.
+\end{theorem}
+\begin{proof}
+Fix $q=s-1$, and choose the integral injective kernel parametrization
+$B$ and its parameters $p,c$ from Lemma~\ref{qr:kernel-matrix}.
+Use Theorem~\ref{qr:finite-deuber} to fix $M,P,C$ and a finite nonempty
+family $\mathcal F$ of block embeddings.
+Set $F=|\mathcal F|\geq1$, $R=4P+2$, $H=(2C+1)R^M$, and $N_0=2H$.
+All these choices depend only on the equation and $r$.
+
+For each $N\geq N_0$ use Lemma~\ref{qr:positive-box} to obtain
+$\mathcal Y_N\subset[N]^M$ with
+$|\mathcal Y_N|\geq(N/(2H))^M$.
+Restrict the given colouring of $[N]$ to the positive pattern associated
+with each seed $Y\in\mathcal Y_N$.
+The finite Deuber theorem supplies some $T\in\mathcal F$ for which
+$D(q-1,p,c;TY)$ is monochromatic and is contained in $[N]$.
+Set $x=BTY$.
+Every coordinate of $x$ belongs to that target pattern, by the kernel
+matrix construction, so $x$ is monochromatic and has all coordinates in
+$[N]$.  Moreover $a^{\mathsf T}x=a^{\mathsf T}BTY=0$.
+Choose one such output tuple for each seed; all sets involved are finite.
+
+By Lemma~\ref{qr:multiplicity}, a fixed output tuple is selected for at
+most $FN^{M-q}$ seeds.  Counting the fibers of this map gives at least
+\[
+ \frac{|\mathcal Y_N|}{FN^{M-q}}
+ \geq \frac{N^q}{F(2H)^M}
+\]
+distinct monochromatic solution tuples in total.
+Each belongs to a unique colour class, since $s\geq1$ and the classes
+are disjoint.  One of the $r$ classes therefore contains at least a
+proportion $1/r$ of these tuples.
+Take
+\[
+ \delta_0=\frac1{rF(2H)^M}>0.
+\]
+Since $q=s-1$, this is exactly the claimed bound.
+Repeated coordinates are allowed throughout; no extra distinctness
+hypothesis was used or obtained.
+\end{proof}
+
+\section{What the construction makes explicit}
+
+Every finite existence choice in this proof precedes the ambient length
+$N$ and its colouring.  The kernel basis and denominator clearing determine
+$B,p,c$.  A finite recursion using Hales--Jewett lengths determines
+$M,P,C$ and the finite embedding family.  The elementary formulas above
+then give $N_0$ and $\delta_0$.  Numerical optimization is unnecessary for
+the Sidon application, whose constants may depend arbitrarily on the
+coefficient vector and the number of colours.
+
+The new proof does not invoke an arithmetic removal lemma, a new infinite
+Ramsey theorem, or the unpublished Deuber statement in the 1988 paper.
+Its additional formalization work consists of finite sets, finite words,
+integer matrices, basis extension over $\mathbb Q$, and counting fibers.
+The hardest combinatorial theorem, Hales--Jewett, is already checked in
+mathlib.  It remains necessary to implement and check these reductions;
+this natural-language chapter is not itself a machine-checked proof.

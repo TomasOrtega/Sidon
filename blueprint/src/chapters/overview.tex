@@ -1,0 +1,115 @@
+\chapter{Scope, conventions, and theorem contracts}
+
+This project formalizes Miquel Ortega and Sean Prendiville,
+\emph{Extremal Sidon sets are Fourier uniform, with applications to
+partition regularity}, arXiv:2110.13447v1 (2021),
+\url{https://arxiv.org/abs/2110.13447}.
+The source is distributed under CC BY 4.0,
+\url{https://creativecommons.org/licenses/by/4.0/}.
+These expanded proofs distinguish mathematical arguments from
+kernel-checked declarations. Only nodes explicitly marked as formalized
+have checked Lean proofs. Proposed names remain ordinary text until
+their declarations exist.
+
+\section{Conventions}
+Throughout $N\geq1$ is an integer, $[N]=\{1,\ldots,N\}\subseteq\mathbb Z$,
+and an integer interval of length $L\in\mathbb N$ means
+$\{a+1,\ldots,a+L\}$. Set
+\[
+ m=|S|,\qquad D_N(S)=\left|m/\sqrt N-1\right|+N^{-1/6}.
+\]
+Real powers apply to positive real casts of $N$. The empty Sidon set is
+allowed. Division by $m$ requires an explicit positive lower bound.
+A coloring has $r\geq1$ colors and is a function on $S$; its color
+classes are disjoint and cover $S$. Solutions allow repeated coordinates.
+
+For finitely supported functions on $\mathbb Z$, use counting measure and
+\[
+ e(t)=\exp(2\pi it),\quad
+ \widehat f(\alpha)=\sum_x f(x)e(\alpha x),\quad
+ (f*g)(x)=\sum_y f(y)g(x-y).
+\]
+There are no hidden normalization factors. The torus
+$\mathbb T=\mathbb R/\mathbb Z$ carries probability Haar measure.
+In Lean use \texttt{Finsupp} for finite-support functions and
+\texttt{AddCircle 1} for the torus. Prove combinatorial
+identities with finite sums before adding analytic interfaces.
+An absolute implicit constant must be uniform in dimension $d$;
+$O_d$ explicitly allows dimension dependence.
+Implement asymptotic estimates with quantified constants and thresholds.
+
+\section{Public targets}
+\begin{theorem}[Paper Theorem 1.2]\label{target:uniformity}
+\lean{Sidon.sidon_fourier_uniformity}\leanok
+\uses{core:fourier-uniformity}
+There exists $C>0$ such that for every $N\geq1$, every Sidon
+$S\subseteq[N]$, and every $\alpha\in\mathbb T$,
+\[
+ \left|\widehat{1_S}(\alpha)-\frac mN\widehat{1_{[N]}}(\alpha)\right|
+ \leq C\sqrt N D_N(S)^{1/2}.
+\]
+\end{theorem}
+The pointwise estimate is equivalent to its supremum-norm version:
+the uniform upper bound bounds the range, and every range element is
+at most its supremum. No unproved boundedness hypothesis is suppressed.
+
+\begin{corollary}[Largest sets, paper Corollary 1.4]\label{target:largest}
+For sufficiently large $N$, a maximum-cardinality Sidon subset of $[N]$
+satisfies
+\[
+ \left\|\widehat{1_S}-\frac mN\widehat{1_{[N]}}\right\|_\infty
+ \ll \|\widehat{1_S}\|_\infty N^{-1/12}.
+\]
+\end{corollary}
+\begin{proof}
+A maximum exists in the finite power set of $[N]$, since the empty set
+is admissible. The paper invokes an external construction giving
+$m\geq\sqrt N-C_1N^{21/80}$, whereas Appendix A gives
+$m\leq\sqrt N+C_2N^{1/4}$. For $N\geq1$, these yield
+$|m/\sqrt N-1|\leq(C_1+C_2)N^{-19/80}\ll N^{-1/6}$,
+using $1/4\leq21/80$ and $19/80>1/6$.
+Theorem~\ref{target:uniformity} therefore gives $O(\sqrt N N^{-1/12})$.
+The lower bound gives $m\geq\sqrt N/2$ for large $N$.
+The triangle inequality gives $|\widehat{1_S}(\alpha)|\leq m$,
+and equality holds at zero, so $\|\widehat{1_S}\|_\infty=m$.
+Substitute $\sqrt N\leq2m$.
+The construction and its prime-gap input remain explicit external
+prerequisites; they are not consequences of Fourier uniformity.
+\end{proof}
+
+\begin{theorem}[Paper Theorem 1.15]\label{target:partition}
+\uses{app:partition-regularity}
+Fix $s\geq5$, $r\geq1$, and nonzero integers $c_1,\ldots,c_s$.
+Suppose some nonempty subset of the coefficients sums to zero.
+There exist $N_0\in\mathbb N$, $\eta>0$, and $\delta>0$, depending
+only on $c$ and $r$, such that for every $N\geq\max(1,N_0)$ and Sidon
+$S\subseteq[N]$ with $\big|m-\sqrt N\big|\leq\eta\sqrt N$,
+every $r$-coloring has a class $C_j$ satisfying
+\[
+ \#\{x\in C_j^s:\textstyle\sum_i c_ix_i=0\}
+ \geq\delta m^s/N.
+\]
+\end{theorem}
+Shrink $\eta$ below $1/2$ to ensure $m>0$. The right side is positive,
+so the counting conclusion implies existence. This is the precise
+constant-and-threshold form of the paper's three alternatives.
+
+\section{Implementation structure}
+The dependency order is foundations, finite correlations and kernels,
+van der Corput, interval bounds, Fourier uniformity, progressions,
+trigonometric approximation, Bohr equidistribution, dense models, counting.
+The improved Fourier theorem is a separate branch depending on
+Cilleruelo's estimate; it must not be used to prove that prerequisite.
+The accompanying files \texttt{docs/core-formalization-plan.md} and
+\texttt{docs/applications-formalization-plan.md} specify proposed names.
+The intended module tree is
+\begin{verbatim}
+Sidon/Basic.lean
+Sidon/Combinatorics/{Differences,Intervals,IntervalSize}.lean
+Sidon/Analysis/{FiniteFourier,Correlation,DiscreteFejer,VanDerCorput}.lean
+Sidon/Analysis/{SidonCorrelation,PowerWindow}.lean
+Sidon/{FourierUniformity,ImprovedFourierUniformity}.lean
+Sidon/Equidistribution/{Progressions,Approximation,Bohr}.lean
+Sidon/Transference/DenseModel.lean
+Sidon/PartitionRegularity.lean
+\end{verbatim}

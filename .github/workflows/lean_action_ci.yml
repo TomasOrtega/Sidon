@@ -11,4 +11,11 @@ jobs:
 
     steps:
       - uses: actions/checkout@v4
+      - name: Check project proof policy
+        run: |
+          if rg --line-number '\b(sorry|admit|axiom|native_decide|set_option|set_options)\b' --glob '*.lean' Sidon Sidon.lean; then
+            exit 1
+          fi
+      - name: Check usage accounting
+        run: python3 -m unittest discover -s tests -p 'test_*.py'
       - uses: leanprover/lean-action@v1

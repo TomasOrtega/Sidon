@@ -1,0 +1,128 @@
+\chapter{Sidon sets and elementary foundations}
+
+\begin{definition}[Sidon set]
+\lean{IsSidonSet}\leanok\label{def:sidon_set}
+For an additive commutative monoid $M$, a set $S\subseteq M$ is Sidon
+if $a+b=c+d$ with $a,b,c,d\in S$ implies $\{a,b\}=\{c,d\}$.
+\end{definition}
+
+\begin{theorem}[Empty set]
+\lean{empty_is_sidon}\leanok\uses{def:sidon_set}
+The empty set is Sidon.
+\end{theorem}
+\begin{proof}
+Any four membership hypotheses include an element of the empty set,
+a contradiction. The defining implication follows.
+\end{proof}
+
+\begin{theorem}[Singleton]
+\lean{singleton_is_sidon}\leanok\uses{def:sidon_set}
+Every singleton is Sidon.
+\end{theorem}
+\begin{proof}
+Membership forces each element to equal the singleton's element.
+Substitution makes the required unordered-pair equality reflexive.
+\end{proof}
+
+\begin{theorem}[Hereditary property]
+\lean{sidon_subset_is_sidon}\leanok\uses{def:sidon_set}
+If $S$ is Sidon and $T\subseteq S$, then $T$ is Sidon.
+\end{theorem}
+\begin{proof}
+Use the inclusion on the four membership hypotheses, then apply
+the defining implication for $S$ to the same sum equality.
+\end{proof}
+
+\begin{lemma}[Unique nonzero differences]
+\lean{IsSidonSet.eq_of_sub_eq_sub,IsSidonSet.iff_unique_nonzero_difference}
+\leanok\label{found:diff}\uses{def:sidon_set}
+In an additive commutative group, $S$ is Sidon if and only if
+$a,b,c,d\in S$, $a\ne b$, $a-b=c-d$ imply $a=c$ and $b=d$.
+\end{lemma}
+\begin{proof}
+Rewrite the difference equality as $a+d=c+b$. The Sidon condition
+gives $\{a,d\}=\{c,b\}$, so $a=c$ or $a=b$. Exclude the second
+case and cancel in the difference equality to obtain $b=d$.
+Conversely, suppose $a+b=c+d$. If $a=c$, cancellation gives $b=d$.
+Otherwise rewrite as $a-c=d-b$ and use difference uniqueness on
+$(a,c)$ and $(d,b)$ to obtain $a=d$ and $c=b$.
+Both cases give the required unordered-pair equality.
+Finally $a-b\ne0$ is equivalent to $a\ne b$, identifying this with
+the paper's unique-nonzero-difference definition. No torsion assumption
+is used.
+\end{proof}
+
+\begin{theorem}[Finite group bound]
+\lean{sidon_set_size_bound}\leanok\label{found:finite}
+\uses{def:sidon_set,found:diff}
+For Sidon $S$ in a finite additive commutative group $M$,
+$|S|(|S|-1)\leq|M|$. In fact $|S|(|S|-1)\leq|M|-1$.
+The first declaration gives the weaker bound; the refinement is checked as
+\texttt{IsSidonSet.card\_sq\_sub\_card\_le\_card\_sub\_one}.
+\end{theorem}
+\begin{proof}
+$S^2$ has $m^2$ pairs and its diagonal has $m$ pairs, so its
+off-diagonal has $m^2-m=m(m-1)$ pairs, also when $m=0$.
+The difference map on that off-diagonal is injective by
+Lemma~\ref{found:diff}, and takes values in $M\setminus\{0\}$.
+The latter has $|M|-1$ elements, since $M$ contains zero.
+Finite injectivity proves the refined bound and hence the weaker one.
+\end{proof}
+
+\begin{corollary}[Cyclic groups]
+\lean{sidon_set_size_bound_zmodn}\leanok\uses{found:finite}
+For $n\geq1$ and Sidon $S\subseteq\mathbb Z/n\mathbb Z$,
+$|S|(|S|-1)\leq n$.
+\end{corollary}
+\begin{proof}
+For $n\ne0$, $\mathbb Z/n\mathbb Z$ has $n$ elements.
+Substitute this cardinality into the finite group bound.
+\end{proof}
+
+\begin{lemma}[Affine images over the integers]
+\lean{IsSidonSet.image_affine,Sidon.card_image_affine}\leanok
+\label{found:affine}\uses{def:sidon_set}
+For integers $u\ne0$ and $v$, the set $uS+v$ is Sidon whenever
+$S\subseteq\mathbb Z$ is Sidon. Finite such images have cardinality $|S|$.
+\end{lemma}
+\begin{proof}
+Choose four preimages for a sum equality in the image. Expanding and
+canceling $2v$ and then the nonzero factor $u$ gives a sum equality in
+$S$. Apply the Sidon condition and take the image of the resulting
+unordered-pair equality. If $ua+v=ub+v$, cancel $v$ and $u$ to get
+$a=b$. Thus the map is injective and preserves finite cardinality.
+\end{proof}
+
+\begin{lemma}[Crude interval bound]\label{found:crude}\uses{found:diff}
+\lean{IsSidonSet.card_le_two_mul_sqrt}\leanok
+A Sidon subset of an integer interval of length $L\geq1$ has
+at most $2\sqrt L$ elements. At $L=0$ it is empty.
+\end{lemma}
+\begin{proof}
+The $m(m-1)$ distinct nonzero ordered differences lie among
+$\{-(L-1),\ldots,-1,1,\ldots,L-1\}$, giving
+$m(m-1)\leq2(L-1)$.
+If $m>2\sqrt L$, then $\sqrt L\geq1$ gives
+$m(m-1)>2\sqrt L(2\sqrt L-1)\geq2L>2(L-1)$,
+a contradiction. An interval of length zero is empty.
+This bound alone suffices for the Fourier theorem's boundary terms.
+\end{proof}
+
+\begin{proposition}[Odd construction, paper Proposition 1.13]
+\label{found:odd}\uses{found:affine}
+Let $L=\lfloor(N-1)/2\rfloor$ and $S_0\subseteq[L]$ be Sidon.
+Then $S=2S_0+1\subseteq[N]$ is Sidon, $|S|=|S_0|$, and it has
+no solution to $x_1+x_2+x_3+x_4=x_5$.
+If $|S_0|=\sqrt L(1+o(1))$, then
+$|S|=\sqrt{N/2}(1+o(1))$ as $N\to\infty$.
+\end{proposition}
+\begin{proof}
+Use the affine lemma. For $1\leq x\leq L$,
+$1\leq2x+1\leq2L+1\leq N$. Every image element is odd, but a
+sum of four odd integers is even. Reduction modulo two rules out the
+equation. The floor bound gives $L/N\to1/2$; continuity of square
+root gives $\sqrt{L/N}\to1/\sqrt2$. Multiply by
+$|S_0|/\sqrt L\to1$. The existence of asymptotically optimal $S_0$
+is the same external construction input as in
+Corollary~\ref{target:largest}.
+\end{proof}

@@ -1,0 +1,1007 @@
+\chapter{Progressions, Bohr neighbourhoods, and partition regularity}
+\label{app:chapter}
+
+This chapter expands Sections 3--5 and Appendices B--C of Ortega and
+Prendiville, \emph{Extremal Sidon Sets are Fourier Uniform, with Applications
+to Partition Regularity}, arXiv:2110.13447v1.  The arguments below use Haar
+probability measure on $\mathbb T=\mathbb R/\mathbb Z$, the character
+$e(t)=\exp(2\pi i t)$, and $[N]=\{1,\ldots,N\}\subset\mathbb Z$.
+Every function on $[N]$ is extended by zero to $\mathbb Z$.  Throughout,
+$N\geq1$, $m=|S|$, and
+\[
+ D=\sup_{\theta\in\mathbb T}
+ \left|\widehat{1_S}(\theta)-\frac mN\widehat{1_{[N]}}(\theta)\right|,
+ \qquad E=\left|\frac m{\sqrt N}-1\right|+N^{-1/6}.
+\]
+The Fourier-uniformity theorem supplies $D\leq C\sqrt N\sqrt E$ with an
+absolute constant $C$.  The tensor-kernel proof in Appendix B of the paper
+omits a dimension factor in a union bound.  We record the precise bound
+it proves, then give a different smoothing argument that recovers the
+absolute constants in both Bohr equidistribution corollaries.
+The dimension-uniform bandwidth claimed in Lemma 4.1 cannot hold for
+arbitrary maximum-metric Lipschitz functions: a counterexample is proved
+below.  The exact Sidon energy is checked in Lean; the analytic and
+transference results below remain detailed proof targets.
+
+\section{Arithmetic progressions}
+
+\begin{lemma}[An $L^1$ estimate including the small cases]
+\label{app:progression-l1}
+If $P\subset\mathbb Z$ is a finite arithmetic progression, then
+\[
+ \int_{\mathbb T}|\widehat{1_P}(\theta)|\,d\theta
+ \leq C_1\log(2+|P|)
+\]
+for an absolute constant $C_1$.
+\end{lemma}
+\begin{proof}
+The empty progression has transform zero, and a singleton has transform of
+modulus one.  These cases explain why the printed $\log|P|$ must be replaced
+by $\log(2+|P|)$ in a statement valid for every finite progression.
+For a nonsingleton progression write
+$P=\{a+qj:0\leq j<L\}$, with $L\geq2$ and $q\ne0$.  Translation contributes
+only the factor $e(a\theta)$, whose modulus is one.  Multiplication by the
+nonzero integer $q$ preserves Haar probability measure on $\mathbb T$:
+for continuous periodic $H$, split $[0,1]$ into $|q|$ equal intervals,
+substitute $u=q\theta$ on each, and use periodicity.  Consequently its
+$L^1$ norm equals that of $\sum_{j=0}^{L-1}e(j\theta)$.
+
+The triangle inequality bounds this sum by $L$.  If
+$\theta\ne0$ in $\mathbb T$, multiplying the sum by $1-e(\theta)$ gives
+$1-e(L\theta)$, so its modulus is at most $2/|1-e(\theta)|$.
+Represent $\theta$ by $t\in[-1/2,1/2]$.  Concavity of sine on
+$[0,\pi/2]$ gives $|\sin(\pi t)|\geq2|t|$, and hence
+$|1-e(\theta)|=2|\sin(\pi t)|\geq4\|\theta\|_{\mathbb T}$.
+Thus the integrand is at most
+$\min(L,(2\|\theta\|_{\mathbb T})^{-1})$ away from zero; at zero use $L$.
+Integrating over $|t|\leq L^{-1}$ contributes at most $2$.
+On $L^{-1}<|t|\leq1/2$ integrate $1/(2|t|)$, obtaining at most
+$\log L$.  When $L=2$ the second region is empty.  Enlarging the numerical
+constant covers every $L\geq0$ and proves the assertion.
+\end{proof}
+
+\begin{lemma}[Fourier discrepancy tested on a progression]
+\label{app:progression-discrepancy}
+\uses{app:progression-l1}
+For any finite $S\subset[N]$ and finite arithmetic progression $P$,
+\[
+ \left||S\cap P|-\frac{|[N]\cap P|\,m}{N}\right|
+ \leq C_1D\log(2+N).
+\]
+\end{lemma}
+\begin{proof}
+Put $Q=P\cap[N]$ and $f=1_S-(m/N)1_{[N]}$.  Intersecting an arithmetic
+progression with an integer interval restricts its parameter $j$ to an
+interval of consecutive integers; consequently $Q$ is again an arithmetic
+progression, possibly empty or a singleton, and $|Q|\leq N$.
+Expand both finite Fourier sums and integrate term by term.  The identity
+$\int_{\mathbb T}e(k\theta)\,d\theta=1$ for $k=0$ and $0$ otherwise gives
+\[
+ \sum_x1_Q(x)f(x)
+ =\int_{\mathbb T}\widehat{1_Q}(\theta)\widehat f(-\theta)\,d\theta.
+\]
+The left side is the discrepancy in the statement.  Take its absolute value,
+move the norm inside the integral, bound $|\widehat f(-\theta)|$ by $D$,
+and apply Lemma~\ref{app:progression-l1} and monotonicity of logarithm.
+\end{proof}
+
+\begin{theorem}[Paper Theorem 3.1]
+\label{app:progression-equidistribution}
+\uses{app:progression-discrepancy}
+For a Sidon set $S\subset[N]$, any finite arithmetic progression $P$, and
+any $\varepsilon>0$,
+\[
+ |S\cap P|=\frac{|[N]\cap P|\,m}{N}
+       +O_{\varepsilon}(N^{1/2+\varepsilon}E^{1/2}).
+\]
+\end{theorem}
+\begin{proof}
+Substitute $D\leq C\sqrt N\sqrt E$ in
+Lemma~\ref{app:progression-discrepancy}.  To make the logarithm absorption
+explicit, $\log N=\int_1^N t^{-1}\,dt\leq(N^{\varepsilon}-1)/\varepsilon$
+for $N\geq1$, and $\log(2+N)\leq\log3+\log N$.
+Thus $\log(2+N)\leq(\log3+1/\varepsilon)N^{\varepsilon}$.
+No lower bound on $m$ is needed here; in particular $S=\varnothing$ is allowed.
+\end{proof}
+
+\begin{corollary}[Paper Corollaries 1.5 and 1.6]
+\label{app:interval-residue-corollaries}
+\uses{app:progression-equidistribution}
+Assume $m\geq\sqrt N/100$.  For any interval $I\subset[0,1]$, with any
+choice of open or closed endpoints, and for $q\geq1$ and $a\in\mathbb Z$,
+\[
+ \frac1m\sum_{x\in S}1_I(x/N)
+ =\operatorname{length}(I)+O_{\varepsilon}(N^{\varepsilon}E^{1/2}),
+\]
+\[
+ \frac1m\sum_{x\in S}1_{a+q\mathbb Z}(x)
+ =\frac1q+O_{\varepsilon}(N^{\varepsilon}E^{1/2}).
+\]
+The constants are independent of the endpoints, $a$, and $q$.
+\end{corollary}
+\begin{proof}
+The integers $x\in[N]$ with $x/N\in I$ form an integer interval $P$.
+Rounding each endpoint changes its expected length by at most one, so
+$\big||P|/N-\operatorname{length}(I)\big|\leq2/N$; this also covers empty
+and one-point intervals and the absence of $0$ from $[N]$.
+Apply Theorem~\ref{app:progression-equidistribution} to $P$ and divide by
+$m\geq\sqrt N/100$.  The additional error $2/N$ is absorbed because
+$E^{1/2}\geq N^{-1/12}$ and $N^{-1}\leq N^{\varepsilon-1/12}$.
+
+For residue classes, $P=[N]\cap(a+q\mathbb Z)$ is a finite progression.
+Writing $N=qk+b$ with $0\leq b<q$ shows that its size is either $k$ or
+$k+1$.  Therefore $\big||P|/N-1/q\big|\leq1/N$, including $q>N$.
+Apply the same normalized discrepancy bound and absorb $1/N$ as above.
+\end{proof}
+
+\section{A quantitative trigonometric approximation}
+
+\begin{definition}[Paper Definition B.1]
+\label{app:torus-fourier}
+For $d\geq1$, write $\mathbb T^d$ for the product torus with its Haar
+probability measure, $\|\beta\|_{\max}=\max_j\|\beta_j\|_{\mathbb T}$,
+and $m\cdot\beta=\sum_jm_j\beta_j$ for $m\in\mathbb Z^d$.
+For integrable $F:\mathbb T^d\to\mathbb C$, define
+\[
+ \widehat F(m)=\int_{\mathbb T^d}F(\beta)e(-m\cdot\beta)\,d\beta.
+\]
+\end{definition}
+
+\begin{lemma}[Tensor Fejer kernel]
+\label{app:tensor-fejer}
+\uses{app:torus-fourier}
+For an integer $M\geq1$, define
+\[
+ k_M(t)=\frac1M\left|\sum_{j=1}^M e(jt)\right|^2,
+ \qquad \Lambda_M(\beta)=\prod_{j=1}^d k_M(\beta_j).
+\]
+Then $\Lambda_M\geq0$, $\int\Lambda_M=1$, and
+\[
+ \Lambda_M(\beta)=\sum_{m\in\mathbb Z^d}
+       w_M(m)e(m\cdot\beta),\qquad
+ w_M(m)=\prod_j(1-|m_j|/M)_+.
+\]
+Only $|m_j|<M$ contribute.  For $0<\eta$,
+\[
+ \int_{\|\beta\|_{\max}>\eta}\Lambda_M(\beta)\,d\beta
+ \leq \frac d{M\eta^2}.
+\]
+\end{lemma}
+\begin{proof}
+Nonnegativity follows from the squared modulus formula.  Expanding that
+square gives $M^{-1}\sum_{u,v=1}^M e((u-v)t)$.
+For an integer $h$ with $|h|<M$, exactly $M-|h|$ pairs satisfy $u-v=h$;
+for $|h|\geq M$ no pairs do.  This proves the one-dimensional expansion.
+Taking the product proves the displayed expansion and its finite support.
+Orthogonality leaves only $h=0$ in the integral of $k_M$, so its integral
+is one.  Fubini then gives the corresponding product integral.
+
+The geometric-series estimate from Lemma~\ref{app:progression-l1} implies
+$k_M(t)\leq1/(M\|t\|_{\mathbb T}^2)$ when $t\ne0$.
+On the set $\|\beta_j\|_{\mathbb T}>\eta$ this yields
+\[
+ \Lambda_M(\beta)\leq\frac1{M\eta^2}
+                \prod_{i\ne j}k_M(\beta_i).
+\]
+Its integral over that set is at most $1/(M\eta^2)$, since the measure
+in the remaining coordinate is at most one and all other factors have
+integral one.  The set $\|\beta\|_{\max}>\eta$ is the union of these $d$
+sets.  Nonnegativity and the union bound give the factor $d$.
+If $\eta\geq1/2$, the set is empty and the same bound holds.
+\end{proof}
+
+\begin{lemma}[Paper Lemma 4.1, with explicit dimension dependence]
+\label{app:trigonometric-approximation}
+\uses{app:tensor-fejer}
+Suppose $F:\mathbb T^d\to[0,1]$ is $K$-Lipschitz for the maximum metric,
+$K\geq1$, and $\varepsilon>0$.  There is a trigonometric polynomial
+$F_\varepsilon:\mathbb T^d\to[0,1]$ with
+$\|F-F_\varepsilon\|_\infty\leq\varepsilon$, with frequencies
+$|m_j|<M$, where for $0<\varepsilon\leq1$ one may take
+\[
+ M=\left\lceil27dK^2\varepsilon^{-3}\right\rceil.
+\]
+In particular $M\leq28dK^2\varepsilon^{-3}$ in this range.
+For $\varepsilon\geq1$, the zero polynomial suffices.
+\end{lemma}
+\begin{proof}
+A Lipschitz function is continuous and integrable on the compact torus.
+For $M\geq1$ put
+$F_M(\alpha)=\int F(\alpha-\beta)\Lambda_M(\beta)\,d\beta$.
+Because the kernel is nonnegative with integral one, $0\leq F_M\leq1$.
+Insert its finite character expansion, interchange a finite sum with the
+integral, and substitute $u=\alpha-\beta$ using translation and inversion
+invariance of Haar measure.  This gives
+\[
+ F_M(\alpha)=\sum_{|m_j|<M}w_M(m)\widehat F(m)e(m\cdot\alpha).
+\]
+The output is real because the convolution is real, or equivalently because
+the coefficient at $-m$ is the conjugate of the coefficient at $m$.
+
+Use mass one to express $F(\alpha)-F_M(\alpha)$ as the integral of
+$(F(\alpha)-F(\alpha-\beta))\Lambda_M(\beta)$.
+On $\|\beta\|_{\max}\leq\eta$, its absolute integral is at most $K\eta$.
+On the complement, $|F(\alpha)-F(\alpha-\beta)|\leq1$ and
+Lemma~\ref{app:tensor-fejer} bounds the integral by $d/(M\eta^2)$.
+Choose $\eta=(d/(KM))^{1/3}>0$.  The sum of the two bounds is
+$2d^{1/3}K^{2/3}M^{-1/3}$, and in particular it is at most
+$3d^{1/3}K^{2/3}M^{-1/3}$.  The chosen ceiling for $M$ makes the latter
+at most $\varepsilon$.  The ceiling adds at most one, which is at most
+$dK^2\varepsilon^{-3}$ when $\varepsilon\leq1$.
+For $\varepsilon\geq1$, $|F-0|\leq1$ proves the final assertion.
+\end{proof}
+
+\begin{proposition}[No dimension-independent finite bandwidth]
+\label{app:no-uniform-bandwidth}
+For every integer $M\geq0$, there are a positive dimension $d$ and a
+$1$-Lipschitz function $F_d:\mathbb T^d\to[0,1]$, for the maximum metric,
+such that no trigonometric polynomial with all coordinate frequencies
+$|n_i|\leq M$ approximates $F_d$ uniformly within $1/16$.
+Consequently the bandwidth bound in paper Lemma 4.1 cannot have an
+absolute constant independent of $d$.
+\end{proposition}
+\begin{proof}
+Fix $\rho=1/4$ and let $V_M$ be the real vector space spanned by
+$1$, $\cos(2\pi nt)$, and $\sin(2\pi nt)$ for $1\leq n\leq M$.
+These $2M+1$ functions are linearly independent by character
+orthogonality, so $\dim V_M=2M+1$.
+Choose $2M+1$ distinct points $t_j$ in the arc $[1/4,3/4]$ of the circle;
+all satisfy $\|t_j\|_{\mathbb T}\geq\rho$.
+Evaluation at these points is an isomorphism
+\[
+ V_M\longrightarrow\mathbb R^{2M+1},\qquad
+ p\longmapsto(p(t_1),\ldots,p(t_{2M+1})).
+\]
+For injectivity, write a trigonometric polynomial as a Laurent polynomial
+in $z=e(t)$ and multiply it by $z^M$ to obtain an ordinary complex
+polynomial of degree at most $2M$.
+If all the displayed evaluations vanish, this polynomial has $2M+1$
+distinct roots $e(t_j)$, so it is zero.  The original trigonometric
+polynomial is then zero.  Injectivity between equal finite dimensions
+gives bijectivity.
+
+Evaluation at zero is a real linear functional on $V_M$.
+Transport it through the evaluation isomorphism and write a linear
+functional on $\mathbb R^{2M+1}$ in its coordinate basis.
+There are therefore real numbers $A_j$ with
+\[
+ p(0)=\sum_j A_jp(t_j)\quad(p\in V_M).
+\]
+Testing $p=1$ gives $\sum_jA_j=1$.
+Put $A_j^+=\max(A_j,0)$, $A_j^-=\max(-A_j,0)$ and
+$Z=\sum_jA_j^+=1+\sum_jA_j^-\geq1$.
+The probability measures
+\[
+ \mu=Z^{-1}\left(\delta_0+\sum_jA_j^-\delta_{t_j}\right),
+ \qquad \nu=Z^{-1}\sum_jA_j^+\delta_{t_j}
+\]
+have the same integrals against every $p\in V_M$.
+In particular their Fourier moments agree at each integer $|n|\leq M$,
+by expressing the real and imaginary parts of $e(nt)$ as cosine and sine.
+The measure $\mu$ assigns probability $a=1/Z>0$ to zero and its remaining
+mass to points at distance at least $\rho$ from zero.
+The whole support of $\nu$ has distance at least $\rho$ from zero.
+
+For any positive integer $d$, put
+\[
+ F_d(\beta)=\max_{1\leq i\leq d}
+                 (\rho-\|\beta_i\|_{\mathbb T})_+.
+\]
+The distance to zero, positive part, and maximum inequalities show that
+$F_d$ is $1$-Lipschitz for the maximum metric.
+Its range is $[0,\rho]\subset[0,1]$.
+Under the product measure $\nu^{\otimes d}$ it vanishes identically.
+Under $\mu^{\otimes d}$ it equals $\rho$ exactly when at least one
+coordinate is zero and equals zero otherwise.  Independence gives
+\[
+ \int F_d\,d\mu^{\otimes d}-\int F_d\,d\nu^{\otimes d}
+       =\rho\bigl(1-(1-a)^d\bigr).
+\]
+Choose $d$ so that $(1-a)^d<1/2$.  Such a finite positive $d$ exists
+because $0\leq1-a<1$; if $a=1$, take $d=1$.
+The last discrepancy is then strictly greater than $\rho/2=1/8$.
+
+For any multi-index with $|n_i|\leq M$, the expectation of
+$e(\sum_i n_i\beta_i)$ under either product measure factors into the
+one-coordinate Fourier moments.  Those moments agree, so every polynomial
+of the stated bandwidth has the same expectation under the two products.
+If such a polynomial $P$ satisfied $\|F_d-P\|_\infty\leq1/16$, the
+triangle inequality would bound the discrepancy of $F_d$ between these
+probability measures by $2/16=1/8$, a contradiction.
+The polynomial is not required to have range $[0,1]$, so the obstruction
+also applies when that extra condition is imposed.
+
+Finally, a dimension-independent bound $M\leq C K^2\varepsilon^{-3}$,
+with $K=1$ and $\varepsilon=1/16$, would give one finite upper bandwidth
+$\lceil4096C\rceil$ for every dimension.  Apply the construction at that
+bandwidth to contradict the asserted approximation.  This proves the
+failure of the absolute-constant interpretation of Lemma 4.1, while
+leaving the dimension-dependent corrected lemma intact.
+\end{proof}
+
+\section{Smooth and regular Bohr neighbourhoods}
+
+\begin{lemma}[A dimension-uniform smoothing alternative]
+\label{app:compact-smoothing}
+\uses{app:torus-fourier}
+Let $d\geq1$, $K\geq1$, and $F:\mathbb T^d\to[0,1]$ be $K$-Lipschitz
+for the maximum metric.  For every $0<\eta\leq1/2$ there is a continuous
+$A_\eta:\mathbb T^d\to[0,1]$ such that
+\[
+ \|F-A_\eta\|_\infty\leq K\eta,\qquad
+ A_\eta(\beta)=\sum_{u\in\mathbb Z^d}a_u e(u\cdot\beta),\qquad
+ \sum_u|a_u|\leq(10/\eta)^d.
+\]
+The series converges absolutely and uniformly.  The coefficients are not
+required to have finite support.
+\end{lemma}
+\begin{proof}
+Let $v_\eta=\eta^{-1}1_{[-\eta/2,\eta/2]}$ on $\mathbb T$, with
+endpoint choices immaterial to integrals.  It is nonnegative and has
+integral one.  Its convolution with its reflection is
+\[
+ k_\eta(t)=\eta^{-1}(1-\|t\|_{\mathbb T}/\eta)_+.
+\]
+This formula follows by measuring the overlap of two arcs of length
+$\eta\leq1/2$.  At distance $r\leq\eta$ their overlap has length
+$\eta-r$, and otherwise it is empty, up to endpoints of measure zero.
+Thus $k_\eta$ is continuous, nonnegative, has integral one, and is supported
+where $\|t\|_{\mathbb T}\leq\eta$.
+
+Integration of a character on $[-\eta/2,\eta/2]$ gives
+\[
+ \widehat{k_\eta}(n)=
+ \begin{cases}1,&n=0,\\
+ (\sin(\pi n\eta)/(\pi n\eta))^2,&n\ne0.
+ \end{cases}
+\]
+Indeed the coefficient of a convolution is the product of the
+coefficients, and reflection conjugates them.
+These coefficients are real and nonnegative and bounded by
+$\min(1,(\eta|n|)^{-2})$ for $n\ne0$.
+For $J=\lceil1/\eta\rceil$, bound the first $J$ positive coefficients by
+one and use $\sum_{n>J}n^{-2}\leq\int_J^\infty t^{-2}\,dt=1/J$ for the
+tail.  Counting positive and negative indices gives
+\[
+ \sum_{n\in\mathbb Z}|\widehat{k_\eta}(n)|
+ \leq1+2J+2/(\eta^2J)\leq10/\eta.
+\]
+The character series therefore converges absolutely and uniformly to a
+continuous function with these Fourier coefficients.  It equals $k_\eta$:
+their difference has every Fourier coefficient zero, so Parseval makes
+its $L^2$ norm zero, and continuity then makes it zero everywhere.
+This is a use of Fourier uniqueness, not an unproved pointwise inversion
+assertion for arbitrary integrable functions.
+
+On $\mathbb T^d$ put $\Lambda_\eta(\beta)=\prod_j k_\eta(\beta_j)$.
+Its character series is the product of the absolutely convergent
+one-dimensional series; its coefficient absolute sum is at most
+$(10/\eta)^d$.  It is a probability density supported on the maximum-metric
+ball of radius $\eta$.
+Set $A_\eta=F*\Lambda_\eta$.  Averaging against this density puts its values
+in $[0,1]$, and all points being averaged lie within distance $\eta$, so
+$|A_\eta(\beta)-F(\beta)|\leq K\eta$.
+Termwise integration of the uniformly absolutely convergent kernel series
+gives coefficients
+$a_u=\widehat F(u)\prod_j\widehat{k_\eta}(u_j)$.
+Since $|\widehat F(u)|\leq\int|F|\leq1$, their absolute sum has the stated
+bound.  The resulting series is absolutely and uniformly convergent by the
+Weierstrass test, completing the proof.
+\end{proof}
+
+\begin{theorem}[Paper Corollary 1.7, with an absolute constant]
+\label{app:smooth-bohr}
+\uses{app:compact-smoothing}
+Let $d\geq1$, $K\geq1$, $F:\mathbb T^d\to[0,1]$ be $K$-Lipschitz for
+the maximum metric, and $\alpha\in\mathbb T^d$.  If $S\subset[N]$ is
+Sidon and $m\geq\sqrt N/100$, then
+\[
+ \left|\frac1m\sum_{x\in S}F(x\alpha)
+       -\frac1N\sum_{x=1}^NF(x\alpha)\right|
+ \leq C_2 K^{2/3}E^{1/(8d)}.
+\]
+Here $C_2$ is an absolute constant, independent also of $d$.
+\end{theorem}
+\begin{proof}
+Write $R=D/m$, which is defined because the lower bound on $m$ makes it
+positive.  Apply Lemma~\ref{app:compact-smoothing} at scale $\eta$.
+An absolutely convergent character series can be interchanged with each
+finite normalized average.  Each frequency $u\in\mathbb Z^d$ is tested at
+$u\cdot\alpha$, where its discrepancy is at most $R$.
+The coefficient absolute sum therefore bounds the discrepancy of
+$A_\eta$ by $R(10/\eta)^d$.
+The two uniform approximation errors add at most $2K\eta$.
+Thus the desired discrepancy is at most
+\[
+ 2K\eta+R(10/\eta)^d.                                   \tag{*}
+\]
+If $R=0$, let $\eta$ tend to zero to get discrepancy zero.
+Otherwise put $t=(10^dR/K)^{1/(d+1)}>0$.
+When $t\leq1/2$, take $\eta=t$ in (*) to get $3Kt$.
+When $t>1/2$, the trivial discrepancy bound one is at most $2Kt$ because
+$K\geq1$.  In both cases the discrepancy is at most
+\[
+ 30K^{d/(d+1)}R^{1/(d+1)}.
+\]
+Fourier uniformity gives $R\leq100C E^{1/2}$.
+The factor $(100C)^{1/(d+1)}$ is bounded by an absolute constant, so the
+last bound is at most $A K^{d/(d+1)}E^{1/(2d+2)}$ with absolute $A$.
+
+It remains to compare exponents without introducing dimension-dependent
+constants.  Put $B=K^{2/3}E^{1/(8d)}$.  If $B\geq1$, the trivial bound
+one suffices.  If $B<1$, then $E<K^{-16d/3}\leq1$, and
+\[
+ \frac{K^{d/(d+1)}E^{1/(2d+2)}}{K^{2/3}E^{1/(8d)}}
+ =K^{(d-2)/(3(d+1))}E^{(3d-1)/(8d(d+1))}
+ \leq K^{-5d/(3(d+1))}\leq1.
+\]
+Thus the stronger estimate implies the claimed bound with the absolute
+constant $C_2=\max(1,A)$ in every case.
+\end{proof}
+
+\begin{definition}[Regularity in a denominator-free form]
+\label{app:regular-bohr}
+For $d\geq1$, $\rho>0$, and $\alpha\in\mathbb T^d$, define
+\[
+ B(\alpha,\rho)=\{x\in[N]:\|x\alpha\|_{\max}\leq\rho\}.
+\]
+Call this finite Bohr set regular when, for every real $\kappa$ with
+$|\kappa|\leq1/(100d)$,
+\[
+ \left||B(\alpha,(1+\kappa)\rho)|-|B(\alpha,\rho)|\right|
+ \leq100d|\kappa|\,|B(\alpha,\rho)|.
+\]
+For nonempty $B$ this is exactly paper Definition 1.9 after multiplying by
+$|B|$.  The denominator-free condition also handles an empty $B$ without
+an undefined quotient.  All radii in this condition are positive.
+\end{definition}
+
+\begin{lemma}[Lipschitz cutoff functions]
+\label{app:bohr-cutoffs}
+Let $0<t<\rho$.  Define $u(\beta)=\|\beta\|_{\max}$ and
+\[
+ F_+(\beta)=\min(1,\max(0,(\rho+t-u(\beta))/t)),\quad
+ F_-(\beta)=\min(1,\max(0,(\rho-u(\beta))/t)).
+\]
+Both functions take values in $[0,1]$ and have Lipschitz constant at most
+$t^{-1}$.  At every integer $x\in[N]$,
+\[
+ 1_{B(\alpha,\rho-t)}(x)\leq F_-(x\alpha)
+ \leq1_{B(\alpha,\rho)}(x)
+ \leq F_+(x\alpha)\leq1_{B(\alpha,\rho+t)}(x).
+\]
+\end{lemma}
+\begin{proof}
+The distance to zero on a metric space is $1$-Lipschitz, and taking a
+maximum of finitely many coordinate distances preserves this Lipschitz
+constant for the maximum metric.  Multiplying by $t^{-1}$ multiplies the
+constant by $t^{-1}$, while clipping a real number to $[0,1]$ is
+$1$-Lipschitz.  These observations prove the continuity estimates.
+If $u\leq\rho-t$, then $F_-=1$; if $u>\rho$, then $F_-=0$.
+If $u\leq\rho$, then $F_+=1$; if $u>\rho+t$, then $F_+=0$.
+The inequalities at the boundary points follow directly from these
+formulas, so the use of closed Bohr sets causes no endpoint exception.
+\end{proof}
+
+\begin{theorem}[Paper Corollary 1.11, with an absolute constant]
+\label{app:regular-bohr-equidistribution}
+\uses{app:smooth-bohr,app:regular-bohr,app:bohr-cutoffs}
+Under the hypotheses on $S$ above, if $B=B(\alpha,\rho)$ is regular, then
+\[
+ \left|\frac{|S\cap B|}{m}-\frac{|B|}{N}\right|
+ \leq C_3 d\rho^{-1}E^{1/(14d)}.
+\]
+\end{theorem}
+\begin{proof}
+For $\rho\geq1/2$, every coordinate has distance at most $1/2$, so
+$B=[N]$ and the discrepancy is zero.  Assume $0<\rho<1/2$.
+For $E\geq1$, the assertion follows from the bound one after enlarging
+$C_3$, since $d/\rho\geq2$.
+For $0<E<1$, put $t=E^{3/(40d)}\in(0,1)$.
+If $t>\rho/(100d)$, then
+\[
+ \frac d\rho E^{1/(14d)}
+ >\frac1{100}E^{1/(14d)-3/(40d)}\geq\frac1{100},
+\]
+because $1/14-3/40=-1/280<0$.  The trivial bound one proves this case.
+
+It remains to treat $t\leq\rho/(100d)$, which in particular gives
+$t<\rho$ and $t^{-1}\geq1$.  Apply the preceding cutoff lemma.
+Regularity at $\kappa=\pm t/\rho$ yields
+\[
+ \left|\frac{|B(\alpha,\rho\pm t)|}{N}-\frac{|B|}{N}\right|
+ \leq100d\rho^{-1}t\frac{|B|}{N}\leq100d\rho^{-1}t.
+\]
+Apply Theorem~\ref{app:smooth-bohr} with $K=t^{-1}$ to each cutoff.
+Using its upper inequality with $F_+$ bounds $|S\cap B|/m$ from above by
+$|B|/N+100d\rho^{-1}t+C_2t^{-2/3}E^{1/(8d)}$.
+Using its lower inequality with $F_-$ bounds the same quantity from below
+by $|B|/N-100d\rho^{-1}t-C_2t^{-2/3}E^{1/(8d)}$.
+The choice of $t$ gives
+$t^{-2/3}E^{1/(8d)}=E^{3/(40d)}=t$.
+Since $d/\rho\geq1$, the total error is at most
+$(100+C_2)d\rho^{-1}E^{3/(40d)}$.
+Finally $3/40>1/14$ and $E<1$, so this is at most the asserted bound.
+\end{proof}
+
+\section{The real Fourier norm and its dual}
+
+\begin{definition}[Paper Lemma C.2: the norms]
+\label{app:fourier-dual-norm}
+On the real vector space of functions $f:[N]\to\mathbb R$, set
+\[
+ \|f\|_F=\sup_{\alpha\in\mathbb T}|\widehat f(\alpha)|,
+ \qquad
+ \|\phi\|_F^*=\sup_{\|f\|_F\leq1}
+             \left|\sum_{x=1}^Nf(x)\phi(x)\right|.
+\]
+\end{definition}
+
+\begin{lemma}[Norm facts and the real modulation repair]
+\label{app:fourier-dual-properties}
+\uses{app:fourier-dual-norm}
+The two expressions above are norms.  Their unit balls are compact, and
+\[
+ |\langle f,\phi\rangle|\leq\|f\|_F\|\phi\|_F^*,\quad
+ \|\phi\psi\|_F^*\leq\|\phi\|_F^*\|\psi\|_F^*,\quad
+ \|\phi\|_\infty\leq\|\phi\|_F^*,\quad \|1\|_F^*=1.
+\]
+All products here are pointwise products of real functions.
+\end{lemma}
+\begin{proof}
+The supremum defining $\|f\|_F$ is finite because
+$|\widehat f(\alpha)|\leq\sum_x|f(x)|$.  It is a maximum because the
+transform is continuous on the compact torus.  Homogeneity and the triangle
+inequality follow pointwise and then pass to the supremum.
+Fourier inversion gives
+$f(x)=\int\widehat f(\alpha)e(-x\alpha)\,d\alpha$, and hence
+$|f(x)|\leq\|f\|_F$.  Thus norm zero forces $f=0$.
+This estimate makes the unit ball bounded in the usual finite-dimensional
+coordinate norm.  The Fourier norm is continuous (it is bounded above by
+the coordinate $\ell^1$ norm and satisfies the reverse triangle inequality),
+so its unit ball is closed and compact.
+
+The pairing is continuous on that compact unit ball, so the dual supremum
+is finite and attained.  If $f\ne0$, apply the definition to
+$f/\|f\|_F$; if $f=0$, both sides of the pairing inequality are zero.
+For each coordinate $x$, the delta function $1_{\{x\}}$ has Fourier norm
+one.  Testing with it gives $|\phi(x)|\leq\|\phi\|_F^*$.
+This also proves definiteness of the dual norm; its other norm axioms
+follow from the supremum definition.
+
+There is a small real-versus-complex issue in the printed proof of C.2:
+the dual norm was defined using real test functions, so it cannot be applied
+directly to $f(x)e(\alpha x)$.
+For a correct real argument, fix $\alpha,\theta\in\mathbb T$ and put
+$c(x)=\cos(2\pi(\alpha x+\theta))$.
+The identity $c=(e(\theta)e(\alpha x)+e(-\theta)e(-\alpha x))/2$ gives
+\[
+ \widehat{fc}(\beta)=\tfrac12\left(
+ e(\theta)\widehat f(\beta+\alpha)
+ +e(-\theta)\widehat f(\beta-\alpha)\right),
+ \qquad \|fc\|_F\leq\|f\|_F.
+\]
+Since $fc$ is real, the dual pairing inequality now applies to it.
+Use $|z|=\sup_\theta\operatorname{Re}(e(\theta)z)$ with
+$z=\widehat{f\phi}(\alpha)$ to obtain
+$|\widehat{f\phi}(\alpha)|\leq\|f\|_F\|\phi\|_F^*$.
+Taking the supremum in $\alpha$ gives
+$\|f\phi\|_F\leq\|f\|_F\|\phi\|_F^*$.
+Apply the pairing inequality to $f\phi$ and $\psi$, and then take the
+supremum over real $f$ with $\|f\|_F\leq1$.  This proves
+submultiplicativity with constant exactly one.
+Finally $|\langle f,1\rangle|=|\widehat f(0)|\leq\|f\|_F$, while a delta
+function realizes equality, so $\|1\|_F^*=1$.
+\end{proof}
+
+\begin{lemma}[Paper Lemma C.1: strict finite-dimensional separation]
+\label{app:strict-separation}
+If $K\subset\mathbb R^n$ is closed and convex and $v\notin K$, then there
+is $\phi\in\mathbb R^n$ such that
+$\langle v,\phi\rangle>\langle u,\phi\rangle$ for every $u\in K$.
+\end{lemma}
+\begin{proof}
+If $K$ is empty, any $\phi$ works.  Otherwise choose $u_1\in K$.
+The continuous distance to $v$ attains its minimum on
+$K\cap\overline B(v,\|u_1-v\|+1)$, which is nonempty and compact.
+Outside that ball the distance is larger than the distance to $u_1$, so a
+minimizer $u_0$ there is also a global minimizer on $K$.
+Set $\phi=v-u_0\ne0$.  For any $u\in K$ and $0<t\leq1$,
+$u_0+t(u-u_0)\in K$; the minimality inequality expands to
+\[
+ -2t\langle\phi,u-u_0\rangle+t^2\|u-u_0\|^2\geq0.
+\]
+Divide by $t$ and let $t$ tend to zero from above.  This gives
+$\langle\phi,u-u_0\rangle\leq0$.
+Consequently $\langle v,\phi\rangle-\langle u,\phi\rangle
+\geq\|v-u_0\|^2>0$, as required.
+\end{proof}
+
+\begin{lemma}[Polynomial approximation of a maximum, with a finite recipe]
+\label{app:polynomial-max}
+For $r\geq1$, $L\geq1$ and $\tau>0$, a real polynomial $P$ in $r$
+variables satisfies
+\[
+ |P(t)-\max(0,t_1,\ldots,t_r)|\leq\tau
+ \quad\text{for }t\in[-L,L]^r.
+\]
+Its degree and coefficients can be chosen solely from $r,L,\tau$.
+\end{lemma}
+\begin{proof}
+On $[0,1]^r$, let $H(z)=\max(0,2Lz_1-L,\ldots,2Lz_r-L)$.
+It is $2L$-Lipschitz for the maximum metric.  Choose an integer
+$k\geq\max(1,rL^2/\tau^2)$ and form its multivariate Bernstein polynomial
+\[
+ B_kH(z)=\sum_{a\in\{0,\ldots,k\}^r}H(a/k)
+     \prod_{j=1}^r\binom{k}{a_j}z_j^{a_j}(1-z_j)^{k-a_j}.
+\]
+For fixed $z$, these nonnegative weights sum to one.  They are the
+distribution of independent binomial random variables $Y_j$ with parameters
+$(k,z_j)$.  The binomial identities for mean and variance give
+$\mathbb E(Y_j/k-z_j)^2=z_j(1-z_j)/k\leq1/(4k)$.
+These identities can equivalently be proved by differentiating
+$(z+(1-z))^k$ once and twice and expanding finite sums.
+By Cauchy--Schwarz and $\max_j b_j^2\leq\sum_jb_j^2$,
+\[
+ |B_kH(z)-H(z)|\leq2L\mathbb E\max_j|Y_j/k-z_j|
+ \leq2L\sqrt{r/(4k)}\leq\tau.
+\]
+Substitute $z_j=(t_j+L)/(2L)$ to obtain $P$.
+Its degree is at most $rk$, and the displayed finite formula fixes all its
+coefficients using only $r,L,\tau$.  This supplies a constructive substitute
+for the Stone--Weierstrass invocation in Appendix C.
+\end{proof}
+
+\section{The colouring dense-model lemma}
+
+\begin{theorem}[Paper Lemma 5.1, contrapositive form]
+\label{app:dense-model}
+\uses{app:fourier-dual-properties,app:strict-separation,app:polynomial-max}
+For every integer $r\geq1$ and $0<\varepsilon\leq1$, there is
+$\eta=\eta(\varepsilon,r)>0$ such that the following holds for every
+$N\geq1$.  If $\nu,f_1,\ldots,f_r:[N]\to[0,\infty)$ satisfy
+$\sum_if_i\leq\nu$ and
+\[
+ \|\nu-1\|_F\leq\eta N,
+\]
+there are $g_i:[N]\to[0,\infty)$ with $\sum_ig_i\leq1$ and
+$\|f_i-g_i\|_F\leq\varepsilon N$ for every $i$.
+\end{theorem}
+\begin{proof}
+We prove that failure of the conclusion forces
+$\|\nu-1\|_F>\eta N$ for a fixed positive $\eta$.
+If $\sum_x\nu(x)>2N$, evaluation at frequency zero gives
+$\|\nu-1\|_F>N$, so assume $\sum_x\nu(x)\leq2N$.
+Put $a=1+\varepsilon/2$ and $q=\varepsilon N/4$.
+In the finite-dimensional real vector space of $r$ tuples of functions,
+consider
+\[
+ K=\{(g_i+h_i)_i:g_i\geq0,\ \sum_ig_i\leq1,
+                              \|h_i\|_F\leq q\}.
+\]
+The constraints on $g$ define a closed bounded set and are convex.
+Each Fourier-norm ball for $h_i$ is compact and convex by
+Lemma~\ref{app:fourier-dual-properties}.  Their product and its continuous
+image under addition are compact, so $K$ is closed and convex.
+
+The tuple $f/a$ lies outside $K$.  Indeed, if $f_i/a=g_i+h_i$, then
+$f_i-g_i=(a-1)g_i+ah_i$.  Since $0\leq g_i\leq1$,
+$\|g_i\|_F\leq N$, and $a\leq3/2$, the Fourier norm of this difference
+is at most $\varepsilon N/2+3\varepsilon N/8
+=7\varepsilon N/8<\varepsilon N$, contrary to failure of the conclusion.
+Strict separation therefore provides a tuple $\phi$ satisfying
+\[
+ a^{-1}\sum_i\langle f_i,\phi_i\rangle
+ >\sum_i\langle g_i,\phi_i\rangle+\sum_i\langle h_i,\phi_i\rangle
+ \quad(g,h\text{ admissible}).
+\]
+Taking $g=h=0$ shows that $A=\sum_i\langle f_i,\phi_i\rangle>0$.
+Multiply every $\phi_i$ by the positive scalar $aN/A$.  After this
+normalization, $\sum_i\langle f_i,\phi_i\rangle=aN$, and the right side
+of the last display is strictly less than $N$ for all admissible $g,h$.
+
+Choose $g=0$, all but one $h_i=0$, and let that $h_i$ maximize its pairing
+over its Fourier-norm ball.  Compactness and symmetry of the ball show that
+this maximum is $q\|\phi_i\|_F^*$.  Thus
+$\|\phi_i\|_F^*<N/q=4/\varepsilon$ and
+$\|\phi_i\|_\infty\leq4/\varepsilon$.
+Write $M(x)=\max(0,\phi_1(x),\ldots,\phi_r(x))$.
+At each $x$, assign all mass one to the least index at which a positive
+maximum is achieved, and assign zero to all coordinates when the maximum
+is zero.  This defines an admissible $g$ with
+$\sum_i\langle g_i,\phi_i\rangle=\sum_xM(x)<N$.
+On the other hand, nonnegativity and $\sum_if_i\leq\nu$ imply
+\[
+ aN=\sum_i\langle f_i,\phi_i\rangle
+ \leq\sum_x\nu(x)M(x).
+\]
+Subtracting the bound on $\sum_xM(x)$ gives
+$\langle\nu-1,M\rangle>\varepsilon N/2$.
+
+Apply Lemma~\ref{app:polynomial-max} with
+$L=4/\varepsilon$ and $\tau=\varepsilon/100$ to obtain a fixed polynomial
+$P(t)=\sum_b p_b t^b$.  Since
+$\sum_x|\nu(x)-1|\leq\sum_x\nu(x)+N\leq3N$, replacing $M$ by
+$P(\phi_1,\ldots,\phi_r)$ changes the pairing by at most
+$3\varepsilon N/100$.  The resulting pairing is therefore greater than
+$\varepsilon N/4$.
+Repeated submultiplicativity, including $\|1\|_F^*=1$ for the constant
+monomial, gives
+\[
+ \|P(\phi_1,\ldots,\phi_r)\|_F^*
+ \leq B:=\sum_b|p_b|(4/\varepsilon)^{|b|}.
+\]
+Here the finite number $B$ depends only on $\varepsilon,r$, regardless of
+$N,f,\nu$.  The dual pairing inequality gives
+$\varepsilon N/4<\|\nu-1\|_F B$.
+Taking $\eta=\min(1,\varepsilon/(4\max(1,B)))>0$ proves the claimed
+contrapositive, and hence the theorem.  This choice also covers the
+mass-greater-than-$2N$ case treated initially.
+\end{proof}
+
+\section{Counting solutions and transferring a colouring}
+
+\begin{definition}[Weighted linear solution count]
+\label{app:linear-count}
+Let $c=(c_1,\ldots,c_s)$ be nonzero integers.  For functions on $[N]$ put
+\[
+ T_c(h_1,\ldots,h_s)=
+ \sum_{\substack{x\in[N]^s\\\sum_ic_ix_i=0}}\prod_{i=1}^s h_i(x_i),
+ \qquad T_c(h)=T_c(h,\ldots,h).
+\]
+The variables may repeat.  The conclusions below do not assert pairwise
+distinctness, which is not a condition in paper Theorem 1.15.
+\end{definition}
+
+\begin{lemma}[The quantitative colouring theorem]
+\label{app:fgr-dependency}
+\uses{qr:many-monochromatic}
+Suppose $c_i\ne0$, $s\geq1$, $r\geq1$, and some nonempty
+$I\subset\{1,\ldots,s\}$ has $\sum_{i\in I}c_i=0$.
+There are $N_0=N_0(c,r)$ and $\delta_0=\delta_0(c,r)>0$ such that every
+$r$-colouring of $[N]$, for $N\geq N_0$, has a class $C_j$ with
+$T_c(1_{C_j})\geq\delta_0N^{s-1}$.
+\end{lemma}
+\begin{proof}
+This is Theorem~\ref{qr:many-monochromatic}, whose full proof in the next
+chapter starts from the Hales--Jewett theorem already checked in mathlib.
+It is the single-equation instance of Frankl--Graham--R\"odl,
+\emph{Quantitative theorems for regular systems of equations}, Journal of
+Combinatorial Theory A 47 (1988), Theorem 1, cited as reference [11] in the
+paper.  The zero-sum subcollection is Rado's columns condition for a
+one-row matrix.  Rado's existence theorem alone would not give the needed
+$N^{s-1}$ solutions; the full-dimensional embedding and multiplicity count
+in the next chapter supply that additional argument.
+\end{proof}
+
+\begin{lemma}[Paper Lemma 5.2: the weighted reduction]
+\label{app:weighted-interval-count}
+\uses{app:fgr-dependency,app:linear-count}
+For the same $c,r$, let $g_i:[N]\to[0,\infty)$ satisfy $\sum_ig_i=1$.
+For $N\geq N_0$, some $j$ satisfies
+\[
+ T_c(g_j)\geq\delta N^{s-1},\qquad \delta=\delta_0/r^s>0.
+\]
+\end{lemma}
+\begin{proof}
+At each $x$, at least one of the $r$ values $g_i(x)$ is at least $1/r$:
+otherwise their sum would be strictly less than one.  Choose the least such
+index and let $C_i$ be the set assigned to $i$.  These sets partition $[N]$,
+and $g_i\geq r^{-1}1_{C_i}$ pointwise.  Each term in a solution count is
+a product of nonnegative numbers, so
+$T_c(g_i)\geq r^{-s}T_c(1_{C_i})$.
+Apply the quantitative colouring theorem to the partition and
+substitute the definition of $\delta$.
+\end{proof}
+
+\begin{lemma}[The exact Sidon energy]
+\label{app:sidon-energy}
+\lean{IsSidonSet.addEnergy_eq,IsSidonSet.addEnergy_le}\leanok
+\uses{def:sidon_set}
+For a finite Sidon set $S\subset\mathbb Z$ of size $m$, its additive energy
+is exactly
+\[
+ \#\{(a,b,c,d)\in S^4:a-b=c-d\}=2m^2-m\leq2m^2.
+\]
+\end{lemma}
+\begin{proof}
+For the zero difference, there are $m$ choices for each ordered pair and
+therefore $m^2$ quadruples.  For each nonzero difference, the Sidon property
+allows at most one ordered pair.  There are exactly $m(m-1)$ nonzero
+ordered pairs, with distinct differences, so these contribute $m(m-1)$.
+This proves the exact energy formula, including $m=0$.
+The checked declarations use mathlib's natural-valued
+$\operatorname{Finset.addEnergy}(S,S)$; the tuple equation above is the
+equivalent difference formulation after rearranging the summands.
+\end{proof}
+
+\begin{lemma}[Fourth and higher Fourier moments]
+\label{app:sidon-fourth-moment}
+\uses{app:sidon-energy,app:linear-count}
+If $S\subset[N]$, $m>0$, $p\geq4$, and
+$0\leq f\leq(N/m)1_S$, then
+\[
+ \int_{\mathbb T}|\widehat f(\theta)|^p\,d\theta
+ \leq2N^{p}m^{-2}.
+\]
+If $p\geq2$ and $0\leq g\leq1_{[N]}$, then the corresponding integral
+is at most $N^{p-1}$.
+\end{lemma}
+\begin{proof}
+The triangle inequality and the bound on $f$ give
+$\|\widehat f\|_\infty\leq\sum_xf(x)\leq N$.
+Expand $|\widehat f|^4=\widehat f\,\overline{\widehat f}
+\widehat f\,\overline{\widehat f}$ and integrate term by term.
+Orthogonality restricts the sum to $a-b+c-d=0$.
+Every weight is nonnegative and at most $(N/m)^4$, so the fourth moment
+is at most $(N/m)^4(2m^2-m)\leq2N^4/m^2$.
+Pointwise $|\widehat f|^p\leq N^{p-4}|\widehat f|^4$, and integration
+proves the displayed estimate.
+For $g$, similarly $\|\widehat g\|_\infty\leq N$; Parseval and $g^2\leq g$
+give $\int|\widehat g|^2=\sum_xg(x)^2\leq N$.
+Multiply by $N^{p-2}$ to obtain $N^{p-1}$.
+\end{proof}
+
+\begin{lemma}[The five-variable counting inequality]
+\label{app:counting-transfer}
+\uses{app:sidon-fourth-moment}
+Suppose $s\geq5$, all $c_i\ne0$, $m\geq\sqrt N/100$, $S\subset[N]$ is
+Sidon, $0\leq f\leq(N/m)1_S$, and $0\leq g\leq1_{[N]}$.  Then
+\[
+ |T_c(f)-T_c(g)|\leq20000s\,N^{s-2}\|f-g\|_F.
+\]
+\end{lemma}
+\begin{proof}
+For finite complex-valued functions $h_i$, expand their transforms and use
+orthogonality to obtain
+\[
+ T_c(h_1,\ldots,h_s)
+   =\int_{\mathbb T}\prod_i\widehat h_i(c_i\theta)\,d\theta.
+\]
+The map $\theta\mapsto c_i\theta$ preserves Haar measure because
+$c_i\ne0$, as in Lemma~\ref{app:progression-l1}.
+Consequently composing a Fourier transform with that map preserves every
+finite $L^p$ norm.
+
+Telescope $\prod_i f(x_i)-\prod_i g(x_i)$ into $s$ terms: in term $k$,
+use $f$ in coordinates before $k$, $f-g$ at coordinate $k$, and $g$ after
+$k$.  For each term put the distinguished transform in $L^\infty$ and
+apply H\"older with $s-1$ equal exponents $p=s-1$ to the others.
+The preceding moment lemma, with $p\geq4$, gives for each remaining factor
+\[
+ \int|\widehat f|^{s-1}\leq2N^{s-1}/m^2\leq20000N^{s-2},
+ \qquad \int|\widehat g|^{s-1}\leq N^{s-2}.
+\]
+The product of the $s-1$ $L^{s-1}$ norms is thus at most
+$20000N^{s-2}$.  Each telescoping term is bounded by this quantity times
+$\|f-g\|_F$; the triangle inequality and the $s$ terms give the result.
+This identifies the exact use of $s\geq5$: four controlled moments must
+remain after the distinguished factor is removed.
+\end{proof}
+
+\begin{theorem}[Paper Theorem 1.15, with explicit quantifier order]
+\label{app:partition-regularity}
+\uses{app:dense-model,app:weighted-interval-count,app:counting-transfer}
+Let $s\geq5$, $r\geq1$, and $c_i\in\mathbb Z\setminus\{0\}$, and
+suppose some nonempty subcollection of the coefficients sums to zero.
+There are constants $N_*=N_*(c,r)\geq1$, $\gamma=\gamma(c,r)>0$, and
+$\kappa=\kappa(c,r)>0$ such that for every $N\geq N_*$ and Sidon
+$S\subset[N]$ with
+\[
+ \left|\frac{|S|}{\sqrt N}-1\right|<\gamma,
+\]
+every $r$-colouring $S=C_1\sqcup\cdots\sqcup C_r$ has a class satisfying
+\[
+ T_c(1_{C_j})\geq\kappa\frac{|S|^s}{N}.
+\]
+\end{theorem}
+\begin{proof}
+Let $N_0,\delta>0$ come from
+Lemma~\ref{app:weighted-interval-count}; decrease $\delta$ to at most one
+if necessary.  Put $A=20000s$ and
+$\beta=\min(1,\delta/(4A))>0$.
+If $m<\sqrt N/100$, then
+$|m/\sqrt N-1|>99/100$.  We will choose $\gamma\leq1/2$, so only
+$m\geq\sqrt N/100$ needs consideration, and in particular $m>0$.
+For the given colouring define
+$f_i=(N/m)1_{C_i}$ and $\nu=(N/m)1_S$.
+These are nonnegative, satisfy $\sum_if_i=\nu$, and have the needed
+pointwise majorants.
+
+Suppose, towards contradiction, that every colour has
+$T_c(1_{C_i})<\delta m^s/(2N)$.
+Homogeneity gives $T_c(f_i)<\delta N^{s-1}/2$.
+For any nonnegative tuple $g_1,\ldots,g_r$ with $\sum_ig_i=1$, the weighted
+interval lemma supplies a $j$ with $T_c(g_j)\geq\delta N^{s-1}$ whenever
+$N\geq N_0$.
+The counting inequality therefore gives
+\[
+ \|f_j-g_j\|_F>\frac{\delta}{2A}N\geq2\beta N.
+                                                               \tag{**}
+\]
+In particular there is no complete dense colouring approximating every
+$f_i$ within $\beta N$.
+
+The dense-model lemma naturally produces a tuple with sum at most one.
+We handle that distinction explicitly.  If $r=1$, its only complete dense
+colouring is $g_1=1$, and (**) gives $\|\nu-1\|_F>2\beta N$.
+Assume $r\geq2$ and set $\varepsilon=\beta/(2r)\in(0,1]$.
+Let $\eta_0>0$ be the dense-model constant for $r-1$ functions and error
+$\varepsilon$.  If $\|\nu-1\|_F\leq\eta_0N$, apply that lemma to
+$f_1,\ldots,f_{r-1}$, whose sum is at most $\nu$.
+It supplies nonnegative $g_i$ for $i<r$, with sum at most one and
+$\|f_i-g_i\|_F\leq\varepsilon N$.
+Set $g_r=1-\sum_{i<r}g_i\geq0$.  The tuple is a complete dense colouring.
+If also $\|\nu-1\|_F\leq\beta N/2$, then
+\[
+ \|f_r-g_r\|_F
+ \leq\|\nu-1\|_F+\sum_{i<r}\|f_i-g_i\|_F
+ \leq\beta N/2+(r-1)\beta N/(2r)<\beta N.
+\]
+All other errors are at most $\beta N$, contradicting (**).
+Thus there is a fixed $\lambda>0$, depending only on $c,r$, such that our
+assumption of few solutions forces $\|\nu-1\|_F>\lambda N$.
+One may choose $\lambda=\min(\eta_0,\beta/2)$ when $r\geq2$, and
+$\lambda=\beta$ when $r=1$.
+
+On the other hand homogeneity and Fourier uniformity give
+\[
+ \frac{\|\nu-1\|_F}{N}=\frac Dm
+ \leq100C\left(\left|m/\sqrt N-1\right|+N^{-1/6}\right)^{1/2}.
+\]
+Choose
+$\gamma=\min(1/2,(\lambda/(400C))^2)>0$ and choose
+$N_*\geq\max(1,N_0)$ large enough that
+$N^{-1/6}\leq(\lambda/(400C))^2$ whenever $N\geq N_*$.
+For example, enlarge $N_*$ beyond $(400C/\lambda)^{12}$.
+Then the displayed normalized norm is at most
+$100C\sqrt2\lambda/(400C)<\lambda$, a contradiction.
+Therefore some colour satisfies the desired inequality with
+$\kappa=\delta/2$.
+All constants were chosen before $N,S$, and the colouring, as required.
+\end{proof}
+
+\section{The introduction's obstruction examples}
+
+\begin{proposition}[Paper Proposition 1.13]
+\label{app:odd-obstruction}
+There are Sidon sets $S_N\subset[N]$ with
+$|S_N|\geq(1/\sqrt2+o(1))\sqrt N$ and with no solution in $S_N$ to
+$x_1+x_2+x_3+x_4=x_5$.
+\end{proposition}
+\begin{proof}
+Let $M=\lfloor(N-1)/2\rfloor$.  Take a Sidon set
+$S_0\subset[M]$ with $|S_0|\geq(1-o(1))\sqrt M$; the existence of such
+sets is the Singer-construction input from the introduction, and is
+separate from the elementary argument here.
+Set $S_N=\{2x+1:x\in S_0\}$.  For $N\geq3$, these integers lie between
+$3$ and $2M+1\leq N$.  Equality between two sums from $S_N$ cancels the
+two added ones and then cancels multiplication by two, giving an equality
+between two sums from $S_0$.  Its Sidon property therefore proves that
+$S_N$ is Sidon.  The affine map is injective, so $|S_N|=|S_0|$.
+All elements of $S_N$ are odd.  A sum of four odd integers is even,
+whereas an element of $S_N$ is odd, ruling out the equation even with
+repeated variables.  Finally $M/N\to1/2$, so
+$\sqrt M/\sqrt N\to1/\sqrt2$, proving the asserted lower bound.
+For the finitely many $N<3$, choose $S_N=\varnothing$; they do not affect
+the asymptotic assertion.
+\end{proof}
+
+\begin{proposition}[The construction in paper Remark 1.14]
+\label{app:nonzero-sum-obstruction}
+If $c_1,\ldots,c_s\in\mathbb Z$ have $\sigma=\sum_ic_i\ne0$, there are
+Sidon sets $S_N\subset[N]$ of size at least
+$(p^{-1/2}+o(1))\sqrt N$, for some fixed prime $p$, containing no solution
+to $\sum_ic_ix_i=0$.
+\end{proposition}
+\begin{proof}
+Choose a prime $p$ that does not divide $\sigma$, for instance any prime
+larger than $|\sigma|$; the existence follows from unboundedness of primes.
+For $M=\lfloor(N-1)/p\rfloor$, take the same near-extremal Sidon input
+$S_0\subset[M]$ and set $S_N=pS_0+1$.
+The affine map is injective, takes its values in $[N]$ for large $N$, and
+preserves the Sidon property by cancellation exactly as above.
+Every element is congruent to one modulo $p$.  Thus
+$\sum_ic_ix_i\equiv\sigma\not\equiv0\pmod p$, ruling out a solution.
+The size estimate follows from $M/N\to1/p$.
+\end{proof}

@@ -1,3 +1,13 @@
--- This module serves as the root of the `Sidon` library.
--- Import modules here that should be built as part of the library.
 import Sidon.Basic
+import Sidon.Combinatorics.Differences
+import Sidon.Combinatorics.Intervals
+import Sidon.Combinatorics.Affine
+import Sidon.Combinatorics.Energy
+import Sidon.Combinatorics.IntervalSize
+import Sidon.Combinatorics.SharpIntervalSize
+import Sidon.Analysis.FiniteFourier
+import Sidon.Analysis.DiscreteFejer
+import Sidon.Analysis.VanDerCorput
+import Sidon.Analysis.PowerWindow
+import Sidon.Analysis.FourierIntegral
+import Sidon.FourierUniformity

@@ -1,0 +1,274 @@
+{
+  "schema_version": 1,
+  "root_thread": "01a1636c-beb7-7282-9390-a9ced5631a74",
+  "snapshot_at": "2026-10-22T12:15:48.188860+00:00",
+  "started_at": "2026-10-22T11:45:52+00:00",
+  "elapsed_seconds": 1796.189,
+  "totals": {
+    "input_tokens": 72192580,
+    "cached_input_tokens": 71207424,
+    "cache_write_input_tokens": 0,
+    "output_tokens": 291495,
+    "reasoning_output_tokens": 103292,
+    "total_tokens": 72484075
+  },
+  "context_bands": {
+    "short": {
+      "input_tokens": 58653556,
+      "cached_input_tokens": 57736448,
+      "cache_write_input_tokens": 0,
+      "output_tokens": 263071,
+      "reasoning_output_tokens": 93251,
+      "total_tokens": 58916627
+    },
+    "long": {
+      "input_tokens": 13539024,
+      "cached_input_tokens": 13470976,
+      "cache_write_input_tokens": 0,
+      "output_tokens": 28424,
+      "reasoning_output_tokens": 10041,
+      "total_tokens": 13567448
+    },
+    "unknown": {
+      "input_tokens": 0,
+      "cached_input_tokens": 0,
+      "cache_write_input_tokens": 0,
+      "output_tokens": 0,
+      "reasoning_output_tokens": 0,
+      "total_tokens": 0
+    }
+  },
+  "request_count": 406,
+  "models": [
+    "gpt-6.1-sol"
+  ],
+  "api_equivalent_usd": {
+    "standard": 13.631318,
+    "fast": 27.262636
+  },
+  "api_estimate_covers_all_attributed_usage": true,
+  "pricing_source": "https://developers.openai.com/api/docs/pricing",
+  "actual_billed_cost_usd": null,
+  "sessions": [
+    {
+      "thread_id": "01a1636c-beb7-7282-9390-a9ced5631a74",
+      "parent_thread_id": null,
+      "agent_path": null,
+      "source_file": "rollout-2026-10-22T07-43-53-01a1636c-beb7-7282-9390-a9ced5631a74.jsonl",
+      "created_at": "2026-10-22T11:43:53.545Z",
+      "started_at": 1792669552,
+      "last_token_count_at": "2026-10-22T12:15:32.842Z",
+      "inherited_baseline": {
+        "input_tokens": 0,
+        "cached_input_tokens": 0,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 0,
+        "reasoning_output_tokens": 0,
+        "total_tokens": 0
+      },
+      "totals": {
+        "input_tokens": 17790282,
+        "cached_input_tokens": 17532416,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 62040,
+        "reasoning_output_tokens": 20954,
+        "total_tokens": 17852322
+      },
+      "context_bands": {
+        "short": {
+          "input_tokens": 14948619,
+          "cached_input_tokens": 14702336,
+          "cache_write_input_tokens": 0,
+          "output_tokens": 53642,
+          "reasoning_output_tokens": 18503,
+          "total_tokens": 15002261
+        },
+        "long": {
+          "input_tokens": 2841663,
+          "cached_input_tokens": 2830080,
+          "cache_write_input_tokens": 0,
+          "output_tokens": 8398,
+          "reasoning_output_tokens": 2451,
+          "total_tokens": 2850061
+        },
+        "unknown": {
+          "input_tokens": 0,
+          "cached_input_tokens": 0,
+          "cache_write_input_tokens": 0,
+          "output_tokens": 0,
+          "reasoning_output_tokens": 0,
+          "total_tokens": 0
+        }
+      },
+      "observed_service_tiers": [],
+      "issues": []
+    },
+    {
+      "thread_id": "01a1636e-fe21-7172-8002-7df20e64dc61",
+      "parent_thread_id": "01a1636c-beb7-7282-9390-a9ced5631a74",
+      "agent_path": "/root/scout",
+      "source_file": "rollout-2026-10-22T07-46-20-01a1636e-fe21-7172-8002-7df20e64dc61.jsonl",
+      "created_at": "2026-10-22T11:46:20.861Z",
+      "started_at": 1792669580,
+      "last_token_count_at": "2026-10-22T12:15:45.562Z",
+      "inherited_baseline": {
+        "input_tokens": 67413,
+        "cached_input_tokens": 51200,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 875,
+        "reasoning_output_tokens": 0,
+        "total_tokens": 68288
+      },
+      "totals": {
+        "input_tokens": 27335475,
+        "cached_input_tokens": 27014144,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 76026,
+        "reasoning_output_tokens": 23894,
+        "total_tokens": 27411501
+      },
+      "context_bands": {
+        "short": {
+          "input_tokens": 16638114,
+          "cached_input_tokens": 16373248,
+          "cache_write_input_tokens": 0,
+          "output_tokens": 56000,
+          "reasoning_output_tokens": 16304,
+          "total_tokens": 16694114
+        },
+        "long": {
+          "input_tokens": 10697361,
+          "cached_input_tokens": 10640896,
+          "cache_write_input_tokens": 0,
+          "output_tokens": 20026,
+          "reasoning_output_tokens": 7590,
+          "total_tokens": 10717387
+        },
+        "unknown": {
+          "input_tokens": 0,
+          "cached_input_tokens": 0,
+          "cache_write_input_tokens": 0,
+          "output_tokens": 0,
+          "reasoning_output_tokens": 0,
+          "total_tokens": 0
+        }
+      },
+      "observed_service_tiers": [],
+      "issues": []
+    },
+    {
+      "thread_id": "01a1636f-1098-7df2-ae87-4b4ce8d527e3",
+      "parent_thread_id": "01a1636c-beb7-7282-9390-a9ced5631a74",
+      "agent_path": "/root/proof_core",
+      "source_file": "rollout-2026-10-22T07-46-25-01a1636f-1098-7df2-ae87-4b4ce8d527e3.jsonl",
+      "created_at": "2026-10-22T11:46:25.572Z",
+      "started_at": 1792669585,
+      "last_token_count_at": "2026-10-22T12:14:58.093Z",
+      "inherited_baseline": {
+        "input_tokens": 107336,
+        "cached_input_tokens": 79872,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 1219,
+        "reasoning_output_tokens": 90,
+        "total_tokens": 108555
+      },
+      "totals": {
+        "input_tokens": 15014308,
+        "cached_input_tokens": 14815360,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 74612,
+        "reasoning_output_tokens": 29794,
+        "total_tokens": 15088920
+      },
+      "context_bands": {
+        "short": {
+          "input_tokens": 15014308,
+          "cached_input_tokens": 14815360,
+          "cache_write_input_tokens": 0,
+          "output_tokens": 74612,
+          "reasoning_output_tokens": 29794,
+          "total_tokens": 15088920
+        },
+        "long": {
+          "input_tokens": 0,
+          "cached_input_tokens": 0,
+          "cache_write_input_tokens": 0,
+          "output_tokens": 0,
+          "reasoning_output_tokens": 0,
+          "total_tokens": 0
+        },
+        "unknown": {
+          "input_tokens": 0,
+          "cached_input_tokens": 0,
+          "cache_write_input_tokens": 0,
+          "output_tokens": 0,
+          "reasoning_output_tokens": 0,
+          "total_tokens": 0
+        }
+      },
+      "observed_service_tiers": [],
+      "issues": []
+    },
+    {
+      "thread_id": "01a1636f-2372-7040-a891-9772a79eeb23",
+      "parent_thread_id": "01a1636c-beb7-7282-9390-a9ced5631a74",
+      "agent_path": "/root/proof_applications",
+      "source_file": "rollout-2026-10-22T07-46-30-01a1636f-2372-7040-a891-9772a79eeb23.jsonl",
+      "created_at": "2026-10-22T11:46:30.399Z",
+      "started_at": 1792669590,
+      "last_token_count_at": "2026-10-22T12:15:25.158Z",
+      "inherited_baseline": {
+        "input_tokens": 147624,
+        "cached_input_tokens": 119680,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 1386,
+        "reasoning_output_tokens": 90,
+        "total_tokens": 149010
+      },
+      "totals": {
+        "input_tokens": 12052515,
+        "cached_input_tokens": 11845504,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 78817,
+        "reasoning_output_tokens": 28650,
+        "total_tokens": 12131332
+      },
+      "context_bands": {
+        "short": {
+          "input_tokens": 12052515,
+          "cached_input_tokens": 11845504,
+          "cache_write_input_tokens": 0,
+          "output_tokens": 78817,
+          "reasoning_output_tokens": 28650,
+          "total_tokens": 12131332
+        },
+        "long": {
+          "input_tokens": 0,
+          "cached_input_tokens": 0,
+          "cache_write_input_tokens": 0,
+          "output_tokens": 0,
+          "reasoning_output_tokens": 0,
+          "total_tokens": 0
+        },
+        "unknown": {
+          "input_tokens": 0,
+          "cached_input_tokens": 0,
+          "cache_write_input_tokens": 0,
+          "output_tokens": 0,
+          "reasoning_output_tokens": 0,
+          "total_tokens": 0
+        }
+      },
+      "observed_service_tiers": [],
+      "issues": []
+    }
+  ],
+  "limitations": [
+    "Snapshot of locally recorded root and fork/spawn descendant usage; later requests are excluded.",
+    "Inherited child counter prefixes are subtracted and repeated cumulative counters ignored.",
+    "Reasoning output is reported separately but is already included in output tokens.",
+    "Standard and Fast API equivalents are estimates; actual service tier and subscription billing are unknown.",
+    "Cache-write charges, tool fees, residency uplifts and taxes are excluded.",
+    "Unrecorded server requests and harness-only review sessions are outside the measured collaboration graph."
+  ]
+}
