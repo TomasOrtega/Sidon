@@ -1,0 +1,29 @@
+cff-version: 1.2.0
+message: >-
+  If you use this formalization, please cite both this repository and the
+  original paper listed in references.
+type: software
+title: "Extremal Sidon sets: Lean formalization"
+authors:
+  - family-names: Ortega
+    given-names: Tomas
+repository-code: https://github.com/TomasOrtega/Sidon
+url: https://TomasOrtega.github.io/Sidon/
+references:
+  - type: article
+    title: >-
+      Extremal Sidon Sets are Fourier Uniform, with Applications to Partition
+      Regularity
+    authors:
+      - family-names: Ortega
+        given-names: Miquel
+      - family-names: Prendiville
+        given-names: Sean
+    journal: Journal de théorie des nombres de Bordeaux
+    volume: 35
+    issue: 1
+    start: 115
+    end: 134
+    year: 2023
+    doi: 10.5802/jtnb.1239
+    url: https://jtnb.centre-mersenne.org/articles/10.5802/jtnb.1239/
