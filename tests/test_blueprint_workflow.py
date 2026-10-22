@@ -30,6 +30,9 @@ class BlueprintWorkflowTests(unittest.TestCase):
             for i in (restore, save)
         ]
         self.assertEqual(paths[0], paths[1])
+        self.assertIn(".lake/build/api-docs.db", paths[0])
+        self.assertIn(".lake/build/doc-data", paths[0])
+        self.assertIn("!.lake/build/doc-data/Sidon*", paths[0])
 
     def test_graphviz_plugin_can_be_linked_and_loaded(self):
         compiler = shutil.which("cc")

@@ -27,7 +27,7 @@ theorem norm_torusConvolution_sub_le (F g : C(Fin d → AddCircle (1 : ℝ), ℝ
       ∫ y, (F (x - y) - F x) * g y ∂torusHaar d := by
     simp_rw [sub_mul]
     rw [integral_sub (torus_real_integrable (by fun_prop))
-      (torus_real_integrable (by fun_prop)), integral_mul_left, hgi, mul_one]
+      (torus_real_integrable (by fun_prop)), integral_const_mul, hgi, mul_one]
     rfl
   rw [heq]
   apply (norm_integral_le_integral_norm _).trans
@@ -44,7 +44,7 @@ theorem norm_torusConvolution_sub_le (F g : C(Fin d → AddCircle (1 : ℝ), ℝ
         have hlip := hF.norm_sub_le (x - y) x
         rw [sub_sub_cancel_left, norm_neg] at hlip
         exact hlip.trans (mul_le_mul_of_nonneg_left (not_lt.mp hy) K.coe_nonneg)
-    _ = _ := by rw [integral_mul_left, hgi, mul_one]
+    _ = _ := by rw [integral_const_mul, hgi, mul_one]
 
 /-- A compactly supported probability bump yields a quantitative Fourier smoothing. -/
 theorem exists_torus_smoothing_of_bump
@@ -90,7 +90,7 @@ theorem exists_torus_smoothing_of_bump
       ((norm_torusFourierCoeff_le _ _).trans hnormF)
   have ha : Summable (fun n => ‖a n‖) :=
     Summable.of_nonneg_of_le (fun _ => norm_nonneg _) hbound hmass.summable
-  refine ⟨a, ha, (tsum_le_tsum hbound ha hmass.summable).trans (hmass.tsum_eq.le.trans hvB), ?_⟩
+  refine ⟨a, ha, (ha.tsum_le_tsum hbound hmass.summable).trans (hmass.tsum_eq.le.trans hvB), ?_⟩
   exact hasSum_torusFourier_series_apply_of_summable ha.of_norm
 
 /-- Tensoring a circle bump preserves its support in the maximum metric. -/
@@ -118,24 +118,22 @@ theorem torusTensor_eq_zero_of_support (v : C(AddCircle (1 : ℝ), ℝ))
   obtain ⟨i, hi⟩ := hi
   exact Finset.prod_eq_zero (Finset.mem_univ i) (hv (x i) hi)
 
-local instance : MeasureSpace (AddCircle (1 : ℝ)) := ⟨circleHaar⟩
-local instance : IsProbabilityMeasure (volume : Measure (AddCircle (1 : ℝ))) :=
+local instance torusSmoothingMeasureSpace : MeasureSpace (AddCircle (1 : ℝ)) := ⟨circleHaar⟩
+local instance torusSmoothingProbability : IsProbabilityMeasure (volume : Measure (AddCircle (1 : ℝ))) :=
   inferInstanceAs (IsProbabilityMeasure circleHaar)
-local instance : SigmaFinite (volume : Measure (AddCircle (1 : ℝ))) :=
+local instance torusSmoothingSigmaFinite : SigmaFinite (volume : Measure (AddCircle (1 : ℝ))) :=
   inferInstanceAs (SigmaFinite circleHaar)
 
 theorem integral_torusTensor (v : C(AddCircle (1 : ℝ), ℝ)) :
     (∫ x, torusTensor v d x ∂torusHaar d) = (∫ x, v x ∂circleHaar) ^ d := by
-  change (∫ x : Fin d → AddCircle (1 : ℝ), ∏ i, v (x i)) = _
-  simpa only [Fintype.card_fin] using integral_fintype_prod_eq_pow (𝕜 := ℝ) (E := AddCircle (1 : ℝ)) (Fin d) (fun x => v x)
+  simpa only [torusHaar, torusTensor_apply, Fintype.card_fin] using integral_fintype_prod_eq_pow (𝕜 := ℝ) (E := AddCircle (1 : ℝ)) (ι := Fin d) (μ := circleHaar) (fun x => v x)
 
 theorem integral_sq_norm_torusTensor (v : C(AddCircle (1 : ℝ), ℝ)) :
     (∫ x, ‖torusTensor v d x‖ ^ 2 ∂torusHaar d) =
       (∫ x, ‖v x‖ ^ 2 ∂circleHaar) ^ d := by
   simp only [torusTensor_apply, norm_prod, ← Finset.prod_pow]
-  change (∫ x : Fin d → AddCircle (1 : ℝ), ∏ i, ‖v (x i)‖ ^ 2) = _
-  simpa only [Fintype.card_fin] using
-    integral_fintype_prod_eq_pow (𝕜 := ℝ) (E := AddCircle (1 : ℝ)) (Fin d) (fun x : AddCircle (1 : ℝ) => ‖v x‖ ^ 2)
+  simpa only [torusHaar, Fintype.card_fin] using
+    integral_fintype_prod_eq_pow (𝕜 := ℝ) (E := AddCircle (1 : ℝ)) (ι := Fin d) (μ := circleHaar) (fun x : AddCircle (1 : ℝ) => ‖v x‖ ^ 2)
 
 /-- Dimension-uniform compact smoothing; the coefficient series may have infinite support. -/
 theorem exists_torus_smoothing

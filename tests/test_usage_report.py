@@ -80,6 +80,9 @@ class UsageReportTest(unittest.TestCase):
                 snapshot_at=datetime(2026, 10, 22, 10, 2, tzinfo=timezone.utc),
             )
             self.assertEqual(report["totals"], usage(1300, 300, 70, 15))
+            self.assertEqual(report["uncached_input_tokens"], 1000)
+            self.assertEqual(report["uncached_input_plus_output_tokens"], 1070)
+            self.assertIn("1,070 uncached-input-plus-output tokens", usage_report.render_markdown(report))
             self.assertEqual(report["elapsed_seconds"], 120)
             self.assertEqual(len(report["sessions"]), 2)
             self.assertEqual(report["request_count"], 2)

@@ -32,15 +32,21 @@ regular Bohr corollaries check with absolute constants **48000 and 48100**.
 **Theorem 1.15 on partition regularity is checked end to end.** Its inputs
 include full finite Deuber extraction from Hales--Jewett, quantitative Rado
 counting, the colouring dense model, and the Fourier counting-transfer bound.
-The construction corollaries and their prime-gap inputs remain in progress.
+Bose–Chowla, Proposition 1.13, and the modular obstruction in Remark 1.14
+are checked, including their sharp asymptotic densities for every sufficiently
+large interval. The largest-set rate in Corollary 1.4 still needs its
+power-saving prime interval input.
+The project uses the latest stable Lean and mathlib **v4.35.0**, matching
+doc-gen4, and leanblueprint **0.0.20**.
 
 The proof audit gives explicit constants for the Fourier bounds and a full
 finite-variance proof of the Cilleruelo interval estimate. It corrects the small
 cases of the progression estimate and the real-valued dual-norm argument.
 An alternate smoothing proof establishes dimension-uniform Bohr corollaries;
 a counterexample shows that the paper's literal dimension-uniform finite-bandwidth
-approximation statement needs correction. The quantitative counting input now has
-an expanded proof from Hales–Jewett, with its Lean implementation in progress.
+approximation statement needs correction. The counterexample and the corrected
+dimension-dependent tensor approximation are both checked in Lean. The quantitative counting input now has
+a checked proof from Hales–Jewett.
 
 The [reuse audit](https://github.com/TomasOrtega/Sidon/blob/master/docs/reuse-scout.md)
 records results found in mathlib, Lean Pool, Tau Ceti, and other Lean projects,

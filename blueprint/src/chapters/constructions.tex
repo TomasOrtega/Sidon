@@ -1,0 +1,649 @@
+\chapter{Finite-field constructions and modular obstructions}
+\label{construction:chapter}
+
+This chapter supplies an independent finite-field construction, without
+importing code from the separately licensed Singer formalization.
+Bose--Chowla gives $p$ Sidon points in $[p^2-1]$ for every prime $p$;
+this is sufficient for every construction reduction used in this project.
+The sharp all-large-$N$ rate in Corollary~\ref{target:largest} additionally
+requires a power-saving prime-in-interval theorem.  A construction along
+an unbounded sequence of prime-field lengths does not by itself supply
+that uniform number-theoretic input.
+
+\begin{lemma}[Shifted products outside a base field]
+\label{construction:shifted-products}
+\lean{Sidon.BoseChowla.pair_eq_of_shifted_mul_eq}\leanok
+Let $F\subset E$ be fields and $\theta\in E\setminus F$.
+If $a,b,c,d\in F$ and
+\[
+ (\theta+a)(\theta+b)=(\theta+c)(\theta+d),
+\]
+then either $a=c,b=d$ or $a=d,b=c$.
+\end{lemma}
+\begin{proof}
+The inclusion is the algebra map $\iota:F\to E$, which is injective
+because it is a unital homomorphism from a field to a nontrivial field.
+Set $u=a+b-c-d$ and $v=ab-cd$.  Expanding the displayed equality and
+cancelling $\theta^2$ gives
+$\theta\iota(u)+\iota(v)=0$.
+If $u\ne0$, injectivity gives $\iota(u)\ne0$, so division gives
+$\theta=\iota(-v/u)$, contrary to the choice of $\theta$.
+Thus $u=0$.  The same identity now gives $\iota(v)=0$, hence $v=0$.
+Consequently $a+b=c+d$ and $ab=cd$.
+The identity
+\[
+ (a-c)(a-d)=a^2-a(c+d)+cd=a^2-a(a+b)+ab=0
+\]
+shows $a=c$ or $a=d$.  In the first case cancellation in the sum equality
+gives $b=d$; in the second, commute $c+d$ first and cancel to get $b=c$.
+These alternatives include repeated entries and every characteristic,
+including characteristic two.
+\end{proof}
+
+\begin{lemma}[A multiplicative Sidon family]
+\label{construction:unit-family}
+\uses{construction:shifted-products}
+\lean{Sidon.BoseChowla.shifted_ne_zero,Sidon.BoseChowla.isSidon_shiftedUnitSet,Sidon.BoseChowla.card_shiftedUnitSet}\leanok
+For finite $F\subset E$ and $\theta\notin F$, the units
+$\{\theta+x:x\in F\}$ form a multiplicative Sidon family of size $|F|$.
+\end{lemma}
+\begin{proof}
+For each $x\in F$, equality $\theta+\iota(x)=0$ would give
+$\theta=\iota(-x)$, so this element is nonzero and defines a unit of $E$.
+Equality between the units for $x$ and $y$ implies equality between their
+underlying field elements; cancelling $\theta$ and using injectivity of
+$\iota$ gives $x=y$.  The image of the finite universe of $F$ therefore
+has cardinality $|F|$.
+Interpret the commutative multiplicative unit group as an additive group
+using the type synonym \texttt{Additive}.  Equality of two sums there is
+equality of two products of units.  Coercing to $E$ and applying
+Lemma~\ref{construction:shifted-products} gives precisely equality of
+the corresponding unordered pairs.  This proves the Sidon property of
+the entire finite family.
+\end{proof}
+
+\begin{lemma}[Cyclic groups to integer intervals]
+\label{construction:cyclic-lift}
+\lean{IsSidonSet.image_addEquiv,Sidon.isSidon_liftResidues,Sidon.card_liftResidues,Sidon.exists_integer_sidon_of_cyclic_group}\leanok
+A finite Sidon subset $A$ of a finite cyclic additive group $G$ lifts to a
+Sidon subset of $[|G|]$ with cardinality $|A|$.
+\end{lemma}
+\begin{proof}
+Put $M=|G|$.  A group is nonempty, so $M>0$.
+The standard cyclic-group classification gives an additive isomorphism
+$e:\mathbb Z/M\mathbb Z\to G$; in Lean this is
+\texttt{zmodAddCyclicAddEquiv}.
+The image $R=e^{-1}(A)$ has cardinality $|A|$.
+An equality of sums in $R$ maps under $e$ to an equality of sums in $A$.
+The Sidon property gives equality of the image pairs; injectivity of $e$
+gives equality of the original pairs.  Thus $R$ is Sidon.
+
+For each residue $r$, let $r_0\in\{0,\ldots,M-1\}$ be its canonical
+integer representative and set
+$S=\{r_0+1:r\in R\}$.  The inverse identity
+$r_0\bmod M=r$ proves that the representative map is injective, so
+$|S|=|R|$.  Its values satisfy $1\le r_0+1\le M$.
+If two sums from $S$ are equal, cancel the two added ones and reduce the
+resulting integer equality modulo $M$.  This gives equality of two sums
+in $R$, so the residue pairs are equal.  Apply the representative-plus-one
+map to those pairs to recover equality of the integer pairs.
+No bound on the sums themselves is required: reduction modulo $M$ is used
+only in the direction from integer equality to residue equality.
+\end{proof}
+
+\begin{theorem}[Prime-field Bose--Chowla construction]
+\label{construction:bose-chowla}
+\uses{construction:unit-family,construction:cyclic-lift}
+\lean{Sidon.BoseChowla.exists_shift_outside_base,Sidon.BoseChowla.exists_integer_sidon,Sidon.BoseChowla.exists_prime_sidon}\leanok
+For every prime $p$, there is a Sidon set $S\subset[p^2-1]$ with $|S|=p$.
+\end{theorem}
+\begin{proof}
+Take $F=\mathbb F_p=\texttt{ZMod}\ p$ and
+$E=\mathbb F_{p^2}=\texttt{GaloisField}\ p\ 2$.
+Mathlib constructs the latter as a splitting field and proves it is a
+field, an $F$-algebra, and has cardinality $p^2$.
+Since $p\ge2$, we have $p<p^2$.
+If the algebra map $F\to E$ were surjective, the finite-cardinality
+inequality for a surjection would give $p^2\le p$, a contradiction.
+Choose $\theta$ outside its range and apply
+Lemma~\ref{construction:unit-family}.
+
+The multiplicative group $E^\times$ is cyclic by the finite-field cyclicity
+theorem already present in pinned mathlib.  Its cardinality is
+$|E|-1=p^2-1$: its elements correspond exactly to the nonzero elements of
+$E$.  Lemma~\ref{construction:cyclic-lift}, applied after the additive type
+synonym, gives the claimed integer set and exact cardinality.
+The proof uses no discrete logarithm computation or decidable search.
+\end{proof}
+
+\begin{lemma}[Affine modular obstruction]
+\label{construction:affine-obstruction}
+\uses{construction:bose-chowla}
+\lean{Sidon.card_residueImage,Sidon.isSidon_residueImage,Sidon.residueImage_subset_interval,Sidon.residueImage_no_solution,Sidon.exists_prime_residue_obstruction}\leanok
+Let $q\ge1$ and let integer coefficients $a_i$ satisfy
+$q\nmid\sum_i a_i$.  If $S_0\subset[L]$ is Sidon, then
+$S=qS_0+1\subset[qL+1]$ is Sidon, has size $|S_0|$, and contains no
+solution to $\sum_i a_i x_i=0$.
+In particular each prime $p$ supplies such a set of cardinality $p$ in
+$[q(p^2-1)+1]$.
+\end{lemma}
+\begin{proof}
+The map $y\mapsto qy+1$ is injective because multiplication by the nonzero
+integer $q$ is cancellable.  Equality of two sums in its image first
+cancels the two added ones and then multiplication by $q$, giving an
+equality of two sums from $S_0$.  Its Sidon property proves the image is
+Sidon, and injectivity preserves cardinality.
+For $1\le y\le L$ we have $1\le qy+1\le qL+1$.
+If all $x_i=qy_i+1$, finite distributivity gives
+\[
+ \sum_i a_i x_i=q\sum_i a_i y_i+\sum_i a_i.
+\]
+Were the left side zero, this equality would exhibit
+$\sum_i a_i=q(-\sum_i a_i y_i)$, contradicting the divisibility hypothesis.
+The Bose--Chowla set supplies $L=p^2-1$ and $|S_0|=p$.
+\end{proof}
+
+\begin{lemma}[Exact sharp-density subsequences]
+\label{construction:subsequence-obstructions}
+\uses{construction:affine-obstruction}
+\lean{Sidon.exists_prime_odd_obstruction,Sidon.exists_arbitrarily_large_odd_obstruction,Sidon.exists_arbitrarily_large_residue_obstruction}\leanok
+There are arbitrarily large lengths $N$ with a Sidon subset of $[N]$ of
+size at least $\sqrt{N}/\sqrt2$ containing no solution to
+$x_1+x_2+x_3+x_4=x_5$.
+For any integer coefficients with nonzero sum, some fixed prime $q$
+supplies arbitrarily large lengths with an equation-free Sidon subset of
+size at least $\sqrt{N}/\sqrt q$.
+\end{lemma}
+\begin{proof}
+For parity, take $N=2(p^2-1)+1$ and $S=2S_0+1$ from
+Theorem~\ref{construction:bose-chowla}.  All elements are odd, whereas a
+sum of four odd integers is even, so the equation is impossible even with
+repeated variables.  The set has cardinality $p$, and
+$N=2p^2-1\le2p^2$ gives $\sqrt N/\sqrt2\le p$.
+Primes are unbounded; hence these lengths are unbounded.
+The extra $+1$ in $N$ is necessary because the affine map adds one.
+
+For a nonzero coefficient sum $\sigma$, choose a prime $q>|\sigma|$.
+Such a prime exists by unboundedness of primes.  It cannot divide
+$\sigma$: otherwise $q\mid|\sigma|$ and positivity of $|\sigma|$ would
+imply $q\le|\sigma|$.  Apply the affine obstruction with
+$N=q(p^2-1)+1$.  Since $q\ge1$, $N\le qp^2$, giving the stated lower
+bound.  Varying the independent construction prime $p$ makes $N$
+unbounded while the obstruction prime $q$ stays fixed.
+These subsequence statements do not claim the sharp coefficient for all
+large $N$ in Proposition~\ref{app:odd-obstruction}.
+\end{proof}
+
+\begin{theorem}[The positive-density conclusion in paper Remark 1.14]
+\label{construction:dense-modular-obstruction}
+\uses{construction:affine-obstruction}
+\lean{Sidon.exists_prime_construction_below,Sidon.exists_dense_residue_obstruction}\leanok
+For any finite family of integer coefficients with nonzero sum, there is
+a prime $q$ such that every $N\ge4q+1$ admits an equation-free Sidon set
+$S\subset[N]$ with
+\[
+ |S|\ge\frac{\sqrt N}{2\sqrt q}.
+\]
+\end{theorem}
+\begin{proof}
+Choose the obstruction prime $q$ as above.  Put
+$M=\lfloor(N-1)/q\rfloor$, $\ell=\lfloor\sqrt M\rfloor$, and
+$n=\lfloor\ell/2\rfloor$.
+The threshold gives $M\ge4$, hence $\ell\ge2$ and $n\ge1$.
+Mathlib's Bertrand theorem supplies a prime $p$ with
+$n<p\le2n\le\ell$.
+Thus $p^2\le\ell^2\le M$, so
+$q(p^2-1)+1\le qM+1\le N$ and the affine Bose--Chowla set embeds in
+$[N]$.
+For the density bound, $n<p$ gives $\ell+1\le2p$.
+The defining floor-square-root inequality gives
+$M<(\ell+1)^2\le4p^2$, hence $M+1\le4p^2$.
+Euclidean division of $N-1$ by $q$ gives
+$N-1=qM+r$ with $0\le r<q$, so $N\le q(M+1)\le4qp^2$.
+Taking nonnegative square roots and dividing by $2\sqrt q>0$ yields
+$\sqrt N/(2\sqrt q)\le p=|S|$.
+This proves the paper's positive-density assertion at every sufficiently
+large length using only Bertrand, without a prime-number-theorem input.
+\end{proof}
+
+
+\section{Prime density and sharp all-length obstructions}
+
+\begin{lemma}[The checked analytic prime-density input]
+\label{construction:prime-number-theorem}
+\lean{Sidon.NumberTheory.Tauberian.WeakPNT,Sidon.NumberTheory.psi_isEquivalent,Sidon.NumberTheory.theta_isEquivalent}\leanok
+Let $\Lambda$ denote the von Mangoldt function and put
+$\psi(x)=\sum_{n\le x}\Lambda(n)$ and
+$\theta(x)=\sum_{p\le x,\ p\ {\rm prime}}\log p$.
+Then $\psi(x)\sim x$ and $\theta(x)\sim x$ as $x\to\infty$.
+\end{lemma}
+\begin{proof}
+The local proof ports the proved Wiener--Ikehara argument from the
+Apache-licensed PrimeNumberTheoremAnd project, with its unused
+bounded-variation alternative removed.  Here are the analytic steps,
+including the hypotheses needed at each limit.
+
+For a nonnegative arithmetic function $f$, assume
+$\sum_{n<N}f(n)\le CN$, absolute convergence of
+$F(s)=\sum_{n\ge1}f(n)n^{-s}$ for $\Re s>1$, and continuous extension of
+$G(s)=F(s)-A/(s-1)$ to $\Re s\ge1$.
+For a compactly supported $C^2$ function $v$ on $\mathbb R$, two
+integrations by parts give
+\[
+ (1+u^2)\widehat v(u)=
+ \widehat{v-v''/(4\pi^2)}(u),\qquad
+ |\widehat v(u)|\le
+ \frac{\|v\|_1+(4\pi^2)^{-1}\|v''\|_1}{1+u^2}.
+\]
+Expanding the absolutely convergent Dirichlet series under the integral
+gives, for $\sigma>1$,
+\[
+ \sum_{n\ge1}f(n)n^{-\sigma}
+   \widehat v\!\left(\frac{\log(n/x)}{2\pi}\right)
+ =\int_{\mathbb R}F(\sigma+it)v(t)x^{it}\,dt.
+\]
+The sum of absolute values is dominated by
+$\sum f(n)n^{-\sigma}\int|v|$, which is finite, so Fubini applies.
+Computing $(\sigma+it-1)^{-1}$ as an exponential integral and subtracting
+its contribution gives an identity with $G$ on the right.
+Summation by parts, the bound $CN$, and the displayed Fourier decay
+supply a summable bound uniform as $\sigma\downarrow1$.
+On the compact support of $v$, continuity of $G$ gives the corresponding
+integrable bound.  Dominated convergence therefore gives
+\[
+ \sum_{n\ge1}\frac{f(n)}n
+   \widehat v\!\left(\frac{\log(n/x)}{2\pi}\right)
+ -A\int_{-\log x}^{\infty}\widehat v(u/(2\pi))\,du
+ =\int_{\mathbb R}G(1+it)v(t)x^{it}\,dt.
+\]
+The right side tends to zero by the Riemann--Lebesgue lemma at frequency
+$-\log x/(2\pi)$.
+
+Fourier inversion and the logarithmic substitution turn this into
+$x^{-1}\sum_n f(n)\Phi(n/x)\to A\int_0^\infty\Phi$ for smooth $\Phi$
+compactly supported in $(0,\infty)$.
+The required extension of compact Fourier tests is justified by
+multiplying a function with integrable first two derivatives by smooth
+cutoffs at scale $R$: the product rule and dominated convergence give
+convergence in the norm
+$\|v\|_1+(4\pi^2)^{-1}\|v''\|_1$.
+Smooth upper and lower approximations to $1_{[a,b]}$, with $0<a<b$,
+and nonnegativity of $f$ now give interval mass $A(b-a)$.
+For $[a,b]=[\varepsilon,1]$ the omitted mass is at most
+$C\lceil\varepsilon N\rceil/N$; first take $N\to\infty$ and then
+$\varepsilon\downarrow0$.  This proves
+$N^{-1}\sum_{n<N}f(n)\to A$.
+
+Apply this theorem to $f=\Lambda$ and $A=1$.
+Mathlib supplies $\Lambda\ge0$, its Chebyshev linear bound and absolute
+L-series convergence, and the continuous auxiliary function equal to
+$-\zeta'(s)/\zeta(s)-1/(s-1)$ on $\Re s>1$.
+Its continuity on the boundary uses the checked nonvanishing theorem for
+$\zeta$ on $\Re s=1$ away from the pole.
+The extra endpoint term in passing from $n<N$ to $n\le N$ is bounded by
+$\log N/N\to0$.
+Composing with $\lfloor x\rfloor$ and using
+$0\le x-\lfloor x\rfloor<1$ proves $\psi(x)\sim x$.
+Finally
+\[
+ 0\le\psi(x)-\theta(x)\le2\sqrt x\log x=o(x)
+\]
+gives $\theta(x)\sim x$.
+Its dependency audit reports only the three standard Lean axioms:
+\[
+ \texttt{propext},\quad \texttt{Classical.choice},\quad \texttt{Quot.sound}.
+\]
+\end{proof}
+
+\begin{lemma}[Primes in every sufficiently large relative interval]
+\label{construction:relative-primes}
+\uses{construction:prime-number-theorem}
+\lean{Sidon.exists_prime_of_theta_lt,Sidon.eventually_prime_in_relative_interval,Sidon.relativePrimeIntervals}\leanok
+For every $\varepsilon>0$, every sufficiently large real $x$ admits a
+prime $p$ with $(1-\varepsilon)x\le p\le x$.
+\end{lemma}
+\begin{proof}
+First suppose $0<\varepsilon<1$ and put $a=(1-\varepsilon)x$.
+As $x\to\infty$, both $x$ and $a$ tend to infinity.
+The preceding asymptotic gives
+$|\theta(x)-x|\le(\varepsilon/4)x$ and
+$|\theta(a)-a|\le(\varepsilon/4)a$ for all sufficiently large $x$.
+Hence
+\[
+ \theta(x)-\theta(a)\ge
+ \left(\varepsilon-\frac{\varepsilon}{4}(2-\varepsilon)\right)x
+ =\left(\frac{\varepsilon}{2}+\frac{\varepsilon^2}{4}\right)x>0.
+\]
+If no prime belonged to $(a,x]$, then the finite prime sets up to
+$\lfloor a\rfloor$ and $\lfloor x\rfloor$ would coincide.
+Their logarithmic sums would be equal, a contradiction.
+For arbitrary $\varepsilon>0$, apply this result to
+$\min(\varepsilon,1/2)$; its interval is contained in the required one.
+\end{proof}
+
+\begin{theorem}[Sharp all-length modular obstructions]
+\label{construction:sharp-obstructions}
+\uses{construction:bose-chowla,construction:affine-obstruction,construction:relative-primes}
+\lean{Sidon.eventually_exists_prime_construction_below,Sidon.eventually_exists_sharp_odd_obstruction,Sidon.exists_eventually_sharp_residue_obstruction}\leanok
+For every $\delta>0$ and every sufficiently large $N$, there is a Sidon
+set $S\subset[N]$ with
+$|S|\ge(1/\sqrt2-\delta)\sqrt N$ and no solution to
+$x_1+x_2+x_3+x_4=x_5$.
+More generally, if integer coefficients have nonzero sum, there is a
+fixed prime $q$ such that for every $\delta>0$ and every sufficiently
+large $N$, the equation has no solution in a Sidon subset of $[N]$ of
+size at least $(1/\sqrt q-\delta)\sqrt N$.
+\end{theorem}
+\begin{proof}
+Fix $q\ge1$ and $\delta>0$, and put
+$x=\sqrt{N/q}$ and $\varepsilon=\delta\sqrt q$.
+Since $x\to\infty$ with $N$, the relative-prime theorem supplies a prime
+$p$ with $(1-\delta\sqrt q)\sqrt{N/q}\le p\le\sqrt{N/q}$.
+The upper bound gives $qp^2\le N$, and
+$q(p^2-1)+1\le qp^2$ because $q\ge1$.
+Thus the affine Bose--Chowla construction embeds in $[N]$.
+It has exactly $p$ elements, and
+\[
+ p\ge(1-\delta\sqrt q)\frac{\sqrt N}{\sqrt q}
+   =(1/\sqrt q-\delta)\sqrt N.
+\]
+For Proposition~\ref{app:odd-obstruction}, take $q=2$ and use the parity
+obstruction.  For general coefficients choose a prime $q$ not dividing
+their nonzero sum, then use the modular obstruction.
+The threshold may depend on $\delta$ and $q$, exactly as the asymptotic
+quantifiers require.
+\end{proof}
+
+
+\section{The quantitative prime-interval frontier}
+\label{construction:prime-frontier}
+
+The relative-prime theorem above suffices for the sharp obstruction
+constants, but it does not provide the exponent required by
+Corollary~\ref{target:largest}.
+The checked reduction below retains the explicit prime-interval premise.
+The \href{https://github.com/TomasOrtega/Sidon/blob/master/docs/ingham-prime-interval-proof.md}{expanded analytic derivation}
+records the proof being implemented; the following statements give its
+checked finite interfaces and exact remaining inputs.
+
+\begin{lemma}[Checked reduction for largest Sidon sets]
+\label{construction:largest-reduction}
+\uses{construction:bose-chowla,target:uniformity}
+\lean{Sidon.exists_maximum_sidon,Sidon.exists_sidon_near_sqrt_of_prime_interval,Sidon.IsMaximumSidon.deviation_le_of_prime_interval,Sidon.IsMaximumSidon.fourier_uniformity_of_prime_interval,Sidon.largest_sidon_fourier_uniformity_of_prime_interval}\leanok
+Suppose $C\ge0$ and every $x\ge X$ has a prime
+$x-Cx^{2/3}\le p\le x$.
+Then the conclusion of Corollary~\ref{target:largest} holds, with
+Fourier constant $32\sqrt{C+5}$ for all sufficiently large $N$.
+\end{lemma}
+\begin{proof}
+A maximum-cardinality Sidon subset exists because the finite power set
+of $[N]$ has the empty set as an admissible member. For
+$\sqrt N\ge X$, choose a prime
+$\sqrt N-CN^{1/3}\le p\le\sqrt N$.
+The Bose--Chowla set lies in $[p^2-1]\subset[N]$ and has size $p$.
+Every maximum Sidon set therefore has size
+$m\ge\sqrt N-CN^{1/3}$.
+The checked sharp size bound gives $m\le\sqrt N+4N^{1/4}$.
+Since $N\ge1$ implies $N^{1/4}\le N^{1/3}$, dividing these inequalities
+by the positive $\sqrt N$ gives
+\[
+ |m/\sqrt N-1|\le(C+4)N^{-1/6}.
+\]
+Theorem~\ref{target:uniformity}, with its checked constant $16$, gives
+\[
+ \|\widehat{1_S}-(m/N)\widehat{1_{[N]}}\|_\infty
+ \le16\sqrt{C+5}\sqrt N\,N^{-1/12}.
+\]
+Choose the lower threshold before $N$ so that $\sqrt N\ge X$,
+$N\ge1$, and $CN^{-1/6}\le1/2$. The last condition implies
+$m\ge\sqrt N/2$. The transform of an indicator has norm exactly $m$:
+the triangle inequality bounds every value by $m$, while its value at
+zero is $m$. Substitute $\sqrt N\le2m$ in the preceding estimate.
+The existence of the prime-interval constants is the remaining
+hypothesis; this lemma does not assert it.
+\end{proof}
+
+\begin{lemma}[Finite Dirichlet-polynomial mean square]
+\label{construction:dirichlet-mean-square}
+\lean{Sidon.norm_integral_frequencyChar_le,Sidon.integral_finiteFrequencySum_norm_sq,Sidon.integral_finiteFrequencySum_norm_sq_le}\leanok
+For a finite set $I$, complex coefficients $a_i$, distinct real frequencies
+$\omega_i$, and $T\ge0$, put $P(t)=\sum_{i\in I}a_i e^{i\omega_i t}$.
+Then
+\[
+ \int_0^T|P(t)|^2\,dt\le T\sum_{i\in I}|a_i|^2+
+ \sum_{i\in I}\sum_{\substack{j\in I\\j\ne i}}
+       \frac{2|a_i||a_j|}{|\omega_i-\omega_j|}.
+\]
+\end{lemma}
+\begin{proof}
+Expand $|P(t)|^2=P(t)\overline{P(t)}$ into the finite double sum.
+Continuity makes every summand integrable, so integration commutes with
+the sum. The diagonal terms are the constant functions $|a_i|^2$ and
+integrate to $T|a_i|^2$. For $i\ne j$,
+$\omega_i-\omega_j\ne0$, and the antiderivative
+$e^{i(\omega_i-\omega_j)t}/(i(\omega_i-\omega_j))$ gives
+\[
+ \left|\int_0^T e^{i(\omega_i-\omega_j)t}\,dt\right|
+ \le\frac{|e^{i(\omega_i-\omega_j)T}|+1}{|\omega_i-\omega_j|}
+ =\frac2{|\omega_i-\omega_j|}.
+\]
+Multiply by $|a_i||a_j|$ and sum the resulting finite inequalities.
+The checked identity precedes the inequality, so no cancellation or
+interchange of infinite sums is assumed.
+\end{proof}
+
+\begin{definition}[Multiplicity-sensitive finite zero counts]
+\label{construction:zero-count}
+\lean{Sidon.criticalZetaZeros,Sidon.zetaZeroOccurrences,Sidon.zetaZeroCount,Sidon.analyticOrderAt_riemannZeta_ne_top,Sidon.zeta_zero_multiplicity_pos}\leanok
+For real $T$, let $Z_T$ contain one pair $(\rho,k)$ for every actual
+zeta zero $\rho=\beta+i\gamma$ with $0\le\beta\le1$,
+$0<\gamma\le T$, and $0\le k<m(\rho)$, where $m(\rho)$ is the
+analytic order of the zero.  Put
+$N(\sigma,T)=|\{(\rho,k)\in Z_T:\sigma\le\beta\}|$.
+\end{definition}
+\begin{proof}
+The relevant zeros lie in the closed complex ball of radius $|T|+2$.
+Mathlib proves that the zeta-zero set is closed and discrete, so its
+intersection with this compact ball is finite.
+The analytic order cannot be infinite: infinite order would make zeta
+identically zero on a neighborhood, contradicting discreteness of its
+zero set in the nondiscrete complex plane.
+At an actual zero, $\rho\ne1$ because the defined value $\zeta(1)$ is
+nonzero.  Zeta is analytic there, so its finite analytic order is
+positive.  Replace each such zero by its finite range of multiplicity
+indices.  This construction requires neither simple zeros nor an
+assumed enumeration of them.
+\end{proof}
+
+\begin{lemma}[Uniform density controls every finite layer]
+\label{construction:zero-layers}
+\uses{construction:zero-count}
+\lean{Sidon.zeroLayer_card_le_of_density,Sidon.finite_zero_bound_of_density,Sidon.finite_zero_layer_bound,Sidon.zeta_zero_weight_bound}\leanok
+Let $L>0$, $\eta,K,D\ge0$, $D<L$, and let $Z$ be a finite multiset
+represented by distinct occurrence indices, with real parts
+$0\le\beta_z\le1-\eta$.  Suppose, with the same $K,D$ for every
+$0\le\sigma\le1$, that
+\[
+ |\{z\in Z:\sigma\le\beta_z\}|\le K e^{D(1-\sigma)}.
+\]
+Writing $b=D/L$, one has
+\[
+ \sum_{z\in Z}e^{-L(1-\beta_z)}
+ \le \frac{Ke^b e^{-(1-b)\lfloor L\eta\rfloor}}{1-e^{-(1-b)}}.
+\]
+\end{lemma}
+\begin{proof}
+The occurrence $z$ belongs to layer
+$j=\lfloor L(1-\beta_z)\rfloor$ and has weight at most $e^{-j}$.
+Every occurrence in layer $j$ satisfies
+$\beta_z>1-(j+1)/L$.
+Apply the density bound at
+$\sigma=\max(0,1-(j+1)/L)$: it is at most one, and all layer members
+are counted there.  Since $D\ge0$, its exponential factor is at most
+$e^{b(j+1)}$, including the layers for which the unclipped threshold
+would be negative.
+The zero-free inequality implies $j\ge\lfloor L\eta\rfloor$.
+Summing the remaining geometric series gives the displayed expression;
+its denominator is positive because $b<1$.
+For actual zeta zeros take $L=\log x$, $D=A\log T$, and replace $K$
+by $K(\log T)^B$ in a uniform density estimate
+$N(\sigma,T)\le KT^{A(1-\sigma)}(\log T)^B$.
+\end{proof}
+
+\begin{lemma}[A logarithmic reserve absorbs the density loss]
+\label{construction:zero-reserve}
+\uses{construction:zero-layers}
+\lean{Sidon.finite_zero_bound_of_log_reserve}\leanok
+Suppose the preceding layer count has $K L^B$ in place of $K$, with
+$B\in\mathbb N$, and
+$(B+2)\log L\le(1-b)\lfloor L\eta\rfloor$.
+Then
+\[
+ \sum_{z\in Z}e^{-L(1-\beta_z)}
+ \le \frac{Ke^b}{1-e^{-(1-b)}}L^{-2}.
+\]
+\end{lemma}
+\begin{proof}
+The reserve gives
+$e^{-(1-b)\lfloor L\eta\rfloor}\le L^{-(B+2)}$.
+Multiply the preceding estimate by $L^B$ and cancel its positive
+powers.  Floors therefore cost no uncontrolled asymptotic term.
+\end{proof}
+
+\begin{lemma}[Every logarithmic reserve is eventually available]
+\label{construction:logarithmic-reserve}
+\lean{Sidon.logarithmicZeroFreeWidth,Sidon.tendsto_rpow_div_log_rpow_atTop,Sidon.tendsto_logarithmic_width_reserve,Sidon.eventually_logarithmic_width_reserve}\leanok
+For $C>0$ define
+\[
+ \eta_C(T)=\frac{C}{(\log T)^{2/3}(\log\log T)^{1/3}}.
+\]
+Then $\eta_C(T)\log T/\log\log T\to\infty$.
+For every $\delta>0$ and real $B$, eventually
+$B\log\log T\le\delta\eta_C(T)\log T$.
+\end{lemma}
+\begin{proof}
+Put $u=\log T$, so $u\to\infty$. For sufficiently large $T$,
+$u>1$ and $\log u>0$, and exponent arithmetic gives
+\[
+ \frac{\eta_C(T)\log T}{\log\log T}
+ =\frac{C u^{1/3}}{(\log u)^{4/3}}.
+\]
+Mathlib's logarithmic little-oh theorem gives
+$(\log u)^{4/3}/u^{1/3}\to0$. This ratio is eventually positive,
+so its reciprocal tends to positive infinity; multiplication by $C>0$
+preserves that limit. Multiply by $\delta>0$, choose its eventual lower
+bound $B$, and multiply by the positive $\log\log T$.
+This proves a statement about the displayed width function. Its separate
+identification as a zero-free width remains an analytic input until
+that theorem is checked.
+\end{proof}
+
+\begin{lemma}[Removing prime powers]
+\label{construction:prime-powers}
+\lean{Sidon.card_nonprimePowers_le,Sidon.nonprimeMangoldtMass_le_real,Sidon.nonprimeMangoldtMass_isLittleO,Sidon.exists_prime_of_mangoldt_increment}\leanok
+The nonprime-power contribution to $\psi(N)$ is
+\[
+ O(\sqrt N\log^2N)=o(N^{2/3}).
+\]
+If a Mangoldt increment on $(M,N]$ exceeds the checked global
+prime-power bound at $N$, then $(M,N]$ contains an actual prime.
+\end{lemma}
+\begin{proof}
+A nonprime prime power $p^k\le N$ has $k\ge2$, $p\le\sqrt N$, and
+$k\le\log_2 N$.
+Thus there are at most
+$\lfloor\sqrt N\rfloor\lfloor\log_2N\rfloor$ such integers, even
+if different parameter pairs give duplicates.
+Each Mangoldt weight is at most $\log N$.
+Two logarithms are negligible against $N^{1/6}$.
+If there were no prime in the interval, its theta increment would be
+zero.  Its psi increment would then be at most the nonprime-power
+mass at $N$, since that mass at $M$ is nonnegative, a contradiction.
+\end{proof}
+
+For the remaining analytic assembly, choose $A=23/8$, $T=x^{17/50}$,
+and $h=x^{2/3}$.  The numerical margins are
+$A(17/50)=391/400<1$ and $x/T=o(h)$.
+The required inputs are: a uniform zero-density bound with exponent
+$A$; a zero-free width $\eta(T)$ with
+$\eta(T)\log T/\log\log T\to\infty$; and a truncated explicit formula
+for the psi increment with error
+$O(x\log^2x/T+\log x)$ at a height in $[T,2T]$ avoiding zero ordinates.
+The zero-layer lemma makes the zero contribution $o(h)$, and the
+prime-power lemma then yields an actual prime.
+The detailed proof expands the mollifier mean squares, the pole-removing
+interpolation, the Jensen/Littlewood zero count, derivative-test
+optimization, endpoint conventions, and contour obligations.
+The zero-density, zeta-growth, zero-free, and truncated-formula inputs
+are not marked checked here; no unconditional power-saving prime-gap
+theorem has yet been added to the root dependency graph.
+
+\begin{lemma}[The critical-line mollifier endpoint]
+\label{construction:mollifier-endpoint}
+\uses{construction:dirichlet-mean-square}
+\lean{Sidon.logarithmic_kernel_le,Sidon.sum_range_inv_sqrt_succ_le,Sidon.sum_reciprocal_gap_le,Sidon.integral_criticalMollifier_norm_sq_le,Sidon.integral_dirichletMollifier_critical_norm_sq_le}\leanok
+For integers $N\ge1$ and real $T\ge0$, the actual finite mollifier
+$M_N(s)=\sum_{1\le n\le N}\mu(n)e^{-s\log n}$ satisfies
+\[
+ \int_0^T|M_N(1/2+it)|^2\,dt
+ \le12(T+N)(1+\log N).
+\]
+\end{lemma}
+\begin{proof}
+Use frequencies $-\log n$ and set $a_n=\mu(n)/\sqrt n$
+in the finite mean-square lemma.
+These frequencies are distinct because the logarithm is injective on
+positive reals, and $|a_n|\le1/\sqrt n$ because $|\mu(n)|\le1$.
+The diagonal contribution is at most $T H_N$, where
+$H_N=\sum_{n=1}^N1/n$.
+For $0<m<n$, the elementary inequality
+$\log(n/m)\ge1-m/n$ gives
+\[
+ \frac1{\sqrt m\sqrt n\log(n/m)}
+ \le\frac1{\sqrt m\sqrt n}+\frac1{n-m}.
+\]
+Indeed multiply the positive denominators and use
+$m\le\sqrt m\sqrt n$.
+The symmetric absolute-value version handles both orderings.
+For fixed $m$, split the other integers below and above $m$.
+Each distance map $n\mapsto m-n$ or $n\mapsto n-m$ is injective into
+$\{1,\ldots,N\}$, so the sum of reciprocal gaps is at most $2H_N$.
+Also
+\[
+ \frac1{\sqrt{n+1}}\le2(\sqrt{n+1}-\sqrt n)
+ \quad\Longrightarrow\quad
+ \sum_{n=1}^N\frac1{\sqrt n}\le2\sqrt N.
+\]
+The first inequality follows by multiplying by $\sqrt{n+1}>0$ and
+using $(\sqrt{n+1}-\sqrt n)^2\ge0$; the sum telescopes.
+Thus the product-kernel double sum is at most $4N$, and the reciprocal
+gap double sum is at most $2NH_N$.
+The finite mean square is consequently bounded by
+$TH_N+8N+4NH_N\le12(T+N)(1+\log N)$, using
+$1\le H_N\le1+\log N$.
+Finally the exact identity
+$e^{-(1/2+it)\log n}=n^{-1/2}e^{-it\log n}$ identifies this finite
+frequency sum with the complex-variable mollifier.
+\end{proof}
+
+\begin{lemma}[Finite mollifier coefficients]
+\label{construction:mollifier-coefficients}
+\lean{Sidon.differentiable_dirichletMollifier,Sidon.mollifierCoefficient_eq_one_apply,Sidon.mollifierCoefficient_eq_zero,Sidon.abs_mollifierCoefficient_le}\leanok
+The function $M_N$ above is entire.
+For the finite divisor coefficient
+$a_N(n)=\sum_{d\mid n,\ d\le N}\mu(d)$, one has
+$|a_N(n)|\le d(n)$ and, when $n\le N$,
+$a_N(n)=1$ for $n=1$ and $a_N(n)=0$ otherwise.
+\end{lemma}
+\begin{proof}
+Each summand of $M_N$ is an exponential of a complex linear function,
+so its finite sum is entire.
+If $n\le N$, every divisor of $n$ is at most $N$; the coefficient is
+therefore the full M\"obius divisor sum, equal to the unit arithmetic
+function.  This includes $n=0$, whose divisor finset is empty.
+The triangle inequality and $|\mu(d)|\le1$ bound the absolute value by
+the number of included divisors, at most $d(n)$.
+The infinite Dirichlet-series product with zeta will separately require
+absolute convergence on $\Re s>1$; this finite coefficient identity
+does not assume an unjustified infinite rearrangement.
+\end{proof}

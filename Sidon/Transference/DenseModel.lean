@@ -105,6 +105,7 @@ theorem exists_normalized_separator (hN : 0 < N) {ε : ℝ} (hε : 0 < ε) (hε�
     simpa only [zero_add, tuplePairing_zero_right] using
       hψ 0 zero_mem_models 0 (by simpa using hq.le)
   let A := tuplePairing ψ (a⁻¹ • f)
+  have hAne : A ≠ 0 := ne_of_gt hA
   let φ := ((N : ℝ) / A) • ψ
   have hc : 0 < (N : ℝ) / A := div_pos hN' hA
   refine ⟨φ, ?_, fun g hg h hh => ?_⟩
@@ -114,12 +115,11 @@ theorem exists_normalized_separator (hN : 0 < N) {ε : ℝ} (hε : 0 < ε) (hε�
     have hAf : tuplePairing ψ f = a * A := by rw [hrel]; field_simp
     rw [hAf]
     dsimp [a]
-    field_simp
-    ring
+    field_simp [hAne]
   · have ht := mul_lt_mul_of_pos_left (hψ g hg h hh) hc
     rw [← tuplePairing_smul_left] at ht
     change tuplePairing φ (g + h) < (N : ℝ) / A * A at ht
-    simpa only [div_mul_cancel₀ _ (ne_of_gt hA)] using ht
+    simpa only [div_mul_cancel₀ _ hAne] using ht
 
 /-- The separator detects a positive discrepancy against its positive maximum. -/
 theorem separator_max_discrepancy {ε : ℝ}
@@ -168,8 +168,9 @@ theorem pairing_approximation_error (ρ Q M : FourierSpace N) {τ : ℝ}
 
 theorem sum_le_two_mul_of_norm_sub_one_le (ν : FourierSpace N)
     (hν : ‖ν - 1‖ ≤ (N : ℝ)) : ∑ x : Fin N, ν x ≤ 2 * (N : ℝ) := by
+  let ν' : Fin N → ℝ := ν
   have h := abs_sum_le_norm (ν - 1)
-  change |∑ x : Fin N, (ν x - 1)| ≤ ‖ν - 1‖ at h
+  change |∑ x : Fin N, (ν' x - 1)| ≤ ‖ν - 1‖ at h
   rw [Finset.sum_sub_distrib] at h
   simp only [Finset.sum_const, Finset.card_univ, Fintype.card_fin, nsmul_eq_mul, mul_one] at h
   have h' := (le_abs_self ((∑ x : Fin N, ν x) - N)).trans (h.trans hν)
@@ -178,12 +179,14 @@ theorem sum_le_two_mul_of_norm_sub_one_le (ν : FourierSpace N)
 theorem sum_abs_sub_one_le_three_mul (ν : FourierSpace N) (hν : ∀ x, 0 ≤ ν x)
     (hmass : ∑ x : Fin N, ν x ≤ 2 * (N : ℝ)) :
     ∑ x : Fin N, |ν x - 1| ≤ 3 * (N : ℝ) := by
+  let ν' : Fin N → ℝ := ν
+  change (∑ x : Fin N, |ν' x - 1|) ≤ 3 * (N : ℝ)
   calc
-    _ ≤ ∑ x : Fin N, (ν x + 1) := by
+    _ ≤ ∑ x : Fin N, (ν' x + 1) := by
       apply Finset.sum_le_sum
       intro x _
       exact (abs_sub (ν x) 1).trans (by rw [abs_of_nonneg (hν x), abs_one])
-    _ = (∑ x : Fin N, ν x) + N := by simp only [Finset.sum_add_distrib]; simp
+    _ = (∑ x : Fin N, ν' x) + N := by simp only [Finset.sum_add_distrib]; simp
     _ ≤ _ := by linarith
 
 /-- Appendix C: one Fourier-uniform majorant admits simultaneous bounded colour models. -/
@@ -218,7 +221,6 @@ theorem colouring_dense_model (r : ℕ) {ε : ℝ} (hε : 0 < ε) (hε₁ : ε �
     convert ht using 1
     dsimp [L]
     field_simp
-    ring
   let M : FourierSpace N := fun x => positiveMax (fun i => φ i x)
   have hgap : ε * N / 2 < pairing M (ν - 1) := by
     apply separator_max_discrepancy ν f φ hf hνf hφf
@@ -247,7 +249,7 @@ theorem colouring_dense_model (r : ℕ) {ε : ℝ} (hε : 0 < ε) (hε₁ : ε �
     dsimp only [η]
     calc
       _ ≤ ε / (4 * B) * B := this
-      _ = ε / 4 := by field_simp; ring
+      _ = ε / 4 := by field_simp
   have hfinal : ‖ν - 1‖ * B ≤ ε * N / 4 := by
     calc
       _ ≤ (η * N) * B := mul_le_mul_of_nonneg_right herror hBpos.le

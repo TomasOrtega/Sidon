@@ -55,7 +55,7 @@ theorem compensatedColumn_kernel (a : ι → ℤ) (p j : ι) :
   calc
     a j * ↑(a p).natAbs - a p * ((a p).sign * a j) =
         a j * ↑(a p).natAbs - (a p * (a p).sign) * a j := by ring
-    _ = 0 := by rw [Int.mul_sign]; ring
+    _ = 0 := by rw [Int.mul_sign_self]; ring
 
 omit [Fintype ι] in
 theorem compensatedColumn_apply {a : ι → ℤ} {p i j : ι} (hip : i ≠ p) :
@@ -87,7 +87,7 @@ theorem outsideSeed_kernel (a : ι → ℤ) (p : ι) (I : Finset ι) :
         a p * ((a p).sign * ∑ i ∈ Finset.univ \ I, a i) =
       (∑ i ∈ Finset.univ \ I, a i) * ↑(a p).natAbs -
         (a p * (a p).sign) * ∑ i ∈ Finset.univ \ I, a i := by ring
-    _ = 0 := by rw [Int.mul_sign]; ring
+    _ = 0 := by rw [Int.mul_sign_self]; ring
 
 theorem outsideSeed_apply {a : ι → ℤ} {p i : ι} (I : Finset ι) (hip : i ≠ p) :
     outsideSeed a p I i = if i ∈ I then 0 else pivotScale a p := by
@@ -166,7 +166,7 @@ omit [DecidableEq ι] in
 theorem matrix_weighted_sum_mulVec_eq_zero {κ : Type*} [Fintype κ]
     (a : ι → ℤ) (B : Matrix ι κ ℤ) (hB : ∀ j, (∑ i, a i * B i j) = 0)
     (y : κ → ℤ) : (∑ i, a i * (B.mulVec y) i) = 0 := by
-  simp only [Matrix.mulVec, Matrix.dotProduct, Finset.mul_sum]
+  simp only [Matrix.mulVec, dotProduct, Finset.mul_sum]
   rw [Finset.sum_comm]
   simp only [← mul_assoc, ← Finset.sum_mul, hB, zero_mul, Finset.sum_const_zero]
 
@@ -184,7 +184,8 @@ theorem exists_equiv_fin_last {κ : Type*} [Fintype κ] [DecidableEq κ]
   let e₀ : Fin q ≃ κ := (Fintype.equivFinOfCardEq hcard).symm
   let last : Fin q := ⟨q - 1, by omega⟩
   refine ⟨(Equiv.swap last (e₀.symm j₀)).trans e₀, ?_⟩
-  simp only [Equiv.trans_apply, Equiv.swap_apply_left, Equiv.apply_symm_apply]
+  change e₀ ((Equiv.swap last (e₀.symm j₀)) last) = j₀
+  rw [Equiv.swap_apply_left, Equiv.apply_symm_apply]
 
 theorem exists_equiv_fin_last_two {κ : Type*} [Fintype κ] [DecidableEq κ]
     {q : ℕ} (hcard : Fintype.card κ = q) (hq : 2 ≤ q) (j₀ j₁ : κ) (hne : j₀ ≠ j₁) :
@@ -215,7 +216,7 @@ theorem exists_ne_mem_zero_sum (a : ι → ℤ) (ha : ∀ i, a i ≠ 0)
       ⟨hp, fun j hj => (Finset.card_le_one.mp (by omega : I.card ≤ 1)) j hj p hp⟩
     rw [hsing, Finset.sum_singleton] at hI
     exact ha p hI
-  exact Finset.exists_ne_of_one_lt_card hcard p
+  exact Finset.exists_mem_ne hcard p
 
 theorem card_nonpivot {s : ℕ} (p : Fin s) :
     Fintype.card {i : Fin s // i ≠ p} = s - 1 := by

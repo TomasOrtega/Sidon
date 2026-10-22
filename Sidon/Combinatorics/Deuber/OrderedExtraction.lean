@@ -15,10 +15,12 @@ def wordSourceOrderEquiv (ι δ β : Type*) :
 def wordTargetOrderEquiv (δ β : Type*) : WordTarget δ β ≃ (δ ⊕ₗ WithBot β) :=
   toLex
 
+@[instance_reducible]
 def wordSourceOrder (ι δ β : Type*) [LinearOrder ι] [LinearOrder δ] [LinearOrder β] :
     LinearOrder (WordSource ι δ β) :=
   LinearOrder.lift' (wordSourceOrderEquiv ι δ β) (wordSourceOrderEquiv ι δ β).injective
 
+@[instance_reducible]
 def wordTargetOrder (δ β : Type*) [LinearOrder δ] [LinearOrder β] :
     LinearOrder (WordTarget δ β) :=
   LinearOrder.lift' (wordTargetOrderEquiv δ β) (wordTargetOrderEquiv δ β).injective
@@ -40,6 +42,7 @@ theorem wordSource_prefix_le_prefix (i j : ι) (t u : δ) :
   change (toLex (Sum.inl (toLex (i, t))) : (Lex (ι × δ)) ⊕ₗ WithBot β) ≤
     toLex (Sum.inl (toLex (j, u))) ↔ _
   rw [Sum.Lex.inl_le_inl_iff, Prod.Lex.le_iff]
+  simp
 
 theorem wordSource_prefix_lt_extra (i : ι) (t : δ) (v : Option β) :
     (Sum.inl (i, t) : WordSource ι δ β) < Sum.inr v := by

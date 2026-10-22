@@ -24,7 +24,7 @@ private theorem sum_real_smul (c : ℝ) (f : ℤ →₀ ℂ) :
 theorem sum_movingAverage (H : ℕ) (hH : 0 < H) (f : ℤ →₀ ℂ) :
     (movingAverage H f).sum (fun _ a => a) = f.sum (fun _ a => a) := by
   rw [movingAverage, sum_real_smul,
-    Finsupp.sum_sum_index' (t := fun _ a => a) (fun _ => rfl) (fun _ _ _ => rfl)]
+    ← Finsupp.sum_finsetSum_index (h := fun _ a => a) (fun _ => rfl) (fun _ _ _ => rfl)]
   simp only [sum_integerShift, Finset.sum_const, Finset.card_range, nsmul_eq_mul,
     Complex.real_smul, Complex.ofReal_inv, Complex.ofReal_natCast]
   have h : (H : ℂ) ≠ 0 := by exact_mod_cast Nat.ne_of_gt hH
@@ -94,13 +94,13 @@ theorem finsupp_normSq_sum_le_card_mul (s : Finset ℤ) (f : ℤ →₀ ℂ)
     (hf : f.support ⊆ s) :
     Complex.normSq (f.sum fun _ a => a) ≤ (s.card : ℝ) * (correlation f f 0).re := by
   have hsum : f.sum (fun _ a => a) = ∑ x ∈ s, f x :=
-    Finset.sum_subset hf fun x _ hx => Finsupp.not_mem_support_iff.mp hx
+    Finset.sum_subset hf fun x _ hx => Finsupp.notMem_support_iff.mp hx
   have henergy : (correlation f f 0).re = ∑ x ∈ s, Complex.normSq (f x) := by
     rw [re_correlation_self_zero]
     apply Finset.sum_subset hf
     intro x _ hx
     change Complex.normSq (f x) = 0
-    rw [Finsupp.not_mem_support_iff.mp hx, Complex.normSq_zero]
+    rw [Finsupp.notMem_support_iff.mp hx, Complex.normSq_zero]
   rw [hsum, henergy]
   exact normSq_sum_le_card_mul s f
 
@@ -139,7 +139,7 @@ theorem fourierSum_sq_le (N H : ℕ) (hH : 0 < H) (f : ℤ →₀ ℂ)
   apply mul_le_mul_of_nonneg_left _ (fejerWeight_nonneg H h)
   calc
     (correlation (fourierTwist α f) (fourierTwist α f) h).re ≤
-        ‖correlation (fourierTwist α f) (fourierTwist α f) h‖ := Complex.re_le_abs _
+        ‖correlation (fourierTwist α f) (fourierTwist α f) h‖ := Complex.re_le_norm _
     _ = ‖correlation f f h‖ := norm_correlation_fourierTwist α f f h
 
 end Sidon

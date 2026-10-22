@@ -9,10 +9,41 @@ applications, partition regularity, and Appendices A–C.
 This is a source audit, not a claim that external projects were built in this
 workspace. “Present” means a declaration or its `to_additive` source was read.
 “Not found” describes the stated search scope; it does not establish global
-nonexistence. The original project pin is retained: Lean `v4.14.0-rc2`,
-mathlib `b17bf258da6542cd3a553ea33c03db938506ae92`.
+nonexistence. The initial audit below records the original Lean `v4.14.0-rc2` /
+mathlib `b17bf258da6542cd3a553ea33c03db938506ae92` checkout. The project now targets
+the latest stable Lean/mathlib `v4.35.0`; the later migration audit records newly
+reusable results. Historical immutable source links remain useful evidence.
 
-## Pinned mathlib: directly available foundations
+## Latest stable migration: additional reuse
+
+The upgraded project targets Lean/mathlib **v4.35.0**, mathlib commit
+[`56a0058`](https://github.com/leanprover-community/mathlib4/tree/56a005855ea17e0b0958f73ec801ae140b0a1679).
+The full Lean build passes. Documentation tooling versions and checks are
+recorded in [the tooling audit](blueprint-upgrade-research.md).
+
+- [`Analysis/Fourier/AddCircleMulti.lean`](https://github.com/leanprover-community/mathlib4/blob/56a005855ea17e0b0958f73ec801ae140b0a1679/Mathlib/Analysis/Fourier/AddCircleMulti.lean)
+  supplies `UnitAddTorus.mFourier`, character density, the complete Fourier
+  Hilbert basis, absolutely convergent inversion, and Parseval. The local
+  `TorusFourier` module now consists of bridges preserving probability-Haar
+  normalization; the earlier backported proofs were removed.
+- [`NumberTheory/Chebyshev.lean`](https://github.com/leanprover-community/mathlib4/blob/56a005855ea17e0b0958f73ec801ae140b0a1679/Mathlib/NumberTheory/Chebyshev.lean)
+  supplies the Chebyshev functions and their prime-power error estimates.
+  [`NumberTheory/LSeries/ZetaZeros.lean`](https://github.com/leanprover-community/mathlib4/blob/56a005855ea17e0b0958f73ec801ae140b0a1679/Mathlib/NumberTheory/LSeries/ZetaZeros.lean)
+  supplies finiteness of bounded zeta zero sets. The local zero-counting and
+  finite-layer modules account explicitly for analytic multiplicity.
+- A proof-only Apache-licensed extraction from PNT+ now proves the weak prime
+  number theorem, then `psi_isEquivalent`, `theta_isEquivalent`, and primes in
+  every sufficiently large relative interval. This completes the sharp
+  obstruction constructions. See [the source/port audit](pnt-port.md) and
+  [third-party notices](../THIRD_PARTY_NOTICES.md). The dependency audit of the
+  imported theorem reports only the three standard Lean axioms.
+- This qualitative relative interval theorem does **not** imply the
+  power-saving prime interval bound required for Corollary 1.4. The
+  [quantitative research audit](prime-gap-research.md) and
+  [expanded Ingham argument](ingham-prime-interval-proof.md) keep that
+  remaining dependency explicit.
+
+## Initial mathlib audit: directly available foundations
 
 All paths in this table are relative to `Mathlib/` at the pinned revision.
 Source links are immutable. Generated additive declarations are identified

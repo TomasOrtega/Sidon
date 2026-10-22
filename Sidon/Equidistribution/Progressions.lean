@@ -1,6 +1,6 @@
 import Sidon.Analysis.FourierIntegral
 import Sidon.Analysis.Correlation
-import Mathlib.Algebra.GeomSum
+import Mathlib.Algebra.Field.GeomSum
 import Mathlib.Analysis.SpecialFunctions.Trigonometric.Bounds
 import Mathlib.MeasureTheory.Function.LocallyIntegrable
 
@@ -48,7 +48,7 @@ theorem norm_sum_le_fourier_norm_mul_L1 (q : Finset ℤ) (f : ℤ →₀ ℂ) :
       simp only [norm_mul, RCLike.norm_conj]
       exact (mul_le_mul_of_nonneg_left ((fourierSum f).norm_coe_le_norm α)
         (norm_nonneg _)).trans_eq (mul_comm _ _)
-    _ = _ := integral_mul_left _ _
+    _ = _ := integral_const_mul _ _
 
 theorem sum_indicatorFinsupp (q s : Finset ℤ) :
     (∑ n ∈ q, indicatorFinsupp s n) = ((s ∩ q).card : ℂ) := by
@@ -152,7 +152,6 @@ theorem four_mul_abs_le_norm_fourier_one_sub_one (t : ℝ) (ht : |t| ≤ 1 / 2) 
   have heq : 2 / Real.pi * |Real.pi * t| = 2 * |t| := by
     rw [abs_mul, abs_of_pos Real.pi_pos]
     field_simp
-    ring
   rw [heq] at hs
   linarith
 

@@ -1,8 +1,8 @@
 import Sidon.Combinatorics.Deuber.Basic
 import Sidon.Combinatorics.Deuber.Containment
 import Mathlib.Combinatorics.HalesJewett
-import Mathlib.Data.Prod.Lex
-import Mathlib.Data.Sum.Order
+import Mathlib.Order.Prod.Lex.Basic
+import Mathlib.Order.Sum.Order
 import Mathlib.Order.WithBot
 
 /-! # The Hales--Jewett bridge and the block maps used in Deuber extraction -/
@@ -121,7 +121,7 @@ theorem wordMatrix_mulVec_early {ι δ β : Type*} [Fintype ι] [Fintype δ] [Fi
     (S : WordSource ι δ β → ℤ) (t : δ) :
     (wordMatrix c l).mulVec S (Sum.inl t) =
       c * ∑ i ∈ Finset.univ.filter (fun i => l.idxFun i = none), S (Sum.inl (i, t)) := by
-  simp only [Matrix.mulVec, Matrix.dotProduct, Fintype.sum_sum_type, Fintype.sum_prod_type,
+  simp only [Matrix.mulVec, dotProduct, Fintype.sum_sum_type, Fintype.sum_prod_type,
     wordMatrix_early_prefix, wordMatrix_early_extra, zero_mul, Finset.sum_const_zero, add_zero]
   rw [Finset.mul_sum, Finset.sum_filter]
   apply Finset.sum_congr rfl
@@ -136,14 +136,14 @@ theorem wordMatrix_mulVec_middle {ι δ β : Type*} [Fintype ι] [Fintype δ] [F
     (wordMatrix c l).mulVec S (Sum.inr none) =
       (∑ i, ∑ t, ((l.idxFun i).elim 0 fun a => (a t : ℤ)) * S (Sum.inl (i, t))) +
         c * S (Sum.inr none) := by
-  simp [Matrix.mulVec, Matrix.dotProduct, Fintype.sum_sum_type, Fintype.sum_prod_type,
+  simp [Matrix.mulVec, dotProduct, Fintype.sum_sum_type, Fintype.sum_prod_type,
     wordMatrix_middle_prefix, wordMatrix_extra]
 
 theorem wordMatrix_mulVec_late {ι δ β : Type*} [Fintype ι] [Fintype δ] [Fintype β]
     {p : ℕ} (c : ℤ) (l : Combinatorics.Line (δ → Coeff p) ι)
     (S : WordSource ι δ β → ℤ) (v : β) :
     (wordMatrix c l).mulVec S (Sum.inr (some v)) = c * S (Sum.inr (some v)) := by
-  simp [Matrix.mulVec, Matrix.dotProduct, Fintype.sum_sum_type, Fintype.sum_prod_type,
+  simp [Matrix.mulVec, dotProduct, Fintype.sum_sum_type, Fintype.sum_prod_type,
     wordMatrix_extra]
 
 def focusedCoeff {δ β : Type*} {p : ℕ} (c : ℤ) (a : δ → Coeff p) : WordTarget δ β → ℤ
@@ -162,11 +162,11 @@ theorem focusedCoeff_vecMul_wordMatrix {ι δ β : Type*} [Fintype δ] [Fintype 
   funext j
   rcases j with ⟨i, t⟩ | v
   · cases h : l.idxFun i <;>
-      simp [Matrix.vecMul, Matrix.dotProduct, Fintype.sum_sum_type, focusedCoeff,
+      simp [Matrix.vecMul, dotProduct, Fintype.sum_sum_type, focusedCoeff,
         wordMatrix_early_prefix, wordMatrix_middle_prefix, Combinatorics.Line.coe_apply,
         h, mul_comm]
   · cases v <;>
-      simp [Matrix.vecMul, Matrix.dotProduct, Fintype.sum_sum_type, focusedCoeff,
+      simp [Matrix.vecMul, dotProduct, Fintype.sum_sum_type, focusedCoeff,
         wordMatrix_extra, pow_two]
 
 def wordEvaluation {ι δ β : Type*} [Fintype ι] [Fintype δ] {p : ℕ} (c : ℤ)
@@ -182,7 +182,7 @@ theorem focusedRow_eq_wordEvaluation {ι δ β : Type*}
       wordEvaluation c S (l a) := by
   have h := Matrix.dotProduct_mulVec (focusedCoeff (β := β) c a) (wordMatrix c l) S
   rw [focusedCoeff_vecMul_wordMatrix] at h
-  simpa [Matrix.dotProduct, Fintype.sum_sum_type, Fintype.sum_prod_type,
+  simpa [dotProduct, Fintype.sum_sum_type, Fintype.sum_prod_type,
     focusedCoeff, wordEvaluation, Finset.mul_sum, mul_assoc, add_comm] using h
 
 theorem focusedRow_isMonochromatic {ι δ β : Type*}

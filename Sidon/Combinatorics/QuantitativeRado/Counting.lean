@@ -29,7 +29,7 @@ theorem IsBlockEmbedding.card_fiber_pi_le {ι κ α : Type*}
     · obtain ⟨i, rfl⟩ := hj
       have hrow : ∑ k, T i k * (f k (Y.val k) - f k (Y'.val k)) = 0 := by
         have h := congrFun (Y.property.trans Y'.property.symm) i
-        simpa [Matrix.mulVec, Matrix.dotProduct, Function.comp_apply,
+        simpa [Matrix.mulVec, dotProduct, Function.comp_apply,
           mul_sub, Finset.sum_sub_distrib] using sub_eq_zero.mpr h
       have hsum : (∑ k, T i k * (f k (Y.val k) - f k (Y'.val k))) =
           T i (e i) * (f (e i) (Y.val (e i)) - f (e i) (Y'.val (e i))) := by

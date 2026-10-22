@@ -24,7 +24,7 @@ theorem norm_prod_sub_prod_le_sum {ι : Type*} [DecidableEq ι]
     have hba : 0 ≤ b a := (norm_nonneg _).trans (hf a (Finset.mem_insert_self _ _))
     have hp : ‖∏ i ∈ s, f i‖ ≤ ∏ i ∈ s, b i := by
       rw [norm_prod]
-      exact Finset.prod_le_prod (fun _ _ => norm_nonneg _) hfs
+      exact Finset.prod_le_prod₀ (fun _ _ => norm_nonneg _) hfs
     have hsplit : (f a * ∏ i ∈ s, f i) - g a * ∏ i ∈ s, g i =
         (f a - g a) * (∏ i ∈ s, f i) + g a * ((∏ i ∈ s, f i) - ∏ i ∈ s, g i) := by ring
     have hsum : 0 ≤ ∑ i ∈ s, ‖f i - g i‖ * ∏ j ∈ s.erase i, b j := by

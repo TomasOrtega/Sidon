@@ -1,6 +1,6 @@
 import Sidon.Analysis.FourierIntegral
 import Sidon.Combinatorics.Intervals
-import Mathlib.Algebra.BigOperators.Ring
+import Mathlib.Algebra.BigOperators.Ring.Finset
 
 /-! # Finite weighted counts for one homogeneous linear equation -/
 
@@ -37,7 +37,7 @@ theorem weightedSolutionCount_mono (A : Finset ℤ) (c : ι → ℤ)
     weightedSolutionCount A c f ≤ weightedSolutionCount A c g := by
   apply Finset.sum_le_sum
   intro x _
-  exact Finset.prod_le_prod (fun i _ => hf i (x i)) (fun i _ => hfg i (x i))
+  exact Finset.prod_le_prod₀ (fun i _ => hf i (x i)) (fun i _ => hfg i (x i))
 
 theorem weightedSolutionCount_const_mul {R : Type*} [CommSemiring R]
     (A : Finset ℤ) (c : ι → ℤ) (f : ι → ℤ → R) (a : R) :
@@ -66,7 +66,7 @@ theorem integral_prod_expanded_fourier (A : Finset ℤ) (c : ι → ℤ) (f : ι
     apply Finset.sum_congr rfl
     intro x _
     simp_rw [Finset.prod_mul_distrib, prod_fourier_eq_fourier_sum]
-    rw [integral_mul_left, integral_fourier]
+    rw [integral_const_mul, integral_fourier]
     split_ifs <;> simp
   · intro x _
     exact (show Continuous (fun α : AddCircle (1 : ℝ) =>

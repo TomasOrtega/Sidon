@@ -33,7 +33,7 @@ theorem norm_weightedFourier_apply_le (A : Finset ℤ) (f : ℤ → ℝ) (α : A
   apply (norm_sum_le _ _).trans_eq
   apply Finset.sum_congr rfl
   intro n _
-  rw [norm_mul, Complex.norm_real, Real.norm_eq_abs, show ‖fourier n α‖ = 1 from Circle.abs_coe _,
+  rw [norm_mul, Complex.norm_real, Real.norm_eq_abs, show ‖fourier n α‖ = 1 from Circle.norm_coe _,
     mul_one]
 
 theorem weightedSolutionCount_ofReal {ι : Type*} [Fintype ι]

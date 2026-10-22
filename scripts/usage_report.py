@@ -213,6 +213,8 @@ def collect_report(root_thread, sessions_dir, snapshot_at=None):
         "elapsed_seconds": round(snapshot_at.timestamp() - root["started_at"], 3)
         if root["started_at"] is not None else None,
         "totals": totals,
+        "uncached_input_tokens": totals["input_tokens"] - totals["cached_input_tokens"],
+        "uncached_input_plus_output_tokens": totals["total_tokens"] - totals["cached_input_tokens"],
         "context_bands": bands,
         "request_count": request_count,
         "models": sorted(models),
@@ -244,6 +246,10 @@ def render_markdown(report):
         f"{totals['total_tokens']:,} tokens: {totals['input_tokens']:,} input "
         f"({totals['cached_input_tokens']:,} cached), {totals['output_tokens']:,} output. "
         f"The output includes {totals['reasoning_output_tokens']:,} reasoning tokens; these are not counted twice.", "",
+        f"{report['uncached_input_plus_output_tokens']:,} uncached-input-plus-output tokens "
+        f"({report['uncached_input_tokens']:,} uncached input + {totals['output_tokens']:,} output). "
+        "This excludes cached input reprocessed across requests and matches the goal counter definition; "
+        "the larger total above includes those cached tokens for API pricing.", "",
         f"Recorded inference increments: {report['request_count']:,}; sessions: {len(report['sessions'])}.", "",
         "| Session | Input | Cached input | Output | Total |", "| --- | ---: | ---: | ---: | ---: |",
     ]

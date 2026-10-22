@@ -73,8 +73,11 @@ The lower bound gives $m\geq\sqrt N/2$ for large $N$.
 The triangle inequality gives $|\widehat{1_S}(\alpha)|\leq m$,
 and equality holds at zero, so $\|\widehat{1_S}\|_\infty=m$.
 Substitute $\sqrt N\leq2m$.
-The construction and its prime-gap input remain explicit external
-prerequisites; they are not consequences of Fourier uniformity.
+The checked alternative reduction in Lemma~\ref{construction:largest-reduction}
+uses Bose--Chowla and only a prime-gap exponent $2/3$; it gives the same
+Fourier exponent with constant $32\sqrt{C+5}$. The existence of that
+power-saving prime bound remains an explicit prerequisite, rather than
+a consequence of Fourier uniformity.
 \end{proof}
 
 \begin{theorem}[Paper Theorem 1.15]\label{target:partition}
@@ -97,21 +100,17 @@ so the counting conclusion implies existence. This is the precise
 constant-and-threshold form of the paper's three alternatives.
 
 \section{Implementation structure}
-The dependency order is foundations, finite correlations and kernels,
-van der Corput, interval bounds, Fourier uniformity, progressions,
-trigonometric approximation, Bohr equidistribution, dense models, counting.
-The improved Fourier theorem is a separate branch depending on
-Cilleruelo's estimate; it must not be used to prove that prerequisite.
-The accompanying files \texttt{docs/core-formalization-plan.md} and
-\texttt{docs/applications-formalization-plan.md} specify proposed names.
-The intended module tree is
+The main chain runs from Sidon differences through finite Fourier analysis,
+interval bounds, equidistribution, dense models, and counting.
+The improved Fourier branch depends on Cilleruelo's estimate.
+The \href{https://github.com/TomasOrtega/Sidon/blob/master/docs/core-formalization-plan.md}{core plan}
+and \href{https://github.com/TomasOrtega/Sidon/blob/master/docs/applications-formalization-plan.md}{applications plan}
+map statements to exact declarations and files. The module structure is
 \begin{verbatim}
 Sidon/Basic.lean
-Sidon/Combinatorics/{Differences,Intervals,IntervalSize}.lean
-Sidon/Analysis/{FiniteFourier,Correlation,DiscreteFejer,VanDerCorput}.lean
-Sidon/Analysis/{SidonCorrelation,PowerWindow}.lean
+Sidon/{Combinatorics,Analysis,Equidistribution,Transference}/
+Sidon/Analysis/Approximation/
+Sidon/{Constructions,NumberTheory}/
 Sidon/{FourierUniformity,ImprovedFourierUniformity}.lean
-Sidon/Equidistribution/{Progressions,Approximation,Bohr}.lean
-Sidon/Transference/DenseModel.lean
 Sidon/PartitionRegularity.lean
 \end{verbatim}

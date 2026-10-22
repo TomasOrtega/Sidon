@@ -13,11 +13,11 @@ namespace Sidon
 
 variable {d : ℕ}
 
-local instance : circleHaar.IsNegInvariant :=
+local instance circleNegInvariant : circleHaar.IsNegInvariant :=
   Measure.IsAddHaarMeasure.isNegInvariant_of_innerRegular circleHaar
 
-local instance : (torusHaar d).IsNegInvariant := by
-  letI : ∀ _ : Fin d, circleHaar.IsNegInvariant := fun _ => inferInstance
+local instance torusNegInvariant : (torusHaar d).IsNegInvariant := by
+  let : ∀ _ : Fin d, circleHaar.IsNegInvariant := fun _ => inferInstance
   exact Measure.pi.isNegInvariant (fun _ : Fin d => circleHaar)
 
 private theorem torus_integrable {𝕜 : Type*} [RCLike 𝕜]
@@ -62,7 +62,7 @@ theorem torusFourierCoeff_convolution (f g : C(Fin d → AddCircle (1 : ℝ), �
     torusFourierCoeff (torusConvolution f g) n =
       torusFourierCoeff f n * torusFourierCoeff g n := by
   unfold torusFourierCoeff
-  conv_lhs => simp only [torusConvolution_apply, ← integral_mul_left]
+  conv_lhs => simp only [torusConvolution_apply, ← integral_const_mul]
   rw [integral_integral_swap]
   · calc
       (∫ y, ∫ x, torusCharacter (-n) x * (f (x - y) * g y) ∂torusHaar d ∂torusHaar d) =
@@ -73,10 +73,10 @@ theorem torusFourierCoeff_convolution (f g : C(Fin d → AddCircle (1 : ℝ), �
         rw [← integral_add_right_eq_self (fun x =>
           torusCharacter (-n) x * (f (x - y) * g y)) y]
         simp only [add_sub_cancel_right, torusCharacter_add_argument]
-        rw [← integral_mul_right]
+        rw [← integral_mul_const]
         apply integral_congr_ae
         exact ae_of_all _ fun x => by ring
-      _ = _ := integral_mul_left _ _
+      _ = _ := integral_const_mul _ _
   · exact (((torusCharacter (-n)).continuous.comp continuous_fst).mul
       ((f.continuous.comp (continuous_fst.sub continuous_snd)).mul
         (g.continuous.comp continuous_snd))).integrable_of_hasCompactSupport
@@ -173,8 +173,8 @@ theorem integral_torusConvolution {𝕜 : Type*} [RCLike 𝕜]
       (∫ x, f x ∂torusHaar d) * ∫ x, g x ∂torusHaar d := by
   simp only [torusConvolution_apply]
   rw [integral_integral_swap]
-  · simp_rw [integral_mul_right, integral_sub_right_eq_self]
-    exact integral_mul_left _ _
+  · simp_rw [integral_mul_const, integral_sub_right_eq_self]
+    exact integral_const_mul _ _
   · exact ((f.continuous.comp (continuous_fst.sub continuous_snd)).mul
       (g.continuous.comp continuous_snd)).integrable_of_hasCompactSupport
         (HasCompactSupport.of_compactSpace _)

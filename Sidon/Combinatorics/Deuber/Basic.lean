@@ -296,7 +296,7 @@ theorem IsBlockEmbedding.vecMul_apply_of_ne_zero {ι κ : Type*} [Fintype ι]
     {i : ι} {j : κ} (hij : T i j ≠ 0) :
     Matrix.vecMul w T j = w i * T i j := by
   classical
-  rw [Matrix.vecMul, Matrix.dotProduct]
+  rw [Matrix.vecMul, dotProduct]
   apply Fintype.sum_eq_single i
   intro i' hne
   have hi' : T i' j = 0 := (hT.2 i' i j hne).resolve_right hij

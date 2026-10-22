@@ -19,3 +19,5 @@ jobs:
       - name: Check usage accounting
         run: python3 -m unittest discover -s tests -p 'test_*.py'
       - uses: leanprover/lean-action@v1
+      - name: Audit theorem dependencies
+        run: lake env lean scripts/CheckAxioms.lean

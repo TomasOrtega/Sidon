@@ -117,7 +117,7 @@ theorem contracted_window_mean_le {N H L m : ℝ} (hN : 0 < N) (hH : 0 ≤ H)
     L * m / N - (L - H) * m / (N + H) =
         H * m * (N + L) / (N * (N + H)) := by field_simp; ring
     _ ≤ H * m * (2 * (N + H)) / (N * (N + H)) := by gcongr
-    _ = _ := by field_simp; ring
+    _ = _ := by field_simp
 
 theorem interval_discrepancy_le_window {N H L : ℕ} (hN : 0 < N) (hH : 0 < H)
     (S : Finset ℤ) (a : ℤ) (ha : 0 ≤ a) (haL : a + L ≤ N) :
@@ -162,7 +162,7 @@ theorem interval_discrepancy_le_window {N H L : ℕ} (hN : 0 < N) (hH : 0 < H)
     ring
   have hupperK : k ≤ ((L : ℝ) + H) * m / T +
       Real.sqrt U.card * Real.sqrt V / H := by
-    apply (mul_le_mul_left hHr).mp
+    apply (mul_le_mul_iff_right₀ hHr).mp
     have he : (U.card : ℝ) * v = (H : ℝ) * (((L : ℝ) + H) * m / T) := by
       rw [hUcard]
       dsimp only [v]
@@ -174,7 +174,6 @@ theorem interval_discrepancy_le_window {N H L : ℕ} (hN : 0 < N) (hH : 0 < H)
           Real.sqrt U.card * Real.sqrt V / H) := by
         rw [he]
         field_simp
-        ring
   have hrootU : Real.sqrt U.card ≤ Real.sqrt L + Real.sqrt H := by
     rw [hUcard]
     apply (Real.sqrt_le_left (by positivity)).mpr
@@ -221,7 +220,7 @@ theorem interval_discrepancy_le_window {N H L : ℕ} (hN : 0 < N) (hH : 0 < H)
         simp only [Finset.sum_sub_distrib, Finset.sum_const, nsmul_eq_mul]
         ring
       have hlowerK : ((L : ℝ) - H) * m / T - Real.sqrt W.card * Real.sqrt V / H ≤ k := by
-        apply (mul_le_mul_left hHr).mp
+        apply (mul_le_mul_iff_right₀ hHr).mp
         have he : (W.card : ℝ) * v = (H : ℝ) * (((L : ℝ) - H) * m / T) := by
           rw [hWcard]
           dsimp only [v]
@@ -233,7 +232,6 @@ theorem interval_discrepancy_le_window {N H L : ℕ} (hN : 0 < N) (hH : 0 < H)
               (W.card : ℝ) * v - Real.sqrt W.card * Real.sqrt V := by
             rw [he]
             field_simp
-            ring
           _ ≤ _ := hcount'
       have hmean := contracted_window_mean_le hNr hHr.le
         (show (L : ℝ) ≤ N by exact_mod_cast hLN) hm

@@ -44,7 +44,7 @@ theorem norm_pow_le_of_le {x M : ℝ} (hx : 0 ≤ x) (hM : x ≤ M) {p k : ℕ} 
     x ^ p ≤ M ^ (p - k) * x ^ k := by
   calc
     x ^ p = x ^ (p - k) * x ^ k := by rw [← pow_add, Nat.sub_add_cancel hkp]
-    _ ≤ _ := mul_le_mul_of_nonneg_right (pow_le_pow_left hx hM _) (pow_nonneg hx _)
+    _ ≤ _ := mul_le_mul_of_nonneg_right (pow_le_pow_left₀ hx hM _) (pow_nonneg hx _)
 
 theorem integral_norm_weightedFourier_pow_le {p k : ℕ} (hkp : k ≤ p)
     (A : Finset ℤ) (f : ℤ → ℝ) {M B : ℝ} (hM : 0 ≤ M)
@@ -61,7 +61,7 @@ theorem integral_norm_weightedFourier_pow_le {p k : ℕ} (hkp : k ≤ p)
       intro α
       exact norm_pow_le_of_le (norm_nonneg _) (hF α) hkp
     _ = M ^ (p - k) * ∫ α : AddCircle (1 : ℝ), ‖weightedFourier A f α‖ ^ k ∂circleHaar :=
-      integral_mul_left _ _
+      integral_const_mul _ _
     _ ≤ _ := mul_le_mul_of_nonneg_left hB (pow_nonneg hM _)
 
 theorem sidon_weighted_fourth_moment_le {N : ℕ} (hN : 0 < N) {S : Finset ℤ}
@@ -73,7 +73,7 @@ theorem sidon_weighted_fourth_moment_le {N : ℕ} (hN : 0 < N) {S : Finset ℤ}
   have hmpos : (0 : ℝ) < S.card := (by positivity : 0 < Real.sqrt N / 100).trans_le hm
   have hfour := integral_norm_weightedFourier_fourth_le hS f hf0 hfa
   have heq : ((N : ℝ) / S.card) ^ 4 * (2 * (S.card : ℝ) ^ 2) =
-      2 * (N : ℝ) ^ 4 / (S.card : ℝ) ^ 2 := by field_simp; ring
+      2 * (N : ℝ) ^ 4 / (S.card : ℝ) ^ 2 := by field_simp
   rw [heq] at hfour
   have hm2 : (N : ℝ) ≤ 10000 * (S.card : ℝ) ^ 2 := by
     have hsqrt := Real.sq_sqrt hNpos.le
@@ -127,7 +127,7 @@ theorem interval_weighted_second_moment_le (N : ℕ) (g : ℤ → ℝ)
     _ ≤ ∑ _n ∈ interval N, (1 : ℝ) := by
       apply Finset.sum_le_sum
       intro n _
-      simpa only [one_pow] using pow_le_pow_left (hg0 n) (hg1 n) 2
+      simpa only [one_pow] using pow_le_pow_left₀ (hg0 n) (hg1 n) 2
     _ = N := by simp only [Finset.sum_const, nsmul_eq_mul, mul_one, card_interval]
 
 theorem interval_restriction_moment_le {p : ℕ} (N : ℕ) (hp : 2 ≤ p)

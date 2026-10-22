@@ -31,7 +31,7 @@ theorem windowSum_apply (H : ℕ) (S : Finset ℤ) (t : ℤ) :
       if s + (u : ℤ) = t then (1 : ℂ) else 0 := by
   classical
   rw [windowSum, indicatorFinsupp_eq_sum_single]
-  simp only [integerShift, Finsupp.mapDomain_finset_sum, Finsupp.mapDomain_single,
+  simp only [integerShift, Finsupp.mapDomain_finsetSum, Finsupp.mapDomain_single,
     sub_neg_eq_add, Finset.sum_apply', Finsupp.single_apply]
   exact Finset.sum_comm
 
@@ -154,7 +154,7 @@ theorem sum_sq_windowCount {N H : ℕ} (hH : 0 < H) (S : Finset ℤ)
       simp only [Complex.normSq_apply, windowSum_im, pow_two, mul_zero, add_zero, windowCount]
     · intro t _ ht
       change Complex.normSq (windowSum H S t) = 0
-      rw [Finsupp.not_mem_support_iff.mp ht, Complex.normSq_zero]
+      rw [Finsupp.notMem_support_iff.mp ht, Complex.normSq_zero]
   rw [henergy, windowSum, correlation_sum_left]
   simp_rw [correlation_sum_right, correlation_integerShift]
   simp only [Complex.re_sum]
@@ -242,12 +242,11 @@ theorem sidon_windowVariance_le {N H : ℕ} (hN : 0 < N) (hH : 0 < H)
         linarith
       _ ≤ (2 * (N : ℝ) * sidonDeficit N S + H) / N :=
         div_le_div_of_nonneg_left (by positivity) hNr (by linarith)
-      _ = _ := by field_simp; ring
+      _ = _ := by field_simp
   have hfrac' := mul_le_mul_of_nonneg_left hfrac (sq_nonneg (H : ℝ))
   rw [windowVariance_eq hH S hSN, hNHeq]
   have hmul : (H : ℝ) ^ 2 * ((S.card : ℝ) / H) = (H : ℝ) * S.card := by
     field_simp
-    ring
   have hident : (H : ℝ) ^ 2 * ((H : ℝ) / N) = (H : ℝ) ^ 3 / N := by ring
   rw [mul_add, hmul] at hupper'
   rw [mul_add, hident] at hfrac'

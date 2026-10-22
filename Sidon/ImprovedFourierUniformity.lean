@@ -83,7 +83,7 @@ theorem improved_fourier_error_master_le {N H m E₁₁ E₂₂ E₁₂ E₂₁ 
   have hdev := normalized_square_deviation_le hN hm₀ hm
   have hmSq : m ^ 2 ≤ 25 * N := by nlinarith [Real.sq_sqrt hN.le]
   have hterm : m ^ 2 * H / N ^ 2 ≤ 25 * H / N := by
-    apply (div_le_div_iff (sq_pos_of_pos hN) hN).mpr
+    apply (div_le_div_iff₀ (sq_pos_of_pos hN) hN).mpr
     nlinarith [mul_le_mul_of_nonneg_right hmSq (mul_nonneg hH.le hN.le)]
   have htermH : 2 * m / H ≤ 10 * Real.sqrt N / H :=
     div_le_div_of_nonneg_right (by linarith) hH.le

@@ -22,8 +22,9 @@ The dimension-uniform bandwidth claimed in Lemma 4.1 cannot hold for
 arbitrary maximum-metric Lipschitz functions: a counterexample is proved
 below.  The exact Sidon energy and progression equidistribution are checked
 in Lean.  Both Bohr equidistribution corollaries are checked with absolute
-constants.  The transference results remain proof targets, with checked
-intermediate results identified individually.
+constants.  The corrected finite-bandwidth approximation, its
+dimension-uniform counterexample, and the full transference and partition
+regularity arguments are also checked in Lean.
 
 \section{Arithmetic progressions}
 
@@ -155,10 +156,11 @@ For integrable $F:\mathbb T^d\to\mathbb C$, define
 
 \begin{lemma}[Tensor Fejer kernel]
 \label{app:tensor-fejer}
+\lean{Sidon.circleFejer,Sidon.integral_circleFejer,Sidon.circleFejerSpectrum_eq_max,Sidon.tensorFejer_eq_sum,Sidon.integral_tensorFejer_tail_le}\leanok
 \uses{app:torus-fourier}
 For an integer $M\geq1$, define
 \[
- k_M(t)=\frac1M\left|\sum_{j=1}^M e(jt)\right|^2,
+ k_M(t)=\frac1M\left|\sum_{j=0}^{M-1} e(jt)\right|^2,
  \qquad \Lambda_M(\beta)=\prod_{j=1}^d k_M(\beta_j).
 \]
 Then $\Lambda_M\geq0$, $\int\Lambda_M=1$, and
@@ -175,7 +177,7 @@ Only $|m_j|<M$ contribute.  For $0<\eta$,
 \end{lemma}
 \begin{proof}
 Nonnegativity follows from the squared modulus formula.  Expanding that
-square gives $M^{-1}\sum_{u,v=1}^M e((u-v)t)$.
+square gives $M^{-1}\sum_{0\leq u,v<M}e((u-v)t)$.
 For an integer $h$ with $|h|<M$, exactly $M-|h|$ pairs satisfy $u-v=h$;
 for $|h|\geq M$ no pairs do.  This proves the one-dimensional expansion.
 Taking the product proves the displayed expansion and its finite support.
@@ -198,6 +200,7 @@ If $\eta\geq1/2$, the set is empty and the same bound holds.
 
 \begin{lemma}[Paper Lemma 4.1, with explicit dimension dependence]
 \label{app:trigonometric-approximation}
+\lean{Sidon.exists_trigonometric_approximation,Sidon.ceil_fejer_bandwidth_le}\leanok
 \uses{app:tensor-fejer}
 Suppose $F:\mathbb T^d\to[0,1]$ is $K$-Lipschitz for the maximum metric,
 $K\geq1$, and $\varepsilon>0$.  There is a trigonometric polynomial
@@ -229,16 +232,26 @@ $(F(\alpha)-F(\alpha-\beta))\Lambda_M(\beta)$.
 On $\|\beta\|_{\max}\leq\eta$, its absolute integral is at most $K\eta$.
 On the complement, $|F(\alpha)-F(\alpha-\beta)|\leq1$ and
 Lemma~\ref{app:tensor-fejer} bounds the integral by $d/(M\eta^2)$.
-Choose $\eta=(d/(KM))^{1/3}>0$.  The sum of the two bounds is
-$2d^{1/3}K^{2/3}M^{-1/3}$, and in particular it is at most
-$3d^{1/3}K^{2/3}M^{-1/3}$.  The chosen ceiling for $M$ makes the latter
-at most $\varepsilon$.  The ceiling adds at most one, which is at most
+Choose $\eta=\varepsilon/(3K)>0$ and
+$M=\lceil27dK^2/\varepsilon^3\rceil\geq1$.
+The defining ceiling inequality gives
+$27dK^2\leq M\varepsilon^3$, and therefore
+\[
+ K\eta=\varepsilon/3,\qquad
+ \frac d{M\eta^2}=\frac{9dK^2}{M\varepsilon^2}
+ \leq\varepsilon/3.
+\]
+Thus the error is at most $2\varepsilon/3\leq\varepsilon$.
+Each coefficient has modulus at most one: the tensor weight lies in
+$[0,1]$, and $|\widehat F(m)|\leq\int|F|\leq1$.
+The ceiling adds at most one, which is at most
 $dK^2\varepsilon^{-3}$ when $\varepsilon\leq1$.
 For $\varepsilon\geq1$, $|F-0|\leq1$ proves the final assertion.
 \end{proof}
 
 \begin{proposition}[No dimension-independent finite bandwidth]
 \label{app:no-uniform-bandwidth}
+\lean{Sidon.BandwidthCounterexample.exists_real_interpolation_away_from_zero,Sidon.BandwidthCounterexample.exists_probability_weights_of_signed_moments,Sidon.BandwidthCounterexample.exists_continuous_dimension_obstruction,Sidon.BandwidthCounterexample.not_exists_uniform_dimension_bandwidth}\leanok
 For every integer $M\geq0$, there are a positive dimension $d$ and a
 $1$-Lipschitz function $F_d:\mathbb T^d\to[0,1]$, for the maximum metric,
 such that no trigonometric polynomial with all coordinate frequencies
@@ -247,33 +260,31 @@ Consequently the bandwidth bound in paper Lemma 4.1 cannot have an
 absolute constant independent of $d$.
 \end{proposition}
 \begin{proof}
-Fix $\rho=1/4$ and let $V_M$ be the real vector space spanned by
-$1$, $\cos(2\pi nt)$, and $\sin(2\pi nt)$ for $1\leq n\leq M$.
-These $2M+1$ functions are linearly independent by character
-orthogonality, so $\dim V_M=2M+1$.
-Choose $2M+1$ distinct points $t_j$ in the arc $[1/4,3/4]$ of the circle;
-all satisfy $\|t_j\|_{\mathbb T}\geq\rho$.
-Evaluation at these points is an isomorphism
+Fix $\rho=1/4$, put $L=2M+1$, and choose
+$t_j=1/4+j/(4(L+1))$ for $0\leq j<L$.
+These are distinct points in $[1/4,1/2)$, so their circle distances from
+zero are at least $\rho$.  The numbers $z_j=e(t_j)$ are distinct because
+the circle character $e$ is injective on $\mathbb R/\mathbb Z$.
+Define the ordinary complex Lagrange polynomials
 \[
- V_M\longrightarrow\mathbb R^{2M+1},\qquad
- p\longmapsto(p(t_1),\ldots,p(t_{2M+1})).
+ \ell_j(X)=\prod_{k\ne j}\frac{X-z_k}{z_j-z_k}.
 \]
-For injectivity, write a trigonometric polynomial as a Laurent polynomial
-in $z=e(t)$ and multiply it by $z^M$ to obtain an ordinary complex
-polynomial of degree at most $2M$.
-If all the displayed evaluations vanish, this polynomial has $2M+1$
-distinct roots $e(t_j)$, so it is zero.  The original trigonometric
-polynomial is then zero.  Injectivity between equal finite dimensions
-gives bijectivity.
-
-Evaluation at zero is a real linear functional on $V_M$.
-Transport it through the evaluation isomorphism and write a linear
-functional on $\mathbb R^{2M+1}$ in its coordinate basis.
-There are therefore real numbers $A_j$ with
+All denominators are nonzero, each degree is at most $L-1=2M$, and
+$\ell_j(z_k)$ is one for $j=k$ and zero otherwise.
+For any polynomial $Q$ of degree at most $2M$, the difference
+$Q-\sum_j Q(z_j)\ell_j$ has degree at most $2M$ and vanishes at $L$
+distinct points, hence is zero by the polynomial root bound.
+Apply this identity to $Q=X^{n+M}$, where $-M\leq n\leq M$, and evaluate
+at one.  With $\lambda_j=\ell_j(1)z_j^M$, the result is
 \[
- p(0)=\sum_j A_jp(t_j)\quad(p\in V_M).
+ \sum_j\lambda_j e(nt_j)=1\qquad(|n|\leq M).
 \]
-Testing $p=1$ gives $\sum_jA_j=1$.
+Use the same identity at $-n$ and take complex conjugates to obtain
+$\sum_j\overline{\lambda_j}e(nt_j)=1$.
+Averaging the two identities proves that the real numbers
+$A_j=\operatorname{Re}\lambda_j$ satisfy
+$\sum_j A_j e(nt_j)=1$ for every $|n|\leq M$.
+Taking $n=0$ gives $\sum_jA_j=1$.
 Put $A_j^+=\max(A_j,0)$, $A_j^-=\max(-A_j,0)$ and
 $Z=\sum_jA_j^+=1+\sum_jA_j^-\geq1$.
 The probability measures
@@ -281,9 +292,8 @@ The probability measures
  \mu=Z^{-1}\left(\delta_0+\sum_jA_j^-\delta_{t_j}\right),
  \qquad \nu=Z^{-1}\sum_jA_j^+\delta_{t_j}
 \]
-have the same integrals against every $p\in V_M$.
-In particular their Fourier moments agree at each integer $|n|\leq M$,
-by expressing the real and imaginary parts of $e(nt)$ as cosine and sine.
+have the same Fourier moments at each integer $|n|\leq M$:
+$1+\sum_j A_j^-e(nt_j)=\sum_j A_j^+e(nt_j)$ before division by $Z$.
 The measure $\mu$ assigns probability $a=1/Z>0$ to zero and its remaining
 mass to points at distance at least $\rho$ from zero.
 The whole support of $\nu$ has distance at least $\rho$ from zero.
@@ -1044,43 +1054,57 @@ and zero otherwise.  Repeated coordinates remain permitted.
 
 \begin{proposition}[Paper Proposition 1.13]
 \label{app:odd-obstruction}
+\uses{construction:sharp-obstructions}
+\lean{Sidon.eventually_exists_sharp_odd_obstruction}\leanok
 There are Sidon sets $S_N\subset[N]$ with
 $|S_N|\geq(1/\sqrt2+o(1))\sqrt N$ and with no solution in $S_N$ to
 $x_1+x_2+x_3+x_4=x_5$.
 \end{proposition}
 \begin{proof}
-Let $M=\lfloor(N-1)/2\rfloor$.  Take a Sidon set
-$S_0\subset[M]$ with $|S_0|\geq(1-o(1))\sqrt M$; the existence of such
-sets is the Singer-construction input from the introduction, and is
-separate from the elementary argument here.
-Set $S_N=\{2x+1:x\in S_0\}$.  For $N\geq3$, these integers lie between
-$3$ and $2M+1\leq N$.  Equality between two sums from $S_N$ cancels the
-two added ones and then cancels multiplication by two, giving an equality
-between two sums from $S_0$.  Its Sidon property therefore proves that
-$S_N$ is Sidon.  The affine map is injective, so $|S_N|=|S_0|$.
-All elements of $S_N$ are odd.  A sum of four odd integers is even,
-whereas an element of $S_N$ is odd, ruling out the equation even with
-repeated variables.  Finally $M/N\to1/2$, so
-$\sqrt M/\sqrt N\to1/\sqrt2$, proving the asserted lower bound.
-For the finitely many $N<3$, choose $S_N=\varnothing$; they do not affect
-the asymptotic assertion.
+Fix $\delta>0$. For every sufficiently large $N$, apply
+Lemma~\ref{construction:relative-primes} with $x=\sqrt{N/2}$ and
+$\varepsilon=\delta\sqrt2$. It supplies a prime $p$ with
+\[
+ (1/\sqrt2-\delta)\sqrt N\le p\le\sqrt{N/2}.
+\]
+Theorem~\ref{construction:bose-chowla} supplies a Sidon set
+$S_0\subset[p^2-1]$ of cardinality $p$.
+Set $S_N=\{2x+1:x\in S_0\}$. Its elements lie between $3$ and
+$2(p^2-1)+1\le2p^2\le N$.
+Equality of two sums in $S_N$ cancels two added ones and then the
+nonzero factor two, so the original Sidon property proves that $S_N$
+is Sidon. Injectivity gives $|S_N|=p$.
+All its elements are odd. A sum of four odd integers is even, while
+an element of $S_N$ is odd, ruling out the equation with repeated
+variables allowed. The displayed lower bound holds for every $\delta>0$
+once $N$ exceeds its associated threshold; this is the stated asymptotic.
 \end{proof}
 
 \begin{proposition}[The construction in paper Remark 1.14]
 \label{app:nonzero-sum-obstruction}
+\uses{construction:sharp-obstructions}
+\lean{Sidon.exists_eventually_sharp_residue_obstruction}\leanok
 If $c_1,\ldots,c_s\in\mathbb Z$ have $\sigma=\sum_ic_i\ne0$, there are
 Sidon sets $S_N\subset[N]$ of size at least
 $(p^{-1/2}+o(1))\sqrt N$, for some fixed prime $p$, containing no solution
 to $\sum_ic_ix_i=0$.
 \end{proposition}
 \begin{proof}
-Choose a prime $p$ that does not divide $\sigma$, for instance any prime
-larger than $|\sigma|$; the existence follows from unboundedness of primes.
-For $M=\lfloor(N-1)/p\rfloor$, take the same near-extremal Sidon input
-$S_0\subset[M]$ and set $S_N=pS_0+1$.
-The affine map is injective, takes its values in $[N]$ for large $N$, and
-preserves the Sidon property by cancellation exactly as above.
-Every element is congruent to one modulo $p$.  Thus
-$\sum_ic_ix_i\equiv\sigma\not\equiv0\pmod p$, ruling out a solution.
-The size estimate follows from $M/N\to1/p$.
+Choose a prime $p>|\sigma|$ using the unboundedness of primes.
+It cannot divide the nonzero integer $\sigma$: divisibility would force
+$p\le|\sigma|$.
+Fix $\delta>0$. The relative-prime theorem applied at $\sqrt{N/p}$
+with parameter $\delta\sqrt p$ supplies, for all sufficiently large $N$,
+a construction prime $\ell$ with
+\[
+ (p^{-1/2}-\delta)\sqrt N\le\ell\le\sqrt{N/p}.
+\]
+Take $S_0\subset[\ell^2-1]$ of size $\ell$ from Bose--Chowla and put
+$S_N=pS_0+1$. Its largest possible element is
+$p(\ell^2-1)+1\le p\ell^2\le N$; its smallest element is positive.
+Cancellation proves the Sidon property and injectivity preserves size.
+Every element is one modulo $p$, hence
+$\sum_i c_ix_i\equiv\sigma\not\equiv0\pmod p$.
+The lower cardinality bound holds for every $\delta>0$ eventually,
+which proves the asymptotic assertion.
 \end{proof}

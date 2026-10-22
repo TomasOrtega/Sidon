@@ -1,6 +1,6 @@
 import Sidon.Analysis.FiniteFourier
 import Sidon.Combinatorics.Energy
-import Mathlib.MeasureTheory.Integral.SetIntegral
+import Mathlib.MeasureTheory.Integral.Bochner.Set
 
 /-! # Haar orthogonality and Parseval for finite integer Fourier sums -/
 
@@ -19,7 +19,7 @@ theorem integral_conj_fourier_mul (m n : ℤ) :
       if m = n then 1 else 0 := by
   have h := (orthonormal_iff_ite.mp (orthonormal_fourier (T := 1))) m n
   rw [ContinuousMap.inner_toLp circleHaar (fourier m) (fourier n)] at h
-  exact h
+  simpa only [mul_comm] using h
 
 theorem integral_fourier (n : ℤ) :
     (∫ α : AddCircle (1 : ℝ), fourier n α ∂circleHaar) = if n = 0 then 1 else 0 := by
@@ -33,9 +33,10 @@ theorem toLp_fourierSum (f : ℤ →₀ ℂ) :
 theorem integral_conj_fourierSum_mul (f g : ℤ →₀ ℂ) :
     (∫ α : AddCircle (1 : ℝ), conj (fourierSum f α) * fourierSum g α ∂circleHaar) =
       f.sum (fun n c => conj c * g n) := by
+  simp_rw [mul_comm (conj _)]
   rw [← ContinuousMap.inner_toLp circleHaar (fourierSum f) (fourierSum g),
     toLp_fourierSum, toLp_fourierSum]
-  exact (orthonormal_fourier (T := 1)).inner_finsupp_eq_sum_left f g
+  simpa only [mul_comm] using (orthonormal_fourier (T := 1)).inner_finsupp_eq_sum_left f g
 
 theorem integral_norm_fourierSum_sq (f : ℤ →₀ ℂ) :
     (∫ α : AddCircle (1 : ℝ), ‖fourierSum f α‖ ^ 2 ∂circleHaar) =
@@ -69,6 +70,7 @@ theorem integral_conj_sum_fourier_mul_sum {ι κ : Type*} (s : Finset ι) (t : F
       conj ((∑ i ∈ s, fourier (T := 1) (m i)) α) *
         (∑ j ∈ t, fourier (T := 1) (n j)) α ∂circleHaar) =
         ∑ i ∈ s, ∑ j ∈ t, if m i = n j then (1 : ℂ) else 0 := by
+    simp_rw [mul_comm (conj _)]
     rw [← ContinuousMap.inner_toLp circleHaar (∑ i ∈ s, fourier (m i))
       (∑ j ∈ t, fourier (n j)), map_sum, map_sum]
     simp only [sum_inner, inner_sum, orthonormal_iff_ite.mp (orthonormal_fourier (T := 1))]

@@ -28,7 +28,7 @@ theorem regular_bohr_optimization {d : ℕ} (hd : 0 < d) {X C E ρ : ℝ}
     have ht : 0 < t := Real.rpow_pos_of_pos hE _
     have htq : t ≤ E ^ (1 / (14 * (d : ℝ))) := by
       apply Real.rpow_le_rpow_of_exponent_ge hE hEsmall
-      apply (div_le_div_iff (by positivity : (0 : ℝ) < 14 * d)
+      apply (div_le_div_iff₀ (by positivity : (0 : ℝ) < 14 * d)
         (by positivity : (0 : ℝ) < 40 * d)).mpr
       nlinarith
     by_cases hsmall : t ≤ ρ / (100 * (d : ℝ))

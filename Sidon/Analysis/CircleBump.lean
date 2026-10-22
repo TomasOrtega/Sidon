@@ -42,9 +42,9 @@ theorem integral_circleRamp_lower {η : ℝ} (hη : 0 < η) (hη₁ : η ≤ 1 /
         linarith
       change (1 : ℝ) ≤ clippedNormRamp (η / 2) (η / 4) x
       rw [clippedNormRamp_eq_one (by positivity) hx']
-    · rw [Set.indicator_of_not_mem hx]
+    · rw [Set.indicator_of_notMem hx]
       exact clippedNormRamp_nonneg _ _ _
-  rw [integral_indicator_const (1 : ℝ) hA, hvol,
+  rw [integral_indicator_const (1 : ℝ) hA, measureReal_def, hvol,
     ENNReal.toReal_ofReal (by positivity), smul_eq_mul, mul_one] at hcomp
   exact hcomp
 

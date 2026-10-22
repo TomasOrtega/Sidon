@@ -31,7 +31,7 @@ theorem compact_smoothing_optimization {d : ℕ} (hd : 0 < d) {X K R : ℝ}
   have hshape : K * z = K ^ ((d : ℝ) / (d + 1)) * R ^ (1 / (d + 1 : ℝ)) := by
     dsimp only [z]
     rw [Real.div_rpow hR.le hKpos.le]
-    have hexp : (d : ℝ) / (d + 1) = 1 - 1 / (d + 1) := by field_simp
+    have hexp : (d : ℝ) / (d + 1) = 1 - 1 / (d + 1) := by field_simp; ring
     rw [hexp, Real.rpow_sub hKpos, Real.rpow_one]
     ring
   have hmain : X ≤ 30 * (K * z) := by
@@ -74,7 +74,6 @@ theorem rpow_product_le_of_product_le_one {K E a b c e : ℝ}
     rw [heqexp]
     have hkpow : K ^ (c * (b / e)) ≠ 0 := (Real.rpow_pos_of_pos hKpos _).ne'
     field_simp
-    ring
   rw [heq]
   calc
     _ ≤ 1 * (K ^ c * E ^ e) :=
@@ -87,19 +86,17 @@ theorem smoothing_exponent_comparison {d : ℕ} (hd : 0 < d) {K E : ℝ}
       K ^ (2 / 3 : ℝ) * E ^ (1 / (8 * (d : ℝ))) := by
   have hdr : (1 : ℝ) ≤ d := by exact_mod_cast hd
   apply rpow_product_le_of_product_le_one hK hE (by positivity) _ _ hprod
-  · apply (div_le_div_iff (by positivity : (0 : ℝ) < 8 * d)
+  · apply (div_le_div_iff₀ (by positivity : (0 : ℝ) < 8 * d)
       (by positivity : (0 : ℝ) < 2 * (d + 1))).mpr
     nlinarith
   · have hdp : (0 : ℝ) < d := by linarith
     have hsucc : (0 : ℝ) < d + 1 := by linarith
     have ha : (d : ℝ) / (d + 1) * (1 / (8 * (d : ℝ))) = 1 / (8 * (d + 1)) := by
       field_simp
-      ring
     have hb : (1 / (2 * (d + 1 : ℝ))) * (2 / 3) = 1 / (3 * (d + 1)) := by
       field_simp
-      ring
     rw [ha, hb]
-    apply (div_le_div_iff (by positivity : (0 : ℝ) < 8 * (d + 1))
+    apply (div_le_div_iff₀ (by positivity : (0 : ℝ) < 8 * (d + 1))
       (by positivity : (0 : ℝ) < 3 * (d + 1))).mpr
     nlinarith
 

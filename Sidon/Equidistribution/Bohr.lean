@@ -30,7 +30,7 @@ theorem bohrSet_mono {d N : ℕ} (α : Fin d → AddCircle (1 : ℝ)) {ρ σ : �
 
 theorem bohrSet_eq_empty_of_neg {d : ℕ} (N : ℕ) (α : Fin d → AddCircle (1 : ℝ))
     {ρ : ℝ} (hρ : ρ < 0) : bohrSet N α ρ = ∅ := by
-  apply Finset.eq_empty_iff_forall_not_mem.mpr
+  apply Finset.eq_empty_iff_forall_notMem.mpr
   intro x hx
   have h := (mem_bohrSet.mp hx).2
   exact (not_le_of_gt hρ) ((norm_nonneg _).trans h)
@@ -117,7 +117,8 @@ theorem lipschitzWith_clippedNormRamp {E : Type*} [SeminormedAddCommGroup E]
         ring
   have hclip : LipschitzWith 1 (fun z : ℝ => min 1 (max 0 z)) :=
     (LipschitzWith.id.const_max 0).const_min 1
-  simpa only [one_mul, Function.comp_def, clippedNormRamp] using hclip.comp hraw
+  change LipschitzWith (Real.toNNReal t⁻¹) (fun x : E => min 1 (max 0 ((r - ‖x‖) / t)))
+  simpa only [one_mul, Function.comp_def] using hclip.comp hraw
 
 theorem indicator_le_clippedNormRamp {E : Type*} [SeminormedAddCommGroup E]
     {r t : ℝ} (ht : 0 < t) (x : E) :
@@ -142,7 +143,7 @@ theorem IsRegularBohrSet.card_add_radius_le {d N : ℕ}
   have hκ₀ : 0 ≤ t / ρ := div_nonneg ht hρ.le
   have hκ : |t / ρ| ≤ 1 / (100 * (d : ℝ)) := by
     rw [abs_of_nonneg hκ₀]
-    apply (div_le_div_iff hρ hd').mpr
+    apply (div_le_div_iff₀ hρ hd').mpr
     simpa only [one_mul] using (le_div_iff₀ hd').mp hsmall
   have h := hreg (t / ρ) hκ
   have hradius : (1 + t / ρ) * ρ = ρ + t := by field_simp
@@ -157,7 +158,7 @@ theorem IsRegularBohrSet.card_sub_radius_le {d N : ℕ}
   have hκ₀ : 0 ≤ t / ρ := div_nonneg ht hρ.le
   have hκ : |-(t / ρ)| ≤ 1 / (100 * (d : ℝ)) := by
     rw [abs_neg, abs_of_nonneg hκ₀]
-    apply (div_le_div_iff hρ hd').mpr
+    apply (div_le_div_iff₀ hρ hd').mpr
     simpa only [one_mul] using (le_div_iff₀ hd').mp hsmall
   have h := hreg (-(t / ρ)) hκ
   have hradius : (1 + -(t / ρ)) * ρ = ρ - t := by field_simp; ring

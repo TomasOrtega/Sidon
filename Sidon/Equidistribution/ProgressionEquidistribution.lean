@@ -32,7 +32,7 @@ theorem progression_discrepancy_le_fourier_norm {N : ℕ} {S : Finset ℤ}
   apply htest.trans
   apply mul_le_mul_of_nonneg_left _ (norm_nonneg _)
   apply (fourierL1_arithmeticProgression_le b q K hq).trans
-  apply add_le_add_left
+  apply add_le_add le_rfl
   apply Real.log_le_log (by positivity)
   exact_mod_cast Nat.add_le_add_right hKN 1
 

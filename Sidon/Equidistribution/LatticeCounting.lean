@@ -41,7 +41,7 @@ theorem residueClass_eq_arithmeticProgression (N : ℕ) (a q : ℤ) (hq : 0 < q)
   unfold residueClass
   rw [interval_eq_Ioc, Int.Ioc_filter_modEq_eq, Int.Ioc_filter_dvd_eq _ _ hq,
     Finset.map_map]
-  simp only [Finset.map_eq_image, Function.Embedding.trans_apply, Function.Embedding.coeFn_mk]
+  simp only [Finset.map_eq_image]
   have hI (lo hi : ℤ) : Finset.Ioc lo hi = Finset.Icc (lo + 1) hi := by
     ext x
     simp only [Finset.mem_Ioc, Finset.mem_Icc]
@@ -106,8 +106,6 @@ theorem normalized_residueClass_card_error {N : ℕ} (hN : 0 < N)
   have heq : ((residueClass N a q).card : ℝ) / N - 1 / (q : ℝ) =
       (((residueClass N a q).card : ℝ) - (N : ℝ) / q) / N := by
     field_simp [hNpos.ne', hqpos.ne']
-    ring_nf
-    simp
   rw [heq, abs_div, abs_of_pos hNpos]
   exact div_le_div_of_nonneg_right (residueClass_card_error_le_one N a q hq) hNpos.le
 
@@ -232,7 +230,6 @@ theorem normalized_scaledInterval_card_error {N : ℕ} (hN : 0 < N) {a b : ℝ}
   have heq : ((scaledInterval N a b cl cr).card : ℝ) / N - (b - a) =
       (((scaledInterval N a b cl cr).card : ℝ) - (b - a) * N) / N := by
     field_simp [hNpos.ne']
-    ring
   rw [heq, abs_div, abs_of_pos hNpos]
   exact div_le_div_of_nonneg_right (scaledInterval_card_error_le_one ha hab cl cr) hNpos.le
 

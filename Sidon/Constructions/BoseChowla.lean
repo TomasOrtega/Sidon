@@ -123,11 +123,14 @@ theorem exists_integer_sidon (hcard : Fintype.card F < Fintype.card E) :
 /-- The prime-field Bose–Chowla construction: `p` points in an interval of length `p²-1`. -/
 theorem exists_prime_sidon (p : ℕ) (hp : p.Prime) :
     ∃ S : Finset ℤ, S ⊆ interval (p ^ 2 - 1) ∧ S.card = p ∧ IsSidonSet (S : Set ℤ) := by
-  letI : Fact p.Prime := ⟨hp⟩
+  have : Fact p.Prime := ⟨hp⟩
+  let : Fintype (GaloisField p 2) := Fintype.ofFinite _
+  have hcardE : Fintype.card (GaloisField p 2) = p ^ 2 := by
+    rw [← Nat.card_eq_fintype_card, GaloisField.card p 2 (by norm_num)]
   have hcard : Fintype.card (ZMod p) < Fintype.card (GaloisField p 2) := by
-    rw [ZMod.card, GaloisField.card p 2 (by norm_num)]
+    rw [ZMod.card, hcardE]
     nlinarith [hp.two_le]
-  simpa only [ZMod.card, GaloisField.card p 2 (by norm_num)] using
+  simpa only [ZMod.card, hcardE] using
     (exists_integer_sidon (F := ZMod p) (E := GaloisField p 2) hcard)
 
 end Sidon.BoseChowla

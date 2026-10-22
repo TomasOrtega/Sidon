@@ -59,7 +59,7 @@ theorem normalized_count_lower_bound {N s : ℕ} (hN : 0 < N) (hs : 1 ≤ s)
     rw [← pow_succ, Nat.sub_add_cancel hs]
   rw [hpow] at hscaled
   have hfinal : κ * m ^ s ≤ (N : ℝ) * C := by
-    apply (mul_le_mul_left (pow_pos hN' (s - 1))).mp
+    apply (mul_le_mul_iff_right₀ (pow_pos hN' (s - 1))).mp
     convert hscaled using 1 <;> ring
   exact (div_le_iff₀ hN').mpr (by simpa only [mul_comm] using hfinal)
 

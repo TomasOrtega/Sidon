@@ -44,7 +44,7 @@ theorem weightedFinsupp_sidonMajorant {N : ℕ} {S : Finset ℤ} (hSN : S ⊆ in
   · by_cases hn : n ∈ interval N
     · simp only [weightedFinsupp, Finsupp.indicator_of_mem hn, sidonMajorant, if_neg hns,
         Complex.ofReal_zero, Finsupp.smul_apply, indicatorFinsupp_apply, smul_zero]
-    · simp only [weightedFinsupp, Finsupp.indicator_of_not_mem hn, Finsupp.smul_apply,
+    · simp only [weightedFinsupp, Finsupp.indicator_of_notMem hn, Finsupp.smul_apply,
         indicatorFinsupp_apply, if_neg hns, smul_zero]
 
 theorem weightedFourier_sidonMajorant_sub_one {N : ℕ} (hN : 0 < N) {S : Finset ℤ}

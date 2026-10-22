@@ -1,5 +1,5 @@
 import Sidon.Equidistribution.Progressions
-import Mathlib.Analysis.SpecialFunctions.Integrals
+import Mathlib.Analysis.SpecialFunctions.Integrals.Basic
 import Mathlib.MeasureTheory.Measure.Haar.Unique
 
 /-! # A logarithmic `L¹` bound for progression Fourier sums -/
@@ -62,7 +62,7 @@ theorem integral_even_bounded_inv_le (F : ℝ → ℝ) (hF : Continuous F)
       _ = (1 / 2) * Real.log ((1 / 2) / r) := by
         have heq : (fun t : ℝ => (2 * t)⁻¹) = fun t => (1 / 2) * t⁻¹ := by
           ext t
-          simp [mul_inv, mul_comm]
+          simp [mul_comm]
         rw [heq, intervalIntegral.integral_const_mul, integral_inv_of_pos hr (by norm_num)]
       _ ≤ (1 / 2) * Real.log L := by
         apply mul_le_mul_of_nonneg_left _ (by norm_num)
@@ -135,7 +135,7 @@ theorem fourierL1_arithmeticProgression_le (a q : ℤ) (L : ℕ) (hq : q ≠ 0) 
   rw [fourierL1_progression_eq_initial a q L hq]
   by_cases hL : 2 ≤ L
   · apply (fourierL1_initialProgression_le L hL).trans
-    apply add_le_add_left
+    apply add_le_add le_rfl
     apply Real.log_le_log (by exact_mod_cast (by omega : 0 < L))
     linarith
   · have hcases : L = 0 ∨ L = 1 := by omega
@@ -143,7 +143,7 @@ theorem fourierL1_arithmeticProgression_le (a q : ℤ) (L : ℕ) (hq : q ≠ 0) 
     · simp [fourierL1, arithmeticProgression, fourierSum_indicatorFinsupp_apply]
     · have hlog : 0 ≤ Real.log (2 : ℝ) := Real.log_nonneg (by norm_num)
       have heq : fourierL1 (indicatorFinsupp (arithmeticProgression 0 1 1)) = 1 := by
-        simp [fourierL1, arithmeticProgression, fourierSum_indicatorFinsupp_apply, fourier_zero]
+        simp [fourierL1, arithmeticProgression, fourierSum_indicatorFinsupp_apply]
       rw [heq]
       norm_num only [Nat.cast_one]
       linarith

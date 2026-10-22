@@ -1,8 +1,9 @@
 # Formalization status
 
 This is an active formalization, not a completed proof of the paper. Only declarations
-compiled by Lean are marked `leanok` in the blueprint. The original Lean/mathlib pins
-are retained, and no project theorem uses proof placeholders, added axioms, option
+compiled by Lean are marked `leanok` in the blueprint. The complete project build passes on the latest stable Lean/mathlib `v4.35.0`.
+Matching doc-gen4, leanblueprint `0.0.20`, the complete API documentation, PDF,
+web blueprint, declaration audit, and theorem dependency audit also pass. No project theorem uses proof placeholders, added axioms, option
 overrides, or native evaluation.
 
 | Component | Expanded natural-language argument | Lean implementation |
@@ -17,12 +18,13 @@ overrides, or native evaluation.
 | Cilleruelo interval estimate and Section 6 | Complete from a finite variance identity | Interval estimate checked with constant 16; improved Fourier estimate checked with constant 36 |
 | Progressions, Section 3 | Complete, including lengths zero and one | Theorem 3.1 and normalized interval/residue corollaries checked, including all endpoint conventions |
 | Smooth and regular Bohr corollaries | Complete with a dimension-uniform smoothing repair | Checked with absolute constants 48000 and 48100 |
-| Literal dimension-uniform bandwidth in Lemma 4.1 | Corrected dimension-dependent tensor argument; original uniform cutoff refuted by a counterexample | Pending |
+| Literal dimension-uniform bandwidth in Lemma 4.1 | Corrected dimension-dependent tensor argument; original uniform cutoff refuted by a counterexample | Corrected tensor approximation and unconditional failure of a uniform cutoff both checked |
 | Dual norms and dense models, Appendix C | Complete with real modulation and polynomial approximation | Checked, including simultaneous models and completion to a full dense colouring |
 | Quantitative Rado/Frankl–Graham–Rodl input | Complete reduction to checked Hales–Jewett | Checked from finite Deuber extraction, integer kernel parametrization and fiber counting |
 | Partition regularity transfer, Theorem 1.15 | Complete, including the quantitative counting argument | Checked end to end, with all constants chosen before the ambient interval and colouring |
 | Bose–Chowla finite-field construction | Complete proof accompanies the construction | Checked: every prime p gives p integer Sidon points in [p²−1] |
-| Largest-set and asymptotic construction corollaries | Reduction explicit; Singer and prime-gap inputs remain dependencies | Pending |
+| Sharp asymptotic obstruction constructions, Proposition 1.13 and Remark 1.14 | Complete from Bose–Chowla and a proved prime number theorem | Checked for every sufficiently large N, with the sharp leading coefficients |
+| Largest-set Corollary 1.4 | Reduction to a power-saving prime interval bound expanded; detailed Ingham roadmap | Conditional reduction and finite zero-layer bounds checked; quantitative analytic input pending |
 
 The blueprint records definitions, quantifier order, positive denominators, finite
 support, all four Fourier correlation errors, integer rounding, and small cases.
@@ -34,4 +36,6 @@ The usage report is a timestamped snapshot of locally recorded team inference
 counters, with inherited child history removed. Its API-equivalent estimate is
 not the user's actual subscription bill.
 
-The axiom audits report only `propext`, `Classical.choice`, and `Quot.sound`.
+The dependency audit in `scripts/CheckAxioms.lean` checks twelve public endpoints,
+including the imported weak prime number theorem and the bandwidth counterexample.
+It permits only `propext`, `Classical.choice`, and `Quot.sound`.

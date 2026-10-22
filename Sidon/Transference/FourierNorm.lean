@@ -1,6 +1,6 @@
 import Sidon.Analysis.FourierIntegral
 import Mathlib.Analysis.Normed.Module.FiniteDimension
-import Mathlib.Analysis.NormedSpace.HahnBanach.Separation
+import Mathlib.Analysis.LocallyConvex.Separation
 
 /-! # The real finite Fourier norm and its dual -/
 
@@ -89,7 +89,7 @@ theorem dualNorm_nonneg (φ : FourierSpace N) : 0 ≤ dualNorm φ := norm_nonneg
 
 theorem abs_pairing_le (f φ : FourierSpace N) :
     |∑ i : Fin N, f i * φ i| ≤ ‖f‖ * dualNorm φ := by
-  simpa only [Real.norm_eq_abs, mul_comm, pairing_apply] using (pairing φ).le_opNorm f
+  simpa only [Real.norm_eq_abs, mul_comm, pairing_apply, dualNorm] using (pairing φ).le_opNorm f
 
 theorem norm_transform_apply_le (f : FourierSpace N) (α : AddCircle (1 : ℝ)) :
     ‖transform f α‖ ≤ ‖f‖ := (transform f).norm_coe_le_norm α
@@ -127,15 +127,18 @@ def delta (i : Fin N) : FourierSpace N := fun j => if i = j then 1 else 0
   rw [norm_eq, transform_delta, fourier_norm]
 
 @[simp] theorem pairing_delta (φ : FourierSpace N) (i : Fin N) : pairing φ (delta i) = φ i := by
-  simp [pairing_apply, delta]
+  let φ' : Fin N → ℝ := φ
+  change (∑ j : Fin N, (if i = j then 1 else 0) * φ' j) = φ' i
+  simp [ite_mul, Finset.sum_ite_eq]
 
 theorem abs_apply_le_dualNorm (φ : FourierSpace N) (i : Fin N) : |φ i| ≤ dualNorm φ := by
-  simpa only [pairing_delta, Real.norm_eq_abs, norm_delta, mul_one] using
+  simpa only [pairing_delta, Real.norm_eq_abs, norm_delta, mul_one, dualNorm] using
     (pairing φ).le_opNorm (delta i)
 
 @[simp] theorem transform_zero_apply (f : FourierSpace N) :
     transform f 0 = (∑ i : Fin N, f i : ℝ) := by
-  simp only [transform_apply, fourier_eval_zero, mul_one, ← Complex.ofReal_sum]
+  simp only [transform_apply, fourier_eval_zero, mul_one]
+  exact (map_sum Complex.ofRealHom (fun i : Fin N => f i) Finset.univ).symm
 
 theorem abs_sum_le_norm (f : FourierSpace N) : |∑ i : Fin N, f i| ≤ ‖f‖ := by
   have h := norm_transform_apply_le f 0
@@ -222,7 +225,7 @@ theorem norm_realModulation_le (f : FourierSpace N) {z : ℂ} (hz : ‖z‖ = 1)
   have htwo : ‖(2 : ℂ)‖ = (2 : ℝ) := by norm_num
   rw [htwo]
   apply (div_le_iff₀ (by norm_num : (0 : ℝ) < 2)).mpr
-  have hzc : ‖conj z‖ = 1 := (Complex.abs_conj z).trans hz
+  have hzc : ‖conj z‖ = 1 := (Complex.norm_conj z).trans hz
   calc
     _ ≤ ‖z * transform f (β + α)‖ + ‖conj z * transform f (β - α)‖ := norm_add_le _ _
     _ ≤ ‖f‖ + ‖f‖ := by

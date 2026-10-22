@@ -1,33 +1,35 @@
 {
   "schema_version": 1,
   "root_thread": "01a1636c-beb7-7282-9390-a9ced5631a74",
-  "snapshot_at": "2026-10-22T13:03:01.130903+00:00",
+  "snapshot_at": "2026-10-22T13:59:48.521142+00:00",
   "started_at": "2026-10-22T11:45:52+00:00",
-  "elapsed_seconds": 4629.131,
+  "elapsed_seconds": 8036.521,
   "totals": {
-    "input_tokens": 201820990,
-    "cached_input_tokens": 199556096,
+    "input_tokens": 381603847,
+    "cached_input_tokens": 377360640,
     "cache_write_input_tokens": 0,
-    "output_tokens": 716656,
-    "reasoning_output_tokens": 251188,
-    "total_tokens": 202537646
+    "output_tokens": 1142406,
+    "reasoning_output_tokens": 405992,
+    "total_tokens": 382746253
   },
+  "uncached_input_tokens": 4243207,
+  "uncached_input_plus_output_tokens": 5385613,
   "context_bands": {
     "short": {
-      "input_tokens": 149719496,
-      "cached_input_tokens": 147711744,
+      "input_tokens": 261813118,
+      "cached_input_tokens": 258512768,
       "cache_write_input_tokens": 0,
-      "output_tokens": 611049,
-      "reasoning_output_tokens": 204523,
-      "total_tokens": 150330545
+      "output_tokens": 925856,
+      "reasoning_output_tokens": 309958,
+      "total_tokens": 262738974
     },
     "long": {
-      "input_tokens": 52101494,
-      "cached_input_tokens": 51844352,
+      "input_tokens": 119790729,
+      "cached_input_tokens": 118847872,
       "cache_write_input_tokens": 0,
-      "output_tokens": 105607,
-      "reasoning_output_tokens": 46665,
-      "total_tokens": 52207101
+      "output_tokens": 216550,
+      "reasoning_output_tokens": 96034,
+      "total_tokens": 120007279
     },
     "unknown": {
       "input_tokens": 0,
@@ -38,13 +40,13 @@
       "total_tokens": 0
     }
   },
-  "request_count": 1144,
+  "request_count": 2096,
   "models": [
     "gpt-6.1-sol"
   ],
   "api_equivalent_usd": {
-    "standard": 37.8787118,
-    "fast": 75.7574236
+    "standard": 72.4997892,
+    "fast": 144.9995784
   },
   "api_estimate_covers_all_attributed_usage": true,
   "pricing_source": "https://developers.openai.com/api/docs/pricing",
@@ -57,7 +59,7 @@
       "source_file": "rollout-2026-10-22T07-43-53-01a1636c-beb7-7282-9390-a9ced5631a74.jsonl",
       "created_at": "2026-10-22T11:43:53.545Z",
       "started_at": 1792669552,
-      "last_token_count_at": "2026-10-22T13:02:41.779Z",
+      "last_token_count_at": "2026-10-22T13:58:40.196Z",
       "inherited_baseline": {
         "input_tokens": 0,
         "cached_input_tokens": 0,
@@ -67,29 +69,29 @@
         "total_tokens": 0
       },
       "totals": {
-        "input_tokens": 47808881,
-        "cached_input_tokens": 47220864,
+        "input_tokens": 81127547,
+        "cached_input_tokens": 80210432,
         "cache_write_input_tokens": 0,
-        "output_tokens": 162998,
-        "reasoning_output_tokens": 54849,
-        "total_tokens": 47971879
+        "output_tokens": 246222,
+        "reasoning_output_tokens": 87298,
+        "total_tokens": 81373769
       },
       "context_bands": {
         "short": {
-          "input_tokens": 34684466,
-          "cached_input_tokens": 34171392,
+          "input_tokens": 61070798,
+          "cached_input_tokens": 60296320,
           "cache_write_input_tokens": 0,
-          "output_tokens": 129362,
-          "reasoning_output_tokens": 39741,
-          "total_tokens": 34813828
+          "output_tokens": 194432,
+          "reasoning_output_tokens": 63674,
+          "total_tokens": 61265230
         },
         "long": {
-          "input_tokens": 13124415,
-          "cached_input_tokens": 13049472,
+          "input_tokens": 20056749,
+          "cached_input_tokens": 19914112,
           "cache_write_input_tokens": 0,
-          "output_tokens": 33636,
-          "reasoning_output_tokens": 15108,
-          "total_tokens": 13158051
+          "output_tokens": 51790,
+          "reasoning_output_tokens": 23624,
+          "total_tokens": 20108539
         },
         "unknown": {
           "input_tokens": 0,
@@ -110,7 +112,7 @@
       "source_file": "rollout-2026-10-22T07-46-20-01a1636e-fe21-7172-8002-7df20e64dc61.jsonl",
       "created_at": "2026-10-22T11:46:20.861Z",
       "started_at": 1792669580,
-      "last_token_count_at": "2026-10-22T13:02:20.291Z",
+      "last_token_count_at": "2026-10-22T13:59:45.102Z",
       "inherited_baseline": {
         "input_tokens": 67413,
         "cached_input_tokens": 51200,
@@ -120,29 +122,29 @@
         "total_tokens": 68288
       },
       "totals": {
-        "input_tokens": 60840086,
-        "cached_input_tokens": 60186752,
+        "input_tokens": 102509031,
+        "cached_input_tokens": 101371776,
         "cache_write_input_tokens": 0,
-        "output_tokens": 183797,
-        "reasoning_output_tokens": 60672,
-        "total_tokens": 61023883
+        "output_tokens": 302403,
+        "reasoning_output_tokens": 107755,
+        "total_tokens": 102811434
       },
       "context_bands": {
         "short": {
-          "input_tokens": 39054806,
-          "cached_input_tokens": 38513664,
+          "input_tokens": 59715898,
+          "cached_input_tokens": 58826624,
           "cache_write_input_tokens": 0,
-          "output_tokens": 145483,
-          "reasoning_output_tokens": 45990,
-          "total_tokens": 39200289
+          "output_tokens": 216365,
+          "reasoning_output_tokens": 69367,
+          "total_tokens": 59932263
         },
         "long": {
-          "input_tokens": 21785280,
-          "cached_input_tokens": 21673088,
+          "input_tokens": 42793133,
+          "cached_input_tokens": 42545152,
           "cache_write_input_tokens": 0,
-          "output_tokens": 38314,
-          "reasoning_output_tokens": 14682,
-          "total_tokens": 21823594
+          "output_tokens": 86038,
+          "reasoning_output_tokens": 38388,
+          "total_tokens": 42879171
         },
         "unknown": {
           "input_tokens": 0,
@@ -163,7 +165,7 @@
       "source_file": "rollout-2026-10-22T07-46-25-01a1636f-1098-7df2-ae87-4b4ce8d527e3.jsonl",
       "created_at": "2026-10-22T11:46:25.572Z",
       "started_at": 1792669585,
-      "last_token_count_at": "2026-10-22T13:02:57.178Z",
+      "last_token_count_at": "2026-10-22T13:59:39.741Z",
       "inherited_baseline": {
         "input_tokens": 107336,
         "cached_input_tokens": 79872,
@@ -173,29 +175,29 @@
         "total_tokens": 108555
       },
       "totals": {
-        "input_tokens": 46497879,
-        "cached_input_tokens": 45961472,
+        "input_tokens": 92965331,
+        "cached_input_tokens": 91714944,
         "cache_write_input_tokens": 0,
-        "output_tokens": 183858,
-        "reasoning_output_tokens": 64883,
-        "total_tokens": 46681737
+        "output_tokens": 299702,
+        "reasoning_output_tokens": 100249,
+        "total_tokens": 93265033
       },
       "context_bands": {
         "short": {
-          "input_tokens": 39485753,
-          "cached_input_tokens": 38979712,
+          "input_tokens": 70558707,
+          "cached_input_tokens": 69723136,
           "cache_write_input_tokens": 0,
-          "output_tokens": 173303,
-          "reasoning_output_tokens": 60961,
-          "total_tokens": 39659056
+          "output_tokens": 269615,
+          "reasoning_output_tokens": 88266,
+          "total_tokens": 70828322
         },
         "long": {
-          "input_tokens": 7012126,
-          "cached_input_tokens": 6981760,
+          "input_tokens": 22406624,
+          "cached_input_tokens": 21991808,
           "cache_write_input_tokens": 0,
-          "output_tokens": 10555,
-          "reasoning_output_tokens": 3922,
-          "total_tokens": 7022681
+          "output_tokens": 30087,
+          "reasoning_output_tokens": 11983,
+          "total_tokens": 22436711
         },
         "unknown": {
           "input_tokens": 0,
@@ -216,7 +218,7 @@
       "source_file": "rollout-2026-10-22T07-46-30-01a1636f-2372-7040-a891-9772a79eeb23.jsonl",
       "created_at": "2026-10-22T11:46:30.399Z",
       "started_at": 1792669590,
-      "last_token_count_at": "2026-10-22T13:02:35.639Z",
+      "last_token_count_at": "2026-10-22T13:59:32.877Z",
       "inherited_baseline": {
         "input_tokens": 147624,
         "cached_input_tokens": 119680,
@@ -226,29 +228,29 @@
         "total_tokens": 149010
       },
       "totals": {
-        "input_tokens": 46674144,
-        "cached_input_tokens": 46187008,
+        "input_tokens": 105001938,
+        "cached_input_tokens": 104063488,
         "cache_write_input_tokens": 0,
-        "output_tokens": 186003,
-        "reasoning_output_tokens": 70784,
-        "total_tokens": 46860147
+        "output_tokens": 294079,
+        "reasoning_output_tokens": 110690,
+        "total_tokens": 105296017
       },
       "context_bands": {
         "short": {
-          "input_tokens": 36494471,
-          "cached_input_tokens": 36046976,
+          "input_tokens": 70467715,
+          "cached_input_tokens": 69666688,
           "cache_write_input_tokens": 0,
-          "output_tokens": 162901,
-          "reasoning_output_tokens": 57831,
-          "total_tokens": 36657372
+          "output_tokens": 245444,
+          "reasoning_output_tokens": 88651,
+          "total_tokens": 70713159
         },
         "long": {
-          "input_tokens": 10179673,
-          "cached_input_tokens": 10140032,
+          "input_tokens": 34534223,
+          "cached_input_tokens": 34396800,
           "cache_write_input_tokens": 0,
-          "output_tokens": 23102,
-          "reasoning_output_tokens": 12953,
-          "total_tokens": 10202775
+          "output_tokens": 48635,
+          "reasoning_output_tokens": 22039,
+          "total_tokens": 34582858
         },
         "unknown": {
           "input_tokens": 0,

@@ -51,3 +51,9 @@ Record unavailable measurements as unavailable. Use observed timestamps for
 elapsed wall time, explain counter scope, and preserve the raw usage records
 or their source paths when available. An estimate of final generated text
 length is not a substitute for inference token usage.
+
+The goal's displayed token counter excludes cached input. The local report now
+publishes both `uncached_input_plus_output_tokens = I - C + O` and the cache-inclusive
+request total `I + O`. A simultaneous 22 October check agreed with the goal counter
+up to the inference that read the counter. Cached input still incurs its published
+API rate, so the cost estimate uses the full `I, C, O` split.

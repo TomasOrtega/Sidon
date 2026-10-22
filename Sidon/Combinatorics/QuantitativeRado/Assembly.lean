@@ -146,7 +146,7 @@ theorem exists_many_monochromatic_of_pattern_map {s q r : ℕ}
   have hNL' : (N : ℝ) / (2 * (H : ℝ)) ≤ L := by
     simpa only [H, Nat.cast_mul, Nat.cast_add, Nat.cast_pow,
       Nat.cast_one, Nat.cast_ofNat] using hNL
-  have hpow := (pow_le_pow_left (by positivity : (0 : ℝ) ≤ (N : ℝ) /
+  have hpow := (pow_le_pow_left₀ (by positivity : (0 : ℝ) ≤ (N : ℝ) /
       (2 * (H : ℝ))) hNL' q).trans hLq'
   rw [div_pow] at hpow
   have hnum := (div_le_iff₀ (by positivity : (0 : ℝ) < (2 * (H : ℝ)) ^ q)).mp hpow

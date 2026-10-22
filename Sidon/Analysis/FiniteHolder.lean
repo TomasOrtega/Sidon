@@ -1,5 +1,5 @@
 import Mathlib.Analysis.MeanInequalities
-import Mathlib.MeasureTheory.Integral.Bochner
+import Mathlib.MeasureTheory.Integral.Bochner.Basic
 
 /-! # Equal-moment bounds for a finite product -/
 
@@ -37,11 +37,11 @@ theorem integral_prod_le_of_equal_moments {α ι : Type*} [MeasurableSpace α]
   have hcard : (0 : ℝ) < s.card := Nat.cast_pos.mpr hs.card_pos
   calc
     _ ≤ ∫ x, (∑ i ∈ s, f i x ^ s.card) / s.card ∂μ := by
-      apply integral_mono hprod ((integrable_finset_sum s hpowers).div_const _)
+      apply integral_mono hprod ((integrable_finsetSum s hpowers).div_const _)
       intro x
       exact prod_le_average_powers s hs (fun i => f i x) (fun i hi => hf0 i hi x)
     _ = (∑ i ∈ s, ∫ x, f i x ^ s.card ∂μ) / s.card := by
-      rw [integral_div, integral_finset_sum s hpowers]
+      rw [integral_div, integral_finsetSum s hpowers]
     _ ≤ B := by
       apply (div_le_iff₀ hcard).mpr
       have hh := Finset.sum_le_sum hB

@@ -17,7 +17,7 @@ def integerShift (h : ℤ) (f : ℤ →₀ ℂ) : ℤ →₀ ℂ :=
 theorem integerShift_apply (h : ℤ) (f : ℤ →₀ ℂ) (x : ℤ) :
     integerShift h f x = f (x + h) := by
   simpa only [integerShift, add_sub_cancel_right] using
-    Finsupp.mapDomain_apply (f := fun y : ℤ => y - h)
+    Finsupp.mapDomain_apply_of_injective (f := fun y : ℤ => y - h)
       (fun a b hab => by change a - h = b - h at hab; omega) f (x + h)
 
 theorem sum_integerShift (h : ℤ) (f : ℤ →₀ ℂ) :
@@ -39,7 +39,7 @@ theorem correlation_eq_sum (s : Finset ℤ) (f g : ℤ →₀ ℂ) (h : ℤ)
   apply Finset.sum_subset hf
   intro x _ hx
   change f x * conj (g (x + h)) = 0
-  rw [Finsupp.not_mem_support_iff.mp hx, zero_mul]
+  rw [Finsupp.notMem_support_iff.mp hx, zero_mul]
 
 @[simp]
 theorem correlation_zero_left (g : ℤ →₀ ℂ) (h : ℤ) : correlation 0 g h = 0 := by
@@ -92,7 +92,7 @@ theorem correlation_real_smul_right (c : ℝ) (f g : ℤ →₀ ℂ) (h : ℤ) :
 theorem correlation_sum_left {ι : Type*} (s : Finset ι) (F : ι → ℤ →₀ ℂ)
     (g : ℤ →₀ ℂ) (h : ℤ) :
     correlation (∑ i ∈ s, F i) g h = ∑ i ∈ s, correlation (F i) g h := by
-  exact Finsupp.sum_sum_index' (fun _ => zero_mul _) fun _ _ _ => add_mul _ _ _
+  exact (Finsupp.sum_finsetSum_index (fun _ => zero_mul _) fun _ _ _ => add_mul _ _ _).symm
 
 theorem correlation_sum_right {ι : Type*} (s : Finset ι) (F : ι → ℤ →₀ ℂ)
     (f : ℤ →₀ ℂ) (h : ℤ) :
@@ -169,7 +169,7 @@ theorem correlation_finiteSupport (f g : ℤ →₀ ℂ) :
   exact hh (correlation_eq_zero_of_not_mem f g h hnot)
 
 theorem norm_fourier_apply (n : ℤ) (α : AddCircle (1 : ℝ)) :
-    ‖fourier n α‖ = 1 := Circle.abs_coe _
+    ‖fourier n α‖ = 1 := Circle.norm_coe _
 
 /-- Multiplication by a character preserves finite support. -/
 def fourierTwist (α : AddCircle (1 : ℝ)) (f : ℤ →₀ ℂ) : ℤ →₀ ℂ :=

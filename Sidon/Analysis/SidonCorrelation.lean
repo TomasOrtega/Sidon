@@ -67,7 +67,7 @@ theorem re_correlation_indicatorFinsupp_le_one {S : Finset ℤ}
 theorem boundaryPart_card_add (N : ℕ) (S : Finset ℤ) (h : ℤ) :
     (S.filter fun x => x + h ∈ interval N).card + (boundaryPart N S h).card =
       S.card := by
-  exact Finset.filter_card_add_filter_neg_card_eq_card _
+  exact Finset.card_filter_add_card_filter_not _
 
 theorem re_correlation_intervalModel_right (N : ℕ) (S : Finset ℤ) (h : ℤ) :
     (correlation (indicatorFinsupp S) (intervalModel N S) h).re =
@@ -255,7 +255,7 @@ theorem self_correlation_pointwise_error {S : Finset ℤ}
         congr 1
         ring
       _ ≤ |b - 1| + |1 -
-          (correlation (indicatorFinsupp S) (indicatorFinsupp S) h).re| := abs_add _ _
+          (correlation (indicatorFinsupp S) (indicatorFinsupp S) h).re| := abs_add_le _ _
       _ = _ := by rw [abs_of_nonneg (sub_nonneg.mpr hr)]; ring
 
 theorem self_correlationError_le_mass {N H : ℕ} (hH : 0 < H) {S : Finset ℤ}

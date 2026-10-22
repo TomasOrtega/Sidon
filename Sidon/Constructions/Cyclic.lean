@@ -61,7 +61,7 @@ theorem exists_integer_sidon_of_cyclic_group {G : Type*} [AddCommGroup G]
     ∃ S : Finset ℤ, S ⊆ interval (Nat.card G) ∧ S.card = A.card ∧
       IsSidonSet (S : Set ℤ) := by
   have hM : 0 < Nat.card G := Nat.card_pos
-  letI : NeZero (Nat.card G) := ⟨hM.ne'⟩
+  have : NeZero (Nat.card G) := ⟨hM.ne'⟩
   let e : ZMod (Nat.card G) ≃+ G := zmodAddCyclicAddEquiv inferInstance
   let R := A.image e.symm
   have hR : IsSidonSet (R : Set (ZMod (Nat.card G))) := by

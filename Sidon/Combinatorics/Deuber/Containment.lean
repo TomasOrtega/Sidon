@@ -39,7 +39,7 @@ theorem IsLeadingEmbedding.row_subset_mul {ι κ : Type*}
       rw [hT.1.vecMul_apply_of_ne_zero w hi, abs_mul]
       exact mul_le_mul (hwbound i) (hbound i k) (abs_nonneg _) (by positivity)
     · push_neg at hk
-      simp only [a, Matrix.vecMul, Matrix.dotProduct, hk, mul_zero,
+      simp only [a, Matrix.vecMul, dotProduct, hk, mul_zero,
         Finset.sum_const_zero, abs_zero]
       positivity
   have haj : a (e j) = c * d := by

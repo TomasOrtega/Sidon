@@ -35,11 +35,11 @@ def oddImage (S : Finset ℤ) : Finset ℤ := S.image fun x => 2 * x + 1
 
 @[simp]
 theorem card_oddImage (S : Finset ℤ) : (oddImage S).card = S.card :=
-  card_image_affine S (by norm_num) 1
+  card_image_affine S (by decide) 1
 
 theorem isSidonSet_oddImage {S : Finset ℤ} (hS : IsSidonSet (S : Set ℤ)) :
     IsSidonSet (oddImage S : Set ℤ) := by
-  simpa only [oddImage, Finset.coe_image] using hS.image_affine (by norm_num : (2 : ℤ) ≠ 0) 1
+  simpa only [oddImage, Finset.coe_image] using hS.image_affine (by decide : (2 : ℤ) ≠ 0) 1
 
 theorem oddImage_subset_interval {S : Finset ℤ} {N L : ℕ}
     (hL : 2 * L + 1 ≤ N) (hS : S ⊆ interval L) : oddImage S ⊆ interval N := by

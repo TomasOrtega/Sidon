@@ -70,7 +70,7 @@ theorem norm_integral_prod_sub_le {ι : Type*} [DecidableEq ι]
       rw [integral_finset_sum]
       · apply Finset.sum_congr rfl
         intro i _
-        exact integral_mul_left _ _
+        exact integral_const_mul _ _
       · intro i _
         exact continuous_circle_integrable (by fun_prop)
     _ ≤ ∑ _i ∈ s, D * B :=

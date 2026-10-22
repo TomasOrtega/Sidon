@@ -9,24 +9,24 @@ def IsSidonSet {M : Type*} [AddCommMonoid M] (s : Set M) : Prop :=
   a + b = c + d → ({a, b} : Set M) = ({c, d} : Set M)
 
 /-- The empty set is a Sidon set in any additive commutative monoid -/
-theorem empty_is_sidon {M : Type} [AddCommMonoid M] :
+theorem empty_is_sidon {M : Type*} [AddCommMonoid M] :
   IsSidonSet (∅ : Set M) := by
   intros _ _ _ _ h
   exact fun _ _ _ _ => False.elim h
 
 /-- Any singleton is a Sidon set in any additive commutative monoid -/
-theorem singleton_is_sidon {M : Type} [AddCommMonoid M] (x : M) :
+theorem singleton_is_sidon {M : Type*} [AddCommMonoid M] (x : M) :
   IsSidonSet {x} := by
   intros _ _ _ _ ha hb hc hd _
   rw [ha, hb, hc, hd]
 
 /-- A Sidon subset is a Sidon set -/
-theorem sidon_subset_is_sidon {M : Type} [AddCommMonoid M] {s : Set M} (h : IsSidonSet s) : ∀ t : Set M, t ⊆ s → IsSidonSet t := by
-intros t htins a b c d ha hb hc hd sum
-exact h a b c d (htins ha) (htins hb) (htins hc) (htins hd) sum
+theorem sidon_subset_is_sidon {M : Type*} [AddCommMonoid M] {s : Set M} (h : IsSidonSet s) : ∀ t : Set M, t ⊆ s → IsSidonSet t := by
+  intros t htins a b c d ha hb hc hd sum
+  exact h a b c d (htins ha) (htins hb) (htins hc) (htins hd) sum
 
 /-- In a finite additive commutative group M, a Sidon set s with size #s satisfies #s * (#s - 1) ≤ #M.-/
-theorem sidon_set_size_bound {M : Type} [AddCommGroup M] [Fintype M] {s : Finset M} (h : IsSidonSet s.toSet) : s.card * s.card - s.card ≤ toNat #M := by
+theorem sidon_set_size_bound {M : Type*} [AddCommGroup M] [Fintype M] {s : Finset M} (h : IsSidonSet (s : Set M)) : s.card * s.card - s.card ≤ toNat #M := by
   have : DecidableEq M := Classical.typeDecidableEq M
   let offDiag_s := Finset.offDiag s -- we use DecidableEq M here
   rw [<-Finset.offDiag_card s]
@@ -64,6 +64,6 @@ theorem sidon_set_size_bound {M : Type} [AddCommGroup M] [Fintype M] {s : Finset
       exact Finset.card_le_univ _
 
 /-- A Sidon set s in ℤ mod n (n not zero) with size |s| satisfies |s| * (|s| - 1) ≤ n -/
-theorem sidon_set_size_bound_zmodn {n : ℕ} (n_ne_zero : NeZero n) (s : Finset (ZMod n)) (h : IsSidonSet s.toSet) : s.card * s.card - s.card ≤ n := calc
+theorem sidon_set_size_bound_zmodn {n : ℕ} (n_ne_zero : NeZero n) (s : Finset (ZMod n)) (h : IsSidonSet (s : Set (ZMod n))) : s.card * s.card - s.card ≤ n := calc
     s.card * s.card - s.card ≤ toNat #(ZMod n) := sidon_set_size_bound h
     _ = n := by rw [mk_fintype, ZMod.card, toNat_natCast] -- we use n_ne_zero here

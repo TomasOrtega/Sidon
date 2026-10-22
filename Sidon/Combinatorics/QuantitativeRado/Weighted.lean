@@ -33,7 +33,7 @@ theorem class_card_mul_pow_le_weightedSolutionCount {ι : Type*} [Fintype ι]
       apply Finset.sum_le_sum
       intro x hx
       have hprod : (∏ _i : ι, t) ≤ ∏ i, f (x i) :=
-        Finset.prod_le_prod (fun _ _ => ht)
+        Finset.prod_le_prod₀ (fun _ _ => ht)
           (fun i _ => hC _ (((mem_linearSolutions C a x).mp hx).1 i))
       simpa only [Finset.prod_const, Finset.card_univ] using hprod
     _ ≤ ∑ x ∈ linearSolutions A a, ∏ i, f (x i) := by

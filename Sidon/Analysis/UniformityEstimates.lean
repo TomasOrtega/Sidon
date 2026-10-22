@@ -37,7 +37,7 @@ theorem fourier_error_master_le {N H m E₁₁ E₂₂ E₁₂ E₂₁ : ℝ}
   have hdev := normalized_square_deviation_le hN hm₀ hm
   have hmSq : m ^ 2 ≤ 25 * N := by nlinarith
   have hterm : m ^ 2 * H / N ^ 2 ≤ 25 * H / N := by
-    apply (div_le_div_iff (sq_pos_of_pos hN) hN).mpr
+    apply (div_le_div_iff₀ (sq_pos_of_pos hN) hN).mpr
     nlinarith [mul_le_mul_of_nonneg_right hmSq (mul_nonneg hH.le hN.le)]
   have htermH : 2 * m / H ≤ 10 * Real.sqrt N / H := by
     exact div_le_div_of_nonneg_right (by linarith) hH.le
@@ -94,7 +94,7 @@ theorem diagonal_window_error_le {N H : ℝ} (hN : 0 < N)
     N * Real.sqrt N / H ≤ N * Real.sqrt N / (N ^ (2 / 3 : ℝ) / 2) :=
       div_le_div_of_nonneg_left (mul_nonneg hN.le (Real.sqrt_nonneg N))
         (by positivity) hH
-    _ = 2 * (N * Real.sqrt N / N ^ (2 / 3 : ℝ)) := by field_simp; ring
+    _ = 2 * (N * Real.sqrt N / N ^ (2 / 3 : ℝ)) := by field_simp
     _ = 2 * N ^ (5 / 6 : ℝ) := by rw [heq]
 
 /-- Optimizing the integer window preserves the stated absolute constant. -/

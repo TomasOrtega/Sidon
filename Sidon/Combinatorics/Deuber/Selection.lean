@@ -57,7 +57,7 @@ theorem selectionMatrix_mulVec {ι κ : Type*} [Fintype κ]
     [Preorder ι] [Preorder κ] (e : ι ↪o κ) (z : κ → ℤ) :
     (selectionMatrix e).mulVec z = z ∘ e := by
   funext i
-  simp [Matrix.mulVec, Matrix.dotProduct, selectionMatrix]
+  simp [Matrix.mulVec, dotProduct, selectionMatrix]
 
 theorem row_comp_orderEmbedding_subset {ι κ : Type*}
     [Fintype ι] [Fintype κ] [LinearOrder ι] [LinearOrder κ]

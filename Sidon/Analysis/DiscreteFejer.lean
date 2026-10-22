@@ -30,11 +30,11 @@ theorem sum_fejerWeight_mul (H : ℕ) (F : ℤ → ℝ) :
         ((H : ℝ) ^ 2)⁻¹ * F ((v : ℤ) - u) := by
   classical
   unfold fejerWeight
-  rw [Finsupp.sum_sum_index' (t := fun h w => w * F h)
+  rw [← Finsupp.sum_finsetSum_index (h := fun h w => w * F h)
     (fun h => zero_mul (F h)) (fun h x y => add_mul x y (F h))]
   apply Finset.sum_congr rfl
   intro u _
-  rw [Finsupp.sum_sum_index' (t := fun h w => w * F h)
+  rw [← Finsupp.sum_finsetSum_index (h := fun h w => w * F h)
     (fun h => zero_mul (F h)) (fun h x y => add_mul x y (F h))]
   apply Finset.sum_congr rfl
   intro v _
@@ -47,11 +47,11 @@ theorem sum_fejerWeight_smul {E : Type*} [AddCommMonoid E] [Module ℝ E]
         ((H : ℝ) ^ 2)⁻¹ • F ((v : ℤ) - u) := by
   classical
   unfold fejerWeight
-  rw [Finsupp.sum_sum_index' (t := fun h w => w • F h)
+  rw [← Finsupp.sum_finsetSum_index (h := fun h w => w • F h)
     (fun h => zero_smul ℝ (F h)) (fun h x y => add_smul x y (F h))]
   apply Finset.sum_congr rfl
   intro u _
-  rw [Finsupp.sum_sum_index' (t := fun h w => w • F h)
+  rw [← Finsupp.sum_finsetSum_index (h := fun h w => w • F h)
     (fun h => zero_smul ℝ (F h)) (fun h x y => add_smul x y (F h))]
   apply Finset.sum_congr rfl
   intro v _
@@ -78,7 +78,6 @@ theorem sum_fejerWeight (H : ℕ) (hH : 0 < H) :
     _ = 1 := by
       simp only [mul_one, Finset.sum_const, Finset.card_range, nsmul_eq_mul]
       field_simp
-      ring
 
 theorem fejerWeight_neg (H : ℕ) (h : ℤ) : fejerWeight H (-h) = fejerWeight H h := by
   classical
@@ -100,13 +99,12 @@ theorem fejerWeight_zero (H : ℕ) (hH : 0 < H) :
         ∑ _u ∈ Finset.range H, ((H : ℝ) ^ 2)⁻¹ := by
       apply Finset.sum_congr rfl
       intro u hu
-      simp [sub_eq_zero, Int.natCast_inj, Finset.sum_ite_eq',
+      simp [sub_eq_zero, Finset.sum_ite_eq',
         Finset.mem_range.mp hu]
     _ = (H : ℝ)⁻¹ := by
       simp only [Finset.sum_const, Finset.card_range, nsmul_eq_mul]
       have h : (H : ℝ) ≠ 0 := by positivity
       field_simp
-      ring
 
 theorem fejerWeight_eq_zero_of_le_abs (H : ℕ) (h : ℤ) (hh : (H : ℤ) ≤ |h|) :
     fejerWeight H h = 0 := by

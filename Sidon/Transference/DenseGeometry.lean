@@ -18,9 +18,12 @@ def coordinate (x : Fin N) : FourierSpace N →L[ℝ] ℝ :=
 @[simp] theorem coordinate_apply (x : Fin N) (f : FourierSpace N) : coordinate x f = f x := rfl
 
 theorem eq_sum_delta (f : FourierSpace N) : f = ∑ x : Fin N, (f x) • delta x := by
+  let f' : Fin N → ℝ := f
   funext y
-  rw [Finset.sum_apply]
-  change f y = ∑ x : Fin N, f x * (if x = y then 1 else 0)
+  change coordinate y f = coordinate y (∑ x : Fin N, (f x) • delta x)
+  rw [map_sum]
+  simp only [map_smul, coordinate_apply, smul_eq_mul]
+  change f' y = ∑ x : Fin N, f' x * (if x = y then 1 else 0)
   simp only [mul_ite, mul_one, mul_zero, Finset.sum_ite_eq', Finset.mem_univ, if_true]
 
 theorem functional_eq_sum (L : FourierSpace N →L[ℝ] ℝ) (f : FourierSpace N) :
