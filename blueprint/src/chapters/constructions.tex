@@ -355,16 +355,18 @@ quantifiers require.
 \end{proof}
 
 
-\section{The quantitative prime-interval frontier}
+\section{Quantitative prime intervals and largest Sidon sets}
 \label{construction:prime-frontier}
 
 The relative-prime theorem above suffices for the sharp obstruction
-constants, but it does not provide the exponent required by
-Corollary~\ref{target:largest}.
-The checked reduction below retains the explicit prime-interval premise.
-The \href{https://github.com/TomasOrtega/Sidon/blob/master/docs/ingham-prime-interval-proof.md}{expanded analytic derivation}
-records the proof being implemented; the following statements give its
-checked finite interfaces and exact remaining inputs.
+constants.  Corollary~\ref{target:largest} additionally needs primes in
+intervals of length $O(x^{2/3})$.
+The reduction below isolates this quantitative input, and
+Theorem~\ref{kernel:prime-interval} proves it with the explicit constant
+$128$.  The
+\href{https://github.com/TomasOrtega/Sidon/blob/master/docs/ingham-prime-interval-proof.md}{expanded analytic derivation}
+and the checked analytic nodes below supply its density, zero-free,
+and exact smoothed-formula ingredients.
 
 \begin{lemma}[Checked reduction for largest Sidon sets]
 \label{construction:largest-reduction}
@@ -399,8 +401,27 @@ $N\ge1$, and $CN^{-1/6}\le1/2$. The last condition implies
 $m\ge\sqrt N/2$. The transform of an indicator has norm exactly $m$:
 the triangle inequality bounds every value by $m$, while its value at
 zero is $m$. Substitute $\sqrt N\le2m$ in the preceding estimate.
-The existence of the prime-interval constants is the remaining
-hypothesis; this lemma does not assert it.
+The following corollary supplies the prime-interval input with $C=128$.
+\end{proof}
+
+\begin{corollary}[Unconditional largest-set Fourier rate]
+\label{construction:largest-unconditional}
+\uses{construction:largest-reduction,kernel:prime-interval}
+\lean{Sidon.largest_sidon_fourier_uniformity}\leanok
+There are $N_0$ and $K>0$ such that every maximum-cardinality Sidon
+set $S\subseteq[N]$, with $N\geq N_0$, satisfies
+\[
+ \|\widehat{1_S}-(|S|/N)\widehat{1_{[N]}}\|_\infty
+ \leq K\|\widehat{1_S}\|_\infty N^{-1/12}.
+\]
+\end{corollary}
+\begin{proof}
+Theorem~\ref{kernel:prime-interval} gives a real threshold $X$ beyond
+which every interval $[x-128x^{2/3},x]$ contains a natural prime.
+Apply the preceding checked reduction with $C=128\geq0$.
+Its threshold construction and the choice $K=32\sqrt{133}>0$ give
+the stated conclusion.  All prime-interval and analytic inputs are
+proved in the project.
 \end{proof}
 
 \begin{lemma}[Finite Dirichlet-polynomial mean square]
@@ -561,22 +582,31 @@ zero.  Its psi increment would then be at most the nonprime-power
 mass at $N$, since that mass at $M$ is nonnegative, a contradiction.
 \end{proof}
 
-For the remaining analytic assembly, choose $A=23/8$, $T=x^{17/50}$,
-and $h=x^{2/3}$.  The numerical margins are
-$A(17/50)=391/400<1$ and $x/T=o(h)$.
-The required inputs are: a uniform zero-density bound with exponent
-$A$; a zero-free width $\eta(T)$ with
-$\eta(T)\log T/\log\log T\to\infty$; and a truncated explicit formula
-for the psi increment with error
-$O(x\log^2x/T+\log x)$ at a height in $[T,2T]$ avoiding zero ordinates.
-The zero-layer lemma makes the zero contribution $o(h)$, and the
-prime-power lemma then yields an actual prime.
-The detailed proof expands the mollifier mean squares, the pole-removing
-interpolation, the Jensen/Littlewood zero count, derivative-test
-optimization, endpoint conventions, and contour obligations.
-The zero-density, zeta-growth, zero-free, and truncated-formula inputs
-are not marked checked here; no unconditional power-saving prime-gap
-theorem has yet been added to the root dependency graph.
+The final assembly uses the exact log-smoothed explicit formula and a
+positive B-spline detector, rather than a truncated psi formula.
+The checked density exponent is $A=23/8$, with logarithmic loss $11$.
+Choose $T=x^{17/50}$, mesh $d=x^{-1/3}$, and difference order $r=128$.
+Apply the $r$th forward difference to the $(r-1)$st prime primitive
+at $t=\log x-rd$.
+Its main term is $e^t(e^d-1)^r\ge\tfrac12xd^r$ for large $x$.
+The arithmetic side is a nonnegative sum of Mangoldt weights against
+the checked B-spline kernel, supported on
+$[e^t,x]\subseteq[x-rx^{2/3},x]$.
+For zeros up to height $T$, its spectral term is at most
+$d^r\sum_\rho m_\rho x^{\Re\rho}$.
+The numerical margin $A(17/50)=391/400<1$, the checked zero-free width,
+and the finite-layer logarithmic reserve make this $o(xd^r)$.
+The remaining zeros are bounded by the checked finite reciprocal-square
+zero mass: after division by the main scale their bound is
+$O(x^{r/3-(r-2)(17/50)})=O(x^{-13/75})$.
+The trivial-zero remainder contributes $O(d^{r-2})$, whose relative
+size is $O(x^{-1/3})$.
+Nonprime prime powers contribute at most
+$O(d^{r-1}\sqrt x\log^2x)=o(xd^r)$.
+The remaining positive sum therefore contains an actual prime.
+The following chapters record the checked density, exact explicit
+formula, kernel, and spectral estimates; the final all-length prime
+interval endpoint is assembled from these actual inputs.
 
 \begin{lemma}[The critical-line mollifier endpoint]
 \label{construction:mollifier-endpoint}
@@ -646,4 +676,208 @@ the number of included divisors, at most $d(n)$.
 The infinite Dirichlet-series product with zeta will separately require
 absolute convergence on $\Re s>1$; this finite coefficient identity
 does not assume an unjustified infinite rearrangement.
+\end{proof}
+
+\begin{lemma}[The exact balanced Dirichlet series and center loss]
+\label{construction:mollifier-center}
+\uses{construction:mollifier-coefficients}
+\lean{Sidon.LSeriesHasSum_mollifierCoefficient,Sidon.LSeriesHasSum_balancedMollifierCoefficient,Sidon.norm_mollifierError_re_two_le,Sidon.mollifierDetector_center_bound}\leanok
+Put $f_N(s)=\zeta(s)M_N(s)-1$ and $h_N(s)=1-f_N(s)^2$.
+For $\Re s>1$, the absolutely convergent Dirichlet series of $f_N$ has
+coefficient $b_N(n)=a_N(n)-1_{n=1}$.
+When $N\ge1$, it vanishes for $n\le N$ and satisfies $|b_N(n)|\le d(n)$.
+On $\Re s=2$ one has $|f_N(s)|\le256/\sqrt N$.
+Consequently, for $N\ge131072$,
+\[
+ h_N(s)\ne0,
+ \qquad -\log|h_N(s)|\le\frac{131072}{N}.
+\]
+\end{lemma}
+\begin{proof}
+The finite M\"obius series converges absolutely everywhere.
+On $\Re s>1$, multiply it with the absolutely convergent zeta series;
+the Dirichlet convolution gives $a_N(n)$ without a conditional
+rearrangement.  Subtract the series supported at $n=1$.
+For the center estimate, $n>N$ implies $\sqrt n\ge\sqrt N$, and
+$d(n)\le d(n)^2$.  Therefore
+\[
+ |f_N(2+it)|
+ \le \frac1{\sqrt N}\sum_{n\ge1}\frac{d(n)^2}{n^{3/2}}
+ \le\frac{256}{\sqrt N}.
+\]
+The last inequality follows from $d(n)^2\le d_4(n)$, the absolutely
+convergent identity $\sum d_4(n)n^{-s}=\zeta(s)^4$, and
+$|\zeta(3/2)|\le1+1/(3/2-1)\le4$.
+Thus $u=|f_N(s)|^2\le65536/N\le1/2$.
+The reverse triangle inequality gives $|1-f_N(s)^2|\ge1-u>0$.
+For any $a\ge1-u$ with $0\le u\le1/2$,
+$(1+2u)a\ge(1+2u)(1-u)\ge1$.
+Hence $a^{-1}\le1+2u$, while $\log a\ge1-a^{-1}$.
+It follows that $-\log a\le2u\le131072/N$.
+\end{proof}
+
+\begin{lemma}[A mean square independent of truncation length]
+\label{construction:weighted-mean-square}
+\uses{construction:dirichlet-mean-square,construction:mollifier-endpoint}
+\lean{Sidon.sum_nearReciprocalGap_le,Sidon.logarithmic_offDiagonal_le,Sidon.integral_logarithmicPolynomial_norm_sq_le_weighted,Sidon.integral_logarithmicSeries_norm_sq_le}\leanok
+For a finite set $S$ of positive integers and arbitrary complex $c_n$,
+\[
+ \int_0^T\left|\sum_{n\in S}c_ne^{-it\log n}\right|^2dt
+ \le T\sum_{n\in S}|c_n|^2
+   +4\left(\sum_{n\in S}|c_n|\right)^2
+   +16\sum_{n\in S}n|c_n|^2(1+\log n).
+\]
+For $T\ge0$, the same estimate with infinite sums holds if $c_0=0$
+and all three nonnegative coefficient sums are finite.
+\end{lemma}
+\begin{proof}
+Apply the exact finite mean-square expansion and its reciprocal
+logarithmic-gap bound.
+For $0<m<n$ with $n>2m$, the inequality
+$\log(n/m)\ge\log2\ge1/2$ bounds the off-diagonal term by
+$4|c_m||c_n|$.
+For $m<n\le2m$, use $n-m\le n\log(n/m)$ and
+\[
+ 2n|c_m||c_n|
+ \le2\bigl(m|c_m|^2+n|c_n|^2\bigr).
+\]
+The latter follows by adding the nonnegative quantities
+$n(|c_m|-|c_n|)^2$ and $(2m-n)|c_m|^2$.
+Thus, in either ordering, the additional cost is at most
+$2(m|c_m|^2+n|c_n|^2)/|m-n|$, restricted to
+$n\le2m$ and $m\le2n$.
+For fixed $m$, these reciprocal gaps sum to at most
+$2H_{2m}\le4(1+\log m)$.
+The two symmetric weighted sums therefore total at most the displayed
+constant $16$; the separated product costs the constant $4$.
+For the infinite version, truncate to positive indices below $L$.
+The partial sums are bounded in absolute value by $\sum|c_n|$,
+independently of both $L$ and $t$.
+Dominated convergence on the finite integration interval passes the
+left side to its limit.  Nonnegativity bounds each finite coefficient
+sum by its infinite sum, so the right side stays independent of $L$.
+\end{proof}
+
+\begin{lemma}[The actual right-hand mollifier mean square]
+\label{construction:mollifier-right}
+\uses{construction:mollifier-center,construction:weighted-mean-square}
+\lean{Sidon.integral_mollifierError_right_norm_sq_le,Sidon.integral_mollifierError_right_norm_sq_le_simple,Sidon.integral_mollifierError_right_symmetric_le,Sidon.integral_mollifierError_right_halfPlane_le}\leanok
+For $N\ge1$, $T\ge0$, and $0<\delta\le1$,
+\[
+ \int_0^T|f_N(1+\delta+it)|^2dt
+ \le\frac{16T}{N\delta^4}+\frac{1024}{\delta^8}
+       +\frac{512}{\delta^5}
+ \le2048(T/N+1)\delta^{-8}.
+\]
+The first bound holds on every line $\Re s\ge1+\delta$.
+On the symmetric interval $[-T,T]$, the second bound doubles.
+\end{lemma}
+\begin{proof}
+Set $c_n=b_N(n)n^{-1-\delta}$ in the preceding lemma.
+The checked divisor-square Dirichlet series and the zeta pole estimate give
+$\sum d(n)^2n^{-1-\delta}\le16\delta^{-4}$.
+Thus $\sum|c_n|\le16\delta^{-4}$.
+If $b_N(n)\ne0$, then $n>N$ and $n^{1+\delta}\ge N$; hence
+$\sum|c_n|^2\le16/(N\delta^4)$.
+Finally
+$1+\log n\le(2/\delta)n^\delta$, so
+\[
+ \sum n|c_n|^2(1+\log n)
+ \le\sum\frac{d(n)^2(1+\log n)}{n^{1+2\delta}}
+ \le32\delta^{-5}.
+\]
+Substitution gives the first estimate.
+Since $0<\delta\le1$, replace $\delta^{-4}$ and $\delta^{-5}$ by
+$\delta^{-8}$ and enlarge the numerical constant to $2048$.
+On a line to the right, each coefficient norm decreases, so the same
+three bounds apply to its exact absolutely convergent series.
+The real M\"obius coefficients and conjugation symmetry of the actual
+zeta function give $f_N(\overline{s})=\overline{f_N(s)}$.
+Therefore the squared norm is even in height, proving the symmetric
+interval estimate by a change of variables.
+\end{proof}
+
+\begin{lemma}[The actual left-hand mollifier mean square]
+\label{construction:mollifier-left}
+\uses{construction:mollifier-endpoint,construction:weyl-zeta}
+\lean{Sidon.exists_mollifierError_critical_cumulative_bound}\leanok
+There is $K>0$ such that for every $N\ge1$ and $T\ge0$,
+\[
+ \int_{-T}^T|f_N(1/2+it)|^2dt
+ \le K(1+\log N)(T+N)(1+T)^{3/8}.
+\]
+\end{lemma}
+\begin{proof}
+Choose $C>0$ with
+$|\zeta(1/2+it)|\le C(1+|t|)^{3/16}$.
+For $0\le t\le T$, the triangle inequality followed by
+$(a+1)^2\le2a^2+2$ gives
+\[
+ |f_N(1/2+it)|^2
+ \le2C^2(1+T)^{3/8}|M_N(1/2+it)|^2+2.
+\]
+Integrate and apply the checked critical-line mollifier estimate.
+The result is at most
+$24C^2(1+T)^{3/8}(T+N)(1+\log N)+2T$.
+Conjugation doubles it on $[-T,T]$.
+The inequalities $1+\log N\ge1$, $T+N\ge T$, and
+$(1+T)^{3/8}\ge1$ absorb the remaining $4T$.
+The explicit choice $K=48C^2+4>0$ works.
+\end{proof}
+
+\begin{lemma}[An analytic carrier for the actual error]
+\label{construction:mollifier-gaussian}
+\uses{construction:mollifier-left,construction:mollifier-right,density:l2-interpolation,density:gaussian-cumulative}
+\lean{Sidon.analyticOnNhd_gaussianMollifier,Sidon.bddAbove_gaussianMollifier,Sidon.integrable_gaussianMollifier_norm_sq,Sidon.mollifierError_sq_le_gaussianMollifier_sq,Sidon.exists_verticalL2_gaussianMollifier_left_bound,Sidon.verticalL2_gaussianMollifier_right_bound,Sidon.integral_mollifierError_interpolation}\leanok
+Let $\zeta_1$ be the entire extension of $(s-1)\zeta(s)$ and put
+\[
+ \Phi_{N,R}(s)=
+ \frac{\zeta_1(s)M_N(s)-(s-1)}{s+1}\exp(s^2/R^2),\qquad N\ge1,\ R\ge1.
+\]
+It is analytic on the closed strip $1/2\le\Re s\le3/2$, bounded there,
+and square integrable on every vertical line in the strip.
+Writing $J(u)=\int_{\mathbb R}|\Phi_{N,R}(u+it)|^2dt$, there is $K>0$
+independent of $N,R$ such that
+\[
+ J(1/2)\le K(1+\log N)(R+N)R^{3/8}.
+\]
+For $0<\delta\le1/2$ and an absolute $B>0$,
+\[
+ J(1+\delta)\le\frac{B(R+N)}{N\delta^8}.
+\]
+For $1/2\le\sigma\le1+\delta$ and
+$\theta=(\sigma-1/2)/(1/2+\delta)$,
+\[
+ \int_1^R|f_N(\sigma+it)|^2dt
+ \le8e^2J(1/2)^{1-\theta}J(1+\delta)^\theta.
+\]
+\end{lemma}
+\begin{proof}
+Using $\zeta_1$ fills the pole at $1$; the denominator $s+1$ never
+vanishes in this strip.  Away from $1$, the carrier is
+$((s-1)/(s+1))f_N(s)e^{s^2/R^2}$.
+In the right half-plane, $|s-1|\le|s+1|$.
+The checked polynomial strip bound for $\zeta_1$ and the elementary
+bound $|M_N(s)|\le N$ give
+\[
+ \left|\frac{\zeta_1(s)M_N(s)-(s-1)}{s+1}\right|
+ \le(8000N+1)(1+(\Im s)^2).
+\]
+For $b>0$, the inequalities $e^x\ge x$ and $e^{-x}\le1$ for $x\ge0$
+imply $(1+t^2)e^{-bt^2}\le1+1/b$.
+Splitting the Gaussian into two equal factors therefore bounds the
+carrier by a constant times $e^{-t^2/(2R^2)}$.
+This proves boundedness and square integrability, including the line
+through the filled pole.
+The squared Gaussian norm is $\exp(2((\Re s)^2-t^2)/R^2)$.
+On either boundary line, its horizontal factor is at most $e^6$.
+Apply the checked cumulative-to-Gaussian estimate to the preceding
+left and right cumulative mean squares, with exponents $3/8$ and $0$.
+One may take $B=4096e^6C_G$, where $C_G>0$ is the absolute constant
+in that estimate.
+For $1\le t\le R$, direct calculation gives
+$|s+1|^2\le8|s-1|^2$ and the squared Gaussian norm is at least $e^{-2}$.
+Hence $|f_N(s)|^2\le8e^2|\Phi_{N,R}(s)|^2$ on the integration window.
+Apply the checked vertical L2 interpolation theorem to $\Phi_{N,R}$
+and then integrate this recovery inequality.
 \end{proof}

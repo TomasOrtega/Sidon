@@ -54,6 +54,7 @@ the uniform upper bound bounds the range, and every range element is
 at most its supremum. No unproved boundedness hypothesis is suppressed.
 
 \begin{corollary}[Largest sets, paper Corollary 1.4]\label{target:largest}
+\lean{Sidon.largest_sidon_fourier_uniformity}\leanok
 For sufficiently large $N$, a maximum-cardinality Sidon subset of $[N]$
 satisfies
 \[
@@ -63,21 +64,22 @@ satisfies
 \end{corollary}
 \begin{proof}
 A maximum exists in the finite power set of $[N]$, since the empty set
-is admissible. The paper invokes an external construction giving
-$m\geq\sqrt N-C_1N^{21/80}$, whereas Appendix A gives
-$m\leq\sqrt N+C_2N^{1/4}$. For $N\geq1$, these yield
-$|m/\sqrt N-1|\leq(C_1+C_2)N^{-19/80}\ll N^{-1/6}$,
-using $1/4\leq21/80$ and $19/80>1/6$.
-Theorem~\ref{target:uniformity} therefore gives $O(\sqrt N N^{-1/12})$.
-The lower bound gives $m\geq\sqrt N/2$ for large $N$.
+is admissible. The proved prime-interval theorem and Bose--Chowla
+construction give $m\geq\sqrt N-128N^{1/3}$ for all sufficiently large
+$N$. Appendix A gives $m\leq\sqrt N+4N^{1/4}$.
+Dividing by $\sqrt N$ and using $N\geq1$ yields
+\[
+ |m/\sqrt N-1|\leq132N^{-1/6}.
+\]
+Theorem~\ref{target:uniformity} therefore gives the bound
+$16\sqrt{133}\sqrt N\,N^{-1/12}$.
+The lower size bound also gives $m\geq\sqrt N/2$ eventually.
 The triangle inequality gives $|\widehat{1_S}(\alpha)|\leq m$,
 and equality holds at zero, so $\|\widehat{1_S}\|_\infty=m$.
-Substitute $\sqrt N\leq2m$.
-The checked alternative reduction in Lemma~\ref{construction:largest-reduction}
-uses Bose--Chowla and only a prime-gap exponent $2/3$; it gives the same
-Fourier exponent with constant $32\sqrt{C+5}$. The existence of that
-power-saving prime bound remains an explicit prerequisite, rather than
-a consequence of Fourier uniformity.
+Substitute $\sqrt N\leq2m$ to obtain the absolute constant
+$32\sqrt{133}$.
+The full prime-interval proof and threshold choices are recorded in
+Theorem~\ref{construction:largest-unconditional}.
 \end{proof}
 
 \begin{theorem}[Paper Theorem 1.15]\label{target:partition}

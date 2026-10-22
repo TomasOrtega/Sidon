@@ -1,0 +1,565 @@
+\section{Checked zero-free widths and the smoothed explicit formula}
+
+This section records the analytic inputs now supplied by the checked
+RiemannGaussian extraction.  Its declarations retain their upstream
+namespaces; their project modules lie under
+\texttt{Sidon/NumberTheory/RiemannGaussian}.
+The exact source revision, license, modifications and declaration
+dependencies are recorded in the extraction manifest.
+All statements below concern mathlib's actual zeta function and its
+analytic multiplicities.
+
+\begin{definition}[The actual zero divisor]
+\label{analytic:zero-model}
+\lean{RiemannGaussian.IsNontrivialZetaZero,RiemannGaussian.NontrivialZetaZero,RiemannGaussian.analyticZetaZeroMultiplicity}\leanok
+A nontrivial zero is a complex number $\rho$ such that
+$\zeta(\rho)=0$, $\rho\ne1$, and
+$\rho\ne-2(n+1)$ for every natural number $n$.
+Its multiplicity is
+\[
+ m_\rho=\operatorname{analyticOrderNatAt}(\zeta,\rho).
+\]
+The zero sum below ranges over these distinct zeros and includes both
+signs of the imaginary part.
+\end{definition}
+
+\begin{lemma}[Geometry, multiplicity and conjugation]
+\label{analytic:zero-symmetry}
+\uses{analytic:zero-model}
+\lean{RiemannGaussian.NontrivialZetaZero.zero_lt_re,RiemannGaussian.NontrivialZetaZero.re_lt_one,RiemannGaussian.NontrivialZetaZero.conjugate_coe,RiemannGaussian.NontrivialZetaZero.conjugate_conjugate,RiemannGaussian.analyticZetaZeroMultiplicity_positive,RiemannGaussian.analyticZetaZeroMultiplicity_conjugate,RiemannGaussian.NontrivialZetaZero.im_ne_zero_of_eta_mass}\leanok
+Every nontrivial zero has $0<\Re\rho<1$, nonzero imaginary part, and
+positive finite analytic multiplicity.  Literal complex conjugation
+preserves the zero type and its multiplicity and is an involution.
+\end{lemma}
+\begin{proof}
+Nonvanishing of $\zeta$ on $\Re s\ge1$ gives $\Re\rho<1$.
+Apply the functional equation to the nontrivial zero $1-\rho$ to
+obtain $0<\Re\rho$.  Analyticity near $\rho$ and nonvanishing of
+zeta as an analytic function make its order finite; its value zero
+makes that order positive.
+
+The identity $\zeta(\overline s)=\overline{\zeta(s)}$ constructs
+the conjugate zero.  Conjugation twice is the identity.
+Conjugating all derivatives preserves the first nonzero derivative,
+so the analytic orders and their natural multiplicities agree.
+For nonreality, the positive eta-measure representation gives a
+strictly positive tilted cosine moment at ordinate zero whenever
+the real part is positive.  At an actual zeta zero that same moment
+must be zero.  A real nontrivial zero would therefore contradict
+strict positivity.  This argument requires no numerical zero table.
+\end{proof}
+
+\begin{lemma}[The checked near-one growth estimate]
+\label{analytic:near-one-growth}
+\lean{RiemannGaussian.ZetaVinogradovSummedBound.prefix_bound,RiemannGaussian.ZetaVinogradovSummedBound.bound_strip,RiemannGaussian.ZetaVinogradovSummedBound.bound_strip_abs}\leanok
+Put
+\[
+ \Delta_n=\frac1{4096(2n+1)^2},\qquad
+ g_n=40\Delta_n^{3/2}.
+\]
+For $n\ge48$, on the checked line
+$1-\Delta_n\le\Re s\le3/2$, above the finite height
+$H(8n)$ specified by the degree schedule, one has
+\[
+ |\zeta(s)|\le
+ 1048576\,|\Im s|^{g_n}
+                 \bigl(\log|\Im s|\bigr)^{2/3}.
+\]
+\end{lemma}
+\begin{proof}
+Choose the canonical power-of-two Dirichlet cutoff
+$M=2^{\operatorname{depth}(s)+1}$.
+Its prefix is the sum of its original dyadic blocks.
+The checked finite exponential-sum estimate, with the canonical
+scale feasibility inequalities, bounds block $j$ by
+\[
+ 512\,t^{g_n}
+ \exp\left(-\frac{(j\log2)^3}{2097152(\log t)^2}\right),
+ \qquad t=\Im s>0.
+\]
+All dyadic endpoints and original coefficients are retained.
+The nonnegative cubic-decay envelope has finite partial sums at most
+$1024(\log t)^{2/3}$.  The triangle inequality therefore bounds the
+entire prefix by
+$524288\,t^{g_n}(\log t)^{2/3}$.
+
+The direct Euler continuation identity reconstructs zeta from this
+prefix, its complex pole endpoint and its full oscillatory remainder.
+At the canonical cutoff their combined norm is at most six.
+The height schedule implies $t\ge16$; hence $t^{g_n}\ge1$ and
+$(\log t)^{2/3}\ge1/2$.  Doubling the prefix coefficient pays six.
+Conjugation handles negative ordinates without altering the real
+part, norm or absolute height.
+The finite exponential-sum bound and the Euler remainder are proved
+declarations in the selected closure, rather than hypotheses of
+this statement.
+\end{proof}
+
+\begin{theorem}[Vinogradov--Korobov strip]
+\label{analytic:vk-strip}
+\uses{analytic:zero-symmetry,analytic:near-one-growth}
+\lean{RiemannGaussian.ZetaVinogradovSummedCost.margin_of_budget,RiemannGaussian.ZetaVinogradovSummedCost.cost_tendsto,RiemannGaussian.ZetaVinogradovSummedZeroFree.exists_eventual_strip}\leanok
+For every $0<C<3\pi/10640$, there is a finite $U\ge4$ such that
+every nontrivial zero $\rho$ with $|\Im\rho|\ge U$ satisfies
+\[
+ w(C,\Im\rho)<\Re\rho<1-w(C,\Im\rho),\qquad
+ w(C,t)=
+ \frac{C}{(\log(|t|+2))^{2/3}
+             (\log\log(|t|+2))^{1/3}}.
+\]
+\end{theorem}
+\begin{proof}
+Write $L(t)=\log(|t|+2)$ and $\ell(t)=\log L(t)$.
+The checked cubic schedule chooses a natural degree $n(t)$ tending
+to infinity and proves its height condition eventually.
+At this schedule the normalized radius and growth estimates give
+\[
+ \frac{w(C,t)\ell(t)}{\Delta_{n(t)}}\longrightarrow4C,
+ \qquad
+ \frac{g_{n(t)}L(t)}{\ell(t)}\longrightarrow5.
+\]
+The near-one logarithmic profile is
+\[
+ P_n(t)=\log1048576+g_nL(t)+\tfrac23\ell(t).
+\]
+Consequently $P_{n(t)}(t)/\ell(t)$ and
+$P_{n(t)}(2t)/\ell(t)$ both tend to $17/3$.
+The center shift is $x=6w(C,t)$.
+Since $\log(1+1/x)/\ell(t)\to2/3$, the two normalized allowances
+$P_n(t)+\log(1+1/x)$ and
+$P_n(2t)+\log(1+1/x)$ tend to $19/3$.
+
+The actual signed local detector uses
+\[
+ B(n,x,t)=1344\,\operatorname{localZetaLogHeight}(0)
+ +\frac{8(P_n(t)+\log(1+1/x))
+          +2(P_n(2t)+\log(1+1/x))}
+        {\pi\Delta_n}.
+\]
+The preceding limits imply
+\[
+ w(C,t)B(n(t),6w(C,t),t)\longrightarrow
+ \frac{760C}{3\pi}.
+\]
+Also $w(C,t)\to0$ and
+$w(C,t)/\Delta_{n(t)}\to0$.  Thus the complete payment
+\[
+ Q(C,t)=14w(C,t)B(n(t),6w(C,t),t)
+          +392\frac{w(C,t)^2}{\Delta_{n(t)}^2}
+\]
+tends to $10640C/(3\pi)<1$.
+
+Choose one starting threshold beyond which all the following hold:
+$n(t)\ge48$, the checked height condition, $w(C,t)>0$,
+$w(C,t)<\Delta_{n(t)}/28$, and $Q(C,t)<1$.
+The local detector, applied with its proved analytic-disc and
+magnitude bounds at $t$ and $2t$, then gives
+$w(C,t)<1-\Re\rho$ for every eligible zero.
+All the budget inequalities have been discharged by these limits.
+
+The map $\rho\mapsto1-\overline\rho$ preserves the imaginary part
+and replaces the real part by $1-\Re\rho$.
+Applying the same right-margin inequality to this zero supplies
+the left margin.  The width and payment are invariant under
+changing the sign of the ordinate, so the assertion holds at both
+signs above the same finite threshold.
+\end{proof}
+
+\begin{theorem}[One width for every zero up to height $T$]
+\label{analytic:uniform-zero-width}
+\uses{analytic:vk-strip}
+\lean{Sidon.logarithmicZeroFreeWidth_pos,Sidon.logarithmicZeroFreeWidth_antitone,Sidon.tendsto_logarithmicZeroFreeWidth_zero,Sidon.logarithmicZeroFreeWidth_shift_le,Sidon.exists_logarithmicZeroFreeWidth_of_height_margin,Sidon.exists_logarithmicZetaZeroFreeWidth}\leanok
+There is $T_0$ such that for every $T\ge T_0$ and every actual
+positive-height zero occurrence $\rho$ up to height $T$,
+\[
+ \Re\rho\le1-\eta(T),\qquad
+ \eta(T)=
+ \frac{1/20000}{(\log T)^{2/3}(\log\log T)^{1/3}}.
+\]
+Occurrences retain the analytic multiplicity.
+\end{theorem}
+\begin{proof}
+Take $C_0=1/10000<3\pi/10640$ and enlarge the preceding threshold
+to $U\ge e^2$.
+On positive ordinates its source width equals the unshifted project
+width with coefficient $C_0$ at $\gamma+2$.
+Both logarithmic factors are positive and increasing in this range,
+so for $U\le\gamma\le T$ the width at $\gamma+2$ is at least
+the width at $T+2$.
+
+For $T\ge2$ and $\log T\ge2$, one has $T+2\le T^2$ and hence
+\[
+ \log(T+2)\le2\log T,\qquad
+ \log\log(T+2)\le\log2+\log\log T\le2\log\log T.
+\]
+The denominator increases by at most
+$2^{2/3}2^{1/3}=2$; the shifted source width therefore dominates
+$\eta(T)$.
+
+It remains to cover $0<\gamma\le U$.
+The closed discrete zero set meets a compact disk in finitely many
+points, so there are finitely many such critical-strip zeros.
+Each has $\Re\rho<1$.
+Since $\eta(T)\to0$, it is eventually smaller than each of these
+finitely many positive margins $1-\Re\rho$.
+Taking the maximum of these thresholds proves the assertion.
+Repeating a point by its multiplicity preserves its real-part bound.
+\end{proof}
+
+\begin{lemma}[Complete reciprocal-square zero mass]
+\label{analytic:inverse-square-mass}
+\uses{analytic:zero-symmetry}
+\lean{RiemannGaussian.RosserSchoenfeldZeroMass.hasSum_poisson,RiemannGaussian.RosserSchoenfeldZeroMass.poisson_lower,RiemannGaussian.RosserSchoenfeldZeroMass.norm_square_mass_summable}\leanok
+The actual nontrivial zero divisor has finite mass
+\[
+ M=\sum_\rho\frac{m_\rho}{|\rho|^2}<\infty.
+\]
+\end{lemma}
+\begin{proof}
+The complete reflected xi logarithmic-derivative expansion makes
+the nonnegative Poisson series
+\[
+ \sum_\rho m_\rho P(\rho),\qquad
+ P(\rho)=\frac{1-\beta}{(1-\beta)^2+\gamma^2}
+             +\frac{\beta}{\beta^2+\gamma^2},
+ \quad \rho=\beta+i\gamma,
+\]
+summable.  Its multiplicities are the analytic zeta multiplicities.
+The numerators are positive and $0<\beta<1$.
+Replacing either real-part square in a denominator by one increases
+that denominator, so
+$P(\rho)\ge(1-\beta)/(1+\gamma^2)+\beta/(1+\gamma^2)
+=1/(1+\gamma^2)$.
+
+Closedness of the zeta-zero set and $\zeta(0)=-1/2\ne0$ give
+$\epsilon>0$ such that the ball of radius $\epsilon$ about zero
+contains no zero.  Thus $|\rho|\ge\epsilon$.
+With $D=(1+\epsilon^2)/\epsilon^2$, the inequalities
+$\gamma^2\le|\rho|^2$ and $\epsilon^2\le|\rho|^2$ imply
+$1+\gamma^2\le D|\rho|^2$.
+It follows that
+\[
+ \frac{m_\rho}{|\rho|^2}
+ \le D\frac{m_\rho}{1+\gamma^2}\le Dm_\rho P(\rho).
+\]
+Comparison of nonnegative series proves the conclusion.
+No evaluated small-zero certificate or numerical mass constant
+is used.
+\end{proof}
+
+\begin{definition}[The three logarithmic primitives]
+\label{analytic:log-primitives}
+\uses{analytic:zero-model}
+\lean{RiemannGaussian.RosserSchoenfeldPrimePrimitive.term,RiemannGaussian.RosserSchoenfeldPrimePrimitive.value,RiemannGaussian.RosserSchoenfeldZeroPrimitive.atom,RiemannGaussian.RosserSchoenfeldZeroPrimitive.term,RiemannGaussian.RosserSchoenfeldZeroPrimitive.value,RiemannGaussian.RosserSchoenfeldTrivialPrimitive.value}\leanok
+For $t\ge0$ put
+\[
+ A(t)=\sum_{1\le n\le\lfloor e^t\rfloor}
+           \Lambda(n)\max(t-\log n,0),
+\quad
+ Z(t)=\sum_\rho m_\rho\frac{e^{\rho t}-1}{\rho^2},
+\quad
+ V(t)=\sum_{j\ge1}\frac{1-e^{-2jt}}{4j^2}.
+\]
+Their one-sided Laplace transform is
+$\mathcal Lf(s)=\int_0^\infty e^{-st}f(t)\,dt$.
+\end{definition}
+
+\begin{lemma}[Continuity, convergence and exact transforms]
+\label{analytic:primitive-transforms}
+\uses{analytic:log-primitives,analytic:inverse-square-mass}
+\lean{RiemannGaussian.RosserSchoenfeldPrimePrimitive.continuous_value,RiemannGaussian.RosserSchoenfeldPrimePrimitive.transform_value,RiemannGaussian.RosserSchoenfeldZeroPrimitive.summable_norm_term,RiemannGaussian.RosserSchoenfeldZeroPrimitive.integrable_value,RiemannGaussian.RosserSchoenfeldZeroPrimitive.transform_value,RiemannGaussian.RosserSchoenfeldTrivialPrimitive.transform_value}\leanok
+All three primitives are continuous at positive time.
+Their infinite series converge absolutely; after damping by any
+$s$ with $\Re s>1$, all required absolute integrals are summable.
+Their exact transforms are
+\[
+ \mathcal LA(s)=-\frac{\zeta'(s)}{s^2\zeta(s)},\quad
+ \mathcal LZ(s)=
+ \frac{(\xi'/\xi)(s)-(\xi'/\xi)(0)}{s^2},\quad
+ \mathcal LV(s)=
+ \frac{\psi(1+s/2)+\gamma_E}{2s^2}.
+\]
+Here $\psi=\Gamma'/\Gamma$.
+\end{lemma}
+\begin{proof}
+The arithmetic hinge for $n$ vanishes outside its moving finite window.
+On a neighborhood of a fixed time, one larger finite window includes
+every possible contributing index.  Each hinge is continuous even
+where its argument is zero, proving continuity of $A$.
+For $\Re s>1$, the sum of the absolute integrals is bounded by a
+convergent von Mangoldt Dirichlet series divided by $(\Re s)^2$.
+Hence sum and integral may be interchanged.  Substitution
+$u=t-\log n$ evaluates one hinge transform as
+$\Lambda(n)n^{-s}/s^2$.  The absolutely convergent Euler-product
+logarithmic derivative gives the transform of $A$.
+
+For a nontrivial zero, $|e^{\rho t}|\le e^t$, whence
+\[
+ \left|m_\rho\frac{e^{\rho t}-1}{\rho^2}\right|
+ \le(e^t+1)\frac{m_\rho}{|\rho|^2}.
+\]
+The preceding mass lemma proves absolute and locally uniform
+convergence, continuity, and the bound $|Z(t)|\le M(e^t+1)$.
+After damping, the majorant is
+$M(e^{(1-\Re s)t}+e^{-\Re(s)t})$, which is integrable.
+Thus the full series may again be integrated termwise.
+Since $\rho\ne0$ and $\Re(s-\rho)>0$,
+\[
+ \int_0^\infty e^{-st}\frac{e^{\rho t}-1}{\rho^2}\,dt
+ =\frac1{\rho^2}\left(\frac1{s-\rho}-\frac1s\right)
+ =\frac1{s\rho(s-\rho)}.
+\]
+Summing the complete checked xi logarithmic-derivative difference
+gives the claimed transform of $Z$.
+
+Each trivial-zero term is nonnegative and at most $1/(4j^2)$.
+That summable majorant has total $\pi^2/24$ and proves uniform
+convergence, continuity including at zero, and integrability after
+positive damping.  Its single-term transform is
+$1/(2js(s+2j))$.  The convergent digamma difference series sums
+these terms to the displayed transform of $V$.
+Every exchange uses the stated absolute majorants; no symmetric
+cutoff interpretation is introduced.
+\end{proof}
+
+\begin{lemma}[Uniqueness from one vertical transform line]
+\label{analytic:laplace-uniqueness}
+\lean{RiemannGaussian.RosserSchoenfeldLaplace.zero_of_vertical_transform}\leanok
+Suppose $f$ is continuous on positive time,
+$e^{-at}f(t)$ is integrable there, and
+$\mathcal Lf(a+iy)=0$ for every real $y$.
+Then $f(t)=0$ for every $t>0$.
+\end{lemma}
+\begin{proof}
+Extend $F(t)=e^{-at}f(t)$ by zero to $t\le0$.
+It is integrable on the real line and continuous at every positive
+time.  Its Fourier transform at frequency $w$ equals
+$\mathcal Lf(a+2\pi iw)$ and therefore vanishes.
+The zero transform is integrable.
+Fourier inversion at each positive continuity point gives $F(t)=0$.
+The exponential factor never vanishes, so $f(t)=0$.
+\end{proof}
+
+\begin{theorem}[The literal logarithmically smoothed explicit formula]
+\label{analytic:smoothed-explicit-formula}
+\uses{analytic:primitive-transforms,analytic:laplace-uniqueness}
+\lean{RiemannGaussian.RosserSchoenfeldExplicitFormula.prime_eq_spectral,RiemannGaussian.RosserSchoenfeldExplicitFormula.finite_prime_explicitFormula}\leanok
+For every $x\ge1$, in $\mathbb C$,
+\[
+ \sum_{1\le n\le\lfloor x\rfloor}\Lambda(n)\log(x/n)
+ =x-1-\log(2\pi)\log x-Z(\log x)+V(\log x).
+\]
+The zero primitive includes every nontrivial zero with actual
+analytic multiplicity and both ordinate signs.
+\end{theorem}
+\begin{proof}
+Set
+$B(t)=e^t-1-\log(2\pi)t-Z(t)+V(t)$.
+Its elementary part has transform
+$1/(s(s-1))-\log(2\pi)/s^2$.
+The exact gamma factorization gives
+\[
+ \frac{\xi'}{\xi}(s)=\frac{\zeta'}{\zeta}(s)
+ +\frac1{s-1}+\frac1s-\frac{\log\pi}{2}
+ +\frac12\psi(s/2),
+\quad
+ \frac{\xi'}{\xi}(0)=
+ -1-\frac{\gamma_E}{2}+\log2+\frac{\log\pi}{2}.
+\]
+Together with $\psi(1+s/2)=\psi(s/2)+2/s$ and the preceding
+three transforms, substitution cancels every pole, gamma and
+constant term and yields
+$\mathcal LB(s)=-(\zeta'/\zeta)(s)/s^2=\mathcal LA(s)$
+for $\Re s>1$.
+All damped expressions are genuinely integrable.
+
+Apply vertical-line uniqueness to $f=A-B$ on $\Re s=2$.
+This proves $A(t)=B(t)$ for $t>0$.
+At $t=0$ the arithmetic primitive is zero since $\Lambda(1)=0$;
+each zero and trivial-zero term also vanishes, as does $e^t-1$.
+Thus equality includes the endpoint.
+
+Finally put $t=\log x$.
+For every positive index in the finite window,
+$t-\log n\ge0$ and
+$t-\log n=\log(x/n)$.
+The moving window is exactly $1\le n\le\lfloor x\rfloor$.
+Replacing the hinges by these linear weights gives the asserted
+formula, including $x=1$.
+\end{proof}
+
+
+\begin{lemma}[A crude multiplicity-sensitive total count]
+\label{analytic:crude-zero-count}
+\uses{analytic:zero-model}
+\lean{Sidon.riemannXi_fourThirdsGrowth,Sidon.jensen_riemannXi_divisor_le_fourThirds,Sidon.card_zetaZeroOccurrences,Sidon.zetaZeroCount_zero_le_riemannXi_divisor,Sidon.zetaZeroCount_zero_le_fourThirds,Sidon.zetaZeroCount_le_fourThirds_add_one}\leanok
+There is an absolute constant $C>0$ such that, for $T\ge1$ and
+$\sigma\ge0$,
+\[
+ N(\sigma,T)\le C T^{4/3}.
+\]
+For every $T\ge0$ the same constant gives
+$N(\sigma,T)\le C(T+1)^{4/3}$.
+\end{lemma}
+\begin{proof}
+The theta-tail Mellin estimate already gives constants $C_0\ge1$,
+$p>0$ and $B\ge0$ such that, with $R=\lVert z\rVert+1$,
+\[
+ \lVert\zeta_0^*(z)\rVert
+ \le \frac{2C_0}{p}\exp(BR^{4/3}).
+\]
+Here $\zeta_0^*$ is the entire completed-zeta function used to define
+$\xi(z)=z(1-z)\zeta_0^*(z)-1$.
+Put $K=\max(1,2C_0/p)$ and $A=K+B+4$.
+Since $R\ge1$, both $R\le R^{4/3}$ and $1\le R^{4/3}$ hold.
+The elementary inequalities
+$2\le e$, $K\le e^K$ and $R^2\le e^{2R}$ show
+\[
+ \lVert\xi(z)\rVert
+ \le K R^2 e^{BR^{4/3}}+1
+ \le 2K R^2 e^{BR^{4/3}}
+ \le \exp(A R^{4/3}).
+\]
+In the middle step the product is at least one.
+For the last step,
+$1+K+2R+BR^{4/3}\le A R^{4/3}$.
+Thus the existing Mellin exponent is retained without weakening it.
+
+Apply Jensen's inequality to the entire function $\xi$ on the
+concentric disks of radii $r$ and $2r$.
+The central value is $\xi(0)=-1$, so its logarithmic contribution
+vanishes, and the annular logarithm is $\log2>0$.
+The growth bound on the outer circle therefore gives
+\[
+ \sum_{|z|\le r}\operatorname{ord}_z(\xi)
+ \le \frac{A(2r+1)^{4/3}}{\log2}.
+\]
+The checked sum is the finite sum of the analytic divisor, with no
+enumeration or simplicity assumption on zeros.
+
+For each distinct zero in the positive-height critical rectangle,
+the occurrence set has exactly one pair $(\rho,k)$ for each integer
+$0\le k<\operatorname{ord}_\rho(\zeta)$.
+Fibers belonging to different complex zeros are disjoint.
+Consequently its cardinality equals the sum of these analytic
+multiplicities.
+Every such zero is nontrivial: its positive imaginary part excludes
+both negative even integers and the pole at one.
+The checked completed-zeta factorization identifies its multiplicity
+with the analytic order of $\xi$.
+Moreover $0\le\beta\le1$ and $0<\gamma\le T$ imply
+$\lVert\rho\rVert\le|\beta|+|\gamma|\le T+1$.
+Thus the occurrence count is bounded by the divisor sum on the disk
+of radius $r=T+2$.
+
+For $T\ge1$, $2(T+2)+1=2T+5\le7T$.
+The preceding Jensen estimate is therefore at most
+\[
+ \frac{A7^{4/3}}{\log2}\,T^{4/3}.
+\]
+Filtering further by $\beta\ge\sigma\ge0$ only decreases the count.
+Finally monotonicity in height bounds $N(\sigma,T)$ by
+$N(\sigma,T+1)$ and gives the stated bound for every $T\ge0$.
+The exponent $4/3$ is strictly less than $23/16$, leaving a positive
+power reserve for the low-real-part range of the density estimate.
+\end{proof}
+
+
+\begin{lemma}[Vanishing of the actual weighted zero sum]
+\label{analytic:weighted-zero-vanishing}
+\uses{construction:zero-layers,construction:logarithmic-reserve,analytic:uniform-zero-width}
+\lean{Sidon.eventually_logarithmic_width_floor_reserve,Sidon.eventually_zetaZeroWeight_le_inverse_log_sq,Sidon.tendsto_zetaZeroWeight_of_density_width,Sidon.tendsto_zetaZeroWeight_rpow_of_density_width,Sidon.tendsto_zetaZeroWeight_seventeen_fiftieths_of_density,Sidon.eventually_zetaZeroWeight_seventeen_fiftieths_le}\leanok
+Suppose the actual positive-height zero count satisfies the uniform bound
+\[
+ N(\sigma,T)\le K T^{A(1-\sigma)}(\log T)^B
+ \qquad(0\le\sigma\le1,\ T\ge T_0),
+\]
+where $A,K\ge0$ and $B$ is a nonnegative integer.
+Suppose also that every occurrence up to height $T$ has
+$\beta\le1-\eta(T)$ eventually, where
+\[
+ \eta(T)=\frac{C}{(\log T)^{2/3}(\log\log T)^{1/3}},
+ \qquad C>0.
+\]
+For every fixed $r>A$,
+\[
+ \sum_{(\rho,k)\in\mathcal O(T)}
+       \exp\bigl(-r\log T(1-\Re\rho)\bigr)\longrightarrow0.
+\]
+The same conclusion holds with $T=x^\tau$ and weight
+$\exp(-\log x(1-\Re\rho))$ whenever $\tau>0$ and $A<1/\tau$.
+In particular $\tau=17/50$ is admissible for $A=23/8$.
+The checked unconditional zero-free strip supplies the second
+hypothesis in the final density-only wrappers.
+\end{lemma}
+\begin{proof}
+Put $L=r\log T$, $b=A/r<1$ and $q=1-b>0$.
+For sufficiently large $T$, all quantities being logged are positive.
+Partition the finite occurrence set into the layers
+$j=\lfloor L(1-\beta)\rfloor$.
+The density bound, evaluated at
+$\max(0,1-(j+1)/L)$, bounds the cardinality of layer $j$ by
+\[
+ \frac{K}{r^B}L^B\,e^{b(j+1)}.
+\]
+The clipped real part lies in $[0,1]$.
+Every layer element has $\beta$ at least that clipped value;
+the clipped-to-zero case follows from $\beta\ge0$.
+Moreover
+$A\log T(1-\max(0,1-(j+1)/L))\le b(j+1)$.
+These facts justify using the uniform density constant at a real
+part which depends on $T$ and $j$.
+
+Every occupied layer satisfies $j\ge\lfloor L\eta(T)\rfloor$,
+and every weight in that layer is at most $e^{-j}$.
+The finite sum is therefore bounded by the convergent geometric
+tail
+\[
+ \frac{(K/r^B)L^B e^b}{1-e^{-q}}\,
+       \exp\bigl(-q\lfloor L\eta(T)\rfloor\bigr).
+\]
+It remains to absorb $L^B$ uniformly despite the integer floor.
+
+The checked logarithmic reserve says that
+$\eta(T)\log T/\log\log T\to\infty$.
+Apply it with multiplier $qr$ and requested coefficient
+$2(B+2)+q$.
+For sufficiently large $T$ this gives
+\[
+ [2(B+2)+q]\log\log T\le qr\eta(T)\log T.
+\]
+Increase the threshold so that
+$\log\log T\ge1$ and $\log\log T\ge\log r$.
+Then $\log L=\log r+\log\log T\le2\log\log T$.
+Since $\lfloor u\rfloor>u-1$ for the nonnegative floor used in
+the checked occurrence layers,
+\[
+ (B+2)\log L
+ \le 2(B+2)\log\log T
+ \le qL\eta(T)-q
+ \le q\lfloor L\eta(T)\rfloor.
+\]
+Exponentiation bounds the geometric tail by
+\[
+ \frac{(K/r^B)e^b}{1-e^{-q}}\frac1{L^2}.
+\]
+The denominator is positive because $q>0$.
+As $L=r\log T\to\infty$, the upper bound tends to zero;
+the finite sum is nonnegative, so the squeeze theorem proves
+the first limit.
+
+For $T=x^\tau$, positive $\tau$ makes $T\to\infty$.
+Choose $r=1/\tau$ and use
+$r\log(x^\tau)=r\tau\log x=\log x$ for $x>0$.
+Composition proves the second limit.
+For $\tau=17/50$ and $A=23/8$ the required strict inequality is
+$23/8<50/17$.
+Finally the limit is eventually below every prescribed
+$\varepsilon>0$, including the detector's choice $1/16$.
+\end{proof}
+
+The kernel dependency audits of the exact formula, complete zero mass,
+literal conjugation, nonreality, and VK strip contain only
+\texttt{propext}, \texttt{Classical.choice}, and \texttt{Quot.sound}.
+The formula does not take an explicit-formula identification or an
+unproved prime-error estimate as an argument.

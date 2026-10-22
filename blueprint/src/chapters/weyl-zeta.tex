@@ -1,0 +1,64 @@
+\section{A checked critical-line zeta bound}
+
+The following input is obtained by specializing the checked logarithmic
+phase estimates imported from RiemannGaussian.  It concerns the actual
+Mathlib zeta function, and assumes no growth estimate for that function.
+The imported proof slice and its exact upstream revision are recorded in
+\texttt{docs/rg-extraction-manifest.json}.
+
+\begin{theorem}[Weyl growth on the critical line]
+\label{construction:weyl-zeta}
+\lean{Sidon.riemannZeta_critical_line_weyl,Sidon.riemannZeta_critical_line_power,Sidon.exists_riemannZeta_critical_growth}\leanok
+For $s=\tfrac12+it$ and $|t|\geq2$,
+\[
+ |\zeta(s)|\leq8192|t|^{1/6}\log|t|
+ \leq393216|t|^{3/16}.
+\]
+There is a constant $C>0$ such that for every real $t$,
+\[
+ |\zeta(\tfrac12+it)|\leq C(1+|t|)^{3/16}.
+\]
+\end{theorem}
+\begin{proof}
+The imported generic theorem uses
+\[
+ \alpha_k=\frac1{2^{k+2}-2},\qquad
+ \sigma_k=1-(k+2)\alpha_k,
+\]
+and proves $|\zeta(\sigma_k+it)|\leq8192|t|^{\alpha_k}\log|t|$
+for every integer $k\geq1$ and $|t|\geq2$.
+At $k=1$ these definitions give $\alpha_1=1/6$ and $\sigma_1=1/2$,
+so its hypotheses are exactly the hypotheses of the first estimate.
+
+To specify the analytic content of this input, its Euler truncation
+chooses a dyadic integer $M$ with $|s|<M\leq5t$ when $t\geq2$.
+The checked uniform Euler remainder bounds zeta by the norm of the
+positive Dirichlet prefix through $M-1$, plus $6$.
+The prefix is decomposed into complete dyadic blocks.  Each block is
+bounded by the checked derivative estimates for the actual phase
+$-t\log n$, and their finite budget is at most a constant times
+$t^{\alpha_k}\log t$ on the line $\sigma_k$.
+The generic theorem combines these two estimates; $t^{\alpha_k}\geq1$
+and $\log t\geq\log2>1/2$ absorb the additive $6$ in the stated
+constant $8192$.  For negative $t$, apply the positive-height result to
+$\overline{s}$ and use
+$\zeta(\overline{s})=\overline{\zeta(s)}$ and equality of the norms.
+This is a finite Euler truncation argument; it does not assume an
+approximate functional equation or a critical-line growth hypothesis.
+
+For the second estimate, the elementary inequality
+$\log x\leq x^{b-a}/(b-a)$, valid for $x>0$ and $a<b$, gives
+\[
+ x^{1/6}\log x\leq48x^{3/16},
+ \qquad \frac3{16}-\frac16=\frac1{48}.
+\]
+Multiplying by $8192$ gives $393216$.
+The point $1/2+it$ never equals the pole $1$; Mathlib's differentiability
+of zeta away from its pole therefore proves continuity on this line.
+Compactness of $[-2,2]$ supplies a constant $B\geq1$ bounding its norm
+there.  Take $C=\max(B,393216)>0$.
+For $|t|\leq2$, use $(1+|t|)^{3/16}\geq1$.
+For $|t|\geq2$, use the tail estimate and monotonicity of the positive
+real power to replace $|t|^{3/16}$ by $(1+|t|)^{3/16}$.
+These cases cover every real $t$, including their common endpoints.
+\end{proof}

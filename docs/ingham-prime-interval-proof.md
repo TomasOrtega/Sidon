@@ -1,10 +1,15 @@
-# The Ingham route to the remaining prime-interval input
+# The checked Ingham route to the prime-interval input
 
 This document expands the quantitative route needed for Corollary 1.4.
-It does not declare its analytic prerequisites proved in Lean. The finite
-zero-layer estimate, actual finite zero occurrences, prime-power removal,
-and the Bose–Chowla/extremal-set reductions are checked separately. The
-unproved analytic obligations are identified at the end.
+The actual-zero density, critical-line growth, zero-free width, finite
+zero layers, prime-power removal, and Bose–Chowla/extremal reductions
+are now checked in Lean. The completed endpoint uses the exact
+log-smoothed formula and positive B-spline detector described in
+[`smoothed-prime-detector-proof.md`](smoothed-prime-detector-proof.md).
+The unsmoothed contour route in Sections 8–9 is retained as a separate
+informal alternative; its Perron obligations are not used by the formal
+prime-interval theorem. The final module table records exact checked
+declarations and constants.
 
 The source is A. E. Ingham, *On the difference between consecutive primes*,
 Quarterly Journal of Mathematics 8 (1937), 255–266,
@@ -637,12 +642,13 @@ choice `7/32` used in this document accepts either the weak estimate
 ## 7. Exact zero-free strength required
 
 A fixed classical region `1-beta≥a/log T` is insufficient here: the
-remaining density bound has a factor `(log T)^5`. Even replacing `a`
+remaining density bound has a fixed positive logarithmic power
+(`11` in the checked implementation). Even replacing `a`
 by an arbitrary fixed constant does not, by itself, absorb that factor.
 A sufficient region is any positive function `eta(T)` satisfying
 
 \[
- N(1-\eta(T),T)=0,\qquad
+ \beta\le1-\eta(T)\quad(0<\gamma\le T),\qquad
  {\eta(T)\log T\over\log\log T}\longrightarrow\infty.
 \tag{ZF}
 \]
@@ -661,17 +667,20 @@ Neither region follows from the fixed-order critical-line estimate (20).
 A proof must retain the high-order exponential-sum bounds, their
 constants as the order grows with `T`, and the analytic zero detector.
 
-A new primary Lean source was found during the latest-version audit:
+The audited primary Lean source is
 [David Sanftenberg's RiemannGaussian](https://github.com/dbsanfte/RiemannGaussian/tree/6e969fd6e9c639eed280c595732248c106187603)
 contains `ZetaVinogradovSummedZeroFree.exists_eventual_strip` for actual
 zeta zeros, with no zeta-growth or zero-free hypothesis in its theorem
 type. It states an eventual VK region for every
-`0<C<3*pi/10640`. Its raw local import closure has 1067 modules and
-266100 lines, including unrelated option-bearing proof files. The
-repository has not yet been imported or accepted as a checked Sidon
-dependency. Exact proof closure, current-toolchain compilation, standard
-axiom audit, and removal of forbidden options remain required before
-it can discharge (ZF) here.
+`0<C<3*pi/10640`. The semantic extraction is now vendored, compiled
+on the current toolchain, and audited to use only the standard three
+kernel axioms. Forbidden options and unrelated imports were removed;
+the exact source revision and modifications are recorded in
+`docs/rg-extraction-manifest.json` and `THIRD_PARTY_NOTICES.md`.
+The wrapper `Sidon.exists_logarithmicZetaZeroFreeWidth` proves (ZF)
+for the unshifted width with coefficient `1/20000`. It absorbs finite
+low-height zeros and compares the source's shifted logarithms at
+`T+2` with those at `T`; no low-height exception remains in its type.
 
 ## 8. The truncated explicit formula and its endpoints
 
@@ -830,17 +839,111 @@ endpoints.
 | `NumberTheory/ZeroLayers` | Arbitrary finite-layer geometric bound including floors | Checked |
 | `NumberTheory/ZetaZeroCount` | Actual bounded zeta-zero occurrences with analytic multiplicity; uniform input predicates | Checked |
 | `Constructions/Extremal` | Maximal cardinality, Bose–Chowla lower bound, exact Cor. 1.4 reduction | Checked conditional on (P) |
-| `NumberTheory/DivisorMeanSquare` | Equations (2)–(6) | Natural proof above; Lean pending |
+| `NumberTheory/ArithmeticConvolutionBounds`, `DivisorMeanSquare`, `DivisorDirichletSeries`, `PSeriesBounds`, `DivisorSeriesBounds` | Divisor convolution, square majorant, actual absolutely convergent series, explicit pole and logarithmic bounds | Checked; the implementation allows a harmless fourth harmonic power |
 | `NumberTheory/DirichletMeanSquare`, `LogarithmicMeanSquare`, `HarmonicGaps`, `MollifierEndpoint` | Uniform oscillatory kernel, finite L2, logarithmic gap bound, exact critical-line mollifier endpoint | Checked, constant 12 |
-| `NumberTheory/DirichletMollifier` | Entire complex mollifier, exact critical-line bridge, divisor coefficients and cancellation | Checked; right-of-one infinite series endpoint pending |
-| `NumberTheory/VerticalMeanSquare` | Interpolation, pole removal, equation (15) | Natural proof above; Lean pending |
-| `NumberTheory/ZetaDensity` | Littlewood/Jensen count, equation (D_A) | Natural proof above; analytic counting infrastructure pending |
-| `NumberTheory/WeylZeta` | Derivative tests, Euler continuation, equation (G_c) | Weak and strong derivative optimizations expanded; Euler continuation and tests pending |
-| `NumberTheory/ZetaZeroFree` | A genuine region satisfying (ZF) | Primary Lean source candidate under audit; not yet imported |
-| `NumberTheory/TruncatedExplicitFormula` | Formula (EF), local zero count, contour errors | Precise obligations above; Lean pending |
-| `NumberTheory/InghamPrimeIntervals` | Assemble (D_A), (ZF), (EF), prime-power removal | Algebraic/asymptotic reduction above; Lean assembly pending |
+| `NumberTheory/DirichletMollifier`, `MollifierSeries`, `BalancedMollifierSeries`, `MollifierCenter` | Entire complex mollifier, actual absolutely convergent convolution, coefficient cancellation, uniform center loss | Checked; center error at most `131072/N` |
+| `NumberTheory/LogarithmicGapMeanSquare`, `InfiniteDirichletMeanSquare`, `MollifierRightEndpoint`, `MollifierRightHalfPlane`, `MollifierSymmetry` | Length-independent off-diagonal bound, infinite-series passage, actual right-hand boundary and half-plane bound | Checked; right boundary at most `2048*(T/N+1)/δ^8` |
+| `NumberTheory/VerticalL2Interpolation`, `GaussianCumulative`, `MollifierGaussian`, `MollifierInterpolation`, `MollifierOptimization`, `OptimizedMollifierSlices` | L2 strip interpolation, pole-free actual Gaussian carrier, cumulative passage, uniform optimized slice bound | Checked; exact direct-height slice seam, exponent `11/4`, logarithmic loss `9` |
+| `NumberTheory/JensenMollifier`, `JensenDensityGeometry`, `CircleAverageVertical`, `JensenZeroOccurrences`, `JensenZeroDensity`, `InghamDensity`, `ZetaDensity` | Analytic Jensen, actual multiplicity bridge, angular Fubini, all-strip uniform density | Checked unconditional actual-zero density, exponent `23/8`, logarithmic loss `11` |
+| `NumberTheory/WeylZeta` | Actual critical-line zeta growth | Checked audited primary-source extraction; `c=3/16`, no approximate functional equation needed |
+| `NumberTheory/ZetaZeroFree` | A genuine region satisfying (ZF) | Checked audited primary-source extraction of the Vinogradov–Korobov width |
+| Log-smoothed explicit formula and B-spline detector | Replacement for (EF), avoiding a truncated contour formula | Checked exact actual-zero formula, arbitrary primitive/forward-difference identity, positive detector, and high-zero mass estimate |
+| `NumberTheory/PrimeGapTwoThirds`, `Constructions/MaximumUniformity` | Assemble actual density, zero-free width, exact smoothed formula, positive detector and prime-power removal | Checked unconditional all-real `PrimeIntervalBound (2/3) 128` and exact Cor. 1.4 Fourier exponent `-1/12` |
 
-The remaining frontier is substantial analytic number theory. None of
-its missing prerequisites is recorded as an axiom or `theorem_wanted`,
-and an unconditional all-length power-saving prime-gap theorem has not
-yet been claimed in the checked root graph.
+The analytic inputs and final endpoint are now proved for the actual zeta function:
+critical-line growth, uniform density, the Vinogradov–Korobov zero-free
+width, the exact log-smoothed formula, and its high-order positive
+detector. The checked endpoint combines them with the finite-layer
+logarithmic reserve and prime-power removal, obtaining a prime in
+`[x-128*x^(2/3),x]` for every sufficiently large real `x`. This closes
+the precise rate input for the unconditional largest-Sidon-set
+Corollary 1.4. No prerequisite is recorded as an axiom or `theorem_wanted`.
+
+### 11.1. The checked endpoint uses a larger logarithmic loss
+
+The classical sharper off-diagonal divisor argument above is not needed
+to retain the exponent `A=2+4c`. The checked implementation proves, for
+arbitrary finite positive-index coefficients,
+
+\[
+ \int_0^T\left|\sum c_n n^{-it}\right|^2dt
+ \le T\sum|c_n|^2+4\left(\sum|c_n|\right)^2
+      +16\sum n|c_n|^2(1+\log n).
+\]
+
+To verify the final term without a hidden truncation dependence, split
+ordered pairs `m<n` into `n>2m` and `n≤2m`. The first part uses
+`log(n/m)≥log2≥1/2`. The second uses
+`n−m≤n log(n/m)` and
+`2n|c_m||c_n|≤2(m|c_m|²+n|c_n|²)`.
+In the symmetric near-pair sum, each fixed index `m` sees at most
+`2H_(2m)≤4(1+log m)` reciprocal gap mass. This proves the displayed
+estimate with the logarithm attached to each coefficient's own index.
+Absolute convergence bounds every partial polynomial by `Σ|c_n|`,
+so dominated convergence passes to the actual infinite series.
+
+For `c_n=b_N(n)/n^(1+δ)`, `0<δ≤1`, the checked scalar estimates are
+
+\[
+ \sum|c_n|\le16\delta^{-4},\qquad
+ \sum|c_n|^2\le\frac{16}{N\delta^4},\qquad
+ \sum n|c_n|^2(1+\log n)\le32\delta^{-5}.
+\]
+
+The diagonal cutoff uses `b_N(n)=0` for `n≤N` and `n^(1+δ)≥N`
+otherwise. The weighted square sum uses `d(n)^2≤d_4(n)` and
+`1+log n≤(2/δ)n^δ`; the zeta pole bound costs four powers of `δ`.
+Consequently the actual right-hand mean square is at most
+
+\[
+ \frac{16T}{N\delta^4}+\frac{1024}{\delta^8}
+       +\frac{512}{\delta^5}
+ \le2048(T/N+1)\delta^{-8}.
+\]
+
+Conjugation doubles this bound on the symmetric interval. The same
+estimate holds on every line to its right, by monotonicity of the
+coefficient norms. Choosing `δ=1/log T` therefore costs eight logarithms
+rather than the classical sharper loss. The zero-free reserve absorbs
+any fixed logarithmic power, so the density exponent is unchanged.
+
+### 11.2. Gaussian interpolation and integrated Jensen
+
+Use the entire completion `ζ₁(s)` of `(s−1)ζ(s)` and define
+
+\[
+ \Phi_{N,R}(s)=
+   \frac{\zeta_1(s)M_N(s)-(s-1)}{s+1}\exp(s^2/R^2).
+\]
+
+On `1/2≤Re s≤3/2`, the denominator is nonzero. The completion, rather
+than a literal product evaluated at `s=1`, ensures analyticity there.
+Away from the pole this equals
+`((s−1)/(s+1))*f_N(s)*exp(s²/R²)`.
+The ratio has norm at most one in the right half-plane. For
+`1≤|Im s|≤R` and `1/2≤Re s≤3/2`, its squared norm is at least `1/8`,
+and the Gaussian squared norm is at least `exp(−2)`. Thus a Gaussian
+vertical L2 estimate recovers the unweighted error square on `[1,R]`
+with the absolute loss `8 exp 2`.
+
+The checked generic interpolation uses a compact self-test: pair the
+analytic function with its own middle-line restriction to `[-L,L]`.
+Cauchy–Schwarz bounds the two boundary pairings; scalar Hadamard
+three-lines then bounds the middle pairing. It equals the truncated
+middle-line square integral, so canceling its square root yields the
+L2 interpolation inequality. Monotone exhaustion sends `L` to infinity.
+This avoids an unstated L2 dual-density argument.
+
+For counting zeros, integrate Jensen on discs centered at `2+iy`.
+The detector center loss is `O(1/N)`, not a fixed constant. A zero with
+real part at least `σ₀+ε` contributes at least `ε/3` for a `y`-window
+of length `2ε`. The integrated count therefore loses only `ε^-2`.
+The checked angular Fubini theorem reduces the integrated boundary
+average to uniform vertical mean squares. With `ε=1/log T`, this costs
+two further logarithms and leaves the exponent `A=2+4c<3` unchanged.
+
+The final prime detector follows
+[`smoothed-prime-detector-proof.md`](smoothed-prime-detector-proof.md),
+using the actual log-smoothed explicit formula and high-order positive
+B-splines. It needs neither the unsmoothed Perron truncation nor a
+good-height local zero-count theorem from Sections 8–9.

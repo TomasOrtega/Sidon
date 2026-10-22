@@ -73,6 +73,25 @@ theorem mem_zetaZeroOccurrences {T : ℝ} {ρ : ℂ} {k : ℕ} :
   · rintro ⟨hρ, hk⟩
     exact ⟨ρ, hρ, k, hk, rfl, rfl⟩
 
+theorem sum_zetaZeroOccurrences (T : ℝ) (w : ℂ → ℝ) :
+    (∑ z ∈ zetaZeroOccurrences T, w z.1) =
+      ∑ ρ ∈ criticalZetaZeros T, (analyticOrderNatAt riemannZeta ρ : ℝ) * w ρ := by
+  classical
+  unfold zetaZeroOccurrences
+  rw [Finset.sum_biUnion]
+  · apply Finset.sum_congr rfl
+    intro ρ _
+    rw [Finset.sum_image]
+    · simp
+    · intro k _ l _ h
+      exact (Prod.mk.inj h).2
+  · intro ρ _ τ _ hne
+    apply Finset.disjoint_left.mpr
+    intro z hzρ hzτ
+    obtain ⟨k, _, rfl⟩ := Finset.mem_image.mp hzρ
+    obtain ⟨l, _, he⟩ := Finset.mem_image.mp hzτ
+    exact hne (congrArg Prod.fst he).symm
+
 theorem zetaZeroOccurrences_re_bounds {T : ℝ} {z : ℂ × ℕ}
     (hz : z ∈ zetaZeroOccurrences T) : 0 ≤ z.1.re ∧ z.1.re ≤ 1 := by
   have h := mem_criticalZetaZeros.mp (mem_zetaZeroOccurrences.mp hz).1
@@ -103,6 +122,31 @@ theorem zetaZeroCount_mono_height (σ : ℝ) : Monotone (zetaZeroCount σ) := by
   obtain ⟨hzero, hre0, hre1, him0, himT⟩ := mem_criticalZetaZeros.mp hρ
   exact Finset.mem_filter.mpr ⟨mem_zetaZeroOccurrences.mpr
     ⟨mem_criticalZetaZeros.mpr ⟨hzero, hre0, hre1, him0, himT.trans hTU⟩, hk⟩, hσ⟩
+
+theorem zetaZeroCount_le_low_add_high (σ T : ℝ) :
+    zetaZeroCount σ T ≤ zetaZeroCount 0 4 +
+      ((zetaZeroOccurrences T).filter (fun z => σ ≤ z.1.re ∧ 4 ≤ z.1.im)).card := by
+  classical
+  have hzero : (zetaZeroOccurrences 4).filter (fun z => 0 ≤ z.1.re) =
+      zetaZeroOccurrences 4 := by
+    apply Finset.filter_eq_self.mpr
+    intro z hz
+    exact (zetaZeroOccurrences_re_bounds hz).1
+  have hsub : (zetaZeroOccurrences T).filter (fun z => σ ≤ z.1.re) ⊆
+      zetaZeroOccurrences 4 ∪
+        (zetaZeroOccurrences T).filter (fun z => σ ≤ z.1.re ∧ 4 ≤ z.1.im) := by
+    intro z hz
+    obtain ⟨hz, hσ⟩ := Finset.mem_filter.mp hz
+    by_cases hhigh : 4 ≤ z.1.im
+    · exact Finset.mem_union_right _ (Finset.mem_filter.mpr ⟨hz, hσ, hhigh⟩)
+    · apply Finset.mem_union_left
+      obtain ⟨hρ, hk⟩ := mem_zetaZeroOccurrences.mp hz
+      obtain ⟨hζ, hβ0, hβ1, hγ0, _⟩ := mem_criticalZetaZeros.mp hρ
+      exact mem_zetaZeroOccurrences.mpr
+        ⟨mem_criticalZetaZeros.mpr ⟨hζ, hβ0, hβ1, hγ0, (lt_of_not_ge hhigh).le⟩, hk⟩
+  unfold zetaZeroCount
+  rw [hzero]
+  exact (Finset.card_le_card hsub).trans (Finset.card_union_le _ _)
 
 /-- A uniform estimate; its constant is independent of `σ` and `T`. -/
 def UniformZetaZeroDensity (A : ℝ) (B : ℕ) (K T₀ : ℝ) : Prop :=

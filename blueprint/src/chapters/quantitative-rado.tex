@@ -27,8 +27,9 @@ Reindexing its finite coordinate type by $\{0,\ldots,h-1\}$ gives the
 numerical form used below.  Taking any constant colouring shows that
 the resulting $h$ is positive, because a line has a variable position.
 The finite pattern definitions, block-embedding algebra, focused-row
-construction, and multiplicity bound are checked in Lean.  The full
-row-containment recursion and kernel parametrization remain proof targets.
+construction, full containment recursion, integral kernel parametrization,
+and multiplicity bound are checked in Lean.  Their quantitative counting
+and bounded-weight consequences are checked as well.
 
 \section{Finite patterns and their embeddings}
 
@@ -497,3 +498,72 @@ theorem are now checked in Lean.  The bounded-weight consequence in
 Lemma~\ref{app:weighted-interval-count} is checked as well.
 The only Ramsey theorem imported from mathlib is
 Hales--Jewett.
+
+
+\section{The necessary zero-subsum condition}
+
+\begin{theorem}[Paper Remark 1.16]
+\label{qr:necessity}
+\lean{Sidon.QuantitativeRado.exists_subsum_dvd_of_primeDigit_monochromatic,Sidon.QuantitativeRado.exists_finite_colouring_without_monochromatic_linearSolution,Sidon.QuantitativeRado.exists_integer_colouring_without_positive_monochromatic_linearSolution}\leanok
+Let $c_1,\ldots,c_s\in\mathbb Z$, with $s\ge1$, and suppose
+\[
+ \sum_{i\in I}c_i\ne0
+ \qquad\text{for every nonempty }I\subseteq[s].
+\]
+There is a finite colouring of the positive integers with no
+monochromatic solution to $\sum_i c_ix_i=0$.
+There is also a colouring of all integers with the same property
+for tuples whose coordinates are positive.
+\end{theorem}
+\begin{proof}
+Put $M=\sum_i|c_i|$ and choose a prime $p>M$.
+For every positive integer $n$, write uniquely
+\[
+ n=p^{v(n)}u(n),\qquad p\nmid u(n),
+\]
+where $v(n)$ is its $p$-adic valuation.
+The checked factorization uses the concrete natural-number operations
+\texttt{padicValNat} and \texttt{Nat.divMaxPow}.
+Colour $n$ by the residue $u(n)\bmod p$, an element of the finite
+set $\{0,\ldots,p-1\}$.
+For positive $n$ that residue is nonzero.
+A colour is assigned to zero as well in the Lean total function,
+but zero is excluded from the quantified tuples.
+
+Suppose a positive monochromatic tuple $(x_1,\ldots,x_s)$ solved
+the equation.  Let $k=\min_i v(x_i)$ and let
+$I=\{i:v(x_i)=k\}$.
+The finite nonempty index set ensures that the minimum is attained,
+so $I$ is nonempty.
+For every $i$, define the integer
+\[
+ y_i=p^{v(x_i)-k}u(x_i).
+\]
+Since $k\le v(x_i)$, exponent addition gives $x_i=p^k y_i$.
+Factor the nonzero integer $p^k$ out of the equation and cancel it:
+$\sum_i c_i y_i=0$.
+
+Reduce this equality in the field $\mathbb Z/p\mathbb Z$.
+If $i\notin I$, then $v(x_i)-k>0$ and $y_i=0$ in that field.
+If $i\in I$, then $y_i=u(x_i)$ equals the common colour
+$a\ne0$ there.
+Consequently
+\[
+ 0=\sum_i c_i y_i=a\sum_{i\in I}c_i
+ \quad\text{in }\mathbb Z/p\mathbb Z.
+\]
+Cancellation of $a$ shows that $p$ divides the integer
+$\sum_{i\in I}c_i$.
+Its absolute value is at most
+$\sum_{i\in I}|c_i|\le M<p$.
+An integer divisible by $p$ and of absolute value less than $p$
+must be zero, contradicting the zero-subsum hypothesis.
+
+This proves the finite-colouring assertion on positive integers.
+For a total colouring on $\mathbb Z$, colour $z$ by the natural-number
+colour of $\max(z,0)$.
+On positive integers this agrees with the construction above, so the
+same contradiction applies.
+The assertion is thus genuinely about a fixed finite colouring,
+chosen before the positive tuple or any ambient interval.
+\end{proof}

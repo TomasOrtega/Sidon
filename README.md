@@ -36,7 +36,8 @@ equidistribution (Theorem 3.1) are checked. The smooth and regular Bohr
 corollaries also check with absolute constants. Partition regularity
 (Theorem 1.15) is checked end to end, including quantitative Rado counting and
 the colouring dense model. Bose–Chowla and the sharp asymptotic obstruction constructions are checked.
-The largest-set rate still needs a power-saving prime interval theorem. See the
+The largest-set rate in Corollary 1.4 is checked unconditionally through a proved
+prime-interval theorem, with all analytic zeta inputs included. See the
 [status table](docs/progress.md) for the distinction between expanded arguments
 and checked Lean results. Work is checkpointed at least every two hours while active.
 

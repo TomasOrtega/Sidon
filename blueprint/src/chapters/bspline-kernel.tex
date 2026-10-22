@@ -1,0 +1,709 @@
+\section{Positive kernels from repeated differences}
+
+The logarithmically smoothed explicit formula has the arithmetic term
+$\sum_n\Lambda(n)(t-\log n)_+$.  The following construction turns its
+higher primitives into a nonnegative detector supported on a short
+logarithmic interval.  All statements in this section are checked for
+arbitrary finite order; specializing to order $128$ introduces no new
+analytic argument.
+
+\begin{definition}[Recursive primitives]
+\label{kernel:primitives}
+\lean{Sidon.heaviside,Sidon.heavisidePrimitive}\leanok
+Put $F_0(u)=1$ for $u\geq0$ and $F_0(u)=0$ for $u<0$.
+For every integer $j\geq0$, define the oriented interval integral
+\[
+ F_{j+1}(u)=\int_0^uF_j(v)\,dv.
+\]
+For a function $f$ and real step $h$, write
+$\Delta_hf(u)=f(u+h)-f(u)$ and let $\Delta_h^r$ denote its $r$-fold
+iteration, with $\Delta_h^0f=f$.
+\end{definition}
+
+\begin{lemma}[Integrability and the first primitive]
+\label{kernel:primitive-integral}
+\uses{kernel:primitives}
+\lean{Sidon.intervalIntegrable_heaviside,Sidon.intervalIntegrable_heavisidePrimitive,Sidon.continuous_heavisidePrimitive_succ,Sidon.heavisidePrimitive_one,Sidon.heavisidePrimitive_succ_eq_zero_of_nonpos,Sidon.integral_heavisidePrimitive_translate,Sidon.fwdDiff_heavisidePrimitive_succ}\leanok
+Every $F_j$ is integrable on every compact interval, and every $F_{j+1}$
+is continuous.  Moreover $F_1(u)=\max(u,0)$, and
+$F_{j+1}(u)=0$ whenever $u\leq0$.
+For all real $a,b,c$,
+\[
+ \int_a^bF_j(v+c)\,dv
+ =F_{j+1}(b+c)-F_{j+1}(a+c).
+\]
+In particular, for all real $h,u$,
+\[
+ \Delta_hF_{j+1}(u)=\int_0^hF_j(u+v)\,dv.
+\]
+\end{lemma}
+\begin{proof}
+The indicator $F_0$ of the measurable half-line $[0,\infty)$ is
+measurable and bounded in absolute value by one.  A compact interval
+has finite Lebesgue measure, so this constant dominates $F_0$ by an
+integrable function there.  This proves interval integrability of $F_0$.
+If $F_j$ is integrable on every compact interval, continuity of an
+indefinite integral proves that $F_{j+1}$ is continuous.  A continuous
+function is integrable on each compact interval, completing the induction.
+This argument uses continuity of the integral, without asserting
+differentiability of $F_0$ at zero.
+
+If $u\geq0$, $F_0$ agrees with one on the interior of $[0,u]$, so its
+integral is $u$.  If $u<0$, reverse the interval: $F_0$ is zero on
+$(u,0)$ and its value at the endpoint does not change the integral.
+The result is zero, proving $F_1(u)=\max(u,0)$, including $u=0$.
+Inductively, if $u\leq0$ and $F_{j+1}$ vanishes on $(-\infty,0]$,
+the integral defining $F_{j+2}(u)$ is zero after reversing the interval.
+Thus every positive-order primitive vanishes on this half-line.
+
+Translation invariance of Lebesgue measure changes the displayed
+translated integral into $\int_{a+c}^{b+c}F_j(w)\,dw$.
+The adjacent-interval identity, valid for oriented integrals and all
+orders of the endpoints, rewrites this as
+$\int_0^{b+c}F_j-\int_0^{a+c}F_j$.
+These are exactly the two defining primitive values.
+Set $a=0$, $b=h$, and $c=u$ to obtain the final formula.
+No fundamental theorem of calculus is required.
+\end{proof}
+
+\begin{lemma}[Differences commute with a compact integral]
+\label{kernel:difference-integral}
+\lean{Sidon.intervalIntegrable_translate,Sidon.intervalIntegrable_fwdDiff_iter,Sidon.fwdDiff_iter_intervalIntegral}\leanok
+Let $f:\mathbb R\to E$ take values in a normed real vector space and
+be integrable on every compact interval.  For every integer $r\geq0$,
+real $h$, and real $u$,
+\[
+ \Delta_h^r\left(x\mapsto\int_0^h f(x+v)\,dv\right)(u)
+ =\int_0^h\Delta_h^rf(u+v)\,dv.
+\]
+All translated integrands and all finite differences appearing here are
+integrable on compact intervals.
+\end{lemma}
+\begin{proof}
+Translation preserves interval integrability, and the difference of two
+integrable functions is integrable.  Induction gives this assertion for
+every iterate of $\Delta_h$.
+At order zero the identity is definitional.
+For the induction step, evaluate the order-$r$ identity at $u+h$ and
+at $u$, subtract, and use linearity of the interval integral.
+Its integrand is
+$\Delta_h^rf(u+h+v)-\Delta_h^rf(u+v)$.
+Since $u+h+v=u+v+h$, this equals $\Delta_h^{r+1}f(u+v)$ pointwise.
+The established integrability justifies the subtraction of integrals.
+The proof works for real and complex integrands alike.
+\end{proof}
+
+\begin{definition}[The prime-detector kernel]
+\label{kernel:detector}
+\uses{kernel:primitives}
+\lean{Sidon.primeDetectorKernel,Sidon.primeDetectorKernel_eq_sum}\leanok
+For an integer $r\geq1$ define
+\[
+ K_r(h,u)=\Delta_h^rF_{r-1}(u).
+\]
+Equivalently, the actual finite-difference formula is
+\[
+ K_r(h,u)=\sum_{j=0}^r(-1)^{r-j}\binom rjF_{r-1}(u+jh).
+\]
+\end{definition}
+
+\begin{lemma}[Positive compact support with an explicit bound]
+\label{kernel:positivity-support}
+\uses{kernel:primitive-integral,kernel:difference-integral,kernel:detector}
+\lean{Sidon.primeDetectorKernel_recursion,Sidon.intervalIntegrable_primeDetectorKernel,Sidon.primeDetectorKernel_bounds,Sidon.primeDetectorKernel_eq_zero,Sidon.support_primeDetectorKernel_subset}\leanok
+For $r\geq1$ and $h\geq0$, the kernel satisfies
+\[
+ 0\leq K_r(h,u)\leq h^{r-1}\qquad(u\in\mathbb R),
+ \qquad \operatorname{supp}K_r(h,\cdot)\subseteq[-rh,0].
+\]
+For all real $h,u$ and every integer $r\geq1$,
+\[
+ K_{r+1}(h,u)=\int_0^hK_r(h,u+v)\,dv.
+\]
+Each kernel is integrable on every compact interval.
+\end{lemma}
+\begin{proof}
+The binomial formula follows from the finite-difference identity for
+an arbitrary function.  Integrability follows because the defining
+expression is a finite difference of an interval-integrable primitive.
+For the recurrence, write
+$\Delta_h^{r+1}F_r=\Delta_h^r(\Delta_hF_r)$.
+The primitive identity expresses the inner difference as
+$u\mapsto\int_0^hF_{r-1}(u+v)\,dv$.
+Commuting the remaining $r$ differences through this compact integral
+gives exactly the asserted recurrence.
+
+At order one,
+$K_1(h,u)=F_0(u+h)-F_0(u)$.
+If $u\geq0$, both indicators equal one, so this is zero.
+If $u<0$, the second indicator is zero and the first is either zero
+or one.  This proves $0\leq K_1\leq1=h^0$, including $h=0$.
+If $u<-h$, both indicators are zero; if $u>0$, both are one.
+Thus its support is contained in $[-h,0]$.
+
+Suppose the conclusions hold at order $r$.
+The recurrence integrates a nonnegative function over $[0,h]$, so the
+next kernel is nonnegative.  Its integrand is at most $h^{r-1}$;
+integral monotonicity therefore bounds the result by
+$h\,h^{r-1}=h^r$.
+If $u>0$, then $u+v>0$ throughout $0\leq v\leq h$, so the integrand
+vanishes by the induction hypothesis.
+If $u<-(r+1)h$, then $u+v\leq u+h<-rh$ throughout that interval,
+so the integrand again vanishes.
+This proves the support assertion at order $r+1$ and completes the
+induction.  Strict inequalities outside the closed support avoid any
+endpoint convention issue.
+\end{proof}
+
+For the later prime application set $h=x^{-1/3}$ and
+$t=\log x-rh$.  A nonzero weight $K_r(h,t-\log n)$ forces
+$t\leq\log n\leq t+rh=\log x$, hence
+$xe^{-rh}\leq n\leq x$ for every positive integer $n$.
+Thus a positive sum of these nonnegative Mangoldt-weighted kernels
+detects a prime power in an interval below $x$; removing nonprime powers
+is a separate arithmetic estimate.
+
+\begin{lemma}[Closed primitives and finite arithmetic detectors]
+\label{kernel:finite-detector}
+\uses{kernel:primitives,kernel:detector,kernel:positivity-support}
+\lean{Sidon.heavisidePrimitive_succ_eq_pow,Sidon.fwdDiff_iter_sum_heavisidePrimitive,Sidon.sum_primeDetectorKernel_nonneg,Sidon.sum_primeDetectorKernel_le,Sidon.exists_supported_weight_of_sum_primeDetectorKernel_pos}\leanok
+For $j\geq0$,
+\[
+ F_{j+1}(u)=\frac{\max(u,0)^{j+1}}{(j+1)!}.
+\]
+If $S$ is finite, $a_n,b_n$ are real, and $r\geq1$, then
+\[
+ \Delta_h^r\!\left(\sum_{n\in S}a_nF_{r-1}(\,\cdot-b_n)\right)(t)
+ =\sum_{n\in S}a_n K_r(h,t-b_n).
+\]
+For $h\geq0$ and $a_n\geq0$, the latter sum lies between zero and
+$h^{r-1}\sum_{n\in S}a_n$.
+If it is positive, some $n\in S$ satisfies $a_n>0$ and
+$t\leq b_n\leq t+rh$.
+\end{lemma}
+\begin{proof}
+The closed form starts with $F_1(u)=\max(u,0)$.
+For the induction step, first suppose $u\geq0$.
+Every integration point $v\in[0,u]$ is nonnegative, so the induction
+hypothesis identifies the integrand with $v^{j+1}/(j+1)!$.
+The integral of this monomial is
+$u^{j+2}/((j+2)(j+1)!)=u^{j+2}/(j+2)!$.
+For $u\leq0$, both sides vanish by the proved support of the positive
+primitives and $\max(u,0)=0$.
+Forward differences are linear and commute with translation, so they
+commute with the displayed finite sum and constant real multipliers.
+This proves the exact identity, including order zero if desired.
+Kernel positivity gives nonnegativity term by term, and its bound
+$K_r\leq h^{r-1}$ gives the upper estimate after summing.
+A positive finite sum of nonnegative terms has a positive term.
+In that term $a_n>0$ and $K_r(h,t-b_n)>0$.
+The latter forces $-rh\leq t-b_n\leq0$ by the checked kernel support,
+which rearranges to the required logarithmic interval.
+\end{proof}
+
+\begin{definition}[The actual higher Mangoldt primitives]
+\label{kernel:mangoldt-primitives}
+\uses{kernel:finite-detector}
+\lean{Sidon.smoothedMangoldtTerm,Sidon.smoothedMangoldt,Sidon.smoothedMangoldt_eq_fixed_sum,Sidon.continuous_smoothedMangoldt,Sidon.integral_smoothedMangoldt}\leanok
+For integers $j\geq0$ define
+\[
+ A_j(t)=\sum_{1\leq n\leq\lfloor e^t\rfloor}
+        \Lambda(n)F_{j+1}(t-\log n).
+\]
+Every $A_j$ is continuous on the whole real line, and
+$\int_0^t A_j(u)\,du=A_{j+1}(t)$ for every real $t$.
+In particular $A_0(t)=\sum_n\Lambda(n)(t-\log n)_+$ is the literal
+arithmetic primitive appearing in the logarithmically smoothed explicit
+formula.
+\end{definition}
+\begin{proof}
+If $n=0$, its Mangoldt factor vanishes.  For $n\geq1$ outside the
+moving window, $e^t<n$, hence $t<\log n$ and
+$F_{j+1}(t-\log n)=0$.  Therefore for every $t\leq T$,
+\[
+ A_j(t)=\sum_{1\leq n\leq\lfloor e^T\rfloor}
+          \Lambda(n)F_{j+1}(t-\log n).
+\]
+This is an exact equality: the original index set is a subset of the
+larger one, and each added term is zero.  Near a fixed $t$, take
+$T=t+1$.  Every summand in this fixed finite window is continuous, so
+its finite sum proves continuity at $t$.
+
+For the integral on $[0,t]$, use the common cutoff
+$T=\max(t,0)$; every point of the unordered interval between $0$ and
+$t$ is at most $T$.  The integrands are continuous, so integration
+commutes with the finite sum.  For each $n$ the translated-primitive
+identity gives
+\[
+ \int_0^t F_{j+1}(u-\log n)\,du
+ =F_{j+2}(t-\log n)-F_{j+2}(-\log n).
+\]
+The second term is zero because $\log n\geq0$ for natural $n$
+(including Mathlib's convention $\log0=0$).
+The remaining fixed sum is $A_{j+1}(t)$ by the same cutoff equality.
+This argument also treats negative $t$, using oriented interval
+integrals rather than silently assuming a positive upper endpoint.
+\end{proof}
+
+\begin{lemma}[Exact positive arithmetic detector]
+\label{kernel:mangoldt-detector}
+\uses{kernel:mangoldt-primitives,kernel:finite-detector}
+\lean{Sidon.fwdDiff_iter_smoothedMangoldt}\leanok
+For $j\geq0$ and $h\geq0$,
+\[
+ \Delta_h^{j+2}A_j(t)=
+ \sum_{1\leq n\leq\lfloor\exp(t+(j+2)h)\rfloor}
+       \Lambda(n)K_{j+2}(h,t-\log n).
+\]
+\end{lemma}
+\begin{proof}
+Expand the left side by the signed binomial formula for the finite
+difference.  Its arguments are $t+kh$ with $0\leq k\leq j+2$, all
+bounded above by $T=t+(j+2)h$ because $h\geq0$.
+Replace $A_j$ at each such argument by its exact sum in the common
+window through $\lfloor e^T\rfloor$.
+Finite differences commute with this finite sum, with its constant
+Mangoldt coefficients, and with translation by $-\log n$.
+The resulting difference of $F_{j+1}$ is $K_{j+2}$ by definition.
+No infinite arithmetic series or exchange of limits is used.
+\end{proof}
+
+\begin{lemma}[Removing prime powers from the detector]
+\label{kernel:prime-extraction}
+\uses{kernel:mangoldt-detector,construction:prime-powers}
+\lean{Sidon.exists_prime_of_kernel_mangoldt_bound,Sidon.exists_prime_of_smoothedMangoldt_bound,Sidon.nonprimeMangoldtMass_floor_isLittleO,Sidon.eventually_nonprimeKernel_error_lt}\leanok
+Write
+\[
+ E(N)=\sum_{\substack{1\leq n\leq N\\ n\text{ not prime}}}\Lambda(n).
+\]
+If $r\geq1$, $h\geq0$, and
+\[
+ \sum_{1\leq n\leq N}\Lambda(n)K_r(h,t-\log n)
+      >h^{r-1}E(N),
+\]
+then some actual prime $p\leq N$ satisfies
+$t\leq\log p\leq t+rh$.
+For $h=x^{-1/3}$, fixed $r\geq1$, and every $c>0$, eventually
+\[
+ h^{r-1}E(\lfloor x\rfloor)<c xh^r.
+\]
+\end{lemma}
+\begin{proof}
+Split the finite detector into its prime and nonprime summands.
+Both parts are nonnegative.  The nonprime part is at most
+$h^{r-1}E(N)$ because every kernel is at most $h^{r-1}$.
+The strict displayed hypothesis therefore makes the prime part positive.
+A positive term has prime index and nonzero kernel; kernel support then
+gives the two logarithmic inequalities.
+
+The checked prime-power estimate gives $E(N)=o(N^{2/3})$.
+Compose this little-oh bound with $N=\lfloor x\rfloor$, which tends
+to infinity.  Since $0\leq\lfloor x\rfloor\leq x$ eventually and
+the exponent $2/3$ is positive, the denominator is at most $x^{2/3}$;
+thus $E(\lfloor x\rfloor)=o(x^{2/3})$.
+For any $c>0$, apply its bound with $c/2$ and use $x^{2/3}>0$
+to obtain a strict bound with $c$.
+Finally $x^{2/3}=x x^{-1/3}=xh$ for $x>0$.
+Multiply by the positive $h^{r-1}$ and combine integer powers of $h$.
+\end{proof}
+
+\begin{definition}[Spectral smoothing]
+\label{kernel:spectral-smoothing}
+\uses{kernel:difference-integral,kernel:mangoldt-primitives}
+\lean{Sidon.logarithmicPrimitive,Sidon.spectralSmoothing,Sidon.spectralSmoothing_recursion,Sidon.spectralSmoothing_affine,Sidon.spectralSmoothing_congr_nonneg,Sidon.logarithmicPrimitive_smoothedMangoldt,Sidon.spectralSmoothing_smoothedMangoldt}\leanok
+For a continuous complex function $f$ let $P_0f=f$ and
+$P_{n+1}f(t)=\int_0^tP_nf(u)\,du$, and set
+$S_n(f;h,t)=\Delta_h^{n+2}P_nf(t)$.
+Then
+\[
+ S_{n+1}(f;h,t)=\int_0^h S_n(f;h,t+u)\,du.
+\]
+This operation is linear, kills every affine function, and respects
+identities on nonnegative time whenever $t,h\geq0$.
+On the complexification of $A_0$ it is exactly the complexification of
+$\Delta_h^{n+2}A_n(t)$.
+\end{definition}
+\begin{proof}
+Successive primitives of a continuous function are continuous and hence
+integrable on compact intervals.  Adjacent-integral subtraction gives
+$\Delta_hP_{n+1}f(t)=\int_0^hP_nf(t+u)\,du$.
+Apply the remaining $n+2$ differences and commute them with this
+compact integral, obtaining the recurrence.
+Linearity follows from linearity of each primitive integral and of
+finite differences.  A direct two-difference calculation kills an
+affine function at order zero; the recurrence then proves the claim
+at every order by induction.
+For an identity on nonnegative time, primitive integrals at $t\geq0$
+use only points in $[0,t]$.  The binomial difference formula then uses
+only $t+kh\geq0$, proving the restricted congruence statement.
+Finally induction on $n$, the proved arithmetic primitive recursion,
+and the fact that complexification commutes with integration identify
+$P_nA_0=A_n$.  Complexification also commutes with subtraction, so it
+commutes with every finite difference.
+\end{proof}
+
+\begin{lemma}[Exact spectral atom and its two bounds]
+\label{kernel:spectral-atom}
+\uses{kernel:spectral-smoothing}
+\lean{Sidon.exponentialZeroAtom,Sidon.spectralSmoothing_exponentialZeroAtom,Sidon.spectralSmoothing_exponentialZeroAtom_norm_le,Sidon.spectralSmoothing_exponentialZeroAtom_norm_le_high,Sidon.exponential_mainTerm_lower_bound_at_log}\leanok
+For $z\ne0$ put $Q_z(t)=(e^{zt}-1)/z^2$.
+For $r=n+2$ one has
+\[
+ S_n(Q_z;h,t)=e^{zt}\left(\frac{e^{zh}-1}{z}\right)^r.
+\]
+If $\beta=\Re z\geq0$ and $h\geq0$, then
+\[
+ |S_n(Q_z;h,t)|\leq e^{\beta(t+rh)}h^r,
+ \qquad
+ |S_n(Q_z;h,t)|\leq
+       e^{\beta(t+rh)}\frac{2^r}{|z|^r}.
+\]
+For the main term, $x>0$ and $rh\leq\log2$ imply
+\[
+ e^{\log x-rh}(e^h-1)^r\geq\tfrac{x}{2}h^r.
+\]
+\end{lemma}
+\begin{proof}
+At $n=0$, expand the two forward differences of $Q_z$; the constants
+cancel and the exponential addition law factors the result into
+$e^{zt}(e^{zh}-1)^2/z^2$.
+For the induction step, use the spectral recurrence and the exact
+translated integral
+\[
+ \int_0^h e^{z(t+u)}\,du=e^{zt}\frac{e^{zh}-1}{z}.
+\]
+The latter follows by factoring $e^{zt}$ and integrating
+$e^{zu}$; division by $z$ is valid by the stated nonzero hypothesis.
+The recurrence therefore multiplies the previous result by one more
+factor $(e^{zh}-1)/z$.
+
+For the low-frequency estimate, that same integral at $t=0$ gives
+\[
+ \left|\frac{e^{zh}-1}{z}\right|
+ \leq\int_0^h e^{\beta u}\,du\leq h e^{\beta h}.
+\]
+For the high-frequency estimate, use
+$|e^{zh}-1|\leq e^{\beta h}+1\leq2e^{\beta h}$.
+Insert either bound into the exact power formula, use
+$|e^{zt}|=e^{\beta t}$, and combine the real exponential factors.
+Finally $e^h-1\geq h$ and $e^{rh}\leq2$ imply
+$e^{\log x-rh}\geq x/2$; all factors are nonnegative, so multiplying
+the two lower bounds proves the main-term inequality.
+\end{proof}
+
+\begin{lemma}[Smoothing an absolutely controlled series]
+\label{kernel:smoothing-series}
+\uses{kernel:spectral-smoothing}
+\lean{Sidon.intervalIntegral_tsum_of_uniform_norm_bound,Sidon.logarithmicPrimitive_norm_le_of_bound,Sidon.logarithmicPrimitive_tsum_of_uniform_bound,Sidon.spectralSmoothing_tsum_of_uniform_bound}\leanok
+Let $f_i:\mathbb R\to\mathbb C$ be continuous, let $m_i\geq0$ with
+$\sum_i m_i<\infty$, and suppose $|f_i(u)|\leq m_i$ throughout
+$0\leq u\leq T$, where $T\geq0$.
+For $0\leq t\leq T$ and every $n\geq0$,
+\[
+ P_n\!\left(\sum_i f_i\right)(t)=\sum_i P_nf_i(t),
+ \qquad |P_nf_i(t)|\leq m_iT^n.
+\]
+If additionally $h\geq0$ and $t+(n+2)h\leq T$, then
+\[
+ S_n\!\left(\sum_i f_i;h,t\right)=\sum_i S_n(f_i;h,t).
+\]
+All series in these statements converge absolutely at the points used.
+\end{lemma}
+\begin{proof}
+First consider one compact interval $[0,t]\subseteq[0,T]$.
+Continuity makes each $f_i$ integrable there, and
+$\int_0^t|f_i(u)|\,du\leq tm_i$.
+The right side is summable in $i$, so Mathlib's theorem for integration
+of a series with summable absolute integrals permits exchanging the
+series and this integral.
+
+The bound on $P_n$ follows by induction.  Its base is the assumed
+bound.  If $|P_nf_i(u)|\leq m_iT^n$ for $u\in[0,T]$, the norm of
+its integral through $t$ is at most $tm_iT^n\leq m_iT^{n+1}$.
+All factors in the last comparison are nonnegative.
+This bound proves absolute convergence of $\sum_iP_nf_i(t)$ by
+comparison with $T^n\sum_i m_i$.
+For the identity at level $n+1$, insert the identity at level $n$
+inside the primitive integral; the same absolute-integral comparison,
+now with summable majorant $m_iT^n$, permits exchanging the new series
+and integral.  Induction proves the first identity at every order.
+
+Expand the final finite difference as its binomial sum of evaluations
+at $t+kh$, $0\leq k\leq n+2$.
+These points lie in $[0,T]$, so the proved primitive identity and
+absolute convergence apply at every one.
+A finite sum commutes with the absolutely convergent series, as does
+multiplication by each signed binomial coefficient.
+Reassemble the binomial formula term by term to obtain the spectral
+smoothing identity.  This supplies an absolute-convergence proof for
+every infinite-series interchange used here.
+\end{proof}
+
+\begin{lemma}[The high-zero tail needs only reciprocal-square mass]
+\label{kernel:high-tail}
+\uses{kernel:spectral-atom}
+\lean{Sidon.weighted_spectral_atom_norm_le_high,Sidon.norm_spectral_tail_le_square_mass}\leanok
+Let $z_i\in\mathbb C$, $0\leq\Re z_i\leq1$, $m_i\geq0$, and
+$M=\sum_i m_i/|z_i|^2<\infty$.
+If $r=n+2$, $T>0$, $h\geq0$, and $L=t+rh\geq0$, then
+\[
+ \left|\sum_{|z_i|\geq T}m_i S_n(Q_{z_i};h,t)\right|
+ \leq e^L2^rT^{-(r-2)}M.
+\]
+In particular, for $L=\log x$, $h=x^{-1/3}$,
+$T=x^{17/50}$ and $r=128$, its ratio to $xh^r$ is at most
+$2^{128}M x^{-13/75}$, which tends to zero.
+\end{lemma}
+\begin{proof}
+For a tail index, $|z_i|\geq T>0$ ensures $z_i\ne0$.
+The high-frequency atom bound and
+$e^{(\Re z_i)L}\leq e^L$ give
+\[
+ |m_iS_n(Q_{z_i};h,t)|
+ \leq e^L2^r\frac{m_i}{|z_i|^r}
+ =e^L2^r\frac1{|z_i|^{r-2}}\frac{m_i}{|z_i|^2}
+ \leq e^L2^rT^{-(r-2)}\frac{m_i}{|z_i|^2}.
+\]
+The last inequality uses $r-2=n\geq0$ and monotonicity of nonnegative
+integer powers.  Outside the tail the corresponding summand is zero,
+so the same majorant applies to the series extended by zero.
+Its sum is finite by the assumed mass condition.  The norm of the
+series is at most the sum of its norms, and summing the displayed
+comparison yields the estimate, without a numerical table of zeros.
+For the displayed parameters, division by $xh^r$ leaves the exponent
+\[
+ \frac{128}{3}-126\frac{17}{50}=-\frac{13}{75}<0.
+\]
+All remaining quantities are fixed constants; hence this ratio tends
+to zero.  The following nodes identify the actual zeta-zero series
+and complete its density application.
+\end{proof}
+
+\begin{lemma}[Both ordinate signs and analytic multiplicity]
+\label{kernel:both-signs}
+\uses{construction:zero-count}
+\lean{Sidon.boundedNontrivialZeros,Sidon.sum_zetaZeroOccurrences,Sidon.sum_positiveNontrivialZeros,Sidon.boundedNontrivialZeros_subset_positive_conjugates,Sidon.sum_boundedNontrivialZeros_le_twice_occurrences}\leanok
+Let $Z_T$ be the finite set of actual nontrivial zeta zeros satisfying
+$|\rho|\leq T$.
+For every nonnegative function $f$ invariant under complex conjugation,
+\[
+ \sum_{\rho\in Z_T}m(\rho)f(\rho)
+ \leq2\sum_{z\in\operatorname{Occurrences}(T)}f(z_1).
+\]
+The occurrences on the right are exactly the positive-height
+multiplicity indices used in the density estimates.
+\end{lemma}
+\begin{proof}
+The actual zero set is discrete and closed, so its intersection with
+the compact closed ball is finite.  No nontrivial zero is real; the
+checked eta-positivity argument proves this for the actual zeta zeros.
+If $\Im\rho>0$ and $|\rho|\leq T$, then
+$0<\Im\rho\leq T$, so $\rho$ belongs to the finite positive-height
+set.  If $\Im\rho<0$, its literal complex conjugate belongs to that
+set.  Thus $Z_T$ is contained in the union of the positive-height set
+and its conjugates.
+These two sets are disjoint because their imaginary parts have opposite
+strict signs.  Conjugation is an involution, preserves the analytic
+order of the zero, and preserves $f$; hence their weighted sums agree.
+Nonnegativity permits enlarging the original finite sum to this union.
+Finally expand each positive zero of analytic order $m$ into the
+$m$ distinct pairs $(\rho,k)$ with $0\leq k<m$.
+Pairs from different zeros are disjoint because their first coordinates
+differ.  The resulting finite sum repeats $f(\rho)$ exactly $m$ times,
+which proves the occurrence identity and the stated comparison.
+The conjugation here is $\rho\mapsto\overline\rho$, rather than the
+functional-equation symmetry $\rho\mapsto1-\overline\rho$.
+\end{proof}
+
+\begin{theorem}[The actual smoothed explicit formula]
+\label{kernel:actual-smoothed-explicit}
+\uses{kernel:mangoldt-detector,kernel:spectral-atom,kernel:smoothing-series}
+\lean{RiemannGaussian.RosserSchoenfeldExplicitFormula.prime_eq_spectral,Sidon.smoothedMangoldt_zero_eq_primePrimitive,Sidon.smoothed_explicit_formula,Sidon.spectralSmoothing_trivialPrimitive_norm_le}\leanok
+For $r=n+2$, $h,t\geq0$, the actual arithmetic detector satisfies
+\[
+ \begin{aligned}
+ \Delta_h^r A_n(t)&=e^t(e^h-1)^r
+ -\sum_{\rho}m(\rho)e^{\rho t}
+       \left(\frac{e^{\rho h}-1}{\rho}\right)^r+R_n(h,t),\\
+ |R_n(h,t)|&\leq\frac{\pi^2}{6}h^n.
+ \end{aligned}
+\]
+The equality is in $\mathbb C$ after complexifying its real left
+side.  The zero sum ranges over all actual nontrivial zeta zeros with
+their analytic multiplicities and converges absolutely.
+\end{theorem}
+\begin{proof}
+The imported, checked logarithmic explicit formula is
+\[
+ \begin{aligned}
+ A_0(t)&=e^t-1-\log(2\pi)t\\
+ &\quad-\sum_\rho m(\rho)\frac{e^{\rho t}-1}{\rho^2}
+ +\sum_{j\geq1}\frac{1-e^{-2jt}}{4j^2}\qquad(t\geq0).
+ \end{aligned}
+\]
+Its analytic proof, including the actual Laplace transforms, complete
+xi logarithmic-derivative identity, and Fourier uniqueness argument,
+is expanded in the
+\href{https://github.com/TomasOrtega/Sidon/blob/master/docs/log-smoothed-explicit-formula.md}{explicit-formula proof note}.
+The zero series is controlled on $[0,T]$ by the summable majorant
+$(e^T+1)m(\rho)/|\rho|^2$; the trivial series is controlled there by
+$1/(4j^2)$.  Apply the proved series-smoothing theorem to these two
+majorants on $[0,t+rh]$.
+
+Linearity requires care because the displayed explicit formula was
+proved only at nonnegative time.  Replace each full primitive $Z(u)$
+and $V(u)$ by $Z(\max(u,0))$ and $V(\max(u,0))$.
+The trivial extension is continuous by continuity of $V$ on $[0,\infty)$.
+For the zero extension, near any fixed $u$ choose
+$T=\max(u,0)+1$.  All nearby $\max(v,0)$ lie in $[0,T]$;
+the preceding summable majorant and continuity of the individual
+composed atoms prove locally uniform convergence and continuity.
+These globally continuous extensions agree with the original functions
+at every nonnegative argument, so restricted congruence permits their
+use inside $S_n$.
+
+Apply $S_n$ to the formula.  Its affine term vanishes.
+Its main term is $Q_1$, giving $e^t(e^h-1)^r$ by the exact atom identity.
+Every actual zero contributes the displayed power factor, and the
+proved primitive compatibility identifies the left side with
+$\Delta_h^rA_n$.
+For a trivial zero $z=-2j$ one has $\Re z<0$, and its term is $-Q_z$.
+The integral representation gives
+$|(e^{zh}-1)/z|\leq h$, while the triangle inequality gives the second
+bound $|(e^{zh}-1)/z|\leq2/|z|$.
+Use the first bound for $n$ factors and the second for two factors.
+Since $|e^{zt}|\leq1$, this gives
+$|S_n(Q_{-2j})|\leq h^n/j^2$.
+The reciprocal-square sum is $\sum_{j\geq1}j^{-2}=\pi^2/6$.
+Absolute summation proves the stated remainder estimate.
+\end{proof}
+
+\begin{lemma}[The detector estimate in density-count notation]
+\label{kernel:detector-estimate}
+\uses{kernel:actual-smoothed-explicit,kernel:both-signs,kernel:high-tail,kernel:prime-extraction}
+\lean{Sidon.smoothed_zero_norm_le_occurrences_and_tail,Sidon.smoothed_detector_lower_estimate,Sidon.exists_prime_of_smoothed_total_error}\leanok
+Put $L=t+rh\geq0$, $r=n+2$, $T>0$, and
+$M=\sum_\rho m(\rho)/|\rho|^2$.
+Then
+\[
+ \begin{aligned}
+ e^t(e^h-1)^r&\leq\Delta_h^rA_n(t)
+ +2e^Lh^r\sum_{z\in\operatorname{Occurrences}(T)}e^{-L(1-\Re z_1)}\\
+ &\quad+e^L2^rT^{-(r-2)}M+\frac{\pi^2}{6}h^{r-2}.
+ \end{aligned}
+\]
+If the three displayed errors plus
+$h^{r-1}E(\lfloor e^L\rfloor)$ are strictly less than the left side,
+there is an actual prime $p$ with $t\leq\log p\leq L$.
+\end{lemma}
+\begin{proof}
+Split the actual smoothed zero series at $|\rho|<T$.
+The low part has finite support in the compact zero set.
+Its pointwise bound is
+\[
+ m(\rho)|S_n(Q_\rho)|
+ \leq e^Lh^r m(\rho)e^{-L(1-\Re\rho)}.
+\]
+Apply the both-sign occurrence comparison to the nonnegative,
+conjugation-invariant exponential weight.
+The high part converges absolutely by the square-mass majorant, and
+the high-tail lemma bounds its sum.
+Thus the full zero series is the sum of two summable series, justifying
+the split as an exact identity of ordinary absolute sums.
+Take real parts in the smoothed explicit formula; the real part of a
+complex number is at most its norm, and its negative real part is also
+at most its norm.  Insert the two zero estimates and the trivial
+remainder bound to obtain the displayed inequality.
+The final strict hypothesis forces
+$\Delta_h^rA_n(t)>h^{r-1}E(\lfloor e^L\rfloor)$.
+The proved arithmetic prime-extraction lemma then supplies the stated
+prime, including both support endpoints.
+\end{proof}
+
+\begin{theorem}[An unconditional prime interval of exponent two thirds]
+\label{kernel:prime-interval}
+\uses{kernel:detector-estimate,density:uniform-zeta,construction:logarithmic-reserve}
+\lean{Sidon.primeDetector_high_error_eq,Sidon.primeDetector_trivial_error_eq,Sidon.eventually_prime_interval_of_zeroWeight_tendsto,Sidon.eventually_prime_interval_of_uniform_zero_density,Sidon.exists_primeIntervalBound_two_thirds}\leanok
+There is a real $X$ such that for every $x\geq X$ there is a natural
+prime $p$ satisfying
+\[
+ x-128x^{2/3}\leq p\leq x.
+\]
+In Lean this is the unconditional statement
+$\exists X,\ \operatorname{PrimeIntervalBound}(2/3,128,X)$.
+\end{theorem}
+\begin{proof}
+Fix the smoothing order before choosing $x$:
+\[
+ r=128,\quad n=r-2=126,\quad h=x^{-1/3},\quad T=x^{17/50},
+\]
+\[
+ t=\log x-128h,\qquad s=xh^{128}>0.
+\]
+The variable $s$ here denotes the positive main scale, rather than a
+complex zeta argument.  The checked uniform density estimate has
+exponent $A=23/8$ and logarithmic loss $11$.
+Since
+\[
+ A\frac{17}{50}=\frac{391}{400}<1,
+\]
+the finite-layer density estimate and the unconditional logarithmic
+zero-free width give
+\[
+ W(x):=\sum_{z\in\operatorname{Occurrences}(x^{17/50})}
+       e^{-\log x(1-\Re z_1)}\longrightarrow0.
+\]
+The constants in the density estimate are uniform in the real-part
+threshold, so this implication applies to the moving layers near one.
+The zero-free logarithmic reserve absorbs the fixed logarithmic loss.
+The checked result \texttt{ZetaZeroWeight} supplies exactly this
+positive-height exponential sum; no change of multiplicity convention
+is necessary.
+
+Let $M=\sum_\rho m(\rho)/|\rho|^2$, the proved finite square mass.
+The high-zero and trivial-zero errors, divided by $s$, are exactly
+\[
+ \frac{(x2^{128}T^{-126})M}{s}
+       =2^{128}M x^{-13/75},\qquad
+ \frac{(\pi^2/6)h^{126}}{s}
+       =\frac{\pi^2}{6}x^{-1/3}.
+\]
+These identities follow by multiplication of positive real powers;
+the checked parameter lemmas retain the exact rational exponents.
+Both right sides tend to zero.
+The nonprime-power lemma gives, eventually,
+$h^{127}E(\lfloor x\rfloor)<s/16$.
+Also $128h\to0$, whereas $\log x\to\infty$.
+
+Choose a single threshold $X$ so that every $x\geq X$ has $x>1$ and
+all of the following properties:
+\[
+ W(x)<\frac1{16},\quad
+ 2^{128}M x^{-13/75}<\frac1{16},\quad
+ \frac{\pi^2}{6}x^{-1/3}<\frac1{16},
+\]
+\[
+ h^{127}E(\lfloor x\rfloor)<\frac{s}{16},\qquad
+ 128h<\min(\log2,1),\qquad \log x\geq1.
+\]
+The finite intersection of these eventual statements is eventual.
+The final two inequalities imply $t\geq0$ and $128h\leq\log2$.
+The main lower bound is therefore
+$e^t(e^h-1)^{128}\geq s/2$.
+The low-zero term is less than $2s/16=s/8$.
+The high-zero, trivial-zero, and nonprime-power terms are each less
+than $s/16$.  Their total is less than $5s/16<s/2$.
+Apply the exact detector estimate and prime-extraction theorem to
+obtain a prime with $t\leq\log p\leq\log x$.
+
+Exponentiation preserves these inequalities and $p>0$, so
+$e^t\leq p\leq x$.
+The elementary inequality $e^{-128h}\geq1-128h$ gives
+\[
+ e^t=xe^{-128h}\geq x-128xh=x-128x^{2/3}.
+\]
+Here $xh=x^{2/3}$ uses $x>0$.
+This proves the interval statement for every $x$ beyond the single
+chosen threshold.  Applying the actual density existence theorem
+removes all analytic premises from the final Lean declaration.
+\end{proof}

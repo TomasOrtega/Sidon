@@ -3,8 +3,8 @@
 The remaining Ingham argument needs a critical-line bound with some fixed
 exponent strictly below `1/4`. An unconditional Weyl theorem was found in
 the generic balanced-line API of RiemannGaussian during this audit.
-Its extracted proof closure is being checked before accepting it as a
-project dependency. The independent weaker cancellation route below
+Its proof-only closure has now passed the complete Lean/mathlib v4.35.0
+project build, with only the standard kernel axioms in its terminal audits. The independent weaker cancellation route below
 also records a fallback and has a checked first-derivative component.
 Only declarations explicitly identified as checked are project results.
 
@@ -52,21 +52,23 @@ and exponent `1/6`. Searching only for names containing “critical” or
 
 Its proof uses a direct Euler truncation, complete dyadic blocks, and
 the derivative estimates, rather than an approximate functional equation.
-Source inspection does not establish successful compilation or an axiom
-audit. Those checks remain prerequisites for accepting this theorem.
+The 242-module proof-only slice has now compiled in the project, and the
+terminal axiom audit reports exactly `propext`, `Classical.choice`, and
+`Quot.sound`. `Sidon/NumberTheory/WeylZeta.lean` specializes the generic
+theorem and has passed the complete project build.
 
 The elementary logarithm absorption is already checked in
 `Sidon/NumberTheory/ZetaCriticalLine.lean`:
 `sixth_rpow_mul_log_le_three_sixteenths` proves
 `x^(1/6)*log x≤48*x^(3/16)` for every `x>0`.
-The prospective specialization therefore gives the explicit constant
+The checked specialization gives the explicit constant
 `8192*48=393216` at exponent `3/16`.
 
 The bounded-height completion is also checked there. The critical-line
 parameterization `zetaCriticalPoint t=1/2+i*t` never meets the pole, so
 mathlib differentiability of actual zeta proves continuity of its
 composition. Compactness of `[-2,2]` supplies one bound `B≥1`.
-If the audited high-height estimate is accepted, take
+Take
 `D=max(B,393216)`. At bounded height the factor `(1+|t|)^(3/16)` is at
 least one; at larger height it dominates `|t|^(3/16)`. These two cases
 give `(G_c)` for every real height, with no exceptional bounded interval.
@@ -168,6 +170,8 @@ Choosing truncation power `tau=17/50` gives `A*tau=391/400<1` and
 Fourier characters, under adjacent monotone increment and gap bounds.
 For the independent weak route, the integer-strip partition, the second
 derivative test, and its logarithmic phase application remain proof
-obligations. Accepting the separately audited RiemannGaussian closure
-would supply the stronger full chain. A functional equation alone does
+obligations. The separately audited RiemannGaussian closure now supplies the stronger
+full chain through `Sidon.riemannZeta_critical_line_weyl`,
+`Sidon.riemannZeta_critical_line_power`, and
+`Sidon.exists_riemannZeta_critical_growth`. A functional equation alone does
 not justify truncating zeta at square-root length.

@@ -1,0 +1,424 @@
+\section{Checked interpolation and integrated Jensen estimates}
+
+These are reusable analytic statements for the remaining prime-interval
+argument.  The interpolation theorem has explicit holomorphy, boundedness,
+and integrability hypotheses.  Its specialization to the mollifier, and
+the resulting unconditional zero-density theorem, are separate steps.
+
+\begin{definition}[Vertical square integral]
+\label{density:vertical-l2}
+\lean{Sidon.verticalL2,Sidon.verticalPairing}\leanok
+For $\Phi:\mathbb C\to\mathbb C$ put
+\[
+ J(u)=\int_{\mathbb R}|\Phi(u+it)|^2\,dt.
+\]
+For a continuous function $g:\mathbb R\to\mathbb C$ and real $c,d$, put
+\[
+ P_g(z)=\int_{[c,d]}\Phi(z+it)\overline{g(t)}\,dt.
+\]
+The latter is an integral over a set; if $d<c$ its domain is empty.
+\end{definition}
+
+\begin{lemma}[Compact parameter integration]
+\label{density:compact-parameter}
+\uses{density:vertical-l2}
+\lean{Sidon.continuousOn_compact_integral,Sidon.differentiableOn_compact_integral,Sidon.diffContOnCl_verticalPairing}\leanok
+Suppose $a<b$ and $\Phi$ is analytic on a neighborhood of each point
+of $a\leq\Re z\leq b$.  Then $P_g$ is holomorphic on
+$a<\Re z<b$ and continuous on the closed strip.
+\end{lemma}
+\begin{proof}
+For continuity, regard the closed strip as a locally compact subtype.
+The integrand is jointly continuous in that parameter and in $t$.
+Integration of a jointly continuous function over the compact set
+$[c,d]$ is continuous: near a fixed parameter, a compact neighborhood
+times $[c,d]$ supplies a uniform integrable constant bound, and
+dominated convergence applies.
+
+For differentiability at an interior point $z$, choose $r>0$ such that
+the closed ball of radius $r$ about $z$ lies in the open strip.
+The derivative integrand
+$\Phi'(w+it)\overline{g(t)}$ is jointly continuous there.
+Its norm has an upper bound $M$ on the product of that closed ball
+and $[c,d]$, by compactness.  The constant $M$ is integrable on
+$[c,d]$.  The integrand and its derivative are measurable, and the
+pointwise complex derivative exists throughout the open ball.
+The dominated differentiation theorem therefore gives
+\[
+ P_g'(z)=\int_{[c,d]}\Phi'(z+it)\overline{g(t)}\,dt.
+\]
+All neighborhoods and bounds are uniform in $t$; no interchange of an
+uncontrolled infinite-domain derivative and integral is used.
+\end{proof}
+
+
+
+\begin{lemma}[Cumulative bounds imply Gaussian bounds]
+\label{density:gaussian-cumulative}
+\lean{Sidon.gaussianCumulativeConstant_pos,Sidon.gaussian_integral_of_cumulative}\leanok
+There is an absolute constant $C>0$ with the following property.
+Let $g:\mathbb R\to[0,\infty)$ be continuous, $K,N\geq0$,
+$R\geq1$, and $0\leq p\leq1$.  If, for every $U\geq0$,
+\[
+ \int_{[-U,U]}g(t)\,dt\leq K(U+N)(1+U)^p,
+\]
+then $t\mapsto e^{-2t^2/R^2}g(t)$ is integrable and
+\[
+ \int_{\mathbb R}e^{-2t^2/R^2}g(t)\,dt
+ \leq CK(R+N)R^p.
+\]
+\end{lemma}
+\begin{proof}
+Partition the real line into the measurable, pairwise disjoint sets
+$A_n=\{t:\lfloor|t|/R\rfloor=n\}$ for $n\in\mathbb N$.
+On $A_n$, one has $nR\leq|t|<(n+1)R$ and
+$e^{-2t^2/R^2}\leq e^{-n}$: for $n\geq1$ use $2n^2\geq n$,
+and for $n=0$ use nonnegativity of $t^2$.
+Apply the cumulative bound with $U=(n+1)R$.  The inequalities
+\[
+ U+N\leq(n+2)(R+N),\qquad 1+U\leq(n+2)R,
+ \qquad(n+2)^p\leq n+2
+\]
+give
+\[
+ \int_{A_n}e^{-2t^2/R^2}g(t)\,dt
+ \leq K(R+N)R^p e^{-n}(n+2)^2.
+\]
+Each restricted integrand is integrable because $A_n$ is contained
+in a compact interval and the integrand is continuous there.
+The majorant is summable: expand $(n+2)^2=n^2+4n+4$ and use
+summability of a polynomial times $e^{-n}$.
+The summable restricted norm integrals imply global integrability.
+Countable additivity over the partition and termwise comparison give
+the desired estimate with
+$C=1+\sum_{n\geq0}e^{-n}(n+2)^2>0$.
+In particular, the constant is independent of the moving exponent $p$.
+\end{proof}
+
+\begin{theorem}[Vertical $L^2$ log-convexity]
+\label{density:l2-interpolation}
+\uses{density:compact-parameter}
+\lean{Sidon.norm_compact_pairing_le,Sidon.norm_verticalPairing_interpolate,Sidon.verticalL2_le_interpolation,Sidon.verticalL2_logConvex}\leanok
+Assume $a<b$, $a\leq\sigma\leq b$, and the preceding analyticity
+hypothesis.  Assume also that $\Phi$ is bounded on the closed strip
+and that $t\mapsto|\Phi(u+it)|^2$ is integrable for every
+$u\in[a,b]$.  With $v=(\sigma-a)/(b-a)$,
+\[
+ J(\sigma)\leq J(a)^{1-v}J(b)^v.
+\]
+\end{theorem}
+\begin{proof}
+Translation invariance of Lebesgue measure gives
+$\int_{\mathbb R}|\Phi(z+it)|^2dt=J(\Re z)$.
+Cauchy--Schwarz and restriction of a nonnegative integral to $[c,d]$
+therefore give
+\[
+ |P_g(z)|\leq \sqrt{J(\Re z)}
+       \left(\int_{[c,d]}|g(t)|^2dt\right)^{1/2}.
+\]
+The boundedness of $\Phi$ and boundedness of $g$ on $[c,d]$ also
+bound $P_g$ uniformly on the strip.  The scalar three-lines theorem
+applies, with the holomorphy and boundary continuity proved above.
+
+Fix $c,d$ and choose $g(t)=\Phi(\sigma+it)$, which is continuous.
+Write $I=\int_{[c,d]}|g(t)|^2dt\geq0$, $A=\sqrt{J(a)}$, and
+$B=\sqrt{J(b)}$.  At the real point $\sigma$, the pairing is exactly
+the nonnegative real number $I$.  Three-lines yields
+\[
+ I\leq(A\sqrt I)^{1-v}(B\sqrt I)^v
+   =A^{1-v}B^v\sqrt I.
+\]
+If $I=0$, the desired bound is immediate.  Otherwise divide by
+$\sqrt I>0$ and square to obtain
+$I\leq(A^{1-v}B^v)^2$.
+This argument permits $A=0$ or $B=0$; no boundary positivity is
+assumed.  Finally the increasing sets $[-L,L]$, $L\in\mathbb R$,
+exhaust $\mathbb R$.  Integrability gives convergence of their
+integrals to $J(\sigma)$, so the same bound holds in the limit.
+Real-power multiplication and $A^2=J(a)$, $B^2=J(b)$ give the stated
+formula.
+\end{proof}
+
+\begin{lemma}[Mollifier detector in Jensen's formula]
+\label{density:jensen-detector}
+\lean{Sidon.mollifierDetector_factor,Sidon.zeta_divisor_le_mollifierDetector,Sidon.log_norm_one_sub_sq_le,Sidon.jensen_mollifier_detector_le}\leanok
+Put $f_N=\zeta M_N-1$ and $h_N=1-f_N^2$.
+On a closed disc avoiding $1$, with center $c$, radius $R>0$, and
+$h_N(c)\ne0$, every zeta zero is a zero of $h_N$ with at least its
+zeta multiplicity, and
+\[
+ \sum_z\operatorname{ord}_z(h_N)
+       \log\frac R{|c-z|}
+ \leq \mathop{\rm av}_{|z-c|=R}|f_N(z)|^2-\log|h_N(c)|.
+\]
+The divisor sum is restricted to the closed disc.
+\end{lemma}
+\begin{proof}
+The exact identity
+$h_N=\zeta\,M_N(2-\zeta M_N)$ is polynomial algebra.
+Both factors are analytic on the disc.  Nonvanishing of their
+product at the center shows that neither factor vanishes identically
+on the connected disc.  Their finite orders add under multiplication;
+the companion factor has nonnegative order, proving the multiplicity
+comparison.  Also
+$|1-w^2|\leq1+|w|^2$ and $\log(1+x)\leq x$ for $x\geq0$ imply
+$\log|1-w^2|\leq|w|^2$ when $1-w^2\ne0$.
+At zero the formal real logarithm is defined as zero, so the same
+inequality still holds.  Jensen's formula for the analytic detector
+and monotonicity of circle averages give the assertion.
+Boundary zeros are allowed by the checked closed-disc Jensen formula.
+\end{proof}
+
+\begin{lemma}[Mass of one zero under vertical integration]
+\label{density:jensen-mass}
+\lean{Sidon.jensen_disc_window,Sidon.jensen_log_weight_lower,Sidon.continuous_jensenVerticalWeight,Sidon.jensenVerticalWeight_integral_lower,Sidon.card_mul_jensen_mass_le_integral}\leanok
+Suppose $\tfrac12\leq\sigma\leq1$, $0\leq\delta\leq\tfrac14$,
+$\sigma+\delta\leq\beta\leq1$, and $4\leq\gamma\leq T$.
+Put $\rho=\beta+i\gamma$, $c_y=2+iy$, $R=2-\sigma$, and
+\[
+ w_\rho(y)=\max\{0,\log R-\log|c_y-\rho|\}.
+\]
+Then
+\[
+ \int_3^{T+1}w_\rho(y)\,dy\geq\frac{2\delta^2}{3}.
+\]
+For any finite collection of such zeros, including repeated indices,
+its cardinality times $2\delta^2/3$ is bounded by the integral of
+the sum of these weights.
+\end{lemma}
+\begin{proof}
+The real part of $c_y-\rho$ is $2-\beta\geq1$, so its norm is
+at least one.  In particular the logarithmic weight is continuous
+for every real $y$.
+If $|y-\gamma|\leq\delta$, then
+\[
+ |c_y-\rho|^2\leq(R-\delta)^2+\delta^2
+                   \leq(R-\delta/2)^2.
+\]
+For the second inequality the difference of right and left sides is
+$R\delta-7\delta^2/4\geq0$, since $R\geq1$ and
+$\delta\leq1/4$.  Both compared norms are nonnegative, so
+$|c_y-\rho|\leq R-\delta/2$.
+Writing this positive norm as $d$, the elementary inequality
+$\log(R/d)\geq1-d/R$ gives
+\[
+ \log(R/d)\geq\frac\delta{2R}\geq\frac\delta3,
+ \qquad R\leq3/2.
+\]
+The interval $[\gamma-\delta,\gamma+\delta]$ lies inside $[3,T+1]$.
+Integrate the lower bound $\delta/3$ on that interval of length
+$2\delta$ and use nonnegativity outside it.  Summing the resulting
+inequality over a finite index set commutes with integration because
+every weight is continuous on the compact interval.  Repeated indices
+give exactly the multiplicity convention needed for zero counting.
+\end{proof}
+
+\begin{lemma}[Actual occurrence counts from slice bounds]
+\label{density:actual-jensen-count}
+\uses{density:jensen-detector,density:jensen-mass,construction:mollifier-center}
+\lean{Sidon.sum_zetaZeroOccurrences,Sidon.sum_zeta_jensen_weight_le_error,Sidon.integral_circleAverage_vertical_le,Sidon.jensen_zero_occurrences_bound,Sidon.zetaZeroCount_le_low_add_high}\leanok
+Let $N\geq131072$, $\tfrac12\leq\sigma_0\leq1$,
+$0\leq\delta\leq\tfrac14$, and $T\geq3$.
+Let $S$ be any finite subcollection of the actual positive-height zeta-zero
+occurrences up to height $T$, with $\Re\rho\geq\sigma_0+\delta$
+and $\Im\rho\geq4$ for each occurrence.
+If, uniformly for $u\in[\sigma_0,4-\sigma_0]$,
+\[
+ \int_{[1,T+3]}|f_N(u+it)|^2\,dt\leq L,
+\]
+then
+\[
+ |S|\frac{2\delta^2}{3}
+ \leq L+(T-2)\frac{131072}{N}.
+\]
+\end{lemma}
+\begin{proof}
+Set $R=2-\sigma_0$.  For $y\in[3,T+1]$ the disc about $2+iy$
+of radius $R\leq3/2$ avoids the pole $1$: its center has imaginary
+part at least three, whereas its radius is at most $3/2$.
+The checked center estimate gives $h_N(2+iy)\ne0$ and
+$-\log|h_N(2+iy)|\leq131072/N$.
+
+Summing over the occurrence indices of one zero gives exactly its
+analytic multiplicity times its weight.
+Inside the disc, this multiplicity is the zeta divisor and is at most
+the detector divisor.  The logarithmic weight is nonnegative there.
+Outside the disc, the nonnegative-part weight and the restricted
+detector divisor both vanish.  The detector divisor has finite support
+on the compact disc, so extending a finite sum to its full divisor sum
+adds only nonnegative terms.  Jensen's formula consequently bounds
+the sum of occurrence weights by the error circle average plus
+$131072/N$.  Restricting to $S$ can only decrease it.
+
+Integrate in $y$.  Write the circle point as
+\[
+ (2+R\cos\theta)+i(y+R\sin\theta).
+\]
+Its real part belongs to $[\sigma_0,4-\sigma_0]$.
+For fixed $\theta$, the translated height interval is contained in
+$[1,T+3]$.  Nonnegativity and the slice hypothesis bound its integral
+by $L$.  Joint continuity on the compact parameter rectangle supplies
+absolute integrability, so Fubini exchanges the angular and vertical
+integrals.  The normalized angular average of the bound $L$ is $L$.
+The constant center loss integrates over an interval of length $T-2$.
+The mass lower bound for every occurrence gives the conclusion.
+Finally every occurrence with positive height less than four belongs
+to the fixed height-four zero set.  Partitioning a finite occurrence
+set at height four therefore gives
+$N(\sigma,T)\leq N(0,4)+|S|$ when $S$ contains all remaining
+occurrences satisfying the real-part cutoff.
+\end{proof}
+
+\begin{lemma}[Uniform optimization of the actual mollifier slices]
+\label{density:optimized-slices}
+\uses{construction:mollifier-gaussian,construction:mollifier-right}
+\lean{Sidon.mollifier_interpolation_power_bound,Sidon.ceil_mollifier_parameters,Sidon.exists_mollifier_optimized_interior_bound,Sidon.mollifier_optimized_right_bound,Sidon.exists_mollifier_optimized_bound,Sidon.exists_optimizedMollifierSlices}\leanok
+There are constants $K>0$ and $T_0$ such that for every $T\ge T_0$
+and $1/2\le\sigma_0\le1$, there is an integer $N\ge131072$ with
+$T\le N$ and, uniformly for $u\in[\sigma_0,4-\sigma_0]$,
+\[
+ \int_{[1,T+3]}|f_N(u+it)|^2\,dt
+ \le K T^{(11/4)(1-\sigma_0)}(\log T)^9.
+\]
+One may use $N=\lceil T+3\rceil$ and
+$T_0=\max\{131072,e^4\}$.
+\end{lemma}
+\begin{proof}
+First use a variable $R\ge1$ with $\log R\ge2$, set
+$N=\lceil R\rceil$ and $\delta=1/\log R$.
+The ceiling inequalities give
+\[
+ R\le N\le2R,\qquad
+ 1+\log N\le1+\log(2R)\le2\log R.
+\]
+Here $\log2\le1$ and $\log R\ge2$ justify the last step.
+The two Gaussian boundary estimates consequently give absolute
+$L,B\ge1$ such that
+\[
+ J(1/2)\le L(\log R)R^{11/8},\qquad
+ J(1+\delta)\le B(\log R)^8.
+\]
+Indeed $(R+N)\le3R$ on the left and $(R+N)/N\le2$ on the right.
+The identity $R\,R^{3/8}=R^{11/8}$ is valid since $R>0$.
+
+For $\sigma_0\le u\le1+\delta$, write
+$\theta=(u-1/2)/(1/2+\delta)$ and $q=1-\theta$.
+Then $0\le\theta,q\le1$ and
+\[
+ q=\frac{1+\delta-u}{1/2+\delta}
+ \le2(1-\sigma_0+\delta).
+\]
+The numerator is nonnegative, so replacing the denominator by $1/2$
+preserves the direction of the inequality.
+Since $L\log R\ge1$ and $B(\log R)^8\ge1$, the powers $q,\theta$
+at most one give
+\begin{align*}
+ J(1/2)^qJ(1+\delta)^\theta
+ &\le L B(\log R)^9R^{(11/8)q}\\
+ &\le LB e^{11/4}(\log R)^9R^{(11/4)(1-\sigma_0)}.
+\end{align*}
+For the last line use monotonicity of real powers for $R\ge1$ and
+\[
+ R^{(11/8)q}
+ \le R^{(11/4)(1-\sigma_0)+(11/4)/\log R}
+ =e^{11/4}R^{(11/4)(1-\sigma_0)}.
+\]
+The Gaussian recovery inequality supplies only the absolute factor
+$8e^2$, so it is absorbed in the constant.
+
+For $u\ge1+\delta$, use the direct right-half-plane mean square.
+The integral on $[1,R]$ is at most that on $[0,R]$, by nonnegativity.
+As $R\le N$, the latter is at most
+\[
+ 16(\log R)^4+1024(\log R)^8+512(\log R)^5
+ \le1552(\log R)^9.
+\]
+Since $\sigma_0\le1$ implies
+$R^{(11/4)(1-\sigma_0)}\ge1$, enlarging the same constant covers
+this entire half-plane.  This avoids restricting the circle's right
+edge to the interpolation strip.
+
+Finally set $R=T+3$.
+For $T\ge T_0$ one has $R\le2T$ and
+$\log R\le2\log T$.
+With $a=(11/4)(1-\sigma_0)$, the hypotheses imply $0\le a\le11/8<2$;
+therefore
+\[
+ R^a\le(2T)^a\le4T^a,\qquad
+ (\log R)^9\le512(\log T)^9.
+\]
+An enlargement by $2048$ gives the claimed constant.
+The integral over the closed interval equals the interval integral
+because Lebesgue measure has no atoms at its endpoints.
+The chosen $N$ is at least $T$ and at least $131072$.
+\end{proof}
+
+\begin{theorem}[An unconditional uniform zero-density estimate]
+\label{density:uniform-zeta}
+\uses{density:optimized-slices,density:actual-jensen-count,analytic:crude-zero-count}
+\lean{Sidon.rpow_logarithmic_shift,Sidon.crude_rpow_le_density_scale,Sidon.jensen_center_loss_le,Sidon.exists_uniformZeroDensity_of_mollifier_slices,Sidon.exists_uniformZetaZeroDensity}\leanok
+There exist $C>0$ and $U$ such that for every real $T\ge U$ and
+every $0\le\sigma\le1$,
+\[
+ N(\sigma,T)\le C T^{(23/8)(1-\sigma)}(\log T)^{11}.
+\]
+Here $N(\sigma,T)$ counts the actual zeta zeros with
+$0<\Im\rho\le T$ and $\Re\rho\ge\sigma$, including their actual
+analytic multiplicities.  No zero-density premise is assumed.
+\end{theorem}
+\begin{proof}
+Take the constants $K,T_0$ from the optimized slice lemma and enlarge
+the threshold to $U=\max\{T_0,e^4\}$.
+For $T\ge U$ put $\ell=\log T\ge4$, $\varepsilon=1/\ell\le1/4$,
+and $X=T^{(23/8)(1-\sigma)}\ge1$.
+The checked crude count gives a constant $D>0$ such that
+$N(0,T)\le DT^{4/3}$ for $T\ge1$.
+
+If $\sigma\le1/2+\varepsilon$, monotonicity in $\sigma$ and
+\[
+ \frac43\log T
+ \le\frac{23}{8}+\frac{23}{8}(1-\sigma)\log T
+\]
+give $N(\sigma,T)\le De^{23/8}X$.
+The displayed inequality follows from
+$(1-\sigma)\ell\ge\ell/2-1$ and $4/3\le23/16$.
+Multiplying the bound by $\ell^{11}\ge1$ proves the desired form.
+This case includes every $\sigma$ below the critical line and the
+small window immediately to its right.
+
+Otherwise put $\sigma_0=\sigma-\varepsilon$.
+Then $1/2\le\sigma_0\le1$ and the optimized slice lemma provides
+an admissible $N$ with $T\le N$.
+Let $S$ contain exactly the occurrences counted by $N(\sigma,T)$
+whose heights are at least four.
+Every occurrence in $S$ has real part at least
+$\sigma_0+\varepsilon$.
+The integrated Jensen inequality gives
+\[
+ |S|\frac{2\varepsilon^2}{3}
+ \le K T^{(11/4)(1-\sigma_0)}\ell^9
+       +(T-2)\frac{131072}{N}.
+\]
+The second term is at most $131072$, since $N\ge T>0$.
+Also, exactly rather than asymptotically,
+\[
+ T^{(11/4)(1-\sigma_0)}
+ =e^{11/4}T^{(11/4)(1-\sigma)}
+ \le e^{11/4}X.
+\]
+The equality uses $\varepsilon\log T=1$; the inequality uses
+$11/4\le23/8$ and $1-\sigma\ge0$.
+Dividing by $2\varepsilon^2/3>0$ and enlarging $3/2$ to $2$ yields
+\[
+ |S|\le2\ell^2\bigl(Ke^{11/4}X\ell^9+131072\bigr).
+\]
+All remaining positive-height occurrences belong to the fixed finite
+height-four set, of cardinality $Z=N(0,4)$.
+Since $X\ell^{11}\ge1$ and $\ell^2\le X\ell^{11}$,
+\[
+ N(\sigma,T)
+ \le\bigl(Z+2(Ke^{11/4}+131072)\bigr)X\ell^{11}.
+\]
+Thus the positive constant
+$C=De^{23/8}+Z+2(Ke^{11/4}+131072)$ works in both cases.
+\end{proof}

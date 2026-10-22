@@ -10,10 +10,9 @@ in Lean. The main goals are Fourier uniformity, equidistribution in progressions
 and Bohr neighbourhoods, and partition regularity for equations in at least five
 variables.
 
-The formalization is **in progress**. The blueprint expands the paper's arguments
-into detailed natural-language proofs. A completed informal proof is distinct
-from a checked Lean theorem; only verified declarations are marked complete in
-the blueprint.
+The paper's **main results have checked Lean proofs**. The blueprint expands the
+arguments into detailed natural-language proofs and records the corrections to
+Lemmas 3.2 and 4.1. Only verified declarations are marked complete in the blueprint.
 
 - [Read the blueprint]({{ site.url }}/blueprint/)
 - [Download the blueprint PDF]({{ site.url }}/blueprint.pdf)
@@ -32,10 +31,17 @@ regular Bohr corollaries check with absolute constants **48000 and 48100**.
 **Theorem 1.15 on partition regularity is checked end to end.** Its inputs
 include full finite Deuber extraction from Hales--Jewett, quantitative Rado
 counting, the colouring dense model, and the Fourier counting-transfer bound.
+The necessary-condition colouring in **Remark 1.16** is also checked.
 Bose–Chowla, Proposition 1.13, and the modular obstruction in Remark 1.14
 are checked, including their sharp asymptotic densities for every sufficiently
-large interval. The largest-set rate in Corollary 1.4 still needs its
-power-saving prime interval input.
+large interval. **Corollary 1.4 is checked unconditionally**, with the
+N^(-1/12) Fourier rate for maximum Sidon sets.
+Its analytic proof includes checked Weyl growth for the actual zeta
+function, a Vinogradov–Korobov zero-free width, and an exact logarithmically
+smoothed explicit formula. Its positive prime-detector kernels, spectral tail
+bounds, mollifier endpoint estimates, vertical L² interpolation, and integrated
+Jensen argument prove a uniform zero-density estimate and a prime in
+[x − 128x^(2/3), x] for every sufficiently large real x.
 The project uses the latest stable Lean and mathlib **v4.35.0**, matching
 doc-gen4, and leanblueprint **0.0.20**.
 

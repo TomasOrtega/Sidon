@@ -1,22 +1,22 @@
 # Usage snapshot
 
-Measured at 2026-10-22T13:59:48.521142+00:00 from root `01a1636c-beb7-7282-9390-a9ced5631a74` and its recorded descendants.
-Elapsed time since the root task began: 133.94 minutes (8,036.521 seconds).
+Measured at 2026-10-22T15:03:42.121272+00:00 from root `01a1636c-beb7-7282-9390-a9ced5631a74` and its recorded descendants.
+Elapsed time since the root task began: 197.84 minutes (11,870.121 seconds).
 
-382,746,253 tokens: 381,603,847 input (377,360,640 cached), 1,142,406 output. The output includes 405,992 reasoning tokens; these are not counted twice.
+543,383,238 tokens: 541,747,108 input (535,830,912 cached), 1,636,130 output. The output includes 592,448 reasoning tokens; these are not counted twice.
 
-5,385,613 uncached-input-plus-output tokens (4,243,207 uncached input + 1,142,406 output). This excludes cached input reprocessed across requests and matches the goal counter definition; the larger total above includes those cached tokens for API pricing.
+7,552,326 uncached-input-plus-output tokens (5,916,196 uncached input + 1,636,130 output). This excludes cached input reprocessed across requests and matches the goal counter definition; the larger total above includes those cached tokens for API pricing.
 
-Recorded inference increments: 2,096; sessions: 4.
+Recorded inference increments: 2,998; sessions: 4.
 
 | Session | Input | Cached input | Output | Total |
 | --- | ---: | ---: | ---: | ---: |
-| `/root` | 81,127,547 | 80,210,432 | 246,222 | 81,373,769 |
-| `/root/scout` | 102,509,031 | 101,371,776 | 302,403 | 102,811,434 |
-| `/root/proof_core` | 92,965,331 | 91,714,944 | 299,702 | 93,265,033 |
-| `/root/proof_applications` | 105,001,938 | 104,063,488 | 294,079 | 105,296,017 |
+| `/root` | 119,734,909 | 118,523,904 | 353,968 | 120,088,877 |
+| `/root/scout` | 142,916,531 | 141,364,608 | 426,569 | 143,343,100 |
+| `/root/proof_core` | 133,490,169 | 131,592,576 | 433,413 | 133,923,582 |
+| `/root/proof_applications` | 145,605,499 | 144,349,824 | 422,180 | 146,027,679 |
 
-Token-only API-equivalent estimates covering all attributed usage: **$72.499789 Standard** or **$144.999578 Fast**. Actual billed cost is unavailable. Context bands are applied per inference increment.
+Token-only API-equivalent estimates covering all attributed usage: **$101.565000 Standard** or **$203.130000 Fast**. Actual billed cost is unavailable. Context bands are applied per inference increment.
 
 [Official pricing](https://developers.openai.com/api/docs/pricing); [rates and accounting assumptions](pricing.md).
 

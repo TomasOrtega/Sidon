@@ -18,8 +18,8 @@ reusable results. Historical immutable source links remain useful evidence.
 
 The upgraded project targets Lean/mathlib **v4.35.0**, mathlib commit
 [`56a0058`](https://github.com/leanprover-community/mathlib4/tree/56a005855ea17e0b0958f73ec801ae140b0a1679).
-The full Lean build passes. Documentation tooling versions and checks are
-recorded in [the tooling audit](blueprint-upgrade-research.md).
+The migration baseline passed its full Lean build. Documentation tooling
+versions and checks are recorded in [the tooling audit](blueprint-upgrade-research.md).
 
 - [`Analysis/Fourier/AddCircleMulti.lean`](https://github.com/leanprover-community/mathlib4/blob/56a005855ea17e0b0958f73ec801ae140b0a1679/Mathlib/Analysis/Fourier/AddCircleMulti.lean)
   supplies `UnitAddTorus.mFourier`, character density, the complete Fourier
@@ -37,6 +37,25 @@ recorded in [the tooling audit](blueprint-upgrade-research.md).
   obstruction constructions. See [the source/port audit](pnt-port.md) and
   [third-party notices](../THIRD_PARTY_NOTICES.md). The dependency audit of the
   imported theorem reports only the three standard Lean axioms.
+- [RiemannGaussian at `6e969fd`](https://github.com/dbsanfte/RiemannGaussian/tree/6e969fd6e9c639eed280c595732248c106187603)
+  supplies an actual Vinogradov–Korobov zero-free strip and critical-line
+  Weyl bound for mathlib's literal `riemannZeta`. Its Apache 2.0 proof slice
+  is now vendored under `Sidon/NumberTheory/RiemannGaussian/`, with the
+  original declaration namespaces preserved. In particular,
+  `ZetaVinogradovSummedZeroFree.exists_eventual_strip` and
+  `ZetaEulerLineBound.bound_abs` have compiled dependency closures and actual
+  kernel audits using only the three standard principles. The printed
+  finite-sum definitions and final theorem types were inspected, rather
+  than inferred from source naming. See [the semantic and build audit](riemann-gaussian-audit.md),
+  [the complete manifest](rg-extraction-manifest.json), and
+  [third-party notices](../THIRD_PARTY_NOTICES.md).
+  The expanded 275-module extraction also proves the exact logarithmically
+  smoothed von Mangoldt explicit formula, with the complete actual zero
+  divisor and qualitative reciprocal norm-square summability. It avoids
+  numerical initial-zero certificates. The full project build and actual
+  post-rewrite kernel audits passed; the
+  [detailed proof](log-smoothed-explicit-formula.md) supplies the spectral
+  input to the checked finite-difference detector.
 - This qualitative relative interval theorem does **not** imply the
   power-saving prime interval bound required for Corollary 1.4. The
   [quantitative research audit](prime-gap-research.md) and
@@ -89,9 +108,9 @@ Read-only inspection gives two especially relevant later additions:
   The product-character API is a useful reference for Appendix B, but it
   provides qualitative density rather than the required quantitative rate.
 
-Neither later file is a current dependency. Port small needed facts with
-their original attribution if appropriate; do not upgrade the entire project
-just to obtain a representation count or a product of characters.
+At the initial 4.14 audit neither later file was a dependency. The user
+subsequently requested the latest stable toolchain; `AddCircleMulti` is now
+used directly, as recorded in the migration section above.
 
 ## Lean Pool
 
@@ -127,7 +146,7 @@ then inspected actual source at the code-search snapshot
 [`8d89e8acfbca8b343e6449c3bf561c76f24ac072`](https://github.com/TauCetiProject/TauCeti/tree/8d89e8acfbca8b343e6449c3bf561c76f24ac072).
 Its toolchain is `v4.36.0-rc1`; its manifest pins mathlib
 `2cabef97b63d3275776b8b060d802de6a6fa1055`. It is Apache-2.0, but has a
-different and much newer dependency graph than this project.
+release-candidate dependency graph beyond this project's stable target.
 
 * [`TauCeti/Analysis/Fourier/AddCircle.lean`](https://github.com/TauCetiProject/TauCeti/blob/8d89e8acfbca8b343e6449c3bf561c76f24ac072/TauCeti/Analysis/Fourier/AddCircle.lean)
   contains `TauCeti.fourier_injective`, `TauCeti.fourierAddChar`,
@@ -197,8 +216,11 @@ explicitly discloses an incomplete formalization of a different paper.
 
 ## Precise gap and placement plan
 
-The following are **proposed modules**, not claims that their declarations
-already exist. The main blueprint should track each proof separately.
+The following records the **initial placement proposal**. Most listed
+interfaces have since been implemented under refined file names. The current
+blueprint and home page track checked declarations and the remaining
+quantitative prime-interval work; this historical proposal is not a current
+list of unproved obligations.
 
 1. `Sidon/Basic.lean`: generic Sidon predicate; equivalence of unordered sums
    and injective nonzero differences in additive commutative groups; subset

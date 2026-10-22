@@ -1,10 +1,16 @@
 # Formalization status
 
-This is an active formalization, not a completed proof of the paper. Only declarations
-compiled by Lean are marked `leanok` in the blueprint. The complete project build passes on the latest stable Lean/mathlib `v4.35.0`.
+The paper's main theorems, corollaries, obstruction constructions, and Rado necessity
+have checked Lean proofs. The blueprint records the corrections to Lemmas 3.2 and
+4.1; the literal dimension-uniform bandwidth claim is refuted by a checked counterexample.
+Only declarations compiled by Lean are marked `leanok`. The complete project build passes on the latest stable Lean/mathlib `v4.35.0`.
 Matching doc-gen4, leanblueprint `0.0.20`, the complete API documentation, PDF,
 web blueprint, declaration audit, and theorem dependency audit also pass. No project theorem uses proof placeholders, added axioms, option
 overrides, or native evaluation.
+
+Final local validation covers all 429 project modules (54,805 Lean lines), all
+368 declarations referenced by the blueprint, and the 68-page rendered PDF.
+All source files are reachable from `Sidon.lean`; there are no unchecked orphan modules.
 
 | Component | Expanded natural-language argument | Lean implementation |
 | --- | --- | --- |
@@ -22,9 +28,10 @@ overrides, or native evaluation.
 | Dual norms and dense models, Appendix C | Complete with real modulation and polynomial approximation | Checked, including simultaneous models and completion to a full dense colouring |
 | Quantitative Rado/Frankl–Graham–Rodl input | Complete reduction to checked Hales–Jewett | Checked from finite Deuber extraction, integer kernel parametrization and fiber counting |
 | Partition regularity transfer, Theorem 1.15 | Complete, including the quantitative counting argument | Checked end to end, with all constants chosen before the ambient interval and colouring |
+| Rado necessity, Remark 1.16 | Complete first-digit colouring proof | Checked on positive natural and integer tuples, with one fixed finite colouring |
 | Bose–Chowla finite-field construction | Complete proof accompanies the construction | Checked: every prime p gives p integer Sidon points in [p²−1] |
 | Sharp asymptotic obstruction constructions, Proposition 1.13 and Remark 1.14 | Complete from Bose–Chowla and a proved prime number theorem | Checked for every sufficiently large N, with the sharp leading coefficients |
-| Largest-set Corollary 1.4 | Reduction to a power-saving prime interval bound expanded; detailed Ingham roadmap | Conditional reduction and finite zero-layer bounds checked; quantitative analytic input pending |
+| Largest-set Corollary 1.4 | Complete Ingham density proof and positive smoothed-detector argument | Checked unconditionally, including actual Weyl/Vinogradov–Korobov inputs, exact explicit formula, uniform zero density and the required prime-interval theorem |
 
 The blueprint records definitions, quantifier order, positive denominators, finite
 support, all four Fourier correlation errors, integer rounding, and small cases.
@@ -36,6 +43,8 @@ The usage report is a timestamped snapshot of locally recorded team inference
 counters, with inherited child history removed. Its API-equivalent estimate is
 not the user's actual subscription bill.
 
-The dependency audit in `scripts/CheckAxioms.lean` checks twelve public endpoints,
-including the imported weak prime number theorem and the bandwidth counterexample.
+The dependency audit in `scripts/CheckAxioms.lean` checks twenty-seven public endpoints,
+including the imported weak prime number theorem, the bandwidth counterexample,
+the actual zeta estimates, the exact smoothed explicit formula, uniform zero density,
+the short-prime-interval theorem, and the unconditional maximum-set Fourier rate.
 It permits only `propext`, `Classical.choice`, and `Quot.sound`.
