@@ -36,6 +36,7 @@ real or complex number as appropriate.
 \end{definition}
 
 \begin{lemma}[Difference uniqueness]
+\lean{IsSidonSet.eq_of_sub_eq_sub,IsSidonSet.iff_unique_nonzero_difference}\leanok
 \label{core:difference-uniqueness}
 \uses{def:sidon_set,core:finite-fourier}
 Let $S$ be a Sidon subset of an additive commutative group.  If
@@ -63,6 +64,7 @@ repository's definition.
 \end{proof}
 
 \begin{definition}[Integer Fej\'er averaging kernel]
+\lean{Sidon.fejerWeight,Sidon.fejerWeight_eq_nat_sub}\leanok
 \label{core:fejer-definition}
 For an integer $H\geq1$, define
 \[
@@ -75,6 +77,7 @@ this kernel with $H=\lfloor T\rfloor$.
 \end{definition}
 
 \begin{lemma}[Kernel identities]
+\lean{Sidon.fejerWeight_nonneg,Sidon.fejerWeight_neg,Sidon.fejerWeight_zero,Sidon.sum_fejerWeight,Sidon.sum_fejerWeight_mul_abs_le,Sidon.sum_fejerWeight_mul_sqrt_abs_le,Sidon.sum_fejerWeight_smul}\leanok
 \label{core:fejer-identities}
 \uses{core:fejer-definition}
 For $H\geq1$, the kernel is nonnegative and even, is zero unless
@@ -286,6 +289,7 @@ they are understood through the canonical embedding into $\mathbb C$.
 \end{definition}
 
 \begin{lemma}[Interval overlap and the two mixed errors]
+\lean{Sidon.intervalModel_correlationError_le,Sidon.mixed_correlationError_le,Sidon.correlationError_swap}\leanok
 \label{core:interval-errors}
 \uses{core:errors,core:fejer-identities,core:local-size}
 One has
@@ -323,6 +327,7 @@ and use evenness of $\mu_H$ to obtain $E_{21}=E_{12}$.
 \end{proof}
 
 \begin{lemma}[The self-correlation error and its diagonal]
+\lean{Sidon.self_correlationError_le}\leanok
 \label{core:self-error}
 \uses{core:captured-mass,core:errors,core:fejer-identities}
 The remaining error satisfies
@@ -541,10 +546,59 @@ $H\geq\frac12N^{3/4}>0$ for the second claim.  The last follows
 from $H\leq N^{3/4}$ and $m\leq5\sqrt N$.
 \end{proof}
 
+\begin{definition}[Padded variance used in Lean]
+\lean{Sidon.windowVariance}\leanok
+\label{core:padded-window-variance-definition}
+Keep the same backward count $c_H(t)$, but put $\widetilde T=N+H$,
+$\widetilde v=Hm/\widetilde T$, and
+\[
+ \widetilde V_H=\sum_{t=1}^{\widetilde T}
+                   (c_H(t)-\widetilde v)^2.
+\]
+The last count $c_H(N+H)$ is zero because its entire window lies
+strictly above $N$.  The additional index changes the centering;
+the following checked result records this convention explicitly.
+\end{definition}
+
+\begin{lemma}[Checked padded-window variance estimates]
+\lean{Sidon.sum_windowCount_interval,Sidon.sum_sq_windowCount,Sidon.windowVariance_eq,Sidon.sidon_windowVariance_le,Sidon.optimized_windowVariance_sqrt_le,Sidon.optimized_windowVariance_sqrt_div_le}\leanok
+\label{core:padded-window-variance}
+\uses{core:padded-window-variance-definition,core:sidon-size,core:rounded-window}
+The padded counts satisfy
+\[
+ \sum_{t=1}^{\widetilde T}c_H(t)=Hm,\qquad
+ \sum_{t=1}^{\widetilde T}c_H(t)^2
+       =H^2\sum_h\mu_H(h)r_S(h),
+\]
+\[
+ \widetilde V_H=H^2\sum_h\mu_H(h)r_S(h)
+                        -\frac{H^2m^2}{N+H},\qquad
+ \widetilde V_H\leq2H^2\lambda+H^3/N+5H\sqrt N.
+\]
+For $H=\lfloor N^{3/4}\rfloor$ this gives
+\[
+ \sqrt{\widetilde V_H}\leq3N^{5/8}R,\qquad
+ \sqrt{\widetilde V_H}/H\leq6N^{-1/8}R.
+\]
+\end{lemma}
+\begin{proof}
+Interchange the finite point and shift sums for the first moment.
+Expand the square and group pairs by their difference for the second
+moment.  The variance identity follows by expanding its defining
+square and substituting the first moment.  The same bound
+$N-m^2\leq2N\lambda$ as above, now with denominator $N+H$, gives
+$1-m^2/(N+H)\leq2\lambda+H/N$.  Also the nonzero-difference bound
+gives $\sum_h\mu_H(h)r_S(h)\leq1+m/H$.
+Substitute these facts into the variance identity and use
+$m\leq5\sqrt N$.  The optimization is the same polynomial
+inequality $6+2a^2\leq9(1+a)^2$ and floor estimate used above.
+\end{proof}
+
 \begin{theorem}[Cilleruelo interval estimate, Theorem 6.1]
+\lean{Sidon.cilleruelo_interval_estimate}\leanok
 \label{core:cilleruelo-input}
-\uses{core:optimized-variance,core:window-variance-definition}
-One may take the absolute constant $C_{\mathrm C}=11$ such that,
+\uses{core:padded-window-variance,core:optimized-variance,core:window-variance-definition}
+One may take the absolute constant $C_{\mathrm C}=16$ such that,
 for every $N\geq1$, every Sidon $S\subset J_N$, and every interval
 $I\subset J_N$ of $L$ integers,
 \[
@@ -612,16 +666,21 @@ $H^{-1}|\sum_Wd(t)|\leq H^{-1}\sqrt L\sqrt{V_H}
  \leq6\sqrt L\,N^{-1/8}R$.
 Thus $Lm/N-k\leq10N^{1/4}+6\sqrt L\,N^{-1/8}R\leq10BR$.
 Together with the upper bound this proves absolute discrepancy
-at most $11BR$, which is precisely the displayed estimate.
+at most $11BR\leq16BR$, and hence the displayed estimate.
+The implementation pads the window index interval by one zero
+at $N+H$ and centers at $Hm/(N+H)$.  It uses correspondingly
+padded expanded and contracted intervals.  These conventions
+give the same rate directly with constant $16$.
 \end{proof}
 
 \section{Section 6: the sharper Fourier estimate}
 
 \begin{corollary}[Short-boundary estimate, Corollary 6.2]
+\lean{Sidon.cilleruelo_short_interval}\leanok
 \label{core:cilleruelo-short-boundary}
 \uses{core:cilleruelo-input,core:sidon-size,core:errors}
-Use the preceding estimate with constant $C_{\mathrm C}$, and put
-$K=5+2C_{\mathrm C}$.  If $I\subset J_N$ has $L\leq N^{3/4}$
+Use the preceding estimate with $C_{\mathrm C}=16$ and put
+$K=5+2C_{\mathrm C}=37$.  If $I\subset J_N$ has $L\leq N^{3/4}$
 integers, then
 \[
  |S\cap I|\leq K\bigl(N^{1/4}+\sqrt\delta\,N^{3/8}\bigr).
@@ -645,13 +704,14 @@ This proves the claim, including $L=0$.
 \end{proof}
 
 \begin{theorem}[Improved Fourier uniformity, Theorem 6.3]
+\lean{Sidon.sidon_improved_fourier_discrepancy_sq_le,Sidon.sidon_improved_fourier_uniformity}\leanok
 \label{core:improved-fourier-uniformity}
 \uses{core:cilleruelo-short-boundary,core:self-error,core:rounded-window,core:van-der-corput}
-Let $D=290+60C_{\mathrm C}$, where $C_{\mathrm C}=11$ is available
+Let $D=290+60C_{\mathrm C}=1250$, where $C_{\mathrm C}=16$ is available
 from the proved interval estimate.  Then
 \[
  \left\|\widehat{1_S}-\frac{|S|}{N}\widehat{1_{J_N}}\right\|_\infty
- \leq\sqrt D\sqrt N\bigl(\delta+N^{-1/4}\bigr)^{1/2}.
+ \leq36\sqrt N\bigl(\delta+N^{-1/4}\bigr)^{1/2}.
 \]
 \end{theorem}
 \begin{proof}
@@ -688,8 +748,9 @@ Consequently
  \leq D N(\delta+N^{-1/4}),
 \]
 because $D=140+30K=290+60C_{\mathrm C}$ is at least $24+10K$.
-Taking nonnegative square roots and then the supremum proceeds
-exactly as in Theorem~\ref{core:fourier-uniformity}.
+Taking nonnegative square roots, using $\sqrt{1250}\leq36$, and
+then taking the supremum proceeds exactly as in
+Theorem~\ref{core:fourier-uniformity}.
 \end{proof}
 
 \paragraph{Dependency discipline.}

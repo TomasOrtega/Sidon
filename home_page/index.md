@@ -24,8 +24,15 @@ The checked Lean development proves **Theorem 1.2 in supremum norm, with
 absolute constant 16**. Its foundations include unique nonzero differences,
 exact Sidon additive energy, finite Fourier sums and fourth moments, the
 discrete Fejer kernel, unrestricted-window van der Corput, and the sharp
-Appendix A interval-size bound. The improved estimate and the
-partition-regularity and equidistribution applications remain in progress.
+Appendix A interval-size bound. The independent Cilleruelo interval estimate
+and **Theorem 3.1 for arbitrary finite arithmetic progressions** also check,
+including the normalized interval and residue-class corollaries.
+The improved Fourier estimate checks with **constant 36**. The smooth and
+regular Bohr corollaries check with absolute constants **48000 and 48100**.
+**Theorem 1.15 on partition regularity is checked end to end.** Its inputs
+include full finite Deuber extraction from Hales--Jewett, quantitative Rado
+counting, the colouring dense model, and the Fourier counting-transfer bound.
+The construction corollaries and their prime-gap inputs remain in progress.
 
 The proof audit gives explicit constants for the Fourier bounds and a full
 finite-variance proof of the Cilleruelo interval estimate. It corrects the small

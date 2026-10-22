@@ -36,8 +36,9 @@ jobs:
       - name: Build project
         run: ~/.elan/bin/lake build Sidon
 
-      - name: Cache mathlib API docs
-        uses: actions/cache@v4
+      - name: Restore mathlib API docs
+        id: mathlib_docs_cache
+        uses: actions/cache/restore@v4
         with:
           path: |
             .lake/build/doc/Init
@@ -54,6 +55,22 @@ jobs:
 
       - name: Build project API documentation
         run: ~/.elan/bin/lake -R -Kenv=dev build Sidon:docs
+
+      - name: Save mathlib API docs
+        if: steps.mathlib_docs_cache.outputs.cache-hit != 'true'
+        uses: actions/cache/save@v4
+        with:
+          path: |
+            .lake/build/doc/Init
+            .lake/build/doc/Lake
+            .lake/build/doc/Lean
+            .lake/build/doc/Std
+            .lake/build/doc/Mathlib
+            .lake/build/doc/declarations
+            .lake/build/doc/find
+            .lake/build/doc/*.*
+            !.lake/build/doc/declarations/declaration-data-Sidon*
+          key: ${{ steps.mathlib_docs_cache.outputs.cache-primary-key }}
       
       - name: Check for `home_page` folder # this is meant to detect a Jekyll-based website
         id: check_home_page
@@ -79,6 +96,7 @@ jobs:
             python3 -m venv env
             source env/bin/activate
             pip install --upgrade pip requests wheel
+            export LDFLAGS="-L/usr/lib/graphviz -Wl,-rpath,/usr/lib/graphviz ${LDFLAGS:-}"
             pip install pygraphviz
             pip install leanblueprint
             leanblueprint pdf
@@ -122,6 +140,3 @@ jobs:
         id: deployment
         uses: actions/deploy-pages@v4
 
-      - name: Make sure the API documentation cache works
-        run: mv home_page/docs .lake/build/doc
-     

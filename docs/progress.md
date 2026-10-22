@@ -10,17 +10,18 @@ overrides, or native evaluation.
 | Sidon definitions and unique nonzero differences | Complete | Checked |
 | Integer intervals and translation | Complete | Basic interface checked |
 | Finite Fourier sums and indicator norms | Complete | Checked |
-| Discrete Fejer probability kernel | Complete | Basic identities checked; triangular closed form pending |
+| Discrete Fejer probability kernel | Complete | Checked, including triangular closed form |
 | Correlations and van der Corput | Complete | Checked |
 | Erdos–Turan size bound, Appendix A | Complete with explicit constant | Checked |
 | Main Fourier uniformity, Theorem 1.2 | Complete with constant 16 | Checked in pointwise and supremum-norm forms |
-| Cilleruelo interval estimate and Section 6 | Complete from a finite variance identity | Pending |
-| Progressions, Section 3 | Complete, including lengths zero and one | Pending |
-| Smooth and regular Bohr corollaries | Complete with a dimension-uniform smoothing repair | Pending |
+| Cilleruelo interval estimate and Section 6 | Complete from a finite variance identity | Interval estimate checked with constant 16; improved Fourier estimate checked with constant 36 |
+| Progressions, Section 3 | Complete, including lengths zero and one | Theorem 3.1 and normalized interval/residue corollaries checked, including all endpoint conventions |
+| Smooth and regular Bohr corollaries | Complete with a dimension-uniform smoothing repair | Checked with absolute constants 48000 and 48100 |
 | Literal dimension-uniform bandwidth in Lemma 4.1 | Corrected dimension-dependent tensor argument; original uniform cutoff refuted by a counterexample | Pending |
-| Dual norms and dense models, Appendix C | Complete with real modulation and explicit polynomial approximation | Pending |
-| Quantitative Rado/Frankl–Graham–Rodl input | Complete reduction to checked Hales–Jewett | Pending |
-| Partition regularity transfer, Theorem 1.15 | Complete, including an expanded quantitative counting argument | Pending |
+| Dual norms and dense models, Appendix C | Complete with real modulation and polynomial approximation | Checked, including simultaneous models and completion to a full dense colouring |
+| Quantitative Rado/Frankl–Graham–Rodl input | Complete reduction to checked Hales–Jewett | Checked from finite Deuber extraction, integer kernel parametrization and fiber counting |
+| Partition regularity transfer, Theorem 1.15 | Complete, including the quantitative counting argument | Checked end to end, with all constants chosen before the ambient interval and colouring |
+| Bose–Chowla finite-field construction | Complete proof accompanies the construction | Checked: every prime p gives p integer Sidon points in [p²−1] |
 | Largest-set and asymptotic construction corollaries | Reduction explicit; Singer and prime-gap inputs remain dependencies | Pending |
 
 The blueprint records definitions, quantifier order, positive denominators, finite
@@ -33,5 +34,4 @@ The usage report is a timestamped snapshot of locally recorded team inference
 counters, with inherited child history removed. Its API-equivalent estimate is
 not the user's actual subscription bill.
 
-The axiom audit for `Sidon.sidon_fourier_uniformity`, `Sidon.vanDerCorput`, and
-`IsSidonSet.addEnergy_eq` reports only `propext`, `Classical.choice`, and `Quot.sound`.
+The axiom audits report only `propext`, `Classical.choice`, and `Quot.sound`.

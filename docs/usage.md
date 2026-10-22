@@ -1,20 +1,20 @@
 # Usage snapshot
 
-Measured at 2026-10-22T12:15:48.188860+00:00 from root `01a1636c-beb7-7282-9390-a9ced5631a74` and its recorded descendants.
-Elapsed time since the root task began: 29.94 minutes (1,796.189 seconds).
+Measured at 2026-10-22T13:03:01.130903+00:00 from root `01a1636c-beb7-7282-9390-a9ced5631a74` and its recorded descendants.
+Elapsed time since the root task began: 77.15 minutes (4,629.131 seconds).
 
-72,484,075 tokens: 72,192,580 input (71,207,424 cached), 291,495 output. The output includes 103,292 reasoning tokens; these are not counted twice.
+202,537,646 tokens: 201,820,990 input (199,556,096 cached), 716,656 output. The output includes 251,188 reasoning tokens; these are not counted twice.
 
-Recorded inference increments: 406; sessions: 4.
+Recorded inference increments: 1,144; sessions: 4.
 
 | Session | Input | Cached input | Output | Total |
 | --- | ---: | ---: | ---: | ---: |
-| `/root` | 17,790,282 | 17,532,416 | 62,040 | 17,852,322 |
-| `/root/scout` | 27,335,475 | 27,014,144 | 76,026 | 27,411,501 |
-| `/root/proof_core` | 15,014,308 | 14,815,360 | 74,612 | 15,088,920 |
-| `/root/proof_applications` | 12,052,515 | 11,845,504 | 78,817 | 12,131,332 |
+| `/root` | 47,808,881 | 47,220,864 | 162,998 | 47,971,879 |
+| `/root/scout` | 60,840,086 | 60,186,752 | 183,797 | 61,023,883 |
+| `/root/proof_core` | 46,497,879 | 45,961,472 | 183,858 | 46,681,737 |
+| `/root/proof_applications` | 46,674,144 | 46,187,008 | 186,003 | 46,860,147 |
 
-Token-only API-equivalent estimates covering all attributed usage: **$13.631318 Standard** or **$27.262636 Fast**. Actual billed cost is unavailable. Context bands are applied per inference increment.
+Token-only API-equivalent estimates covering all attributed usage: **$37.878712 Standard** or **$75.757424 Fast**. Actual billed cost is unavailable. Context bands are applied per inference increment.
 
 [Official pricing](https://developers.openai.com/api/docs/pricing); [rates and accounting assumptions](pricing.md).
 

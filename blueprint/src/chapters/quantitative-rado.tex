@@ -26,13 +26,15 @@ replaced by the same letter; the remaining positions have fixed letters.
 Reindexing its finite coordinate type by $\{0,\ldots,h-1\}$ gives the
 numerical form used below.  Taking any constant colouring shows that
 the resulting $h$ is positive, because a line has a variable position.
-The results in this chapter are detailed proof targets, not declarations
-already checked in Lean.
+The finite pattern definitions, block-embedding algebra, focused-row
+construction, and multiplicity bound are checked in Lean.  The full
+row-containment recursion and kernel parametrization remain proof targets.
 
 \section{Finite patterns and their embeddings}
 
 \begin{definition}[Rows of a Deuber pattern]
 \label{qr:deuber-pattern}
+\lean{Sidon.Deuber.row,Sidon.Deuber.pattern,Sidon.Deuber.IsRowRegular}\leanok
 For integers $m\geq0$, $p,c\geq1$ and $z=(z_0,\ldots,z_m)\in\mathbb Z^{m+1}$,
 write $F_p=\{-p,\ldots,p\}$ and put
 \[
@@ -52,6 +54,7 @@ monochromatic, since row zero is a singleton.
 
 \begin{definition}[Disjoint-support generator embeddings]
 \label{qr:block-embedding}
+\lean{Sidon.IsBlockEmbedding}\leanok
 An integer matrix $T$ with $q$ rows and $M$ columns is a block embedding if
 each row has a nonempty support and the supports of distinct rows are
 disjoint.  For a seed vector $Y\in\mathbb Z^M$, its new generators are
@@ -62,6 +65,7 @@ values and their colouring.
 
 \begin{lemma}[Composition preserves the block property]
 \label{qr:block-composition}
+\lean{Sidon.IsBlockEmbedding.mul,Sidon.IsBlockEmbedding.selectRows}\leanok
 \uses{qr:block-embedding}
 If $T$ and $U$ are block embeddings and their matrix product is defined,
 then $TU$ is a block embedding.  Selecting distinct rows of a block
@@ -80,9 +84,49 @@ For different $i$ these unions use disjoint sets of rows of $U$, and
 are therefore disjoint.  Row selection preserves the property directly.
 \end{proof}
 
+\begin{lemma}[The focused row from a finite family of block maps]
+\label{qr:focused-row}
+\lean{Sidon.Deuber.exists_focused_block_row}\leanok
+\uses{qr:block-embedding}
+Let $\delta$ and $\beta$ be finite index sets, let $p,r\geq1$, and let
+$c\in\mathbb Z\setminus\{0\}$.
+There are $h\geq1$ and a finite family of block matrices whose target
+coordinates are the early indices $\delta$, one middle index $*$, and
+late indices $\beta$, and whose source coordinates are
+$(\{0,\ldots,h-1\}\times\delta)$, $*$, and $\beta$, such that the
+following holds.  For every integer source vector $S$ and every
+$r$-colouring of $\mathbb Z$, some matrix $T$ in the family makes
+\[
+ \left\{c(TS)_*+\sum_{t\in\delta}a_t(TS)_t:a\in F_p^\delta\right\}
+\]
+monochromatic.
+\end{lemma}
+\begin{proof}
+Use the checked positive numerical version of Hales--Jewett for alphabet
+$F_p^\delta$.  For each variable word, assign its variable source
+coordinates to their corresponding early target indices, its fixed source
+coordinates to the middle index, and its extra coordinates to the
+corresponding middle or late target indices.
+The coefficients are $c$ for variable and extra coordinates and the fixed
+letters for fixed coordinates.
+Each source coordinate feeds at most one target, so supports are disjoint.
+Every early target has a source coordinate because the variable set is
+nonempty; each middle or late target has its own extra coordinate with
+coefficient $c\ne0$.  Thus the matrix is a block embedding.
+There are finitely many variable words, giving a fixed finite family.
+The focused-row expression is exactly the evaluation of the corresponding
+combinatorial line, as proved by
+\texttt{Sidon.Deuber.focusedRow\_eq\_wordEvaluation}.
+Its monochromaticity is therefore the Hales--Jewett conclusion.
+The next lemma additionally proves all row containments needed to iterate
+this construction; those containments are not asserted by the present
+checked lemma.
+\end{proof}
+
 \begin{lemma}[One additional monochromatic row]
 \label{qr:one-step}
-\uses{qr:deuber-pattern,qr:block-embedding}
+\lean{Sidon.Deuber.exists_fin_extraction_step}\leanok
+\uses{qr:deuber-pattern,qr:focused-row}
 Fix $m\geq1$, $p,c,r\geq1$ and $0\leq k<m$.
 There are integers $M\geq m$, $P,C\geq1$ and a finite family of block
 embeddings from $M+1$ generators to $m+1$ generators with the following
@@ -173,6 +217,7 @@ monochromatic by Hales--Jewett.  The new colouring is $(k+1)$-regular.
 
 \begin{theorem}[Finite Deuber extraction with finitely many block embeddings]
 \label{qr:finite-deuber}
+\lean{Sidon.Deuber.exists_finite_extraction}\leanok
 \uses{qr:one-step,qr:block-composition}
 For every number of generators $q\geq1$ and integers $p,c,r\geq1$, there
 are $M\geq q$, $P,C\geq1$, and a finite nonempty family
@@ -229,13 +274,14 @@ and every colouring.
 
 \begin{lemma}[A kernel matrix whose rows are Deuber coefficients]
 \label{qr:kernel-matrix}
+\lean{Sidon.QuantitativeRado.exists_deuber_kernel_matrix}\leanok
 Let $a_1,\ldots,a_s\in\mathbb Z\setminus\{0\}$, and suppose
 $\sum_{i\in I}a_i=0$ for some nonempty $I\subset\{1,\ldots,s\}$.
 Then $s\geq2$, and for $q=s-1$ there are $p,c\geq1$ and an integer
 matrix $B$ with $s$ rows and $q$ columns such that:
 \begin{enumerate}
 \item $a^{\mathsf T}B=0$;
-\item the map $B:\mathbb Q^q\to\mathbb Q^s$ is injective;
+\item the map $B:\mathbb Z^q\to\mathbb Z^s$ is injective;
 \item each row of $B$ has last nonzero entry $c$, and every earlier
       entry has absolute value at most $p$.
 \end{enumerate}
@@ -243,45 +289,56 @@ Consequently each coordinate of $By$ belongs to $D(q-1,p,c;y)$.
 \end{lemma}
 \begin{proof}
 A singleton $I$ cannot have zero sum because every $a_i$ is nonzero.
-Thus $s\geq2$ and $q\geq1$.
-Work first over $\mathbb Q$ in the kernel
-$V=\{v:\sum_i a_iv_i=0\}$.
-For any pivot $i_0$, solving for $v_{i_0}$ gives a linear isomorphism
-between $V$ and $\mathbb Q^{s-1}$; its dimension is therefore $q$.
-
-The vector $u_0=1_I$ is a nonzero element of $V$.
-If $I$ is all indices, retain this one vector as the beginning of a basis.
-If $I$ is proper, choose $i_0\in I$ and define $u_1$ by setting it equal
-to one outside $I$, zero on $I\setminus\{i_0\}$, and
+Choose a pivot $i_0\in I$ and a second index $j_0\in I\setminus\{i_0\}$.
+Put $c=|a_{i_0}|>0$, $\sigma=\operatorname{sign}(a_{i_0})$, and
+$J=\{1,\ldots,s\}\setminus\{i_0\}$.  Thus $|J|=q=s-1$ and
+$a_{i_0}\sigma=c$.  For $j\in J$ define the integer column
 \[
- (u_1)_{i_0}=-\frac{\sum_{i\notin I}a_i}{a_{i_0}}.
+ v_j=c e_j-\sigma a_j e_{i_0}.
 \]
-Its weighted coordinate sum is zero, so $u_1\in V$.
-The pair $u_0,u_1$ is linearly independent: any relation first evaluated
-outside $I$ forces the coefficient of $u_1$ to vanish, and then a
-coordinate inside $I$ forces the coefficient of $u_0$ to vanish.
+Its weighted coordinate sum is $c a_j-a_{i_0}\sigma a_j=0$.
+Let $u_0=c1_I$; its weighted sum is zero by the hypothesis on $I$.
+If $I$ is proper, choose $j_1\notin I$ and put
+\[
+ u_1=c1_{I^c}-\sigma\Bigl(\sum_{i\notin I}a_i\Bigr)e_{i_0}.
+\]
+Its weighted sum is again zero because $a_{i_0}\sigma=c$.
+The pivot belongs to $I$, so $j_1\in J$ and $j_1\ne j_0$.
 
-Extend this ordered independent list to a basis of $V$.
-In the matrix with those basis vectors as columns, each row has first
-nonzero entry one: for an index in $I$ it is in column $u_0$;
-for an index outside $I$ it is in column $u_1$.
-Every index is covered by one of these alternatives.
-Clear the finitely many rational denominators by multiplying the whole
-matrix by one positive integer $c$.
-The matrix becomes integral, is still an injective parametrization of
-the kernel, and its row first entries become the common positive integer
-$c$.  Reverse its column order to obtain $B$.
-Now each row has last nonzero entry $c$.
-Choose $p$ to be the maximum of one and all absolute values of its entries.
-All earlier entries are then in $F_p$, and the entries after the indicated
-last column are zero.  This is exactly the coefficient form defining a
-row of $D(q-1,p,c;y)$, proving the last assertion as well.
+Start with the columns $(v_j)_{j\in J}$, replace column $j_0$ by $u_0$,
+and, when $I$ is proper, replace column $j_1$ by $u_1$.
+Call the resulting matrix $C$.  Every column lies in the required kernel.
+The row at $j_0$ has value $c$ at column $j_0$ and zero elsewhere.
+In the proper case the same holds for row $j_1$ at column $j_1$:
+$u_0(j_1)=0$, $u_1(j_1)=c$, and all remaining compensated columns
+vanish there.  Therefore equality $Cy=Cz$ first gives
+$y_{j_0}=z_{j_0}$ and, when present, $y_{j_1}=z_{j_1}$, by cancellation
+of the nonzero integer $c$.  At any other row $j\in J$, all unreplaced
+columns vanish except column $j$, whose entry is $c$.  The replaced-column
+contributions already agree, so this row gives $y_j=z_j$.
+Hence $C$ is injective on integer vectors.
+
+Reindex $J$ by $\{0,\ldots,q-1\}$, placing $j_0$ last and, in the
+proper case, $j_1$ immediately before it.  Such a bijection is obtained
+from any finite enumeration by one or two swaps; two distinct chosen
+indices ensure $q\geq2$ in the proper case.  Let $B$ be the reindexed
+matrix.  Every row in $I$ has last entry $u_0(i)=c$.  Every row outside
+$I$ has last entry zero and penultimate entry $u_1(i)=c$, so its last
+nonzero entry is also $c$.  In the full case all rows have last entry $c$.
+Column reindexing preserves both the kernel identity and injectivity.
+Choose $p$ to be the maximum of one and the finitely many absolute entry
+values of $B$.  The preceding coefficients then lie in $F_p$ and all
+coefficients after the chosen leader are zero.  Expanding a matrix-vector
+coordinate is exactly the coefficient form of a Deuber row, proving the
+last assertion.  This construction is integral throughout and requires
+neither basis extension nor a separate denominator-clearing argument.
 \end{proof}
 
 \section{Many independent seed generators and bounded multiplicity}
 
 \begin{lemma}[A positive generator box of the correct size]
 \label{qr:positive-box}
+\lean{Sidon.QuantitativeRado.exists_positive_seed_box,Sidon.QuantitativeRado.card_seedBox}\leanok
 \uses{qr:deuber-pattern}
 Let $M,P,C\geq1$, put
 \[
@@ -320,6 +377,7 @@ Every pattern entry is an integer between one and $N$, as required.
 
 \begin{lemma}[The multiplicity bound]
 \label{qr:multiplicity}
+\lean{Sidon.card_blockFamily_fiber_le,Sidon.card_blockFamily_pi_fiber_le}\leanok
 \uses{qr:block-embedding}
 Let $B:\mathbb Q^q\to\mathbb Q^s$ be injective, and let
 $\mathcal F$ be a finite family of $q$-by-$M$ integer block embeddings.
@@ -351,6 +409,7 @@ union smaller, so no uniqueness of $T$ is needed.
 
 \begin{theorem}[Quantitative Rado for one homogeneous equation]
 \label{qr:many-monochromatic}
+\lean{Sidon.QuantitativeRado.exists_many_monochromatic_linearSolutions}\leanok
 \uses{qr:finite-deuber,qr:kernel-matrix,qr:positive-box,qr:multiplicity}
 Let $a_1,\ldots,a_s\in\mathbb Z\setminus\{0\}$ have a nonempty zero-sum
 subcollection, and let $r\geq1$.  There are $N_0=N_0(a,r)$ and
@@ -401,12 +460,29 @@ Take
 Since $q=s-1$, this is exactly the claimed bound.
 Repeated coordinates are allowed throughout; no extra distinctness
 hypothesis was used or obtained.
+
+The checked implementation uses the smaller translated grid
+$Y_j=LR^j+u_j$, where independently $u_j\in\{0,\ldots,L-1\}$.
+It has exactly $L^M$ vectors and lies in the same separated intervals,
+so all preceding positivity estimates apply.
+For each block matrix, restricting a fiber to nonpivot coordinates now
+gives at most $L^{M-q}$ possibilities, because translating the alphabet
+does not affect coordinatewise injectivity.
+Consequently $L^M\leq rF\,C_{\max}L^{M-q}$, where $C_{\max}$ is the
+largest monochromatic solution count.  Since $L>0$ and $q\leq M$,
+canceling $L^{M-q}$ gives
+\[
+ C_{\max}\geq\frac{L^q}{rF}
+ \geq\frac{N^q}{rF(2H)^q}.
+\]
+This is stronger than the displayed constant with exponent $M$ and is
+the constant used by the Lean assembly theorem.
 \end{proof}
 
 \section{What the construction makes explicit}
 
 Every finite existence choice in this proof precedes the ambient length
-$N$ and its colouring.  The kernel basis and denominator clearing determine
+$N$ and its colouring.  The compensated integer columns determine
 $B,p,c$.  A finite recursion using Hales--Jewett lengths determines
 $M,P,C$ and the finite embedding family.  The elementary formulas above
 then give $N_0$ and $\delta_0$.  Numerical optimization is unnecessary for
@@ -415,8 +491,9 @@ coefficient vector and the number of colours.
 
 The new proof does not invoke an arithmetic removal lemma, a new infinite
 Ramsey theorem, or the unpublished Deuber statement in the 1988 paper.
-Its additional formalization work consists of finite sets, finite words,
-integer matrices, basis extension over $\mathbb Q$, and counting fibers.
-The hardest combinatorial theorem, Hales--Jewett, is already checked in
-mathlib.  It remains necessary to implement and check these reductions;
-this natural-language chapter is not itself a machine-checked proof.
+Its formalization uses finite sets, finite words, integer matrices, and
+counting fibers.  All reductions in this chapter and the quantitative Rado
+theorem are now checked in Lean.  The bounded-weight consequence in
+Lemma~\ref{app:weighted-interval-count} is checked as well.
+The only Ramsey theorem imported from mathlib is
+Hales--Jewett.

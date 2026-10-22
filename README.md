@@ -35,8 +35,12 @@ lake env lean --run .lake/packages/mathlib/Cache/Main.lean get
 ```
 
 The main Fourier-uniformity theorem (Theorem 1.2, with constant 16), its finite
-combinatorial foundations, and the sharp Appendix A interval bound are checked.
-The applications and improved Fourier bound remain in progress. See the
+combinatorial foundations, the sharp Appendix A interval bound, Cilleruelo's
+interval estimate, improved Fourier bound (constant 36), and progression
+equidistribution (Theorem 3.1) are checked. The smooth and regular Bohr
+corollaries also check with absolute constants. Partition regularity
+(Theorem 1.15) is checked end to end, including quantitative Rado counting and
+the colouring dense model. Construction and prime-gap inputs remain in progress. See the
 [status table](docs/progress.md) for the distinction between expanded arguments
 and checked Lean results. Work is checkpointed at least every two hours while active.
 
