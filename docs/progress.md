@@ -12,6 +12,10 @@ Final local validation covers all 429 project modules (54,805 Lean lines), all
 368 declarations referenced by the blueprint, and the 68-page rendered PDF.
 All source files are reachable from `Sidon.lean`; there are no unchecked orphan modules.
 
+Implementation commit `8db3e61812d5af1ddfa599041f44a9c90cddd79b` passed
+[Lean CI](https://github.com/TomasOrtega/Sidon/actions/runs/39801407725) and
+[blueprint/API generation and Pages deployment](https://github.com/TomasOrtega/Sidon/actions/runs/39801407688).
+
 | Component | Expanded natural-language argument | Lean implementation |
 | --- | --- | --- |
 | Sidon definitions and unique nonzero differences | Complete | Checked |

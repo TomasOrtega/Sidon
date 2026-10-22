@@ -1,6 +1,6 @@
-# Finite Fourier core: implementation plan and proof audit
+# Finite Fourier core: original plan and proof audit
 
-This plan covers Sections 2 and 6 and Appendix A of [Ortega–Prendiville, arXiv:2110.13447](https://arxiv.org/abs/2110.13447). The detailed informal proof is [fourier-core.tex](../blueprint/src/chapters/fourier-core.tex). Proposed declaration names below describe future work; they are not a claim that these declarations currently exist.
+This historical plan covers Sections 2 and 6 and Appendix A of [Ortega–Prendiville, arXiv:2110.13447](https://arxiv.org/abs/2110.13447). All its implementation goals are now checked. The detailed informal proof and actual declaration mappings are in [fourier-core.tex](../blueprint/src/chapters/fourier-core.tex). Proposed names below record the original design and can differ from the final API.
 
 The first implemented core module is `Sidon/Analysis/DiscreteFejer.lean`, checked with `lake env lean Sidon/Analysis/DiscreteFejer.lean`. Its declaration names are `Sidon.fejerWeight`, `fejerWeight_apply`, `fejerWeight_nonneg`, `sum_fejerWeight_mul`, `sum_fejerWeight_smul`, `sum_fejerWeight`, `fejerWeight_neg`, `fejerWeight_zero`, `fejerWeight_eq_zero_of_le_abs`, `abs_lt_of_mem_support_fejerWeight`, `sum_fejerWeight_mul_le`, `sum_fejerWeight_mul_abs_le`, and `sum_fejerWeight_mul_sqrt_abs_le`. It defines the difference distribution using `Finset.range H`, which has the same differences as `{1,…,H}`. The generic scalar-average identity works in every real module, including `ℂ`.
 

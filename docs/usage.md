@@ -1,22 +1,22 @@
 # Usage snapshot
 
-Measured at 2026-10-22T15:03:42.121272+00:00 from root `01a1636c-beb7-7282-9390-a9ced5631a74` and its recorded descendants.
-Elapsed time since the root task began: 197.84 minutes (11,870.121 seconds).
+Measured at 2026-10-22T15:30:18.483985+00:00 from root `01a1636c-beb7-7282-9390-a9ced5631a74` and its recorded descendants.
+Elapsed time since the root task began: 224.44 minutes (13,466.484 seconds).
 
-543,383,238 tokens: 541,747,108 input (535,830,912 cached), 1,636,130 output. The output includes 592,448 reasoning tokens; these are not counted twice.
+558,339,647 tokens: 556,673,694 input (550,423,424 cached), 1,665,953 output. The output includes 614,750 reasoning tokens; these are not counted twice.
 
-7,552,326 uncached-input-plus-output tokens (5,916,196 uncached input + 1,636,130 output). This excludes cached input reprocessed across requests and matches the goal counter definition; the larger total above includes those cached tokens for API pricing.
+7,916,223 uncached-input-plus-output tokens (6,250,270 uncached input + 1,665,953 output). This excludes cached input reprocessed across requests and matches the goal counter definition; the larger total above includes those cached tokens for API pricing.
 
-Recorded inference increments: 2,998; sessions: 4.
+Recorded inference increments: 3,049; sessions: 4.
 
 | Session | Input | Cached input | Output | Total |
 | --- | ---: | ---: | ---: | ---: |
-| `/root` | 119,734,909 | 118,523,904 | 353,968 | 120,088,877 |
+| `/root` | 134,661,495 | 133,116,416 | 383,791 | 135,045,286 |
 | `/root/scout` | 142,916,531 | 141,364,608 | 426,569 | 143,343,100 |
 | `/root/proof_core` | 133,490,169 | 131,592,576 | 433,413 | 133,923,582 |
 | `/root/proof_applications` | 145,605,499 | 144,349,824 | 422,180 | 146,027,679 |
 
-Token-only API-equivalent estimates covering all attributed usage: **$101.565000 Standard** or **$203.130000 Fast**. Actual billed cost is unavailable. Context bands are applied per inference increment.
+Token-only API-equivalent estimates covering all attributed usage: **$106.114684 Standard** or **$212.229368 Fast**. Actual billed cost is unavailable. Context bands are applied per inference increment.
 
 [Official pricing](https://developers.openai.com/api/docs/pricing); [rates and accounting assumptions](pricing.md).
 

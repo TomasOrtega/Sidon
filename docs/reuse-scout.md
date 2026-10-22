@@ -218,8 +218,8 @@ explicitly discloses an incomplete formalization of a different paper.
 
 The following records the **initial placement proposal**. Most listed
 interfaces have since been implemented under refined file names. The current
-blueprint and home page track checked declarations and the remaining
-quantitative prime-interval work; this historical proposal is not a current
+blueprint and home page track the checked declarations, including the completed
+quantitative prime-interval proof; this historical proposal is not a current
 list of unproved obligations.
 
 1. `Sidon/Basic.lean`: generic Sidon predicate; equivalence of unordered sums
