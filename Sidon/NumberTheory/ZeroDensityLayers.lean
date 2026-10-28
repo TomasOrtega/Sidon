@@ -1,6 +1,10 @@
-import Sidon.NumberTheory.ZeroLayers
-import Sidon.NumberTheory.ZetaZeroCount
-import Mathlib.Analysis.SpecialFunctions.Pow.Asymptotics
+module
+
+public import Sidon.NumberTheory.ZeroLayers
+public import Sidon.NumberTheory.ZetaZeroCount
+public import Mathlib.Analysis.SpecialFunctions.Pow.Asymptotics
+
+@[expose] public section
 
 /-! # Uniform zero density bounds imply finite weighted-zero bounds -/
 

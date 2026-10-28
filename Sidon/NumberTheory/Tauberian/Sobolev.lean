@@ -1,10 +1,14 @@
+module
+
 /-
 Adapted from PrimeNumberTheoremAnd/Sobolev.lean, commit 127b50e33f6033e2147921167a117af96d9ba4ea.
 Released under Apache 2.0; original authors: PrimeNumberTheoremAnd contributors.
 -/
-import Mathlib.Analysis.Calculus.Deriv.Support
-import Mathlib.Analysis.Distribution.SchwartzSpace.Deriv
-import Mathlib.Order.Filter.ZeroAndBoundedAtFilter
+public import Mathlib.Analysis.Calculus.Deriv.Support
+public import Mathlib.Analysis.Distribution.SchwartzSpace.Deriv
+public import Mathlib.Order.Filter.ZeroAndBoundedAtFilter
+
+@[expose] public section
 
 namespace Sidon.NumberTheory.Tauberian
 

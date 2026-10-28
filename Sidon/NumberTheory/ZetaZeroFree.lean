@@ -1,6 +1,10 @@
-import Sidon.NumberTheory.LogarithmicReserve
-import Sidon.NumberTheory.ZetaZeroCount
-import Sidon.NumberTheory.RiemannGaussian.ZetaVinogradovSummedZeroFree
+module
+
+public import Sidon.NumberTheory.LogarithmicReserve
+public import Sidon.NumberTheory.ZetaZeroCount
+public import Sidon.NumberTheory.RiemannGaussian.ZetaVinogradovSummedZeroFree
+
+@[expose] public section
 
 /-! # Uniform zero-free widths from high-ordinate margins -/
 

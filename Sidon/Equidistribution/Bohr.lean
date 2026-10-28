@@ -1,6 +1,10 @@
-import Sidon.Combinatorics.Intervals
-import Mathlib.Analysis.Normed.Group.AddCircle
-import Mathlib.Tactic
+module
+
+public import Sidon.Combinatorics.Intervals
+public import Mathlib.Analysis.Normed.Group.AddCircle
+public import Mathlib.Tactic
+
+@[expose] public section
 
 /-! # Finite Bohr sets and denominator-free regularity -/
 

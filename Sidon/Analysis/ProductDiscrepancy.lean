@@ -1,5 +1,9 @@
-import Sidon.Analysis.FiniteHolder
-import Mathlib.Tactic
+module
+
+public import Sidon.Analysis.FiniteHolder
+public import Mathlib.Tactic
+
+@[expose] public section
 
 /-! # A finite product difference bounded by single-factor differences -/
 

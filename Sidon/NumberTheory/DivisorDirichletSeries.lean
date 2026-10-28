@@ -1,6 +1,10 @@
-import Sidon.NumberTheory.DivisorMeanSquare
-import Mathlib.NumberTheory.LSeries.Dirichlet
-import Mathlib.NumberTheory.LSeries.Convolution
+module
+
+public import Sidon.NumberTheory.DivisorMeanSquare
+public import Mathlib.NumberTheory.LSeries.Dirichlet
+public import Mathlib.NumberTheory.LSeries.Convolution
+
+@[expose] public section
 
 /-! # Absolutely convergent divisor Dirichlet series -/
 

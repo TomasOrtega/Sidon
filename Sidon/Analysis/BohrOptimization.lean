@@ -1,4 +1,8 @@
-import Sidon.Analysis.SmoothingOptimization
+module
+
+public import Sidon.Analysis.SmoothingOptimization
+
+@[expose] public section
 
 /-! # Optimizing the regular Bohr-set boundary error -/
 

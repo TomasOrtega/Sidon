@@ -1,5 +1,9 @@
-import Sidon.Transference.DenseModel
-import Sidon.Transference.RestrictionMoments
+module
+
+public import Sidon.Transference.DenseModel
+public import Sidon.Transference.RestrictionMoments
+
+@[expose] public section
 
 /-! # The dense model on integer intervals -/
 

@@ -1,3 +1,5 @@
+module
+
 /-
 Copyright (c) 2026 David Sanftenberg. All rights reserved.
 Released under Apache 2.0 license as described in LICENSES/Apache-2.0.txt.
@@ -5,19 +7,21 @@ Authors: David Sanftenberg
 -/
 /- Adapted from dbsanfte/RiemannGaussian; provenance and modifications are
 recorded in docs/rg-extraction-manifest.json. -/
-import Mathlib.Algebra.BigOperators.Intervals
-import Mathlib.Algebra.Field.ZMod
-import Mathlib.Analysis.SumIntegralComparisons
-import Mathlib.Data.Fintype.CardEmbedding
-import Mathlib.Data.Fintype.Perm
-import Mathlib.Data.Nat.Choose.Bounds
-import Mathlib.Data.Nat.Dist
-import Mathlib.Data.Nat.GCD.BigOperators
-import Mathlib.Data.Nat.ModEq
-import Mathlib.LinearAlgebra.Vandermonde
-import Mathlib.MeasureTheory.Function.LpSpace.Indicator
-import Mathlib.NumberTheory.Bertrand
-import Sidon.NumberTheory.RiemannGaussian.VinogradovKorobovMoment
+public import Mathlib.Algebra.BigOperators.Intervals
+public import Mathlib.Algebra.Field.ZMod
+public import Mathlib.Analysis.SumIntegralComparisons
+public import Mathlib.Data.Fintype.CardEmbedding
+public import Mathlib.Data.Fintype.Perm
+public import Mathlib.Data.Nat.Choose.Bounds
+public import Mathlib.Data.Nat.Dist
+public import Mathlib.Data.Nat.GCD.BigOperators
+public import Mathlib.Data.Nat.ModEq
+public import Mathlib.LinearAlgebra.Vandermonde
+public import Mathlib.MeasureTheory.Function.LpSpace.Indicator
+public import Mathlib.NumberTheory.Bertrand
+public import Sidon.NumberTheory.RiemannGaussian.VinogradovKorobovMoment
+
+@[expose] public section
 
 namespace RiemannGaussian.VinogradovExplicitKorobov
 noncomputable section

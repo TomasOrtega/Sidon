@@ -1,6 +1,10 @@
-import Mathlib.Analysis.SpecialFunctions.Integrals.Basic
-import Mathlib.Analysis.Complex.Norm
-import Mathlib.Tactic
+module
+
+public import Mathlib.Analysis.SpecialFunctions.Integrals.Basic
+public import Mathlib.Analysis.Complex.Norm
+public import Mathlib.Tactic
+
+@[expose] public section
 
 /-! # Finite mean squares of Dirichlet polynomials -/
 

@@ -1,9 +1,13 @@
-import Mathlib.Analysis.Complex.Hadamard
-import Mathlib.Analysis.Calculus.ParametricIntegral
-import Mathlib.MeasureTheory.Integral.Bochner.Set
-import Mathlib.MeasureTheory.Function.L2Space
-import Mathlib.MeasureTheory.Group.Integral
-import Mathlib.Tactic
+module
+
+public import Mathlib.Analysis.Complex.Hadamard
+public import Mathlib.Analysis.Calculus.ParametricIntegral
+public import Mathlib.MeasureTheory.Integral.Bochner.Set
+public import Mathlib.MeasureTheory.Function.L2Space
+public import Mathlib.MeasureTheory.Group.Integral
+public import Mathlib.Tactic
+
+@[expose] public section
 
 /-! # Interpolation of vertical square integrals -/
 

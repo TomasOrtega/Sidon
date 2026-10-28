@@ -1,4 +1,8 @@
-import Sidon.Combinatorics.Deuber.Extraction
+module
+
+public import Sidon.Combinatorics.Deuber.Extraction
+
+@[expose] public section
 
 /-! # Ordered row containment for the Hales--Jewett block maps -/
 

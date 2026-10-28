@@ -1,6 +1,10 @@
-import Mathlib.NumberTheory.Harmonic.Bounds
-import Mathlib.Algebra.Order.BigOperators.Group.Finset
-import Mathlib.Tactic
+module
+
+public import Mathlib.NumberTheory.Harmonic.Bounds
+public import Mathlib.Algebra.Order.BigOperators.Group.Finset
+public import Mathlib.Tactic
+
+@[expose] public section
 
 /-! # Reciprocal gaps between distinct positive integers -/
 

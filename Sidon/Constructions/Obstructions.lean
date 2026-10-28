@@ -1,6 +1,10 @@
-import Sidon.Constructions.BoseChowla
-import Mathlib.Analysis.SpecialFunctions.Sqrt
-import Mathlib.NumberTheory.Bertrand
+module
+
+public import Sidon.Constructions.BoseChowla
+public import Mathlib.Analysis.SpecialFunctions.Sqrt
+public import Mathlib.NumberTheory.Bertrand
+
+@[expose] public section
 
 /-! # Dense finite Sidon families with modular obstructions -/
 

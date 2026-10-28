@@ -1,6 +1,10 @@
-import Mathlib.Analysis.SpecialFunctions.Exp
-import Mathlib.Algebra.BigOperators.Intervals
-import Mathlib.Tactic
+module
+
+public import Mathlib.Analysis.SpecialFunctions.Exp
+public import Mathlib.Algebra.BigOperators.Intervals
+public import Mathlib.Tactic
+
+@[expose] public section
 
 /-! # Finite layer bounds for zero-density arguments -/
 

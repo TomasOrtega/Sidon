@@ -1,6 +1,10 @@
-import Sidon.Equidistribution.ProgressionL1
-import Sidon.Equidistribution.ProgressionClipping
-import Sidon.FourierUniformity
+module
+
+public import Sidon.Equidistribution.ProgressionL1
+public import Sidon.Equidistribution.ProgressionClipping
+public import Sidon.FourierUniformity
+
+@[expose] public section
 
 /-! # Equidistribution of extremal Sidon sets in arithmetic progressions -/
 

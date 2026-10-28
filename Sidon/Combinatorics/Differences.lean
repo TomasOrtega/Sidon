@@ -1,4 +1,8 @@
-import Sidon.Basic
+module
+
+public import Sidon.Basic
+
+@[expose] public section
 
 /-! # Nonzero differences of Sidon sets -/
 

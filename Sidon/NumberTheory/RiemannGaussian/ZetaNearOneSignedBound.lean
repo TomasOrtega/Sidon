@@ -1,3 +1,5 @@
+module
+
 /-
 Copyright (c) 2026 David Sanftenberg. All rights reserved.
 Released under Apache 2.0 license as described in LICENSES/Apache-2.0.txt.
@@ -5,14 +7,16 @@ Authors: David Sanftenberg
 -/
 /- Adapted from dbsanfte/RiemannGaussian; provenance and modifications are
 recorded in docs/rg-extraction-manifest.json. -/
-import Sidon.NumberTheory.RiemannGaussian.AnalyticDiscSignedDerivative
-import Sidon.NumberTheory.RiemannGaussian.DerivativeOrderComparison
-import Sidon.NumberTheory.RiemannGaussian.GaussianZetaBridge
-import Sidon.NumberTheory.RiemannGaussian.GaussianZetaGeometry
-import Sidon.NumberTheory.RiemannGaussian.ZetaMoebiusWronskian
-import Sidon.NumberTheory.RiemannGaussian.ZetaNearOneCanonical
-import Sidon.NumberTheory.RiemannGaussian.ZetaNearOneJensen
-import Sidon.NumberTheory.RiemannGaussian.ZetaNearOneLocalDisc
+public import Sidon.NumberTheory.RiemannGaussian.AnalyticDiscSignedDerivative
+public import Sidon.NumberTheory.RiemannGaussian.DerivativeOrderComparison
+public import Sidon.NumberTheory.RiemannGaussian.GaussianZetaBridge
+public import Sidon.NumberTheory.RiemannGaussian.GaussianZetaGeometry
+public import Sidon.NumberTheory.RiemannGaussian.ZetaMoebiusWronskian
+public import Sidon.NumberTheory.RiemannGaussian.ZetaNearOneCanonical
+public import Sidon.NumberTheory.RiemannGaussian.ZetaNearOneJensen
+public import Sidon.NumberTheory.RiemannGaussian.ZetaNearOneLocalDisc
+
+@[expose] public section
 
 namespace RiemannGaussian.ZetaNearOneSignedBound
 noncomputable section

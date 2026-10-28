@@ -1,3 +1,5 @@
+module
+
 /-
 Copyright (c) 2026 David Sanftenberg. All rights reserved.
 Released under Apache 2.0 license as described in LICENSES/Apache-2.0.txt.
@@ -5,53 +7,55 @@ Authors: David Sanftenberg
 -/
 /- Adapted from dbsanfte/RiemannGaussian; provenance and modifications are
 recorded in docs/rg-extraction-manifest.json. -/
-import Mathlib.Algebra.Polynomial.Degree.IsMonicOfDegree
-import Mathlib.Algebra.Polynomial.PartialFractions
-import Mathlib.Analysis.Calculus.Deriv.Polynomial
-import Mathlib.Analysis.Calculus.InverseFunctionTheorem.Analytic
-import Mathlib.Analysis.Complex.LocallyUniformLimit
-import Mathlib.Analysis.Complex.PhragmenLindelof
-import Mathlib.Analysis.Complex.Polynomial.Basic
-import Mathlib.Analysis.Complex.RealDeriv
-import Mathlib.Analysis.Complex.TaylorSeries
-import Mathlib.Analysis.InnerProductSpace.Adjoint
-import Mathlib.Analysis.InnerProductSpace.NormDet
-import Mathlib.Analysis.InnerProductSpace.ProdL2
-import Mathlib.Analysis.InnerProductSpace.Projection.FiniteDimensional
-import Mathlib.Analysis.InnerProductSpace.l2Space
-import Mathlib.Analysis.Matrix.Order
-import Mathlib.Analysis.MeanInequalities
-import Mathlib.Analysis.Normed.Field.Approximation
-import Mathlib.Analysis.Normed.Field.Lemmas
-import Mathlib.Analysis.Polynomial.Basic
-import Mathlib.Analysis.SpecialFunctions.FrullaniIntegral
-import Mathlib.Analysis.SpecialFunctions.ImproperIntegrals
-import Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp
-import Mathlib.Analysis.SpecificLimits.RCLike
-import Mathlib.FieldTheory.IsAlgClosed.Basic
-import Mathlib.FieldTheory.RatFunc.Basic
-import Mathlib.FieldTheory.Separable
-import Mathlib.LinearAlgebra.Determinant
-import Mathlib.LinearAlgebra.Dimension.Finrank
-import Mathlib.LinearAlgebra.FiniteDimensional.Lemmas
-import Mathlib.LinearAlgebra.Lagrange
-import Mathlib.LinearAlgebra.Matrix.Notation
-import Mathlib.MeasureTheory.Function.L2Space
-import Mathlib.MeasureTheory.Group.Integral
-import Mathlib.MeasureTheory.Integral.Asymptotics
-import Mathlib.MeasureTheory.Integral.DominatedConvergence
-import Mathlib.MeasureTheory.Integral.IntegralEqImproper
-import Mathlib.NumberTheory.ArithmeticFunction.VonMangoldt
-import Mathlib.RingTheory.MvPolynomial.Symmetric.NewtonIdentities
-import Mathlib.RingTheory.Polynomial.DegreeLT
-import Mathlib.RingTheory.Polynomial.Resultant.Basic
-import Mathlib.RingTheory.Polynomial.Vieta
-import Mathlib.RingTheory.Polynomial.Wronskian
-import Mathlib.Topology.Algebra.InfiniteSum.TsumUniformlyOn
-import Mathlib.Topology.LocallyConstant.Basic
-import Mathlib.Topology.MetricSpace.Infsep
-import Mathlib.Topology.UniformSpace.UniformApproximation
-import Sidon.NumberTheory.RiemannGaussian.GaussianDigammaGauss
+public import Mathlib.Algebra.Polynomial.Degree.IsMonicOfDegree
+public import Mathlib.Algebra.Polynomial.PartialFractions
+public import Mathlib.Analysis.Calculus.Deriv.Polynomial
+public import Mathlib.Analysis.Calculus.InverseFunctionTheorem.Analytic
+public import Mathlib.Analysis.Complex.LocallyUniformLimit
+public import Mathlib.Analysis.Complex.PhragmenLindelof
+public import Mathlib.Analysis.Complex.Polynomial.Basic
+public import Mathlib.Analysis.Complex.RealDeriv
+public import Mathlib.Analysis.Complex.TaylorSeries
+public import Mathlib.Analysis.InnerProductSpace.Adjoint
+public import Mathlib.Analysis.InnerProductSpace.NormDet
+public import Mathlib.Analysis.InnerProductSpace.ProdL2
+public import Mathlib.Analysis.InnerProductSpace.Projection.FiniteDimensional
+public import Mathlib.Analysis.InnerProductSpace.l2Space
+public import Mathlib.Analysis.Matrix.Order
+public import Mathlib.Analysis.MeanInequalities
+public import Mathlib.Analysis.Normed.Field.Approximation
+public import Mathlib.Analysis.Normed.Field.Lemmas
+public import Mathlib.Analysis.Polynomial.Basic
+public import Mathlib.Analysis.SpecialFunctions.FrullaniIntegral
+public import Mathlib.Analysis.SpecialFunctions.ImproperIntegrals
+public import Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp
+public import Mathlib.Analysis.SpecificLimits.RCLike
+public import Mathlib.FieldTheory.IsAlgClosed.Basic
+public import Mathlib.FieldTheory.RatFunc.Basic
+public import Mathlib.FieldTheory.Separable
+public import Mathlib.LinearAlgebra.Determinant
+public import Mathlib.LinearAlgebra.Dimension.Finrank
+public import Mathlib.LinearAlgebra.FiniteDimensional.Lemmas
+public import Mathlib.LinearAlgebra.Lagrange
+public import Mathlib.LinearAlgebra.Matrix.Notation
+public import Mathlib.MeasureTheory.Function.L2Space
+public import Mathlib.MeasureTheory.Group.Integral
+public import Mathlib.MeasureTheory.Integral.Asymptotics
+public import Mathlib.MeasureTheory.Integral.DominatedConvergence
+public import Mathlib.MeasureTheory.Integral.IntegralEqImproper
+public import Mathlib.NumberTheory.ArithmeticFunction.VonMangoldt
+public import Mathlib.RingTheory.MvPolynomial.Symmetric.NewtonIdentities
+public import Mathlib.RingTheory.Polynomial.DegreeLT
+public import Mathlib.RingTheory.Polynomial.Resultant.Basic
+public import Mathlib.RingTheory.Polynomial.Vieta
+public import Mathlib.RingTheory.Polynomial.Wronskian
+public import Mathlib.Topology.Algebra.InfiniteSum.TsumUniformlyOn
+public import Mathlib.Topology.LocallyConstant.Basic
+public import Mathlib.Topology.MetricSpace.Infsep
+public import Mathlib.Topology.UniformSpace.UniformApproximation
+public import Sidon.NumberTheory.RiemannGaussian.GaussianDigammaGauss
+
+@[expose] public section
 
 open Complex Filter MeasureTheory Metric Polynomial Set Topology
 open scoped Classical ENNReal Interval LSeries.notation Topology lp

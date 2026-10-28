@@ -1,5 +1,9 @@
-import Sidon.Transference.Counting
-import Mathlib.Analysis.MeanInequalities
+module
+
+public import Sidon.Transference.Counting
+public import Mathlib.Analysis.MeanInequalities
+
+@[expose] public section
 
 /-! # Weighted Fourier moments for Sidon majorants -/
 

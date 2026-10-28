@@ -1,6 +1,10 @@
-import Sidon.NumberTheory.ZeroDensityLayers
-import Sidon.NumberTheory.LogarithmicReserve
-import Sidon.NumberTheory.ZetaZeroFree
+module
+
+public import Sidon.NumberTheory.ZeroDensityLayers
+public import Sidon.NumberTheory.LogarithmicReserve
+public import Sidon.NumberTheory.ZetaZeroFree
+
+@[expose] public section
 
 /-! # Density and a logarithmic strip force weighted zeros to vanish -/
 

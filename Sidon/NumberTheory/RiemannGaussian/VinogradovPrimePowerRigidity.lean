@@ -1,3 +1,5 @@
+module
+
 /-
 Copyright (c) 2026 David Sanftenberg. All rights reserved.
 Released under Apache 2.0 license as described in LICENSES/Apache-2.0.txt.
@@ -5,10 +7,12 @@ Authors: David Sanftenberg
 -/
 /- Adapted from dbsanfte/RiemannGaussian; provenance and modifications are
 recorded in docs/rg-extraction-manifest.json. -/
-import Mathlib.Algebra.Field.ZMod
-import Mathlib.Data.Fintype.Perm
-import Mathlib.LinearAlgebra.Vandermonde
-import Sidon.NumberTheory.RiemannGaussian.VinogradovPowerSumRigidity
+public import Mathlib.Algebra.Field.ZMod
+public import Mathlib.Data.Fintype.Perm
+public import Mathlib.LinearAlgebra.Vandermonde
+public import Sidon.NumberTheory.RiemannGaussian.VinogradovPowerSumRigidity
+
+@[expose] public section
 
 namespace RiemannGaussian.VinogradovPrimePowerRigidity
 noncomputable section

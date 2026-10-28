@@ -1,6 +1,10 @@
-import Sidon.Analysis.TorusFourier
-import Mathlib.MeasureTheory.Group.Integral
-import Mathlib.MeasureTheory.Measure.Haar.Unique
+module
+
+public import Sidon.Analysis.TorusFourier
+public import Mathlib.MeasureTheory.Group.Integral
+public import Mathlib.MeasureTheory.Measure.Haar.Unique
+
+@[expose] public section
 
 /-! # Convolution and autocorrelation on the finite torus -/
 

@@ -1,4 +1,8 @@
-import Sidon.NumberTheory.SmoothedDetectorEstimate
+module
+
+public import Sidon.NumberTheory.SmoothedDetectorEstimate
+
+@[expose] public section
 
 /-! The fixed smoothing parameters and their decaying spectral errors. -/
 

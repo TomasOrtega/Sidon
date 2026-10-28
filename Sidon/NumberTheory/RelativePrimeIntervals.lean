@@ -1,4 +1,8 @@
-import Sidon.NumberTheory.PrimeNumberTheorem
+module
+
+public import Sidon.NumberTheory.PrimeNumberTheorem
+
+@[expose] public section
 
 /-! # Relative prime intervals
 

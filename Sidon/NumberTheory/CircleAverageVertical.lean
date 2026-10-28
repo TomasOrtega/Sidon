@@ -1,6 +1,10 @@
-import Mathlib.MeasureTheory.Integral.CircleAverage
-import Mathlib.MeasureTheory.Integral.Prod
-import Mathlib.Tactic
+module
+
+public import Mathlib.MeasureTheory.Integral.CircleAverage
+public import Mathlib.MeasureTheory.Integral.Prod
+public import Mathlib.Tactic
+
+@[expose] public section
 
 /-! # Integrating circle averages through vertical slices -/
 

@@ -1,6 +1,10 @@
-import Mathlib.Data.Int.Interval
-import Mathlib.Data.Matrix.Basic
-import Mathlib.Tactic
+module
+
+public import Mathlib.Data.Int.Interval
+public import Mathlib.Data.Matrix.Basic
+public import Mathlib.Tactic
+
+@[expose] public section
 
 /-! # Finite Deuber patterns and disjoint-support generator maps -/
 

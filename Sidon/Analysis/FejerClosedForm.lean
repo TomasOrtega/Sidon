@@ -1,4 +1,8 @@
-import Sidon.Analysis.DiscreteFejer
+module
+
+public import Sidon.Analysis.DiscreteFejer
+
+@[expose] public section
 
 /-! # The triangular closed form of the discrete Fejér kernel -/
 

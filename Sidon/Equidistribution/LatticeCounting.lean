@@ -1,5 +1,9 @@
-import Sidon.Equidistribution.NormalizedProgressions
-import Mathlib.Data.Int.CardIntervalMod
+module
+
+public import Sidon.Equidistribution.NormalizedProgressions
+public import Mathlib.Data.Int.CardIntervalMod
+
+@[expose] public section
 
 /-! # Lattice counts for intervals and residue classes -/
 

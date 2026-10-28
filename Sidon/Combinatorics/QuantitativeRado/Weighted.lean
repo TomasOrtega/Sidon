@@ -1,4 +1,8 @@
-import Sidon.Combinatorics.QuantitativeRado
+module
+
+public import Sidon.Combinatorics.QuantitativeRado
+
+@[expose] public section
 
 /-! # Bounded-weight consequence of quantitative Rado -/
 

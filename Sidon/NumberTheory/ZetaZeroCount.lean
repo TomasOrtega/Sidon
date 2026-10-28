@@ -1,6 +1,10 @@
-import Mathlib.NumberTheory.LSeries.ZetaZeros
-import Mathlib.Analysis.Analytic.Order
-import Mathlib.Tactic
+module
+
+public import Mathlib.NumberTheory.LSeries.ZetaZeros
+public import Mathlib.Analysis.Analytic.Order
+public import Mathlib.Tactic
+
+@[expose] public section
 
 /-! # Finite zeta-zero counts with analytic multiplicity -/
 

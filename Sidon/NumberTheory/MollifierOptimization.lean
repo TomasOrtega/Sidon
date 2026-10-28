@@ -1,5 +1,9 @@
-import Sidon.NumberTheory.MollifierInterpolation
-import Sidon.NumberTheory.MollifierRightHalfPlane
+module
+
+public import Sidon.NumberTheory.MollifierInterpolation
+public import Sidon.NumberTheory.MollifierRightHalfPlane
+
+@[expose] public section
 
 /-! # The power-saving exponent in the actual mollifier mean square -/
 

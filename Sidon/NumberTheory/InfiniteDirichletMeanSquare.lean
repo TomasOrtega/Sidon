@@ -1,5 +1,9 @@
-import Sidon.NumberTheory.LogarithmicGapMeanSquare
-import Mathlib.MeasureTheory.Integral.DominatedConvergence
+module
+
+public import Sidon.NumberTheory.LogarithmicGapMeanSquare
+public import Mathlib.MeasureTheory.Integral.DominatedConvergence
+
+@[expose] public section
 
 /-! # Passing the uniform finite mean-square estimate to an absolutely convergent series -/
 

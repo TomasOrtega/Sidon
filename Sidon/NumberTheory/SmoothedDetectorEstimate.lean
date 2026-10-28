@@ -1,5 +1,9 @@
-import Sidon.NumberTheory.SmoothedZeroBounds
-import Sidon.NumberTheory.SmoothedPrimeDetection
+module
+
+public import Sidon.NumberTheory.SmoothedZeroBounds
+public import Sidon.NumberTheory.SmoothedPrimeDetection
+
+@[expose] public section
 
 /-! The exact arithmetic lower estimate furnished by the smoothed explicit formula. -/
 

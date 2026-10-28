@@ -1,6 +1,10 @@
-import Mathlib.Data.Finsupp.Basic
-import Mathlib.Analysis.SpecialFunctions.Sqrt
-import Mathlib.Tactic
+module
+
+public import Mathlib.Data.Finsupp.Basic
+public import Mathlib.Analysis.SpecialFunctions.Sqrt
+public import Mathlib.Tactic
+
+@[expose] public section
 
 /-! # The discrete Fejér probability kernel -/
 

@@ -1,5 +1,9 @@
-import Sidon.NumberTheory.PrimeDetectorParameters
-import Sidon.NumberTheory.ZetaZeroWeight
+module
+
+public import Sidon.NumberTheory.PrimeDetectorParameters
+public import Sidon.NumberTheory.ZetaZeroWeight
+
+@[expose] public section
 
 /-! A power-saving prime interval from the actual finite zero-weight limit. -/
 

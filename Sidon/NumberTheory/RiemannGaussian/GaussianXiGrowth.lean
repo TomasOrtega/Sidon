@@ -1,3 +1,5 @@
+module
+
 /-
 Copyright (c) 2026 David Sanftenberg. All rights reserved.
 Released under Apache 2.0 license as described in LICENSES/Apache-2.0.txt.
@@ -5,17 +7,19 @@ Authors: David Sanftenberg
 -/
 /- Adapted from dbsanfte/RiemannGaussian; provenance and modifications are
 recorded in docs/rg-extraction-manifest.json. -/
-import Mathlib.Analysis.Analytic.Order
-import Mathlib.Analysis.Complex.CauchyIntegral
-import Mathlib.Analysis.Complex.JensenFormula
-import Mathlib.Analysis.Complex.Trigonometric
-import Mathlib.Analysis.Normed.Group.Tannery
-import Mathlib.Analysis.SpecialFunctions.Gaussian.GaussianIntegral
-import Mathlib.Analysis.SpecificLimits.Basic
-import Mathlib.NumberTheory.Harmonic.ZetaAsymp
-import Mathlib.NumberTheory.LSeries.RiemannZeta
-import Mathlib.NumberTheory.LSeries.ZetaZeros
-import Mathlib.Topology.Algebra.Module.Cardinality
+public import Mathlib.Analysis.Analytic.Order
+public import Mathlib.Analysis.Complex.CauchyIntegral
+public import Mathlib.Analysis.Complex.JensenFormula
+public import Mathlib.Analysis.Complex.Trigonometric
+public import Mathlib.Analysis.Normed.Group.Tannery
+public import Mathlib.Analysis.SpecialFunctions.Gaussian.GaussianIntegral
+public import Mathlib.Analysis.SpecificLimits.Basic
+public import Mathlib.NumberTheory.Harmonic.ZetaAsymp
+public import Mathlib.NumberTheory.LSeries.RiemannZeta
+public import Mathlib.NumberTheory.LSeries.ZetaZeros
+public import Mathlib.Topology.Algebra.Module.Cardinality
+
+@[expose] public section
 
 namespace RiemannGaussian
 

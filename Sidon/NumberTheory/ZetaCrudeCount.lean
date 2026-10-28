@@ -1,11 +1,15 @@
+module
+
 /-
 Copyright (c) 2026 David Sanftenberg. All rights reserved.
 Released under Apache 2.0 license as described in LICENSES/Apache-2.0.txt.
 Authors: David Sanftenberg
 -/
-import Sidon.NumberTheory.ZetaZeroCount
-import Sidon.NumberTheory.RiemannGaussian.GaussianXiSubquadraticGrowth
-import Sidon.NumberTheory.RiemannGaussian.GaussianXiSubquadraticCounting
+public import Sidon.NumberTheory.ZetaZeroCount
+public import Sidon.NumberTheory.RiemannGaussian.GaussianXiSubquadraticGrowth
+public import Sidon.NumberTheory.RiemannGaussian.GaussianXiSubquadraticCounting
+
+@[expose] public section
 
 /-! # A crude multiplicity-sensitive zero count
 

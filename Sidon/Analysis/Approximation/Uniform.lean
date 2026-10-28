@@ -1,4 +1,8 @@
-import Sidon.Analysis.Approximation.Convolution
+module
+
+public import Sidon.Analysis.Approximation.Convolution
+
+@[expose] public section
 
 /-! # Uniform Lipschitz error bounds for tensor Fejér approximation -/
 

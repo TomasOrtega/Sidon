@@ -1,4 +1,8 @@
-import Lean
+module
+
+public import Lean
+
+@[expose] public section
 
 /-! # Blueprint declaration validation without a native Lake executable -/
 
@@ -11,7 +15,7 @@ def main (args : List String) : IO UInt32 := do
   let env ← importModules #[{ module := `Sidon }] {}
   let mut ok := true
   for line in ← IO.FS.lines filename do
-    let name := line.trim.toName
+    let name := line.trimAscii.toString.toName
     unless env.contains name do
       IO.eprintln s!"Missing declaration: {name}"
       ok := false

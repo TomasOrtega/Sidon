@@ -1,4 +1,8 @@
-import Sidon.Transference.Counting
+module
+
+public import Sidon.Transference.Counting
+
+@[expose] public section
 
 /-! # Indicator weights count finite solutions -/
 

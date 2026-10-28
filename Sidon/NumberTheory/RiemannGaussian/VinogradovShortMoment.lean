@@ -1,3 +1,5 @@
+module
+
 /-
 Copyright (c) 2026 David Sanftenberg. All rights reserved.
 Released under Apache 2.0 license as described in LICENSES/Apache-2.0.txt.
@@ -5,14 +7,16 @@ Authors: David Sanftenberg
 -/
 /- Adapted from dbsanfte/RiemannGaussian; provenance and modifications are
 recorded in docs/rg-extraction-manifest.json. -/
-import Sidon.NumberTheory.RiemannGaussian.VinogradovDiagonalCost
-import Sidon.NumberTheory.RiemannGaussian.VinogradovDiagonalExponent
-import Sidon.NumberTheory.RiemannGaussian.VinogradovDiagonalIteration
-import Sidon.NumberTheory.RiemannGaussian.VinogradovExponentialDefect
-import Sidon.NumberTheory.RiemannGaussian.VinogradovMeanValue
-import Sidon.NumberTheory.RiemannGaussian.VinogradovNarrowCost
-import Sidon.NumberTheory.RiemannGaussian.VinogradovNarrowIteration
-import Sidon.NumberTheory.RiemannGaussian.VinogradovNarrowThreshold
+public import Sidon.NumberTheory.RiemannGaussian.VinogradovDiagonalCost
+public import Sidon.NumberTheory.RiemannGaussian.VinogradovDiagonalExponent
+public import Sidon.NumberTheory.RiemannGaussian.VinogradovDiagonalIteration
+public import Sidon.NumberTheory.RiemannGaussian.VinogradovExponentialDefect
+public import Sidon.NumberTheory.RiemannGaussian.VinogradovMeanValue
+public import Sidon.NumberTheory.RiemannGaussian.VinogradovNarrowCost
+public import Sidon.NumberTheory.RiemannGaussian.VinogradovNarrowIteration
+public import Sidon.NumberTheory.RiemannGaussian.VinogradovNarrowThreshold
+
+@[expose] public section
 
 namespace RiemannGaussian.VinogradovShortMoment
 noncomputable section

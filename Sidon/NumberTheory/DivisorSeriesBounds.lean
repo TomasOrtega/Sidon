@@ -1,5 +1,9 @@
-import Sidon.NumberTheory.DivisorDirichletSeries
-import Sidon.NumberTheory.PSeriesBounds
+module
+
+public import Sidon.NumberTheory.DivisorDirichletSeries
+public import Sidon.NumberTheory.PSeriesBounds
+
+@[expose] public section
 
 /-! # Uniform pole bounds for divisor-square coefficient sums -/
 

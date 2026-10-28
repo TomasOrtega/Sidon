@@ -1,12 +1,16 @@
+module
+
 /-
 Copyright (c) 2026 David Sanftenberg. All rights reserved.
 Released under Apache 2.0 license as described in the file LICENSE.
 Authors: David Sanftenberg
 -/
-import Mathlib.Analysis.SumIntegralComparisons
-import Mathlib.Analysis.SpecialFunctions.ImproperIntegrals
-import Mathlib.NumberTheory.LSeries.Dirichlet
-import Mathlib.Tactic
+public import Mathlib.Analysis.SumIntegralComparisons
+public import Mathlib.Analysis.SpecialFunctions.ImproperIntegrals
+public import Mathlib.NumberTheory.LSeries.Dirichlet
+public import Mathlib.Tactic
+
+@[expose] public section
 
 /-! # Elementary pole bounds for positive Dirichlet series
 

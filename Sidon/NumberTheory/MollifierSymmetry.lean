@@ -1,5 +1,9 @@
-import Sidon.NumberTheory.MollifierRightEndpoint
-import Sidon.NumberTheory.MollifierEndpoint
+module
+
+public import Sidon.NumberTheory.MollifierRightEndpoint
+public import Sidon.NumberTheory.MollifierEndpoint
+
+@[expose] public section
 
 /-! # Conjugation and symmetric cumulative mean squares -/
 

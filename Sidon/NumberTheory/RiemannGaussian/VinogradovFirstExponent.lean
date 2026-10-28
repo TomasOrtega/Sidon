@@ -1,3 +1,5 @@
+module
+
 /-
 Copyright (c) 2026 David Sanftenberg. All rights reserved.
 Released under Apache 2.0 license as described in LICENSES/Apache-2.0.txt.
@@ -5,14 +7,16 @@ Authors: David Sanftenberg
 -/
 /- Adapted from dbsanfte/RiemannGaussian; provenance and modifications are
 recorded in docs/rg-extraction-manifest.json. -/
-import Mathlib.Analysis.MeanInequalitiesPow
-import Mathlib.Data.Fintype.CardEmbedding
-import Mathlib.Data.Nat.Choose.Bounds
-import Mathlib.Data.Nat.Dist
-import Mathlib.Data.Nat.GCD.BigOperators
-import Mathlib.Data.Nat.ModEq
-import Mathlib.NumberTheory.Bertrand
-import Sidon.NumberTheory.RiemannGaussian.VinogradovCrossMoment
+public import Mathlib.Analysis.MeanInequalitiesPow
+public import Mathlib.Data.Fintype.CardEmbedding
+public import Mathlib.Data.Nat.Choose.Bounds
+public import Mathlib.Data.Nat.Dist
+public import Mathlib.Data.Nat.GCD.BigOperators
+public import Mathlib.Data.Nat.ModEq
+public import Mathlib.NumberTheory.Bertrand
+public import Sidon.NumberTheory.RiemannGaussian.VinogradovCrossMoment
+
+@[expose] public section
 
 namespace RiemannGaussian.VinogradovFirstExponent
 noncomputable section

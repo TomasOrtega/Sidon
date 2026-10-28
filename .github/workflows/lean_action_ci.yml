@@ -5,19 +5,62 @@ on:
   pull_request:
   workflow_dispatch:
 
+permissions:
+  contents: read
+
 jobs:
+  metadata:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+        with:
+          persist-credentials: false
+      - name: Get the Palomar metadata validator
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+        with:
+          repository: PalomarRegistry/PalomarSubmission
+          ref: 14aa8d6b3c2f14a8540605e37144560b9a00e7e7
+          path: .lake/palomar-validator
+          persist-credentials: false
+      - name: Check formalization metadata
+        run: |
+          python3 -m venv "$RUNNER_TEMP/palomar-metadata"
+          "$RUNNER_TEMP/palomar-metadata/bin/pip" install --require-hashes -r .lake/palomar-validator/requirements.txt
+          "$RUNNER_TEMP/palomar-metadata/bin/python" - <<'PY'
+          from pathlib import Path
+          import sys
+
+          sys.path.insert(0, str(Path(".lake/palomar-validator").resolve()))
+          from scripts.submission_contract import load_formalization_metadata
+
+          load_formalization_metadata(Path("formalization.yaml"))
+          print("Palomar metadata checks passed.")
+          PY
+
   build:
     runs-on: ubuntu-latest
+    timeout-minutes: 120
 
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+        with:
+          persist-credentials: false
+      - name: Check Lean source requirements
+        run: python3 scripts/check_lean_sources.py
       - name: Check project proof policy
         run: |
-          if rg --line-number '\b(sorry|admit|axiom|native_decide|set_option|set_options)\b' --glob '*.lean' Sidon Sidon.lean; then
+          if rg --line-number '\b(sorry|admit|axiom|native_decide|set_option|set_options)\b' --glob '*.lean' Sidon Sidon.lean Solution.lean; then
             exit 1
           fi
-      - name: Check usage accounting
+      - name: Check repository tools
         run: python3 -m unittest discover -s tests -p 'test_*.py'
-      - uses: leanprover/lean-action@v1
+      - uses: leanprover/lean-action@38fbc41a8c28c4cbaec22d7f7de508ec2e7c0dd9
       - name: Audit theorem dependencies
         run: lake env lean scripts/CheckAxioms.lean
+      - name: Install Comparator sandbox
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y -qq bubblewrap
+          sudo sysctl -w kernel.apparmor_restrict_unprivileged_userns=0
+      - name: Check Palomar statements and proofs
+        run: bash scripts/verify-comparator.sh

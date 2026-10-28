@@ -1,5 +1,9 @@
-import Sidon.Analysis.SidonCorrelation
-import Sidon.Analysis.UniformityEstimates
+module
+
+public import Sidon.Analysis.SidonCorrelation
+public import Sidon.Analysis.UniformityEstimates
+
+@[expose] public section
 
 /-! # Fourier uniformity of extremal Sidon sets -/
 

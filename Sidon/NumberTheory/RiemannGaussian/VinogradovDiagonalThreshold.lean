@@ -1,3 +1,5 @@
+module
+
 /-
 Copyright (c) 2026 David Sanftenberg. All rights reserved.
 Released under Apache 2.0 license as described in LICENSES/Apache-2.0.txt.
@@ -5,9 +7,11 @@ Authors: David Sanftenberg
 -/
 /- Adapted from dbsanfte/RiemannGaussian; provenance and modifications are
 recorded in docs/rg-extraction-manifest.json. -/
-import Mathlib.Analysis.SpecialFunctions.Pow.NthRootLemmas
-import Sidon.NumberTheory.RiemannGaussian.VinogradovDiagonalExponent
-import Sidon.NumberTheory.RiemannGaussian.VinogradovMeanValue
+public import Mathlib.Analysis.SpecialFunctions.Pow.NthRootLemmas
+public import Sidon.NumberTheory.RiemannGaussian.VinogradovDiagonalExponent
+public import Sidon.NumberTheory.RiemannGaussian.VinogradovMeanValue
+
+@[expose] public section
 
 namespace RiemannGaussian.VinogradovDiagonalThreshold
 noncomputable section

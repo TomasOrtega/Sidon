@@ -1,6 +1,10 @@
-import Sidon.Transference.CountingTransfer
-import Sidon.FourierUniformity
-import Mathlib.Analysis.SpecialFunctions.Pow.Asymptotics
+module
+
+public import Sidon.Transference.CountingTransfer
+public import Sidon.FourierUniformity
+public import Mathlib.Analysis.SpecialFunctions.Pow.Asymptotics
+
+@[expose] public section
 
 /-! # The normalized Sidon majorant used in transference -/
 

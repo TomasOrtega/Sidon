@@ -3,6 +3,7 @@ message: >-
   If you use this formalization, please cite both this repository and the
   original paper listed in references.
 type: software
+license: Apache-2.0
 title: "Extremal Sidon sets: Lean formalization"
 authors:
   - family-names: Ortega

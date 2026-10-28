@@ -1,6 +1,10 @@
-import Sidon.Analysis.FiniteFourier
-import Sidon.Combinatorics.Energy
-import Mathlib.MeasureTheory.Integral.Bochner.Set
+module
+
+public import Sidon.Analysis.FiniteFourier
+public import Sidon.Combinatorics.Energy
+public import Mathlib.MeasureTheory.Integral.Bochner.Set
+
+@[expose] public section
 
 /-! # Haar orthogonality and Parseval for finite integer Fourier sums -/
 

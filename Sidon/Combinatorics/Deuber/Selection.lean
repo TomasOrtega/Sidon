@@ -1,5 +1,9 @@
-import Sidon.Combinatorics.Deuber.Iteration
-import Mathlib.Combinatorics.Pigeonhole
+module
+
+public import Sidon.Combinatorics.Deuber.Iteration
+public import Mathlib.Combinatorics.Pigeonhole
+
+@[expose] public section
 
 /-! # Selecting a monochromatic subpattern -/
 

@@ -1,4 +1,8 @@
-import Sidon.Analysis.TorusFourier
+module
+
+public import Sidon.Analysis.TorusFourier
+
+@[expose] public section
 
 /-! # Finitely supported trigonometric polynomials on the torus -/
 

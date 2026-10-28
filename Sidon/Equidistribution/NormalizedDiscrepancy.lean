@@ -1,6 +1,10 @@
-import Sidon.FourierUniformity
-import Sidon.Equidistribution.TorusSmoothing
-import Mathlib.Algebra.BigOperators.Expect
+module
+
+public import Sidon.FourierUniformity
+public import Sidon.Equidistribution.TorusSmoothing
+public import Mathlib.Algebra.BigOperators.Expect
+
+@[expose] public section
 
 /-! # Normalized discrepancy and finite orbit averages -/
 

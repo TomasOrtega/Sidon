@@ -1,5 +1,9 @@
-import Sidon.NumberTheory.BSplineDetector
-import Mathlib.NumberTheory.ArithmeticFunction.VonMangoldt
+module
+
+public import Sidon.NumberTheory.BSplineDetector
+public import Mathlib.NumberTheory.ArithmeticFunction.VonMangoldt
+
+@[expose] public section
 
 /-! Higher logarithmic primitives of the actual finite von Mangoldt sum. -/
 

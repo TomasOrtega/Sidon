@@ -1,7 +1,11 @@
-import Sidon.Transference.DensePartition
-import Sidon.Transference.SidonMajorant
-import Sidon.Transference.IndicatorCounts
-import Sidon.Combinatorics.QuantitativeRado.Weighted
+module
+
+public import Sidon.Transference.DensePartition
+public import Sidon.Transference.SidonMajorant
+public import Sidon.Transference.IndicatorCounts
+public import Sidon.Combinatorics.QuantitativeRado.Weighted
+
+@[expose] public section
 
 /-! # Partition regularity in Fourier-uniform Sidon sets -/
 

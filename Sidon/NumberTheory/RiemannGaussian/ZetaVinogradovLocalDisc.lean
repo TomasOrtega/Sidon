@@ -1,3 +1,5 @@
+module
+
 /-
 Copyright (c) 2026 David Sanftenberg. All rights reserved.
 Released under Apache 2.0 license as described in LICENSES/Apache-2.0.txt.
@@ -5,12 +7,14 @@ Authors: David Sanftenberg
 -/
 /- Adapted from dbsanfte/RiemannGaussian; provenance and modifications are
 recorded in docs/rg-extraction-manifest.json. -/
-import Sidon.NumberTheory.RiemannGaussian.VinogradovNearOneBudget
-import Sidon.NumberTheory.RiemannGaussian.VinogradovScaleSelection
-import Sidon.NumberTheory.RiemannGaussian.ZetaEulerRightStrip
-import Sidon.NumberTheory.RiemannGaussian.ZetaNearOneLocalDisc
-import Sidon.NumberTheory.RiemannGaussian.ZetaNearOneLogProfile
-import Sidon.NumberTheory.RiemannGaussian.ZetaVinogradovEulerBound
+public import Sidon.NumberTheory.RiemannGaussian.VinogradovNearOneBudget
+public import Sidon.NumberTheory.RiemannGaussian.VinogradovScaleSelection
+public import Sidon.NumberTheory.RiemannGaussian.ZetaEulerRightStrip
+public import Sidon.NumberTheory.RiemannGaussian.ZetaNearOneLocalDisc
+public import Sidon.NumberTheory.RiemannGaussian.ZetaNearOneLogProfile
+public import Sidon.NumberTheory.RiemannGaussian.ZetaVinogradovEulerBound
+
+@[expose] public section
 
 namespace RiemannGaussian.ZetaVinogradovLocalDisc
 noncomputable section

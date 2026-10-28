@@ -1,3 +1,5 @@
+module
+
 /-
 Copyright (c) 2026 David Sanftenberg. All rights reserved.
 Released under Apache 2.0 license as described in LICENSES/Apache-2.0.txt.
@@ -5,12 +7,14 @@ Authors: David Sanftenberg
 -/
 /- Adapted from dbsanfte/RiemannGaussian; provenance and modifications are
 recorded in docs/rg-extraction-manifest.json. -/
-import Mathlib.MeasureTheory.Integral.Bochner.SumMeasure
-import Sidon.NumberTheory.RiemannGaussian.GaussianZetaBridge
-import Sidon.NumberTheory.RiemannGaussian.GaussianZetaGeometry
-import Sidon.NumberTheory.RiemannGaussian.RiemannXiSuzukiPositiveCriticalStripEta
-import Sidon.NumberTheory.RiemannGaussian.RiemannXiSuzukiPositiveCriticalStripEtaFiniteLaplacePartition
-import Sidon.NumberTheory.RiemannGaussian.RiemannXiSuzukiSpectralStaticContourCriticalZetaUpper
+public import Mathlib.MeasureTheory.Integral.Bochner.SumMeasure
+public import Sidon.NumberTheory.RiemannGaussian.GaussianZetaBridge
+public import Sidon.NumberTheory.RiemannGaussian.GaussianZetaGeometry
+public import Sidon.NumberTheory.RiemannGaussian.RiemannXiSuzukiPositiveCriticalStripEta
+public import Sidon.NumberTheory.RiemannGaussian.RiemannXiSuzukiPositiveCriticalStripEtaFiniteLaplacePartition
+public import Sidon.NumberTheory.RiemannGaussian.RiemannXiSuzukiSpectralStaticContourCriticalZetaUpper
+
+@[expose] public section
 
 open Complex Filter MeasureTheory Metric Set Topology
 open scoped Classical ENNReal Interval Topology

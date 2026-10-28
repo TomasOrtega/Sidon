@@ -1,6 +1,10 @@
-import Sidon.NumberTheory.ArithmeticConvolutionBounds
-import Mathlib.NumberTheory.Harmonic.Bounds
-import Mathlib.Tactic
+module
+
+public import Sidon.NumberTheory.ArithmeticConvolutionBounds
+public import Mathlib.NumberTheory.Harmonic.Bounds
+public import Mathlib.Tactic
+
+@[expose] public section
 
 /-! # Divisor second moments and fourth-order divisor convolution -/
 

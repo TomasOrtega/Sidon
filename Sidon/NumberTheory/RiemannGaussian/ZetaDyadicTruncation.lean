@@ -1,3 +1,5 @@
+module
+
 /-
 Copyright (c) 2026 David Sanftenberg. All rights reserved.
 Released under Apache 2.0 license as described in LICENSES/Apache-2.0.txt.
@@ -5,14 +7,16 @@ Authors: David Sanftenberg
 -/
 /- Adapted from dbsanfte/RiemannGaussian; provenance and modifications are
 recorded in docs/rg-extraction-manifest.json. -/
-import Mathlib.Data.Nat.Log
-import Sidon.NumberTheory.RiemannGaussian.DirichletDyadicBlocks
-import Sidon.NumberTheory.RiemannGaussian.EtaUniformTailBound
-import Sidon.NumberTheory.RiemannGaussian.EtaZetaPoleBounds
-import Sidon.NumberTheory.RiemannGaussian.RiemannXiSuzukiPositiveCriticalStripEta
-import Sidon.NumberTheory.RiemannGaussian.RiemannXiSuzukiPositiveCriticalStripEtaFiniteApproximation
-import Sidon.NumberTheory.RiemannGaussian.RiemannXiSuzukiSpectralStaticContourCriticalZetaUpper
-import Sidon.NumberTheory.RiemannGaussian.ZetaPrimeGram
+public import Mathlib.Data.Nat.Log
+public import Sidon.NumberTheory.RiemannGaussian.DirichletDyadicBlocks
+public import Sidon.NumberTheory.RiemannGaussian.EtaUniformTailBound
+public import Sidon.NumberTheory.RiemannGaussian.EtaZetaPoleBounds
+public import Sidon.NumberTheory.RiemannGaussian.RiemannXiSuzukiPositiveCriticalStripEta
+public import Sidon.NumberTheory.RiemannGaussian.RiemannXiSuzukiPositiveCriticalStripEtaFiniteApproximation
+public import Sidon.NumberTheory.RiemannGaussian.RiemannXiSuzukiSpectralStaticContourCriticalZetaUpper
+public import Sidon.NumberTheory.RiemannGaussian.ZetaPrimeGram
+
+@[expose] public section
 
 namespace RiemannGaussian.ZetaDyadicTruncation
 noncomputable section

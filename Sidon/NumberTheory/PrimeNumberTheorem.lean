@@ -1,5 +1,9 @@
-import Sidon.NumberTheory.Tauberian.Wiener
-import Mathlib.Analysis.Asymptotics.AsymptoticEquivalent
+module
+
+public import Sidon.NumberTheory.Tauberian.Wiener
+public import Mathlib.Analysis.Asymptotics.AsymptoticEquivalent
+
+@[expose] public section
 
 /-! # The prime number theorem in Chebyshev's formulation
 

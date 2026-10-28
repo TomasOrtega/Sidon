@@ -1,3 +1,5 @@
+module
+
 /-
 Copyright (c) 2026 David Sanftenberg. All rights reserved.
 Released under Apache 2.0 license as described in LICENSES/Apache-2.0.txt.
@@ -5,39 +7,42 @@ Authors: David Sanftenberg
 -/
 /- Adapted from dbsanfte/RiemannGaussian; provenance and modifications are
 recorded in docs/rg-extraction-manifest.json. -/
-import Mathlib.Algebra.BigOperators.Intervals
-import Mathlib.Algebra.FiniteSupport.Basic
-import Mathlib.Analysis.Calculus.Deriv.MeanValue
-import Mathlib.Analysis.Complex.Harmonic.Poisson
-import Mathlib.Analysis.Complex.OpenMapping
-import Mathlib.Analysis.Meromorphic.NormalForm
-import Mathlib.Analysis.Meromorphic.TrailingCoefficient
-import Mathlib.Analysis.SpecialFunctions.Complex.Arctan
-import Mathlib.Analysis.SpecialFunctions.Complex.LogDeriv
-import Mathlib.Analysis.SpecialFunctions.Gamma.Basic
-import Mathlib.Analysis.SpecialFunctions.Log.Deriv
-import Mathlib.Analysis.SpecialFunctions.Log.PosLog
-import Mathlib.Analysis.SpecialFunctions.Pow.Complex
-import Mathlib.Analysis.SpecialFunctions.Trigonometric.Arctan
-import Mathlib.Data.Int.Interval
-import Mathlib.Data.List.Forall2
-import Mathlib.Data.Nat.ChineseRemainder
-import Mathlib.Data.Nat.Log
-import Mathlib.Data.Nat.Periodic
-import Mathlib.MeasureTheory.Integral.CircleAverage
-import Mathlib.NumberTheory.BernoulliPolynomials
-import Mathlib.NumberTheory.EulerProduct.DirichletLSeries
-import Mathlib.NumberTheory.ZetaValues
-import Mathlib.Topology.Algebra.InfiniteSum.Basic
-import Mathlib.Topology.Algebra.InfiniteSum.Group
-import Mathlib.Topology.MetricSpace.Contracting
-import Sidon.NumberTheory.RiemannGaussian.GaussianCompletedLogDerivative
-import Sidon.NumberTheory.RiemannGaussian.GaussianZetaBridge
-import Sidon.NumberTheory.RiemannGaussian.GaussianZetaCounting
-import Sidon.NumberTheory.RiemannGaussian.GaussianZetaGeometry
-import Sidon.NumberTheory.RiemannGaussian.RiemannXiGlobalLogDerivative
-import Sidon.NumberTheory.RiemannGaussian.RosserSchoenfeldEulerConstant
-import Sidon.NumberTheory.RiemannGaussian.SuzukiGammaShift
+public import Mathlib.Algebra.BigOperators.Intervals
+public import Mathlib.Algebra.FiniteSupport.Basic
+public import Mathlib.Analysis.Calculus.Deriv.MeanValue
+public import Mathlib.Analysis.Complex.Harmonic.Poisson
+public import Mathlib.Analysis.Complex.OpenMapping
+public import Mathlib.Analysis.Meromorphic.NormalForm
+public import Mathlib.Analysis.Meromorphic.TrailingCoefficient
+public import Mathlib.Analysis.SpecialFunctions.Complex.Arctan
+public import Mathlib.Analysis.SpecialFunctions.Complex.LogDeriv
+public import Mathlib.Analysis.SpecialFunctions.Gamma.Basic
+public import Mathlib.Analysis.SpecialFunctions.Log.Deriv
+public import Mathlib.Analysis.SpecialFunctions.Log.PosLog
+public import Mathlib.Analysis.SpecialFunctions.Pow.Complex
+public import Mathlib.Analysis.SpecialFunctions.Trigonometric.Arctan
+public import Mathlib.Data.Int.Interval
+public import Mathlib.Data.List.Forall2
+public import Mathlib.Data.Nat.ChineseRemainder
+public import Mathlib.Data.Nat.Log
+public import Mathlib.Data.Nat.Periodic
+public import Mathlib.MeasureTheory.Integral.CircleAverage
+public import Mathlib.NumberTheory.BernoulliPolynomials
+public import Mathlib.NumberTheory.EulerProduct.DirichletLSeries
+public import Mathlib.NumberTheory.ZetaValues
+public import Mathlib.Topology.Algebra.InfiniteSum.Basic
+public import Mathlib.Topology.Algebra.InfiniteSum.Group
+public import Mathlib.Topology.MetricSpace.Contracting
+public import Sidon.NumberTheory.RiemannGaussian.GaussianCompletedLogDerivative
+public import Sidon.NumberTheory.RiemannGaussian.GaussianZetaBridge
+public import Sidon.NumberTheory.RiemannGaussian.GaussianZetaCounting
+public import Sidon.NumberTheory.RiemannGaussian.GaussianZetaGeometry
+public import Sidon.NumberTheory.RiemannGaussian.RiemannXiGlobalLogDerivative
+public import Sidon.NumberTheory.RiemannGaussian.RosserSchoenfeldEulerConstant
+public import Sidon.NumberTheory.RiemannGaussian.SuzukiGammaShift
+public import Mathlib.Analysis.Complex.HalfPlane
+
+@[expose] public section
 
 open Complex Filter Topology
 namespace RiemannGaussian.RosserSchoenfeldZeroMass

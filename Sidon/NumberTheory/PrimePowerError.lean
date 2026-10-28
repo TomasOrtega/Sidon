@@ -1,8 +1,12 @@
-import Mathlib.NumberTheory.ArithmeticFunction.VonMangoldt
-import Mathlib.Data.Nat.Log
-import Mathlib.Data.Nat.Sqrt
-import Mathlib.Analysis.SpecialFunctions.Pow.Asymptotics
-import Mathlib.Tactic
+module
+
+public import Mathlib.NumberTheory.ArithmeticFunction.VonMangoldt
+public import Mathlib.Data.Nat.Log
+public import Mathlib.Data.Nat.Sqrt
+public import Mathlib.Analysis.SpecialFunctions.Pow.Asymptotics
+public import Mathlib.Tactic
+
+@[expose] public section
 
 /-! # Removing nonprime powers from a Mangoldt interval estimate -/
 

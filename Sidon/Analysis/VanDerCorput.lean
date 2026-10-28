@@ -1,6 +1,10 @@
-import Sidon.Analysis.Correlation
-import Sidon.Analysis.DiscreteFejer
-import Sidon.Combinatorics.Intervals
+module
+
+public import Sidon.Analysis.Correlation
+public import Sidon.Analysis.DiscreteFejer
+public import Sidon.Combinatorics.Intervals
+
+@[expose] public section
 
 /-! # Van der Corput differencing for finite integer functions -/
 

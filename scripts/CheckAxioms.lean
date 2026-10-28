@@ -1,5 +1,9 @@
-import Sidon
-import Lean.Util.CollectAxioms
+module
+
+public import Sidon
+public import Lean.Util.CollectAxioms
+
+@[expose] public section
 
 open Lean Elab Command
 

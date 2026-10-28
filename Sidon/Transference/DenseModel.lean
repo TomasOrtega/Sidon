@@ -1,4 +1,8 @@
-import Sidon.Transference.DenseGeometry
+module
+
+public import Sidon.Transference.DenseGeometry
+
+@[expose] public section
 
 /-! # The colouring dense-model theorem -/
 

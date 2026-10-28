@@ -1,4 +1,8 @@
-import Sidon.Analysis.Approximation.Uniform
+module
+
+public import Sidon.Analysis.Approximation.Uniform
+
+@[expose] public section
 
 /-! # Explicit dimension-dependent trigonometric approximation -/
 

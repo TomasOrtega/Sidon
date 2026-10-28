@@ -1,5 +1,9 @@
-import Sidon.Combinatorics.Deuber.OrderedExtraction
-import Mathlib.Data.Finset.Sort
+module
+
+public import Sidon.Combinatorics.Deuber.OrderedExtraction
+public import Mathlib.Data.Finset.Sort
+
+@[expose] public section
 
 /-! # Reindexing and iterating finite Deuber extraction -/
 

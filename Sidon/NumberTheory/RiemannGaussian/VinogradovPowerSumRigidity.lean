@@ -1,3 +1,5 @@
+module
+
 /-
 Copyright (c) 2026 David Sanftenberg. All rights reserved.
 Released under Apache 2.0 license as described in LICENSES/Apache-2.0.txt.
@@ -5,10 +7,12 @@ Authors: David Sanftenberg
 -/
 /- Adapted from dbsanfte/RiemannGaussian; provenance and modifications are
 recorded in docs/rg-extraction-manifest.json. -/
-import Mathlib.Data.List.Permutation
-import Mathlib.RingTheory.MvPolynomial.Symmetric.NewtonIdentities
-import Mathlib.RingTheory.Polynomial.Vieta
-import Sidon.NumberTheory.RiemannGaussian.VinogradovMeanValue
+public import Mathlib.Data.List.Permutation
+public import Mathlib.RingTheory.MvPolynomial.Symmetric.NewtonIdentities
+public import Mathlib.RingTheory.Polynomial.Vieta
+public import Sidon.NumberTheory.RiemannGaussian.VinogradovMeanValue
+
+@[expose] public section
 
 namespace RiemannGaussian.VinogradovPowerSumRigidity
 noncomputable section

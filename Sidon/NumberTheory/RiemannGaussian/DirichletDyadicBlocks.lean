@@ -1,3 +1,5 @@
+module
+
 /-
 Copyright (c) 2026 David Sanftenberg. All rights reserved.
 Released under Apache 2.0 license as described in LICENSES/Apache-2.0.txt.
@@ -5,28 +7,30 @@ Authors: David Sanftenberg
 -/
 /- Adapted from dbsanfte/RiemannGaussian; provenance and modifications are
 recorded in docs/rg-extraction-manifest.json. -/
-import Mathlib.Algebra.BigOperators.Intervals
-import Mathlib.Algebra.FiniteSupport.Basic
-import Mathlib.Analysis.Analytic.ChangeOrigin
-import Mathlib.Analysis.Analytic.Uniqueness
-import Mathlib.Analysis.Calculus.Deriv.MeanValue
-import Mathlib.Analysis.SpecialFunctions.Log.Deriv
-import Mathlib.Data.Int.Interval
-import Mathlib.Data.Nat.ChineseRemainder
-import Mathlib.Data.Nat.Periodic
-import Mathlib.MeasureTheory.Integral.Bochner.Basic
-import Mathlib.NumberTheory.LSeries.SumCoeff
-import Mathlib.NumberTheory.SumPrimeReciprocals
-import Mathlib.Probability.Moments.MGFAnalytic
-import Mathlib.Tactic
-import Mathlib.Tactic.NormNum.Prime
-import Mathlib.Tactic.NormNum.RealSqrt
-import Mathlib.Topology.Algebra.InfiniteSum.Basic
-import Mathlib.Topology.Algebra.InfiniteSum.Group
-import Sidon.NumberTheory.RiemannGaussian.RiemannXiSuzukiPositiveCriticalStripEtaFiniteApproximation
-import Sidon.NumberTheory.RiemannGaussian.RiemannXiSuzukiSpectralStaticContourCriticalZetaUpper
-import Sidon.NumberTheory.RiemannGaussian.ZetaPrimeGram
-import Sidon.NumberTheory.RiemannGaussian.ZetaPrimeMomentEnvelope
+public import Mathlib.Algebra.BigOperators.Intervals
+public import Mathlib.Algebra.FiniteSupport.Basic
+public import Mathlib.Analysis.Analytic.ChangeOrigin
+public import Mathlib.Analysis.Analytic.Uniqueness
+public import Mathlib.Analysis.Calculus.Deriv.MeanValue
+public import Mathlib.Analysis.SpecialFunctions.Log.Deriv
+public import Mathlib.Data.Int.Interval
+public import Mathlib.Data.Nat.ChineseRemainder
+public import Mathlib.Data.Nat.Periodic
+public import Mathlib.MeasureTheory.Integral.Bochner.Basic
+public import Mathlib.NumberTheory.LSeries.SumCoeff
+public import Mathlib.NumberTheory.SumPrimeReciprocals
+public import Mathlib.Probability.Moments.MGFAnalytic
+public import Mathlib.Tactic
+public import Mathlib.Tactic.NormNum.Prime
+public import Mathlib.Tactic.NormNum.RealSqrt
+public import Mathlib.Topology.Algebra.InfiniteSum.Basic
+public import Mathlib.Topology.Algebra.InfiniteSum.Group
+public import Sidon.NumberTheory.RiemannGaussian.RiemannXiSuzukiPositiveCriticalStripEtaFiniteApproximation
+public import Sidon.NumberTheory.RiemannGaussian.RiemannXiSuzukiSpectralStaticContourCriticalZetaUpper
+public import Sidon.NumberTheory.RiemannGaussian.ZetaPrimeGram
+public import Sidon.NumberTheory.RiemannGaussian.ZetaPrimeMomentEnvelope
+
+@[expose] public section
 
 namespace RiemannGaussian.DirichletDyadicBlocks
 noncomputable section

@@ -1,6 +1,11 @@
-import Sidon.Analysis.TorusConvolution
-import Sidon.Analysis.CircleBump
-import Sidon.Equidistribution.TorusTesting
+module
+
+public import Sidon.Analysis.TorusConvolution
+public import Sidon.Analysis.CircleBump
+public import Sidon.Equidistribution.TorusTesting
+public import Mathlib.MeasureTheory.Integral.Pi
+
+@[expose] public section
 
 /-! # Compactly supported smoothing with absolutely convergent character series -/
 

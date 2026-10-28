@@ -1,0 +1,103 @@
+version: v0.4
+
+project:
+  name: "Extremal Sidon sets: Fourier uniformity and partition regularity"
+  description: >-
+    A Lean formalization of Ortega and Prendiville's results on Sidon sets in
+    integer intervals. It proves Fourier bounds for near-maximal and largest
+    Sidon sets, equidistribution in progressions and Bohr sets, and monochromatic
+    solutions to partition regular linear equations in at least five variables.
+    It also proves sharp obstruction constructions and records a correction to
+    the paper's dimension-independent approximation claim.
+  authors: [Tomas Ortega]
+  responsible_maintainers: [Tomas Ortega]
+  license: Apache-2.0
+
+classification:
+  arxiv: [math.CO, math.NT]
+  msc2020: [11B13, 11B75, 05D10]
+
+sources:
+  - title: >-
+      Extremal Sidon sets are Fourier uniform, with applications to partition
+      regularity
+    authors: [Miquel Ortega, Sean Prendiville]
+    type: paper
+    id: "doi:10.5802/jtnb.1239"
+    location: "Journal de théorie des nombres de Bordeaux 35 (2023), 115–134"
+    relationship: formalizes
+    note: >-
+      The blueprint follows arXiv:2110.13447v1. The formalization gives explicit
+      constants and repairs two intermediate statements; see fidelity below.
+      No source-author endorsement is claimed.
+
+related_formalizations:
+  - id: https://github.com/leanprover-community/mathlib4/tree/56a005855ea17e0b0958f73ec801ae140b0a1679
+    relationship: builds-on
+    note: >-
+      Uses Mathlib throughout, including finite-torus Fourier analysis and
+      Hales–Jewett. THIRD_PARTY_NOTICES.md records the adapted Fourier source.
+  - id: https://github.com/AlexKontorovich/PrimeNumberTheoremAnd/tree/127b50e33f6033e2147921167a117af96d9ba4ea
+    relationship: adapts
+    note: >-
+      The Tauberian files adapt a proof of the weak prime number theorem for
+      the sharp obstruction constructions. See THIRD_PARTY_NOTICES.md.
+  - id: https://github.com/dbsanfte/RiemannGaussian/tree/6e969fd6e9c639eed280c595732248c106187603
+    relationship: adapts
+    note: >-
+      The analytic prime-interval proof uses extracted zeta estimates and
+      explicit-formula results. The 275-file extraction is recorded in
+      docs/rg-extraction-manifest.json and THIRD_PARTY_NOTICES.md.
+
+status:
+  scope: >-
+    The repository contains the proof development. comparator.json selects
+    the submitted results; Challenge.lean gives their definitions and exact
+    statements. Supporting lemmas and further corollaries remain in Sidon/.
+    The zero placeholder counts below exclude the deliberate theorem holes
+    in Challenge.lean.
+  sorry_count: 0
+  sorry_in_definitions: 0
+  axioms: [propext, Classical.choice, Quot.sound]
+
+automation:
+  methods:
+    - method: agent
+      models: [gpt-6.1-sol, GPT-6]
+      framework: Codex
+      tool_setup: >-
+        Coordinated coding agents wrote Lean proofs, expanded the blueprint,
+        adapted upstream proofs, and ran Lean and repository checks.
+      prompting_notes: >-
+        Human requests set the paper, proof policy, and submission task.
+        Agents implemented and checked the work against those requests.
+  notes: >-
+    Commit trailers record model use. docs/usage.md records a dated inference
+    snapshot for the original formalization; it does not include later
+    submission work. Actual billed cost is not available.
+
+fidelity:
+  divergences: >-
+    The proofs use explicit constants: 16 for the main Fourier estimate, 36
+    for the improved estimate, and 48000 and 48100 for the Bohr estimates.
+    The progression argument covers empty and singleton progressions by using
+    2 + log(|P| + 1) in place of the paper's log |P| bound in Lemma 3.2.
+    The tensor approximation in Lemma 4.1 needs a dimension factor. The repo
+    proves this corrected bound and a counterexample to a dimension-independent
+    bandwidth. A separate smoothing proof recovers the two Bohr corollaries.
+    The largest-set Fourier rate includes a proved prime-interval input.
+    No extra analytic hypotheses or custom axioms are assumed. The blueprint
+    and Challenge docstrings give the conventions and scope of each result.
+
+review:
+  status: self-assessed
+  notes: >-
+    Lean checks the proofs. scripts/CheckAxioms.lean checks the allowed axioms
+    at selected proof endpoints; Comparator checks the submitted statements.
+    Agents checked statements against the blueprint during preparation.
+    No independent human mathematical review or source-author approval is
+    recorded. A passing build does not establish fidelity to the paper.
+
+acknowledgements: >-
+  Mathlib, PrimeNumberTheoremAnd, and RiemannGaussian supply reused results.
+  THIRD_PARTY_NOTICES.md records source credits and changes.

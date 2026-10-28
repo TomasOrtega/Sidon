@@ -1,3 +1,5 @@
+module
+
 /-
 Copyright (c) 2026 David Sanftenberg. All rights reserved.
 Released under Apache 2.0 license as described in LICENSES/Apache-2.0.txt.
@@ -5,11 +7,13 @@ Authors: David Sanftenberg
 -/
 /- Adapted from dbsanfte/RiemannGaussian; provenance and modifications are
 recorded in docs/rg-extraction-manifest.json. -/
-import Sidon.NumberTheory.RiemannGaussian.DerivativeRecursionBudget
-import Sidon.NumberTheory.RiemannGaussian.HigherDerivativeTest
-import Sidon.NumberTheory.RiemannGaussian.LogarithmicDerivativeFamily
-import Sidon.NumberTheory.RiemannGaussian.LogarithmicShiftPhase
-import Sidon.NumberTheory.RiemannGaussian.PhaseConjugation
+public import Sidon.NumberTheory.RiemannGaussian.DerivativeRecursionBudget
+public import Sidon.NumberTheory.RiemannGaussian.HigherDerivativeTest
+public import Sidon.NumberTheory.RiemannGaussian.LogarithmicDerivativeFamily
+public import Sidon.NumberTheory.RiemannGaussian.LogarithmicShiftPhase
+public import Sidon.NumberTheory.RiemannGaussian.PhaseConjugation
+
+@[expose] public section
 
 namespace RiemannGaussian.HigherLogarithmicDerivativeBound
 noncomputable section

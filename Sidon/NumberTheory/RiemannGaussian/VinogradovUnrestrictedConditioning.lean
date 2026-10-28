@@ -1,3 +1,5 @@
+module
+
 /-
 Copyright (c) 2026 David Sanftenberg. All rights reserved.
 Released under Apache 2.0 license as described in LICENSES/Apache-2.0.txt.
@@ -5,15 +7,17 @@ Authors: David Sanftenberg
 -/
 /- Adapted from dbsanfte/RiemannGaussian; provenance and modifications are
 recorded in docs/rg-extraction-manifest.json. -/
-import Sidon.NumberTheory.RiemannGaussian.VinogradovBinomialRows
-import Sidon.NumberTheory.RiemannGaussian.VinogradovMixedDifferencing
-import Sidon.NumberTheory.RiemannGaussian.VinogradovPolynomialConditionedDescent
-import Sidon.NumberTheory.RiemannGaussian.VinogradovPolynomialDifferencing
-import Sidon.NumberTheory.RiemannGaussian.VinogradovPolynomialNonsingular
-import Sidon.NumberTheory.RiemannGaussian.VinogradovPolynomialPrimeTransfer
-import Sidon.NumberTheory.RiemannGaussian.VinogradovPolynomialSystems
-import Sidon.NumberTheory.RiemannGaussian.VinogradovRowTransport
-import Sidon.NumberTheory.RiemannGaussian.VinogradovTypeMaximum
+public import Sidon.NumberTheory.RiemannGaussian.VinogradovBinomialRows
+public import Sidon.NumberTheory.RiemannGaussian.VinogradovMixedDifferencing
+public import Sidon.NumberTheory.RiemannGaussian.VinogradovPolynomialConditionedDescent
+public import Sidon.NumberTheory.RiemannGaussian.VinogradovPolynomialDifferencing
+public import Sidon.NumberTheory.RiemannGaussian.VinogradovPolynomialNonsingular
+public import Sidon.NumberTheory.RiemannGaussian.VinogradovPolynomialPrimeTransfer
+public import Sidon.NumberTheory.RiemannGaussian.VinogradovPolynomialSystems
+public import Sidon.NumberTheory.RiemannGaussian.VinogradovRowTransport
+public import Sidon.NumberTheory.RiemannGaussian.VinogradovTypeMaximum
+
+@[expose] public section
 
 namespace RiemannGaussian.VinogradovUnrestrictedConditioning
 noncomputable section

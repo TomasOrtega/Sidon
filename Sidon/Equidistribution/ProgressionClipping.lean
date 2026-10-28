@@ -1,5 +1,9 @@
-import Sidon.Equidistribution.Progressions
-import Sidon.Combinatorics.Intervals
+module
+
+public import Sidon.Equidistribution.Progressions
+public import Sidon.Combinatorics.Intervals
+
+@[expose] public section
 
 /-! # Intersecting an arithmetic progression with an integer interval -/
 

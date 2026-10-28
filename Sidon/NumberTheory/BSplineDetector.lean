@@ -1,4 +1,8 @@
-import Sidon.NumberTheory.BSplinePrimitive
+module
+
+public import Sidon.NumberTheory.BSplinePrimitive
+
+@[expose] public section
 
 /-! Finite weighted detectors and their support localization. -/
 

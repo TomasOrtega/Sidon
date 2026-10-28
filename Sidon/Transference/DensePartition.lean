@@ -1,4 +1,8 @@
-import Sidon.Transference.DenseModelInterval
+module
+
+public import Sidon.Transference.DenseModelInterval
+
+@[expose] public section
 
 /-! # Completing simultaneous models to a partition -/
 

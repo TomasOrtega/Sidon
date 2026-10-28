@@ -1,5 +1,9 @@
-import Sidon.NumberTheory.RiemannGaussian.ZetaEulerLineBound
-import Sidon.NumberTheory.ZetaCriticalLine
+module
+
+public import Sidon.NumberTheory.RiemannGaussian.ZetaEulerLineBound
+public import Sidon.NumberTheory.ZetaCriticalLine
+
+@[expose] public section
 
 /-! Critical-line Weyl bounds from the checked logarithmic derivative estimates. -/
 

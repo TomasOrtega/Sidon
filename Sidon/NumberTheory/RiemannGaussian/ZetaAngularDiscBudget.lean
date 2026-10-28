@@ -1,3 +1,5 @@
+module
+
 /-
 Copyright (c) 2026 David Sanftenberg. All rights reserved.
 Released under Apache 2.0 license as described in LICENSES/Apache-2.0.txt.
@@ -5,20 +7,22 @@ Authors: David Sanftenberg
 -/
 /- Adapted from dbsanfte/RiemannGaussian; provenance and modifications are
 recorded in docs/rg-extraction-manifest.json. -/
-import Sidon.NumberTheory.RiemannGaussian.AnalyticDiscBoundaryMoment
-import Sidon.NumberTheory.RiemannGaussian.AnalyticDiscBoundarySequence
-import Sidon.NumberTheory.RiemannGaussian.AnalyticDiscSignedBoundary
-import Sidon.NumberTheory.RiemannGaussian.GaussianZetaBridge
-import Sidon.NumberTheory.RiemannGaussian.GaussianZetaGeometry
-import Sidon.NumberTheory.RiemannGaussian.ZetaLocalResidualLog
-import Sidon.NumberTheory.RiemannGaussian.ZetaNearOneAngularBound
-import Sidon.NumberTheory.RiemannGaussian.ZetaNearOneCanonical
-import Sidon.NumberTheory.RiemannGaussian.ZetaNearOneJensen
-import Sidon.NumberTheory.RiemannGaussian.ZetaNearOneLocalDisc
-import Sidon.NumberTheory.RiemannGaussian.ZetaNearOneSignedBound
-import Sidon.NumberTheory.RiemannGaussian.ZetaSignedExactPole
-import Sidon.NumberTheory.RiemannGaussian.ZetaSignedPrimeSeries
-import Sidon.NumberTheory.RiemannGaussian.ZetaVinogradovAngularBudget
+public import Sidon.NumberTheory.RiemannGaussian.AnalyticDiscBoundaryMoment
+public import Sidon.NumberTheory.RiemannGaussian.AnalyticDiscBoundarySequence
+public import Sidon.NumberTheory.RiemannGaussian.AnalyticDiscSignedBoundary
+public import Sidon.NumberTheory.RiemannGaussian.GaussianZetaBridge
+public import Sidon.NumberTheory.RiemannGaussian.GaussianZetaGeometry
+public import Sidon.NumberTheory.RiemannGaussian.ZetaLocalResidualLog
+public import Sidon.NumberTheory.RiemannGaussian.ZetaNearOneAngularBound
+public import Sidon.NumberTheory.RiemannGaussian.ZetaNearOneCanonical
+public import Sidon.NumberTheory.RiemannGaussian.ZetaNearOneJensen
+public import Sidon.NumberTheory.RiemannGaussian.ZetaNearOneLocalDisc
+public import Sidon.NumberTheory.RiemannGaussian.ZetaNearOneSignedBound
+public import Sidon.NumberTheory.RiemannGaussian.ZetaSignedExactPole
+public import Sidon.NumberTheory.RiemannGaussian.ZetaSignedPrimeSeries
+public import Sidon.NumberTheory.RiemannGaussian.ZetaVinogradovAngularBudget
+
+@[expose] public section
 
 namespace RiemannGaussian.ZetaAngularDiscBudget
 noncomputable section

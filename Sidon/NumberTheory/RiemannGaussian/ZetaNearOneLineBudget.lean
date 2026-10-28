@@ -1,3 +1,5 @@
+module
+
 /-
 Copyright (c) 2026 David Sanftenberg. All rights reserved.
 Released under Apache 2.0 license as described in LICENSES/Apache-2.0.txt.
@@ -5,12 +7,14 @@ Authors: David Sanftenberg
 -/
 /- Adapted from dbsanfte/RiemannGaussian; provenance and modifications are
 recorded in docs/rg-extraction-manifest.json. -/
-import Sidon.NumberTheory.RiemannGaussian.DerivativePowerExponents
-import Sidon.NumberTheory.RiemannGaussian.DirichletBlockPowerProfile
-import Sidon.NumberTheory.RiemannGaussian.DirichletFullRange
-import Sidon.NumberTheory.RiemannGaussian.DirichletPowerParameters
-import Sidon.NumberTheory.RiemannGaussian.ZetaDyadicPowerBound
-import Sidon.NumberTheory.RiemannGaussian.ZetaDyadicTruncation
+public import Sidon.NumberTheory.RiemannGaussian.DerivativePowerExponents
+public import Sidon.NumberTheory.RiemannGaussian.DirichletBlockPowerProfile
+public import Sidon.NumberTheory.RiemannGaussian.DirichletFullRange
+public import Sidon.NumberTheory.RiemannGaussian.DirichletPowerParameters
+public import Sidon.NumberTheory.RiemannGaussian.ZetaDyadicPowerBound
+public import Sidon.NumberTheory.RiemannGaussian.ZetaDyadicTruncation
+
+@[expose] public section
 
 namespace RiemannGaussian.ZetaNearOneLineBudget
 noncomputable section

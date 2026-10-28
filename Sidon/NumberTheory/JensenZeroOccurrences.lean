@@ -1,6 +1,10 @@
-import Sidon.NumberTheory.JensenDensityGeometry
-import Sidon.NumberTheory.JensenMollifier
-import Sidon.NumberTheory.ZetaZeroCount
+module
+
+public import Sidon.NumberTheory.JensenDensityGeometry
+public import Sidon.NumberTheory.JensenMollifier
+public import Sidon.NumberTheory.ZetaZeroCount
+
+@[expose] public section
 
 /-! # Actual zero occurrences in the mollifier's Jensen sum -/
 

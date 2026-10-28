@@ -1,4 +1,8 @@
-import Sidon.Combinatorics.Deuber.Selection
+module
+
+public import Sidon.Combinatorics.Deuber.Selection
+
+@[expose] public section
 
 /-! # An integral kernel parametrization with a common positive leading coefficient -/
 

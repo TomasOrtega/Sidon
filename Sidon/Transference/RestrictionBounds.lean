@@ -1,4 +1,8 @@
-import Sidon.Transference.RestrictionMoments
+module
+
+public import Sidon.Transference.RestrictionMoments
+
+@[expose] public section
 
 /-! # Restriction bounds for Sidon and bounded interval functions -/
 

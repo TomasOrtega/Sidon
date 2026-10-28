@@ -1,8 +1,12 @@
-import Sidon.Analysis.FourierIntegral
-import Sidon.Analysis.Correlation
-import Mathlib.Algebra.Field.GeomSum
-import Mathlib.Analysis.SpecialFunctions.Trigonometric.Bounds
-import Mathlib.MeasureTheory.Function.LocallyIntegrable
+module
+
+public import Sidon.Analysis.FourierIntegral
+public import Sidon.Analysis.Correlation
+public import Mathlib.Algebra.Field.GeomSum
+public import Mathlib.Analysis.SpecialFunctions.Trigonometric.Bounds
+public import Mathlib.MeasureTheory.Function.LocallyIntegrable
+
+@[expose] public section
 
 /-! # Fourier tests and arithmetic progression sums -/
 

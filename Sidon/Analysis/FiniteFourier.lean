@@ -1,6 +1,10 @@
-import Mathlib.Analysis.Fourier.AddCircle
-import Mathlib.Data.Finsupp.Basic
-import Mathlib.Data.Finsupp.Indicator
+module
+
+public import Mathlib.Analysis.Fourier.AddCircle
+public import Mathlib.Data.Finsupp.Basic
+public import Mathlib.Data.Finsupp.Indicator
+
+@[expose] public section
 
 /-!
 # Finite Fourier sums on the integers

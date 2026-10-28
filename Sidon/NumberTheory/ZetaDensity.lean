@@ -1,5 +1,9 @@
-import Sidon.NumberTheory.InghamDensity
-import Sidon.NumberTheory.OptimizedMollifierSlices
+module
+
+public import Sidon.NumberTheory.InghamDensity
+public import Sidon.NumberTheory.OptimizedMollifierSlices
+
+@[expose] public section
 
 /-! # An unconditional uniform density estimate for the actual Riemann zeta zeros -/
 

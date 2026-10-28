@@ -1,5 +1,9 @@
-import Mathlib.Analysis.MeanInequalities
-import Mathlib.MeasureTheory.Integral.Bochner.Basic
+module
+
+public import Mathlib.Analysis.MeanInequalities
+public import Mathlib.MeasureTheory.Integral.Bochner.Basic
+
+@[expose] public section
 
 /-! # Equal-moment bounds for a finite product -/
 

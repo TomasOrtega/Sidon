@@ -1,4 +1,8 @@
-import Sidon.Combinatorics.Deuber.Basic
+module
+
+public import Sidon.Combinatorics.Deuber.Basic
+
+@[expose] public section
 
 /-! # Fiber bounds for disjoint-support integer maps -/
 

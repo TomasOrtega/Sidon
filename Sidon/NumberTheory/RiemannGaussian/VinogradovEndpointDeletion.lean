@@ -1,3 +1,5 @@
+module
+
 /-
 Copyright (c) 2026 David Sanftenberg. All rights reserved.
 Released under Apache 2.0 license as described in LICENSES/Apache-2.0.txt.
@@ -5,16 +7,18 @@ Authors: David Sanftenberg
 -/
 /- Adapted from dbsanfte/RiemannGaussian; provenance and modifications are
 recorded in docs/rg-extraction-manifest.json. -/
-import Mathlib.Algebra.Polynomial.Taylor
-import Mathlib.Algebra.Regular.Basic
-import Mathlib.Data.Nat.ModEq
-import Mathlib.Data.Nat.Prime.Factorial
-import Sidon.NumberTheory.RiemannGaussian.VinogradovMeanValue
-import Sidon.NumberTheory.RiemannGaussian.VinogradovMixedMoments
-import Sidon.NumberTheory.RiemannGaussian.VinogradovMomentReduction
-import Sidon.NumberTheory.RiemannGaussian.VinogradovPartitionEnergy
-import Sidon.NumberTheory.RiemannGaussian.VinogradovResidueMoment
-import Sidon.NumberTheory.RiemannGaussian.VinogradovShiftedMoment
+public import Mathlib.Algebra.Polynomial.Taylor
+public import Mathlib.Algebra.Regular.Basic
+public import Mathlib.Data.Nat.ModEq
+public import Mathlib.Data.Nat.Prime.Factorial
+public import Sidon.NumberTheory.RiemannGaussian.VinogradovMeanValue
+public import Sidon.NumberTheory.RiemannGaussian.VinogradovMixedMoments
+public import Sidon.NumberTheory.RiemannGaussian.VinogradovMomentReduction
+public import Sidon.NumberTheory.RiemannGaussian.VinogradovPartitionEnergy
+public import Sidon.NumberTheory.RiemannGaussian.VinogradovResidueMoment
+public import Sidon.NumberTheory.RiemannGaussian.VinogradovShiftedMoment
+
+@[expose] public section
 
 namespace RiemannGaussian.VinogradovEndpointDeletion
 noncomputable section

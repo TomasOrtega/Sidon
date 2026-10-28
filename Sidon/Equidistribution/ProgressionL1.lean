@@ -1,6 +1,10 @@
-import Sidon.Equidistribution.Progressions
-import Mathlib.Analysis.SpecialFunctions.Integrals.Basic
-import Mathlib.MeasureTheory.Measure.Haar.Unique
+module
+
+public import Sidon.Equidistribution.Progressions
+public import Mathlib.Analysis.SpecialFunctions.Integrals.Basic
+public import Mathlib.MeasureTheory.Measure.Haar.Unique
+
+@[expose] public section
 
 /-! # A logarithmic `L¹` bound for progression Fourier sums -/
 

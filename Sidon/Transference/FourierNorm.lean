@@ -1,6 +1,10 @@
-import Sidon.Analysis.FourierIntegral
-import Mathlib.Analysis.Normed.Module.FiniteDimension
-import Mathlib.Analysis.LocallyConvex.Separation
+module
+
+public import Sidon.Analysis.FourierIntegral
+public import Mathlib.Analysis.Normed.Module.FiniteDimension
+public import Mathlib.Analysis.LocallyConvex.Separation
+
+@[expose] public section
 
 /-! # The real finite Fourier norm and its dual -/
 

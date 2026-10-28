@@ -1,9 +1,13 @@
+module
+
 /-
 Adapted from PrimeNumberTheoremAnd/SmoothExistence.lean, commit 127b50e33f6033e2147921167a117af96d9ba4ea.
 Released under Apache 2.0; original authors: PrimeNumberTheoremAnd contributors.
 -/
-import Mathlib.Geometry.Manifold.PartitionOfUnity
-import Mathlib.Tactic.Bound
+public import Mathlib.Geometry.Manifold.PartitionOfUnity
+public import Mathlib.Tactic.Bound
+
+@[expose] public section
 
 namespace Sidon.NumberTheory.Tauberian
 

@@ -1,6 +1,10 @@
-import Sidon.NumberTheory.MollifierSeries
-import Sidon.NumberTheory.JensenMollifier
-import Mathlib.NumberTheory.LSeries.Linearity
+module
+
+public import Sidon.NumberTheory.MollifierSeries
+public import Sidon.NumberTheory.JensenMollifier
+public import Mathlib.NumberTheory.LSeries.Linearity
+
+@[expose] public section
 
 /-! # The balanced mollifier's exact absolutely convergent coefficient series -/
 

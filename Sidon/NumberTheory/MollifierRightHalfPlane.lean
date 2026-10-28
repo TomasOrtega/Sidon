@@ -1,4 +1,8 @@
-import Sidon.NumberTheory.MollifierSymmetry
+module
+
+public import Sidon.NumberTheory.MollifierSymmetry
+
+@[expose] public section
 
 /-! # The same boundary bound throughout the right half-plane -/
 

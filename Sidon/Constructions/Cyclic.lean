@@ -1,5 +1,9 @@
-import Sidon.Combinatorics.Intervals
-import Mathlib.GroupTheory.SpecificGroups.Cyclic
+module
+
+public import Sidon.Combinatorics.Intervals
+public import Mathlib.GroupTheory.SpecificGroups.Cyclic
+
+@[expose] public section
 
 /-! # Lifting Sidon sets in cyclic groups to integer intervals -/
 

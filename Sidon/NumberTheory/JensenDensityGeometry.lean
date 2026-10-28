@@ -1,6 +1,10 @@
-import Mathlib.Analysis.Complex.JensenFormula
-import Mathlib.Analysis.Complex.Norm
-import Mathlib.Tactic
+module
+
+public import Mathlib.Analysis.Complex.JensenFormula
+public import Mathlib.Analysis.Complex.Norm
+public import Mathlib.Tactic
+
+@[expose] public section
 
 /-! # The uniform geometric reserve in an integrated Jensen argument -/
 

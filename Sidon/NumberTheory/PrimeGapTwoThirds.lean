@@ -1,6 +1,10 @@
-import Sidon.NumberTheory.PrimeGapFromDensity
-import Sidon.NumberTheory.PrimeIntervals
-import Sidon.NumberTheory.ZetaDensity
+module
+
+public import Sidon.NumberTheory.PrimeGapFromDensity
+public import Sidon.NumberTheory.PrimeIntervals
+public import Sidon.NumberTheory.ZetaDensity
+
+@[expose] public section
 
 /-! An unconditional prime in every sufficiently large interval of length O(x^(2/3)). -/
 

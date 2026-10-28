@@ -1,5 +1,9 @@
-import Mathlib.Topology.ContinuousMap.StoneWeierstrass
-import Mathlib.Topology.Algebra.MvPolynomial
+module
+
+public import Mathlib.Topology.ContinuousMap.StoneWeierstrass
+public import Mathlib.Topology.Algebra.MvPolynomial
+
+@[expose] public section
 
 /-! # Positive maxima and their polynomial approximation -/
 

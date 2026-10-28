@@ -1,4 +1,8 @@
-import Mathlib.Data.ZMod.Basic
+module
+
+public import Mathlib.Data.ZMod.Basic
+
+@[expose] public section
 
 open Set Cardinal
 

@@ -1,10 +1,14 @@
+module
+
 /-
 Copyright (c) 2023 David Loeffler. All rights reserved.
 Released under Apache 2.0 license as described in the file LICENSES/Apache-2.0.txt.
 Authors: David Loeffler, Tomas Ortega
 -/
-import Sidon.Analysis.FourierIntegral
-import Mathlib.Analysis.Fourier.AddCircleMulti
+public import Sidon.Analysis.FourierIntegral
+public import Mathlib.Analysis.Fourier.AddCircleMulti
+
+@[expose] public section
 
 /-! # Probability-normalized Fourier analysis on the finite torus -/
 

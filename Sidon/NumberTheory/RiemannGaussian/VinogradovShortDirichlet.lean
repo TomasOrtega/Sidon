@@ -1,3 +1,5 @@
+module
+
 /-
 Copyright (c) 2026 David Sanftenberg. All rights reserved.
 Released under Apache 2.0 license as described in LICENSES/Apache-2.0.txt.
@@ -5,16 +7,18 @@ Authors: David Sanftenberg
 -/
 /- Adapted from dbsanfte/RiemannGaussian; provenance and modifications are
 recorded in docs/rg-extraction-manifest.json. -/
-import Sidon.NumberTheory.RiemannGaussian.DirichletSecondDerivativeBound
-import Sidon.NumberTheory.RiemannGaussian.VinogradovDampedSaving
-import Sidon.NumberTheory.RiemannGaussian.VinogradovDirichletSaving
-import Sidon.NumberTheory.RiemannGaussian.VinogradovKorobovBilinearPhase
-import Sidon.NumberTheory.RiemannGaussian.VinogradovKorobovBlock
-import Sidon.NumberTheory.RiemannGaussian.VinogradovKorobovDamping
-import Sidon.NumberTheory.RiemannGaussian.VinogradovRectanglePowerSaving
-import Sidon.NumberTheory.RiemannGaussian.VinogradovShortResonance
-import Sidon.NumberTheory.RiemannGaussian.ZetaPrimeGram
-import Sidon.NumberTheory.RiemannGaussian.ZetaPrimeMomentEnvelope
+public import Sidon.NumberTheory.RiemannGaussian.DirichletSecondDerivativeBound
+public import Sidon.NumberTheory.RiemannGaussian.VinogradovDampedSaving
+public import Sidon.NumberTheory.RiemannGaussian.VinogradovDirichletSaving
+public import Sidon.NumberTheory.RiemannGaussian.VinogradovKorobovBilinearPhase
+public import Sidon.NumberTheory.RiemannGaussian.VinogradovKorobovBlock
+public import Sidon.NumberTheory.RiemannGaussian.VinogradovKorobovDamping
+public import Sidon.NumberTheory.RiemannGaussian.VinogradovRectanglePowerSaving
+public import Sidon.NumberTheory.RiemannGaussian.VinogradovShortResonance
+public import Sidon.NumberTheory.RiemannGaussian.ZetaPrimeGram
+public import Sidon.NumberTheory.RiemannGaussian.ZetaPrimeMomentEnvelope
+
+@[expose] public section
 
 namespace RiemannGaussian.VinogradovShortDirichlet
 noncomputable section

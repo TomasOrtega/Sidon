@@ -1,9 +1,13 @@
-import Sidon.Combinatorics.Deuber.Basic
-import Sidon.Combinatorics.Deuber.Containment
-import Mathlib.Combinatorics.HalesJewett
-import Mathlib.Order.Prod.Lex.Basic
-import Mathlib.Order.Sum.Order
-import Mathlib.Order.WithBot
+module
+
+public import Sidon.Combinatorics.Deuber.Basic
+public import Sidon.Combinatorics.Deuber.Containment
+public import Mathlib.Combinatorics.HalesJewett
+public import Mathlib.Order.Prod.Lex.Basic
+public import Mathlib.Order.Sum.Order
+public import Mathlib.Order.WithBot
+
+@[expose] public section
 
 /-! # The Hales--Jewett bridge and the block maps used in Deuber extraction -/
 

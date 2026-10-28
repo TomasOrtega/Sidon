@@ -1,5 +1,9 @@
-import Sidon.Equidistribution.Bohr
-import Mathlib.Algebra.Order.BigOperators.Expect
+module
+
+public import Sidon.Equidistribution.Bohr
+public import Mathlib.Algebra.Order.BigOperators.Expect
+
+@[expose] public section
 
 /-! # Comparing finite Bohr counts with Lipschitz orbit averages -/
 

@@ -1,5 +1,9 @@
-import Sidon.Equidistribution.NormalizedDiscrepancy
-import Sidon.Equidistribution.ProgressionEquidistribution
+module
+
+public import Sidon.Equidistribution.NormalizedDiscrepancy
+public import Sidon.Equidistribution.ProgressionEquidistribution
+
+@[expose] public section
 
 /-! # Normalized equidistribution in arithmetic progressions -/
 

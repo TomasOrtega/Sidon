@@ -1,6 +1,10 @@
-import Sidon.Equidistribution.NormalizedDiscrepancy
-import Sidon.Equidistribution.RegularBohr
-import Mathlib.Algebra.Order.BigOperators.Expect
+module
+
+public import Sidon.Equidistribution.NormalizedDiscrepancy
+public import Sidon.Equidistribution.RegularBohr
+public import Mathlib.Algebra.Order.BigOperators.Expect
+
+@[expose] public section
 
 /-! # Smooth and regular Bohr equidistribution for extremal Sidon sets -/
 

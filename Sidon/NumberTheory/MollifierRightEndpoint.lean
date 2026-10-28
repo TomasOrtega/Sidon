@@ -1,7 +1,11 @@
-import Sidon.NumberTheory.InfiniteDirichletMeanSquare
-import Sidon.NumberTheory.BalancedMollifierSeries
-import Sidon.NumberTheory.DivisorSeriesBounds
-import Mathlib.NumberTheory.Harmonic.ZetaAsymp
+module
+
+public import Sidon.NumberTheory.InfiniteDirichletMeanSquare
+public import Sidon.NumberTheory.BalancedMollifierSeries
+public import Sidon.NumberTheory.DivisorSeriesBounds
+public import Mathlib.NumberTheory.Harmonic.ZetaAsymp
+
+@[expose] public section
 
 /-! # The absolutely convergent boundary mean square of the balanced mollifier -/
 

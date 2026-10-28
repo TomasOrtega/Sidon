@@ -1,3 +1,5 @@
+module
+
 /-
 Copyright (c) 2026 David Sanftenberg. All rights reserved.
 Released under Apache 2.0 license as described in LICENSES/Apache-2.0.txt.
@@ -5,16 +7,18 @@ Authors: David Sanftenberg
 -/
 /- Adapted from dbsanfte/RiemannGaussian; provenance and modifications are
 recorded in docs/rg-extraction-manifest.json. -/
-import Sidon.NumberTheory.RiemannGaussian.VinogradovCubicBudget
-import Sidon.NumberTheory.RiemannGaussian.VinogradovCubicSchedule
-import Sidon.NumberTheory.RiemannGaussian.VinogradovHeightSchedule
-import Sidon.NumberTheory.RiemannGaussian.VinogradovScaleSelection
-import Sidon.NumberTheory.RiemannGaussian.VinogradovScaledSchedule
-import Sidon.NumberTheory.RiemannGaussian.VinogradovSharperBudget
-import Sidon.NumberTheory.RiemannGaussian.ZetaNearOneBudgetLimit
-import Sidon.NumberTheory.RiemannGaussian.ZetaNearOneLogProfile
-import Sidon.NumberTheory.RiemannGaussian.ZetaVinogradovBalancedScale
-import Sidon.NumberTheory.RiemannGaussian.ZetaVinogradovScheduledMargin
+public import Sidon.NumberTheory.RiemannGaussian.VinogradovCubicBudget
+public import Sidon.NumberTheory.RiemannGaussian.VinogradovCubicSchedule
+public import Sidon.NumberTheory.RiemannGaussian.VinogradovHeightSchedule
+public import Sidon.NumberTheory.RiemannGaussian.VinogradovScaleSelection
+public import Sidon.NumberTheory.RiemannGaussian.VinogradovScaledSchedule
+public import Sidon.NumberTheory.RiemannGaussian.VinogradovSharperBudget
+public import Sidon.NumberTheory.RiemannGaussian.ZetaNearOneBudgetLimit
+public import Sidon.NumberTheory.RiemannGaussian.ZetaNearOneLogProfile
+public import Sidon.NumberTheory.RiemannGaussian.ZetaVinogradovBalancedScale
+public import Sidon.NumberTheory.RiemannGaussian.ZetaVinogradovScheduledMargin
+
+@[expose] public section
 
 namespace RiemannGaussian.ZetaVinogradovCubicScale
 noncomputable section

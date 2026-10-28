@@ -1,8 +1,12 @@
-import Sidon.Analysis.Approximation.Polynomial
-import Sidon.Analysis.Approximation.Interpolation
-import Sidon.Analysis.Approximation.SignedWeights
-import Sidon.Equidistribution.Bohr
-import Sidon.Transference.PositiveMax
+module
+
+public import Sidon.Analysis.Approximation.Polynomial
+public import Sidon.Analysis.Approximation.Interpolation
+public import Sidon.Analysis.Approximation.SignedWeights
+public import Sidon.Equidistribution.Bohr
+public import Sidon.Transference.PositiveMax
+
+@[expose] public section
 
 /-! # Finite moment matching and the obstruction to uniform bandwidth -/
 

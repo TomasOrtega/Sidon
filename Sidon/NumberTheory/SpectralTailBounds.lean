@@ -1,4 +1,8 @@
-import Sidon.NumberTheory.SpectralKernelBounds
+module
+
+public import Sidon.NumberTheory.SpectralKernelBounds
+
+@[expose] public section
 
 /-! High-zero tails controlled by a summable reciprocal-square mass. -/
 

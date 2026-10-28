@@ -1,6 +1,10 @@
-import Sidon.Combinatorics.QuantitativeRado.Counting
-import Sidon.Combinatorics.QuantitativeRado.Seeds
-import Sidon.Transference.Counting
+module
+
+public import Sidon.Combinatorics.QuantitativeRado.Counting
+public import Sidon.Combinatorics.QuantitativeRado.Seeds
+public import Sidon.Transference.Counting
+
+@[expose] public section
 
 /-! # Quantitative counting from a Deuber kernel parametrization -/
 

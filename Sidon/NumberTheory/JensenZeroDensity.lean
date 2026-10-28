@@ -1,6 +1,10 @@
-import Sidon.NumberTheory.JensenZeroOccurrences
-import Sidon.NumberTheory.CircleAverageVertical
-import Sidon.NumberTheory.MollifierCenter
+module
+
+public import Sidon.NumberTheory.JensenZeroOccurrences
+public import Sidon.NumberTheory.CircleAverageVertical
+public import Sidon.NumberTheory.MollifierCenter
+
+@[expose] public section
 
 /-! # Integrated Jensen counting for the actual zeta zeros -/
 

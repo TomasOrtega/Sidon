@@ -1,3 +1,5 @@
+module
+
 /-
 Copyright (c) 2026 David Sanftenberg. All rights reserved.
 Released under Apache 2.0 license as described in LICENSES/Apache-2.0.txt.
@@ -5,16 +7,18 @@ Authors: David Sanftenberg
 -/
 /- Adapted from dbsanfte/RiemannGaussian; provenance and modifications are
 recorded in docs/rg-extraction-manifest.json. -/
-import Sidon.NumberTheory.RiemannGaussian.DerivativePowerEnvelope
-import Sidon.NumberTheory.RiemannGaussian.GaussianXiDivisorContour
-import Sidon.NumberTheory.RiemannGaussian.GaussianZetaCounting
-import Sidon.NumberTheory.RiemannGaussian.RosserSchoenfeldLaplace
-import Sidon.NumberTheory.RiemannGaussian.RosserSchoenfeldPrimeKernel
-import Sidon.NumberTheory.RiemannGaussian.RosserSchoenfeldPrimePrimitive
-import Sidon.NumberTheory.RiemannGaussian.RosserSchoenfeldTrivialPrimitive
-import Sidon.NumberTheory.RiemannGaussian.RosserSchoenfeldZeroMass
-import Sidon.NumberTheory.RiemannGaussian.RosserSchoenfeldZeroPrimitive
-import Sidon.NumberTheory.RiemannGaussian.ZetaGlobalSignedBudget
+public import Sidon.NumberTheory.RiemannGaussian.DerivativePowerEnvelope
+public import Sidon.NumberTheory.RiemannGaussian.GaussianXiDivisorContour
+public import Sidon.NumberTheory.RiemannGaussian.GaussianZetaCounting
+public import Sidon.NumberTheory.RiemannGaussian.RosserSchoenfeldLaplace
+public import Sidon.NumberTheory.RiemannGaussian.RosserSchoenfeldPrimeKernel
+public import Sidon.NumberTheory.RiemannGaussian.RosserSchoenfeldPrimePrimitive
+public import Sidon.NumberTheory.RiemannGaussian.RosserSchoenfeldTrivialPrimitive
+public import Sidon.NumberTheory.RiemannGaussian.RosserSchoenfeldZeroMass
+public import Sidon.NumberTheory.RiemannGaussian.RosserSchoenfeldZeroPrimitive
+public import Sidon.NumberTheory.RiemannGaussian.ZetaGlobalSignedBudget
+
+@[expose] public section
 
 namespace RiemannGaussian.RosserSchoenfeldExplicitFormula
 noncomputable section

@@ -1,4 +1,8 @@
-import Sidon.Combinatorics.Deuber.Selection
+module
+
+public import Sidon.Combinatorics.Deuber.Selection
+
+@[expose] public section
 
 /-! # Positive boxes of Deuber generators -/
 

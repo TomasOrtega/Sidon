@@ -1,3 +1,5 @@
+module
+
 /-
 Copyright (c) 2026 David Sanftenberg. All rights reserved.
 Released under Apache 2.0 license as described in LICENSES/Apache-2.0.txt.
@@ -5,11 +7,13 @@ Authors: David Sanftenberg
 -/
 /- Adapted from dbsanfte/RiemannGaussian; provenance and modifications are
 recorded in docs/rg-extraction-manifest.json. -/
-import Sidon.NumberTheory.RiemannGaussian.EtaThinStripFactor
-import Sidon.NumberTheory.RiemannGaussian.EtaZetaDyadicRectangle
-import Sidon.NumberTheory.RiemannGaussian.EtaZetaMultiplicitySchwarz
-import Sidon.NumberTheory.RiemannGaussian.EtaZetaPoleBounds
-import Sidon.NumberTheory.RiemannGaussian.RiemannXiSuzukiSpectralStaticContourSafeZeta
+public import Sidon.NumberTheory.RiemannGaussian.EtaThinStripFactor
+public import Sidon.NumberTheory.RiemannGaussian.EtaZetaDyadicRectangle
+public import Sidon.NumberTheory.RiemannGaussian.EtaZetaMultiplicitySchwarz
+public import Sidon.NumberTheory.RiemannGaussian.EtaZetaPoleBounds
+public import Sidon.NumberTheory.RiemannGaussian.RiemannXiSuzukiSpectralStaticContourSafeZeta
+
+@[expose] public section
 
 open Complex Filter MeasureTheory MeromorphicOn Metric Set Topology
 open scoped Classical ComplexConjugate ENNReal Interval Topology

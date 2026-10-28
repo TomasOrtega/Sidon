@@ -1,5 +1,9 @@
-import Sidon.NumberTheory.JensenZeroDensity
-import Sidon.NumberTheory.ZetaCrudeCount
+module
+
+public import Sidon.NumberTheory.JensenZeroDensity
+public import Sidon.NumberTheory.ZetaCrudeCount
+
+@[expose] public section
 
 /-! # Uniform zero density from optimized mollifier slices -/
 

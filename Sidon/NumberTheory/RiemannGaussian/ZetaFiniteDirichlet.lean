@@ -1,3 +1,5 @@
+module
+
 /-
 Copyright (c) 2026 David Sanftenberg. All rights reserved.
 Released under Apache 2.0 license as described in LICENSES/Apache-2.0.txt.
@@ -5,17 +7,19 @@ Authors: David Sanftenberg
 -/
 /- Adapted from dbsanfte/RiemannGaussian; provenance and modifications are
 recorded in docs/rg-extraction-manifest.json. -/
-import Mathlib.Analysis.Analytic.ChangeOrigin
-import Mathlib.Analysis.Analytic.Uniqueness
-import Mathlib.MeasureTheory.Integral.Bochner.Basic
-import Mathlib.NumberTheory.LSeries.Linearity
-import Mathlib.NumberTheory.LSeries.SumCoeff
-import Mathlib.NumberTheory.SumPrimeReciprocals
-import Mathlib.Probability.Moments.MGFAnalytic
-import Mathlib.Tactic.NormNum.Prime
-import Mathlib.Tactic.NormNum.RealSqrt
-import Sidon.NumberTheory.RiemannGaussian.ZetaPrimeGram
-import Sidon.NumberTheory.RiemannGaussian.ZetaPrimeMomentEnvelope
+public import Mathlib.Analysis.Analytic.ChangeOrigin
+public import Mathlib.Analysis.Analytic.Uniqueness
+public import Mathlib.MeasureTheory.Integral.Bochner.Basic
+public import Mathlib.NumberTheory.LSeries.Linearity
+public import Mathlib.NumberTheory.LSeries.SumCoeff
+public import Mathlib.NumberTheory.SumPrimeReciprocals
+public import Mathlib.Probability.Moments.MGFAnalytic
+public import Mathlib.Tactic.NormNum.Prime
+public import Mathlib.Tactic.NormNum.RealSqrt
+public import Sidon.NumberTheory.RiemannGaussian.ZetaPrimeGram
+public import Sidon.NumberTheory.RiemannGaussian.ZetaPrimeMomentEnvelope
+
+@[expose] public section
 
 open Complex
 open scoped Classical LSeries.notation

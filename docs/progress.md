@@ -1,9 +1,13 @@
 # Formalization status
 
+This records the proof checkpoint from 22 October 2026. The Palomar entry points
+are now [Challenge.lean](../Challenge.lean) and [Solution.lean](../Solution.lean),
+with sources and scope in [formalization.yaml](../formalization.yaml).
+
 The paper's main theorems, corollaries, obstruction constructions, and Rado necessity
 have checked Lean proofs. The blueprint records the corrections to Lemmas 3.2 and
 4.1; the literal dimension-uniform bandwidth claim is refuted by a checked counterexample.
-Only declarations compiled by Lean are marked `leanok`. The complete project build passes on the latest stable Lean/mathlib `v4.35.0`.
+Only declarations compiled by Lean are marked `leanok`. The complete project build passed on Lean/mathlib `v4.35.0`.
 Matching doc-gen4, leanblueprint `0.0.20`, the complete API documentation, PDF,
 web blueprint, declaration audit, and theorem dependency audit also pass. No project theorem uses proof placeholders, added axioms, option
 overrides, or native evaluation.

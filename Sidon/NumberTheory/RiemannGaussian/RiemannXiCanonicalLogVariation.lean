@@ -1,3 +1,5 @@
+module
+
 /-
 Copyright (c) 2026 David Sanftenberg. All rights reserved.
 Released under Apache 2.0 license as described in LICENSES/Apache-2.0.txt.
@@ -5,11 +7,13 @@ Authors: David Sanftenberg
 -/
 /- Adapted from dbsanfte/RiemannGaussian; provenance and modifications are
 recorded in docs/rg-extraction-manifest.json. -/
-import Mathlib.Analysis.Calculus.MeanValue
-import Sidon.NumberTheory.RiemannGaussian.GaussianXiLogDerivativeGrowth
-import Sidon.NumberTheory.RiemannGaussian.GaussianXiSubquadraticGrowth
-import Sidon.NumberTheory.RiemannGaussian.GaussianZetaCounting
-import Sidon.NumberTheory.RiemannGaussian.RiemannXiSuzukiSpectralStaticContourCriticalZetaLowerSubquadratic
+public import Mathlib.Analysis.Calculus.MeanValue
+public import Sidon.NumberTheory.RiemannGaussian.GaussianXiLogDerivativeGrowth
+public import Sidon.NumberTheory.RiemannGaussian.GaussianXiSubquadraticGrowth
+public import Sidon.NumberTheory.RiemannGaussian.GaussianZetaCounting
+public import Sidon.NumberTheory.RiemannGaussian.RiemannXiSuzukiSpectralStaticContourCriticalZetaLowerSubquadratic
+
+@[expose] public section
 
 open Complex Filter MeromorphicOn Metric Set Topology
 open scoped Topology

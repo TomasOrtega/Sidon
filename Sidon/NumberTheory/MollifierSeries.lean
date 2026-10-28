@@ -1,6 +1,10 @@
-import Sidon.NumberTheory.DirichletMollifier
-import Mathlib.NumberTheory.LSeries.Dirichlet
-import Mathlib.NumberTheory.LSeries.Convolution
+module
+
+public import Sidon.NumberTheory.DirichletMollifier
+public import Mathlib.NumberTheory.LSeries.Dirichlet
+public import Mathlib.NumberTheory.LSeries.Convolution
+
+@[expose] public section
 
 /-! # The actual absolutely convergent mollifier Dirichlet series -/
 

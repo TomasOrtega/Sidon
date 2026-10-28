@@ -1,118 +1,120 @@
-import Sidon.Basic
-import Sidon.Combinatorics.Differences
-import Sidon.Combinatorics.Intervals
-import Sidon.Combinatorics.Affine
-import Sidon.Combinatorics.Energy
-import Sidon.Combinatorics.IntervalSize
-import Sidon.Combinatorics.SharpIntervalSize
-import Sidon.Analysis.FiniteFourier
-import Sidon.Analysis.DiscreteFejer
-import Sidon.Analysis.FejerClosedForm
-import Sidon.Analysis.VanDerCorput
-import Sidon.Analysis.PowerWindow
-import Sidon.Analysis.FourierIntegral
-import Sidon.Analysis.WindowVariance
-import Sidon.Cilleruelo
-import Sidon.FourierUniformity
-import Sidon.ImprovedFourierUniformity
-import Sidon.Equidistribution.Progressions
-import Sidon.Equidistribution.ProgressionL1
-import Sidon.Equidistribution.ProgressionClipping
-import Sidon.Equidistribution.ProgressionEquidistribution
-import Sidon.Equidistribution.IntervalResidue
-import Sidon.Equidistribution.Bohr
-import Sidon.Equidistribution.BohrCutoffs
-import Sidon.Analysis.SmoothingOptimization
-import Sidon.Analysis.BohrOptimization
-import Sidon.Analysis.FiniteHolder
-import Sidon.Analysis.ProductDiscrepancy
-import Sidon.Analysis.TorusFourier
-import Sidon.Analysis.TorusConvolution
-import Sidon.Analysis.CircleBump
-import Sidon.Equidistribution.TorusTesting
-import Sidon.Equidistribution.TorusSmoothing
-import Sidon.Equidistribution.NormalizedDiscrepancy
-import Sidon.Equidistribution.SmoothBohr
-import Sidon.Equidistribution.RegularBohr
-import Sidon.Transference.Counting
-import Sidon.Transference.RestrictionMoments
-import Sidon.Transference.RestrictionBounds
-import Sidon.Transference.FourierNorm
-import Sidon.Transference.DenseModel
-import Sidon.Transference.DenseModelInterval
-import Sidon.Transference.DensePartition
-import Sidon.Transference.CountingTransfer
-import Sidon.Transference.SidonMajorant
-import Sidon.PartitionRegularity
-import Sidon.Combinatorics.Deuber.Basic
-import Sidon.Combinatorics.Deuber.Containment
-import Sidon.Combinatorics.Deuber.Extraction
-import Sidon.Combinatorics.Deuber.OrderedExtraction
-import Sidon.Combinatorics.Deuber.Iteration
-import Sidon.Combinatorics.Deuber.Selection
-import Sidon.Combinatorics.QuantitativeRado.Counting
-import Sidon.Combinatorics.QuantitativeRado.Seeds
-import Sidon.Combinatorics.QuantitativeRado.Weighted
-import Sidon.Constructions.BoseChowla
-import Sidon.Constructions.Obstructions
-import Sidon.Analysis.Approximation.Explicit
-import Sidon.Analysis.Approximation.Counterexample
-import Sidon.NumberTheory.PrimeIntervals
-import Sidon.NumberTheory.PrimePowerError
-import Sidon.NumberTheory.ZeroLayers
-import Sidon.NumberTheory.RelativePrimeIntervals
-import Sidon.Constructions.Extremal
-import Sidon.Constructions.AsymptoticObstructions
-import Sidon.NumberTheory.ZetaZeroCount
-import Sidon.NumberTheory.ZeroDensityLayers
-import Sidon.NumberTheory.DirichletMeanSquare
-import Sidon.NumberTheory.LogarithmicMeanSquare
-import Sidon.NumberTheory.ExponentialSums.FirstDerivative
-import Sidon.NumberTheory.LogarithmicReserve
-import Sidon.NumberTheory.MollifierEndpoint
-import Sidon.NumberTheory.ZetaCriticalLine
-import Sidon.NumberTheory.DirichletMollifier
-import Sidon.NumberTheory.DivisorMeanSquare
-import Sidon.NumberTheory.RiemannGaussian
-import Sidon.NumberTheory.ZetaZeroFree
-import Sidon.NumberTheory.BSplineKernel
-import Sidon.NumberTheory.DivisorDirichletSeries
-import Sidon.NumberTheory.WeylZeta
-import Sidon.NumberTheory.MollifierSeries
-import Sidon.NumberTheory.JensenMollifier
-import Sidon.NumberTheory.PSeriesBounds
-import Sidon.NumberTheory.DivisorSeriesBounds
-import Sidon.NumberTheory.JensenDensityGeometry
-import Sidon.NumberTheory.BSplinePrimitive
-import Sidon.NumberTheory.BSplineDetector
-import Sidon.NumberTheory.BalancedMollifierSeries
-import Sidon.NumberTheory.MollifierCenter
-import Sidon.NumberTheory.LogarithmicGapMeanSquare
-import Sidon.NumberTheory.InfiniteDirichletMeanSquare
-import Sidon.NumberTheory.SmoothedMangoldt
-import Sidon.NumberTheory.SmoothedPrimeDetection
-import Sidon.NumberTheory.LogSmoothing
-import Sidon.NumberTheory.SpectralKernelBounds
-import Sidon.NumberTheory.VerticalL2Interpolation
-import Sidon.NumberTheory.LogSmoothedMangoldt
-import Sidon.NumberTheory.MollifierRightEndpoint
-import Sidon.NumberTheory.GaussianCumulative
-import Sidon.NumberTheory.MollifierSymmetry
-import Sidon.NumberTheory.SmoothingSeries
-import Sidon.NumberTheory.SpectralTailBounds
-import Sidon.NumberTheory.CircleAverageVertical
-import Sidon.NumberTheory.SmoothedExplicitFormula
-import Sidon.NumberTheory.LowZeroBridge
-import Sidon.NumberTheory.MollifierGaussian
-import Sidon.NumberTheory.MollifierLeftEndpoint
-import Sidon.NumberTheory.MollifierRightHalfPlane
-import Sidon.NumberTheory.MollifierInterpolation
-import Sidon.NumberTheory.JensenZeroOccurrences
-import Sidon.NumberTheory.JensenZeroDensity
-import Sidon.NumberTheory.ZetaCrudeCount
-import Sidon.NumberTheory.SmoothedZeroBounds
-import Sidon.NumberTheory.InghamDensity
-import Sidon.NumberTheory.ZetaZeroWeight
-import Sidon.NumberTheory.ZetaDensity
-import Sidon.Constructions.MaximumUniformity
-import Sidon.Combinatorics.QuantitativeRado.Necessity
+module
+
+public import Sidon.Basic
+public import Sidon.Combinatorics.Differences
+public import Sidon.Combinatorics.Intervals
+public import Sidon.Combinatorics.Affine
+public import Sidon.Combinatorics.Energy
+public import Sidon.Combinatorics.IntervalSize
+public import Sidon.Combinatorics.SharpIntervalSize
+public import Sidon.Analysis.FiniteFourier
+public import Sidon.Analysis.DiscreteFejer
+public import Sidon.Analysis.FejerClosedForm
+public import Sidon.Analysis.VanDerCorput
+public import Sidon.Analysis.PowerWindow
+public import Sidon.Analysis.FourierIntegral
+public import Sidon.Analysis.WindowVariance
+public import Sidon.Cilleruelo
+public import Sidon.FourierUniformity
+public import Sidon.ImprovedFourierUniformity
+public import Sidon.Equidistribution.Progressions
+public import Sidon.Equidistribution.ProgressionL1
+public import Sidon.Equidistribution.ProgressionClipping
+public import Sidon.Equidistribution.ProgressionEquidistribution
+public import Sidon.Equidistribution.IntervalResidue
+public import Sidon.Equidistribution.Bohr
+public import Sidon.Equidistribution.BohrCutoffs
+public import Sidon.Analysis.SmoothingOptimization
+public import Sidon.Analysis.BohrOptimization
+public import Sidon.Analysis.FiniteHolder
+public import Sidon.Analysis.ProductDiscrepancy
+public import Sidon.Analysis.TorusFourier
+public import Sidon.Analysis.TorusConvolution
+public import Sidon.Analysis.CircleBump
+public import Sidon.Equidistribution.TorusTesting
+public import Sidon.Equidistribution.TorusSmoothing
+public import Sidon.Equidistribution.NormalizedDiscrepancy
+public import Sidon.Equidistribution.SmoothBohr
+public import Sidon.Equidistribution.RegularBohr
+public import Sidon.Transference.Counting
+public import Sidon.Transference.RestrictionMoments
+public import Sidon.Transference.RestrictionBounds
+public import Sidon.Transference.FourierNorm
+public import Sidon.Transference.DenseModel
+public import Sidon.Transference.DenseModelInterval
+public import Sidon.Transference.DensePartition
+public import Sidon.Transference.CountingTransfer
+public import Sidon.Transference.SidonMajorant
+public import Sidon.PartitionRegularity
+public import Sidon.Combinatorics.Deuber.Basic
+public import Sidon.Combinatorics.Deuber.Containment
+public import Sidon.Combinatorics.Deuber.Extraction
+public import Sidon.Combinatorics.Deuber.OrderedExtraction
+public import Sidon.Combinatorics.Deuber.Iteration
+public import Sidon.Combinatorics.Deuber.Selection
+public import Sidon.Combinatorics.QuantitativeRado.Counting
+public import Sidon.Combinatorics.QuantitativeRado.Seeds
+public import Sidon.Combinatorics.QuantitativeRado.Weighted
+public import Sidon.Constructions.BoseChowla
+public import Sidon.Constructions.Obstructions
+public import Sidon.Analysis.Approximation.Explicit
+public import Sidon.Analysis.Approximation.Counterexample
+public import Sidon.NumberTheory.PrimeIntervals
+public import Sidon.NumberTheory.PrimePowerError
+public import Sidon.NumberTheory.ZeroLayers
+public import Sidon.NumberTheory.RelativePrimeIntervals
+public import Sidon.Constructions.Extremal
+public import Sidon.Constructions.AsymptoticObstructions
+public import Sidon.NumberTheory.ZetaZeroCount
+public import Sidon.NumberTheory.ZeroDensityLayers
+public import Sidon.NumberTheory.DirichletMeanSquare
+public import Sidon.NumberTheory.LogarithmicMeanSquare
+public import Sidon.NumberTheory.ExponentialSums.FirstDerivative
+public import Sidon.NumberTheory.LogarithmicReserve
+public import Sidon.NumberTheory.MollifierEndpoint
+public import Sidon.NumberTheory.ZetaCriticalLine
+public import Sidon.NumberTheory.DirichletMollifier
+public import Sidon.NumberTheory.DivisorMeanSquare
+public import Sidon.NumberTheory.RiemannGaussian
+public import Sidon.NumberTheory.ZetaZeroFree
+public import Sidon.NumberTheory.BSplineKernel
+public import Sidon.NumberTheory.DivisorDirichletSeries
+public import Sidon.NumberTheory.WeylZeta
+public import Sidon.NumberTheory.MollifierSeries
+public import Sidon.NumberTheory.JensenMollifier
+public import Sidon.NumberTheory.PSeriesBounds
+public import Sidon.NumberTheory.DivisorSeriesBounds
+public import Sidon.NumberTheory.JensenDensityGeometry
+public import Sidon.NumberTheory.BSplinePrimitive
+public import Sidon.NumberTheory.BSplineDetector
+public import Sidon.NumberTheory.BalancedMollifierSeries
+public import Sidon.NumberTheory.MollifierCenter
+public import Sidon.NumberTheory.LogarithmicGapMeanSquare
+public import Sidon.NumberTheory.InfiniteDirichletMeanSquare
+public import Sidon.NumberTheory.SmoothedMangoldt
+public import Sidon.NumberTheory.SmoothedPrimeDetection
+public import Sidon.NumberTheory.LogSmoothing
+public import Sidon.NumberTheory.SpectralKernelBounds
+public import Sidon.NumberTheory.VerticalL2Interpolation
+public import Sidon.NumberTheory.LogSmoothedMangoldt
+public import Sidon.NumberTheory.MollifierRightEndpoint
+public import Sidon.NumberTheory.GaussianCumulative
+public import Sidon.NumberTheory.MollifierSymmetry
+public import Sidon.NumberTheory.SmoothingSeries
+public import Sidon.NumberTheory.SpectralTailBounds
+public import Sidon.NumberTheory.CircleAverageVertical
+public import Sidon.NumberTheory.SmoothedExplicitFormula
+public import Sidon.NumberTheory.LowZeroBridge
+public import Sidon.NumberTheory.MollifierGaussian
+public import Sidon.NumberTheory.MollifierLeftEndpoint
+public import Sidon.NumberTheory.MollifierRightHalfPlane
+public import Sidon.NumberTheory.MollifierInterpolation
+public import Sidon.NumberTheory.JensenZeroOccurrences
+public import Sidon.NumberTheory.JensenZeroDensity
+public import Sidon.NumberTheory.ZetaCrudeCount
+public import Sidon.NumberTheory.SmoothedZeroBounds
+public import Sidon.NumberTheory.InghamDensity
+public import Sidon.NumberTheory.ZetaZeroWeight
+public import Sidon.NumberTheory.ZetaDensity
+public import Sidon.Constructions.MaximumUniformity
+public import Sidon.Combinatorics.QuantitativeRado.Necessity

@@ -1,5 +1,9 @@
-import Sidon.Equidistribution.Bohr
-import Sidon.Equidistribution.ProgressionL1
+module
+
+public import Sidon.Equidistribution.Bohr
+public import Sidon.Equidistribution.ProgressionL1
+
+@[expose] public section
 
 /-! # A continuous probability bump on the unit circle -/
 

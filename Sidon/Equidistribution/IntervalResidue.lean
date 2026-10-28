@@ -1,4 +1,8 @@
-import Sidon.Equidistribution.LatticeCounting
+module
+
+public import Sidon.Equidistribution.LatticeCounting
+
+@[expose] public section
 
 /-! # Normalized interval and residue equidistribution (Corollaries 1.5 and 1.6) -/
 

@@ -1,5 +1,9 @@
-import Sidon.Transference.FourierNorm
-import Sidon.Transference.PositiveMax
+module
+
+public import Sidon.Transference.FourierNorm
+public import Sidon.Transference.PositiveMax
+
+@[expose] public section
 
 /-! # Polynomial evaluation in the real Fourier dual norm -/
 

@@ -1,7 +1,11 @@
-import Sidon.Constructions.BoseChowla
-import Sidon.NumberTheory.PrimeIntervals
-import Sidon.Combinatorics.SharpIntervalSize
-import Sidon.FourierUniformity
+module
+
+public import Sidon.Constructions.BoseChowla
+public import Sidon.NumberTheory.PrimeIntervals
+public import Sidon.Combinatorics.SharpIntervalSize
+public import Sidon.FourierUniformity
+
+@[expose] public section
 
 /-! # Maximum Sidon sets and the precise short-prime-interval dependency -/
 

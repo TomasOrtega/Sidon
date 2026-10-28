@@ -1,5 +1,9 @@
-import Sidon.Analysis.SidonCorrelation
-import Sidon.Analysis.PowerWindow
+module
+
+public import Sidon.Analysis.SidonCorrelation
+public import Sidon.Analysis.PowerWindow
+
+@[expose] public section
 
 /-! # The square-root Sidon bound with a quarter-power error -/
 

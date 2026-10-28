@@ -1,5 +1,9 @@
-import Sidon.Analysis.Approximation.Tensor
-import Sidon.Analysis.Approximation.Polynomial
+module
+
+public import Sidon.Analysis.Approximation.Tensor
+public import Sidon.Analysis.Approximation.Polynomial
+
+@[expose] public section
 
 /-! # Fejér smoothing as a finite trigonometric polynomial -/
 

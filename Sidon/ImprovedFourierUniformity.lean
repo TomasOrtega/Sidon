@@ -1,5 +1,9 @@
-import Sidon.Cilleruelo
-import Sidon.FourierUniformity
+module
+
+public import Sidon.Cilleruelo
+public import Sidon.FourierUniformity
+
+@[expose] public section
 
 /-! # The quarter-power improvement to Fourier uniformity -/
 

@@ -1,4 +1,8 @@
-import Sidon.NumberTheory.MollifierOptimization
+module
+
+public import Sidon.NumberTheory.MollifierOptimization
+
+@[expose] public section
 
 /-! # Uniform vertical slices in the geometric Jensen window -/
 

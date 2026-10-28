@@ -1,4 +1,8 @@
-import Sidon.NumberTheory.MollifierEndpoint
+module
+
+public import Sidon.NumberTheory.MollifierEndpoint
+
+@[expose] public section
 
 /-! # The actual finite Möbius mollifier and its Dirichlet coefficients -/
 

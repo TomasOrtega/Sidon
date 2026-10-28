@@ -1,4 +1,8 @@
-import Sidon.Analysis.WindowVariance
+module
+
+public import Sidon.Analysis.WindowVariance
+
+@[expose] public section
 
 /-! # Cilleruelo's interval discrepancy estimate -/
 

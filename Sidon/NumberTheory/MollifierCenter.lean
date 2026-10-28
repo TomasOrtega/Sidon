@@ -1,5 +1,9 @@
-import Sidon.NumberTheory.BalancedMollifierSeries
-import Sidon.NumberTheory.DivisorSeriesBounds
+module
+
+public import Sidon.NumberTheory.BalancedMollifierSeries
+public import Sidon.NumberTheory.DivisorSeriesBounds
+
+@[expose] public section
 
 /-! # The actual mollifier detector is close to one on the line of real part two -/
 

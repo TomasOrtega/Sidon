@@ -1,4 +1,8 @@
-import Sidon.NumberTheory.LogSmoothing
+module
+
+public import Sidon.NumberTheory.LogSmoothing
+
+@[expose] public section
 
 /-! Low-frequency and high-frequency bounds for the exact exponential kernel. -/
 

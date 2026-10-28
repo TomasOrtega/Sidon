@@ -1,3 +1,5 @@
+module
+
 /-
 Copyright (c) 2026 David Sanftenberg. All rights reserved.
 Released under Apache 2.0 license as described in LICENSES/Apache-2.0.txt.
@@ -5,20 +7,22 @@ Authors: David Sanftenberg
 -/
 /- Adapted from dbsanfte/RiemannGaussian; provenance and modifications are
 recorded in docs/rg-extraction-manifest.json. -/
-import Mathlib.Analysis.SpecialFunctions.Log.PosLog
-import Sidon.NumberTheory.RiemannGaussian.DerivativeOrderComparison
-import Sidon.NumberTheory.RiemannGaussian.DerivativePowerExponents
-import Sidon.NumberTheory.RiemannGaussian.DirichletBlockPowerProfile
-import Sidon.NumberTheory.RiemannGaussian.DirichletDyadicBlocks
-import Sidon.NumberTheory.RiemannGaussian.DirichletPowerParameters
-import Sidon.NumberTheory.RiemannGaussian.EtaUniformTailBound
-import Sidon.NumberTheory.RiemannGaussian.RiemannXiSuzukiPositiveCriticalStripEta
-import Sidon.NumberTheory.RiemannGaussian.RiemannXiSuzukiPositiveCriticalStripEtaFiniteApproximation
-import Sidon.NumberTheory.RiemannGaussian.RiemannXiSuzukiSpectralStaticContourCriticalZetaUpper
-import Sidon.NumberTheory.RiemannGaussian.ZetaDyadicPowerBound
-import Sidon.NumberTheory.RiemannGaussian.ZetaDyadicTruncation
-import Sidon.NumberTheory.RiemannGaussian.ZetaFiniteDirichlet
-import Sidon.NumberTheory.RiemannGaussian.ZetaNearOneLineBound
+public import Mathlib.Analysis.SpecialFunctions.Log.PosLog
+public import Sidon.NumberTheory.RiemannGaussian.DerivativeOrderComparison
+public import Sidon.NumberTheory.RiemannGaussian.DerivativePowerExponents
+public import Sidon.NumberTheory.RiemannGaussian.DirichletBlockPowerProfile
+public import Sidon.NumberTheory.RiemannGaussian.DirichletDyadicBlocks
+public import Sidon.NumberTheory.RiemannGaussian.DirichletPowerParameters
+public import Sidon.NumberTheory.RiemannGaussian.EtaUniformTailBound
+public import Sidon.NumberTheory.RiemannGaussian.RiemannXiSuzukiPositiveCriticalStripEta
+public import Sidon.NumberTheory.RiemannGaussian.RiemannXiSuzukiPositiveCriticalStripEtaFiniteApproximation
+public import Sidon.NumberTheory.RiemannGaussian.RiemannXiSuzukiSpectralStaticContourCriticalZetaUpper
+public import Sidon.NumberTheory.RiemannGaussian.ZetaDyadicPowerBound
+public import Sidon.NumberTheory.RiemannGaussian.ZetaDyadicTruncation
+public import Sidon.NumberTheory.RiemannGaussian.ZetaFiniteDirichlet
+public import Sidon.NumberTheory.RiemannGaussian.ZetaNearOneLineBound
+
+@[expose] public section
 
 namespace RiemannGaussian.ZetaNearOneLogProfile
 noncomputable section

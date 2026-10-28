@@ -1,5 +1,9 @@
-import Sidon.Analysis.TorusFourier
-import Sidon.Analysis.Correlation
+module
+
+public import Sidon.Analysis.TorusFourier
+public import Sidon.Analysis.Correlation
+
+@[expose] public section
 
 /-! # Testing integer Fourier discrepancy against torus character series -/
 

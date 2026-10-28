@@ -1,17 +1,22 @@
+module
+
 /-
 Adapted from PrimeNumberTheoremAnd/Wiener.lean, commit 127b50e33f6033e2147921167a117af96d9ba4ea.
 Released under Apache 2.0; original authors: PrimeNumberTheoremAnd contributors.
 -/
-import Mathlib.Analysis.Fourier.RiemannLebesgueLemma
-import Mathlib.Analysis.Normed.Group.Tannery
-import Mathlib.Analysis.SumIntegralComparisons
-import Mathlib.NumberTheory.Chebyshev
-import Mathlib.NumberTheory.LSeries.PrimesInAP
-import Mathlib.NumberTheory.MulChar.Lemmas
-import Sidon.NumberTheory.Tauberian.Asymptotics
-import Sidon.NumberTheory.Tauberian.Fourier
-import Sidon.NumberTheory.Tauberian.SmoothCutoff
-import Mathlib.Analysis.Convolution
+public import Mathlib.Analysis.Fourier.RiemannLebesgueLemma
+public import Mathlib.Analysis.Normed.Group.Tannery
+public import Mathlib.Analysis.SumIntegralComparisons
+public import Mathlib.NumberTheory.Chebyshev
+public import Mathlib.NumberTheory.LSeries.PrimesInAP
+public import Mathlib.NumberTheory.MulChar.Lemmas
+public import Sidon.NumberTheory.Tauberian.Asymptotics
+public import Sidon.NumberTheory.Tauberian.Fourier
+public import Sidon.NumberTheory.Tauberian.SmoothCutoff
+public import Mathlib.Analysis.Convolution
+public import Mathlib.Analysis.Asymptotics.SpecificAsymptotics
+
+@[expose] public section
 
 namespace Sidon.NumberTheory.Tauberian
 

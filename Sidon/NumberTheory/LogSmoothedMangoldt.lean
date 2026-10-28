@@ -1,5 +1,9 @@
-import Sidon.NumberTheory.LogSmoothing
-import Sidon.NumberTheory.SmoothedMangoldt
+module
+
+public import Sidon.NumberTheory.LogSmoothing
+public import Sidon.NumberTheory.SmoothedMangoldt
+
+@[expose] public section
 
 /-! Compatibility of complex spectral smoothing with the actual arithmetic primitive. -/
 

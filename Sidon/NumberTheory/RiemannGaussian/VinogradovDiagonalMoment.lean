@@ -1,3 +1,5 @@
+module
+
 /-
 Copyright (c) 2026 David Sanftenberg. All rights reserved.
 Released under Apache 2.0 license as described in LICENSES/Apache-2.0.txt.
@@ -5,16 +7,18 @@ Authors: David Sanftenberg
 -/
 /- Adapted from dbsanfte/RiemannGaussian; provenance and modifications are
 recorded in docs/rg-extraction-manifest.json. -/
-import Sidon.NumberTheory.RiemannGaussian.VinogradovMeanValue
-import Sidon.NumberTheory.RiemannGaussian.VinogradovMixedDifferencing
-import Sidon.NumberTheory.RiemannGaussian.VinogradovMixedMoments
-import Sidon.NumberTheory.RiemannGaussian.VinogradovNonsingularDescent
-import Sidon.NumberTheory.RiemannGaussian.VinogradovPartitionEnergy
-import Sidon.NumberTheory.RiemannGaussian.VinogradovPolynomialDifferencing
-import Sidon.NumberTheory.RiemannGaussian.VinogradovPolynomialNonsingular
-import Sidon.NumberTheory.RiemannGaussian.VinogradovPolynomialSystems
-import Sidon.NumberTheory.RiemannGaussian.VinogradovTypeMaximum
-import Sidon.NumberTheory.RiemannGaussian.VinogradovUnrestrictedConditioning
+public import Sidon.NumberTheory.RiemannGaussian.VinogradovMeanValue
+public import Sidon.NumberTheory.RiemannGaussian.VinogradovMixedDifferencing
+public import Sidon.NumberTheory.RiemannGaussian.VinogradovMixedMoments
+public import Sidon.NumberTheory.RiemannGaussian.VinogradovNonsingularDescent
+public import Sidon.NumberTheory.RiemannGaussian.VinogradovPartitionEnergy
+public import Sidon.NumberTheory.RiemannGaussian.VinogradovPolynomialDifferencing
+public import Sidon.NumberTheory.RiemannGaussian.VinogradovPolynomialNonsingular
+public import Sidon.NumberTheory.RiemannGaussian.VinogradovPolynomialSystems
+public import Sidon.NumberTheory.RiemannGaussian.VinogradovTypeMaximum
+public import Sidon.NumberTheory.RiemannGaussian.VinogradovUnrestrictedConditioning
+
+@[expose] public section
 
 namespace RiemannGaussian.VinogradovDiagonalMoment
 noncomputable section

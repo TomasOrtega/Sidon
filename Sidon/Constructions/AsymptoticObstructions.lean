@@ -1,5 +1,9 @@
-import Sidon.Constructions.Obstructions
-import Sidon.NumberTheory.RelativePrimeIntervals
+module
+
+public import Sidon.Constructions.Obstructions
+public import Sidon.NumberTheory.RelativePrimeIntervals
+
+@[expose] public section
 
 /-! # Sharp asymptotic modular obstructions at every large length -/
 

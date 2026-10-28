@@ -1,5 +1,9 @@
-import Sidon.NumberTheory.LowZeroBridge
-import Sidon.NumberTheory.SmoothedExplicitFormula
+module
+
+public import Sidon.NumberTheory.LowZeroBridge
+public import Sidon.NumberTheory.SmoothedExplicitFormula
+
+@[expose] public section
 
 /-! Low and high actual zero estimates for the smoothed explicit formula. -/
 

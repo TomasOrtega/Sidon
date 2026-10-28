@@ -1,4 +1,8 @@
-import Sidon.NumberTheory.BSplinePrimitive
+module
+
+public import Sidon.NumberTheory.BSplinePrimitive
+
+@[expose] public section
 
 /-! Repeated primitives and exact smoothing of exponential zero atoms. -/
 

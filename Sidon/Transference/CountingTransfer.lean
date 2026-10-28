@@ -1,6 +1,10 @@
-import Sidon.Transference.RestrictionBounds
-import Sidon.Analysis.ProductDiscrepancy
-import Sidon.Equidistribution.ProgressionL1
+module
+
+public import Sidon.Transference.RestrictionBounds
+public import Sidon.Analysis.ProductDiscrepancy
+public import Sidon.Equidistribution.ProgressionL1
+
+@[expose] public section
 
 /-! # Fourier control of multilinear solution counts -/
 

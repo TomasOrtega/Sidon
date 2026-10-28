@@ -1,13 +1,17 @@
+module
+
 /-
 Adapted from PrimeNumberTheoremAnd/Fourier.lean, commit 127b50e33f6033e2147921167a117af96d9ba4ea.
 Released under Apache 2.0; original authors: PrimeNumberTheoremAnd contributors.
 -/
-import Mathlib.Analysis.Distribution.SchwartzSpace.Deriv
-import Mathlib.MeasureTheory.Integral.IntegralEqImproper
-import Mathlib.Topology.ContinuousMap.Bounded.Basic
-import Mathlib.Order.Filter.ZeroAndBoundedAtFilter
-import Mathlib.Analysis.Fourier.FourierTransformDeriv
-import Sidon.NumberTheory.Tauberian.Sobolev
+public import Mathlib.Analysis.Distribution.SchwartzSpace.Deriv
+public import Mathlib.MeasureTheory.Integral.IntegralEqImproper
+public import Mathlib.Topology.ContinuousMap.Bounded.Basic
+public import Mathlib.Order.Filter.ZeroAndBoundedAtFilter
+public import Mathlib.Analysis.Fourier.FourierTransformDeriv
+public import Sidon.NumberTheory.Tauberian.Sobolev
+
+@[expose] public section
 
 namespace Sidon.NumberTheory.Tauberian
 

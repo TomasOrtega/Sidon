@@ -1,6 +1,10 @@
-import Sidon.NumberTheory.DirichletMollifier
-import Mathlib.Analysis.Complex.JensenFormula
-import Mathlib.NumberTheory.LSeries.RiemannZeta
+module
+
+public import Sidon.NumberTheory.DirichletMollifier
+public import Mathlib.Analysis.Complex.JensenFormula
+public import Mathlib.NumberTheory.LSeries.RiemannZeta
+
+@[expose] public section
 
 /-! # Actual analytic mollifiers in Jensen's formula -/
 

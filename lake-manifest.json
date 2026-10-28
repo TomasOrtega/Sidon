@@ -28,7 +28,7 @@
    "rev": "3d425859e73fcfbef85b9638c2a91708ef4a22d4",
    "name": "checkdecls",
    "manifestFile": "lake-manifest.json",
-   "inputRev": null,
+   "inputRev": "3d425859e73fcfbef85b9638c2a91708ef4a22d4",
    "inherited": false,
    "configFile": "lakefile.lean"},
   {"url": "https://github.com/leanprover-community/plausible",

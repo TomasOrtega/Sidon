@@ -1,8 +1,15 @@
 # Third-party source notices
 
-The Apache 2.0 license text for the following adapted source is included in
-[LICENSES/Apache-2.0.txt](LICENSES/Apache-2.0.txt). This notice records the scope
-of those adaptations; it does not assign a license to the rest of the repository.
+This repository uses [Apache 2.0](LICENSE). The following adapted sources keep
+their original credits. A copy of their license is also in
+[LICENSES/Apache-2.0.txt](LICENSES/Apache-2.0.txt).
+
+## PalomarTemplate
+
+The source checker, Comparator script, and Comparator CI setup adapt
+[`PalomarTemplate` at commit 2891de4](https://github.com/PalomarRegistry/PalomarTemplate/tree/2891de4c48955af824969a263d31b25e7a9a1406),
+under Apache 2.0. The scripts use this repo's paths and tests:
+`scripts/check_lean_sources.py` and `scripts/verify-comparator.sh`.
 
 ## mathlib
 
@@ -32,6 +39,7 @@ released under Apache 2.0 by its contributors.
   controlled by local transparency settings.
 - The extracted proof is checked against the project's toolchain. It does not
   import optional later sections or external proof certificates.
+- The module port adds public imports and exposed public declarations.
 
 ## RiemannGaussian
 
@@ -61,6 +69,8 @@ released under Apache 2.0.
   zero-primitive integrability replace unused numerical zero-mass estimates.
   The exact transforms and smoothed explicit formula keep their statements.
   The indicator-integrability proof uses the current null-measurability API.
+- The module port adds public imports and exposed public declarations. Five
+  files need direct Mathlib imports. This port leaves proof bodies unchanged.
 - The complete 275-module closure passed the actual project build with its
   binder policy enabled. Post-rewrite audits of the VK/Weyl bounds, exact
   formula, zero mass, conjugation, and nonreality contain only `propext`,

@@ -17,7 +17,8 @@
     "Make the previously auto-inferred real parameters R in factor_center and x in neg_logDeriv_riemannZeta_real_le_local explicit implicit binders; elaborated theorem types are unchanged.",
     "Prove RosserSchoenfeldZeroMass.poisson_lower and norm_square_mass_summable qualitatively from positivity and closedness of the actual zero set, avoiding numerical zero certificates.",
     "Use the resulting finite reciprocal norm-square mass in RosserSchoenfeldZeroPrimitive.integrable_value instead of the unused evaluated numerical mass bound; theorem statements and exact formulas are unchanged.",
-    "Adapt RosserSchoenfeldPrimePrimitive.integrable_term to the NullMeasurableSet argument of the current Mathlib indicator-integrability theorem."
+    "Adapt RosserSchoenfeldPrimePrimitive.integrable_term to the NullMeasurableSet argument of the current Mathlib indicator-integrability theorem.",
+    "Use Lean modules with public imports and exposed public declarations; add direct Mathlib imports where the module interface requires them. Proof bodies are unchanged by this port."
   ],
   "kernel_audit": {
     "axioms": [
@@ -44,7 +45,7 @@
       "upstream_module": "RiemannGaussian.AnalyticDerivativeCutoff",
       "upstream_file": "RiemannGaussian/AnalyticDerivativeCutoff.lean",
       "upstream_sha256": "a32e3ae31da6072fa986e766d689dea63530da8d9b2b0d544582eca39546e3d3",
-      "extracted_sha256": "95d2d50d0d18d2e8c68914fa24209eb860721047ea61f63f9da96d9f5bdd288e",
+      "extracted_sha256": "78a44d29089214da0241a1b51c9694dde987c652bc09a9723385f9666fdc58d6",
       "declarations": [
         "RiemannGaussian.AnalyticDerivativeCutoff.count_eq",
         "RiemannGaussian.AnalyticDerivativeCutoff.count_le_twice",
@@ -80,7 +81,7 @@
       "upstream_module": "RiemannGaussian.AnalyticDiscBoundaryMoment",
       "upstream_file": "RiemannGaussian/AnalyticDiscBoundaryMoment.lean",
       "upstream_sha256": "74be3a3adde4bf7bed19e7cbd2ae18da86482c6af7d1589b8b1257c42c7891ec",
-      "extracted_sha256": "1cf2077e73582373e25a1978e05d5e57c1138ad4ae4dedc1cd135e02da9c3cff",
+      "extracted_sha256": "75997223c75b19bc58ee0874f32fa8240173614ca124bff3f122ae376e18d264",
       "declarations": [
         "RiemannGaussian.AnalyticDiscBoundaryMoment.circleIntegrable_log_norm",
         "RiemannGaussian.AnalyticDiscBoundaryMoment.extension",
@@ -134,7 +135,7 @@
       "upstream_module": "RiemannGaussian.AnalyticDiscBoundarySequence",
       "upstream_file": "RiemannGaussian/AnalyticDiscBoundarySequence.lean",
       "upstream_sha256": "7c740afebcd01d4dc2f08294d93138c833e2d1a4d53b75e52976f0a00253e577",
-      "extracted_sha256": "67c8aaa4433fcddee2b805dc774e8402a9c27210d513d3db299fa24867c43b9e",
+      "extracted_sha256": "accf612662cf8d8499301e633590954a2c969206e821bf23b5ec8f13550bbb7a",
       "declarations": [
         "RiemannGaussian.AnalyticDiscBoundarySequence.exists_sphere_between",
         "RiemannGaussian.AnalyticDiscBoundarySequence.exists_sphere_tendsto"
@@ -175,7 +176,7 @@
       "upstream_module": "RiemannGaussian.AnalyticDiscCanonicalBounds",
       "upstream_file": "RiemannGaussian/AnalyticDiscCanonicalBounds.lean",
       "upstream_sha256": "9309c1ed83569635dc3693b6fae96789d1edca8da771a76cc0e81a01386246ae",
-      "extracted_sha256": "c4ddaa96e12dfbefca673550b89e774e828deb47df902aeecc79c180169bf3d8",
+      "extracted_sha256": "9bb5a15e20b9bb8fffcb49ddeb4ef9a47127bdfba71c4e8d74a7bfd53100fa31",
       "declarations": [
         "RiemannGaussian.AnalyticDiscCanonicalBounds.center_norm_le",
         "RiemannGaussian.AnalyticDiscCanonicalBounds.divisor_sphere_eq_zero",
@@ -221,7 +222,7 @@
       "upstream_module": "RiemannGaussian.AnalyticDiscCaratheodory",
       "upstream_file": "RiemannGaussian/AnalyticDiscCaratheodory.lean",
       "upstream_sha256": "3a462f4341ca5594509c737f2ae9c96c840430442bc2ac40a76fd68d3f5c5e7e",
-      "extracted_sha256": "83c697dbe4c1f7f7b24538c4b266f6105758322ae6a97f17beec50130bcc82b4",
+      "extracted_sha256": "620c61a010316ac84b7981720fe1891d6e952a028200d09b13f27fca85cf2ff8",
       "declarations": [
         "RiemannGaussian.AnalyticDiscCaratheodory.norm_deriv_zero_le"
       ],
@@ -239,7 +240,7 @@
       "upstream_module": "RiemannGaussian.AnalyticDiscLogarithm",
       "upstream_file": "RiemannGaussian/AnalyticDiscLogarithm.lean",
       "upstream_sha256": "a49268cfeb976ebdec5dcdd7d61bb8f279191ea9677cd159303ba36eea07d557",
-      "extracted_sha256": "1309a94bd608bad0a63c2ab91a15292fc1e5eeac6905a808006c2113d5ece679",
+      "extracted_sha256": "d28aa8bf17c5772d5a88dea4d649a6949b3cc55fcd804f57856756e85b0411ed",
       "declarations": [
         "RiemannGaussian.AnalyticDiscLogarithm.exists_logarithm",
         "RiemannGaussian.AnalyticDiscLogarithm.exp_mul_center",
@@ -305,7 +306,7 @@
       "upstream_module": "RiemannGaussian.AnalyticDiscSignedBoundary",
       "upstream_file": "RiemannGaussian/AnalyticDiscSignedBoundary.lean",
       "upstream_sha256": "988aae38d505244a0c2bf6590025c208a008a8ff8a75d0d64386db8426a87250",
-      "extracted_sha256": "a7547e6c3b2fc1ad8e123875b7c6a0ef69de35199e3b56c70864a8d5addccb80",
+      "extracted_sha256": "689d1a0a499efff9aba6bdfa5a4a17d025b54e65b474d4be57b56ce4622bbe19",
       "declarations": [
         "RiemannGaussian.AnalyticDiscSignedBoundary.neg_moment_re_le"
       ],
@@ -350,7 +351,7 @@
       "upstream_module": "RiemannGaussian.AnalyticDiscSignedDerivative",
       "upstream_file": "RiemannGaussian/AnalyticDiscSignedDerivative.lean",
       "upstream_sha256": "afe410496cf22c38b51633096c0765e95cdd8fc3d48b08e0edc04a6273cf05c9",
-      "extracted_sha256": "01bb4713bd9199c9bd2329aeab592921f4349a7719fdbce9973c1c716717db99",
+      "extracted_sha256": "931fd2704d0c5a114602ee206b9749cd0e41bf5381e1138c7a2dad789fa85101",
       "declarations": [
         "RiemannGaussian.AnalyticDiscSignedDerivative.factor_center",
         "RiemannGaussian.AnalyticDiscSignedDerivative.kernel",
@@ -397,7 +398,7 @@
       "upstream_module": "RiemannGaussian.ClippedLogNorm",
       "upstream_file": "RiemannGaussian/ClippedLogNorm.lean",
       "upstream_sha256": "a22dfd84e6967336d191b7c243b1d5fa64dced113bf6db8ac6df82fdce8fc413",
-      "extracted_sha256": "071f59a1b922a9ceddc75e12d2a47a8d7d5de60c8c74025bd0541ef83a24e7e2",
+      "extracted_sha256": "bd780a73e85e219fda2c99567944ce1e426bc81f3963faef74dca0b883ef8adf",
       "declarations": [
         "RiemannGaussian.ClippedLogNorm.continuous",
         "RiemannGaussian.ClippedLogNorm.lower",
@@ -421,7 +422,7 @@
       "upstream_module": "RiemannGaussian.DerivativeOrderComparison",
       "upstream_file": "RiemannGaussian/DerivativeOrderComparison.lean",
       "upstream_sha256": "031c0633096c1ac975304469111fc000b7359a45ac4836633bc415a2e4c896d5",
-      "extracted_sha256": "6e526dac67263d5b2b0aeddc09426f88a74994cdc5b99485294a2b6934f0e1bc",
+      "extracted_sha256": "7656ce7458b2fe8d44251430f513231dfb81eae8e9ab92da1d2a569b675f4d6b",
       "declarations": [
         "RiemannGaussian.DerivativeOrderComparison.adjacent_identity",
         "RiemannGaussian.DerivativeOrderComparison.alpha_succ_le_half",
@@ -456,7 +457,7 @@
       "upstream_module": "RiemannGaussian.DerivativePowerEnvelope",
       "upstream_file": "RiemannGaussian/DerivativePowerEnvelope.lean",
       "upstream_sha256": "d7cecdb566dd7e751afcb44e74667a71ff8018ca7e92b142b32fc8d820c3db3e",
-      "extracted_sha256": "a657265a9b2473ce2668e57e9510d807373c04abbd215d6be2040561d7f11488",
+      "extracted_sha256": "590059c17230db863a05c12b73af16cc17e3cc3d43f09d70150db2b59b6d8d49",
       "declarations": [
         "RiemannGaussian.DerivativePowerEnvelope.base_bound",
         "RiemannGaussian.DerivativePowerEnvelope.envelope",
@@ -490,7 +491,7 @@
       "upstream_module": "RiemannGaussian.DerivativePowerExponents",
       "upstream_file": "RiemannGaussian/DerivativePowerExponents.lean",
       "upstream_sha256": "dd5b4fcb73167aef9b1d3ca44230465fa4ca285e7d6c5624b560da82ba1a8b8b",
-      "extracted_sha256": "f7092f4dc53d0301178d8b6ffccc7a12490c73b14d07c4335ad4f02f86bb402e",
+      "extracted_sha256": "47b0510202540e9fc1905e350981ccf7f6bb2bcd4ed4e2a36b771e44029b0acd",
       "declarations": [
         "RiemannGaussian.DerivativePowerExponents.alpha",
         "RiemannGaussian.DerivativePowerExponents.alpha_balance",
@@ -531,7 +532,7 @@
       "upstream_module": "RiemannGaussian.DerivativePowerStep",
       "upstream_file": "RiemannGaussian/DerivativePowerStep.lean",
       "upstream_sha256": "e1c044caabfc616ef4458c31f6ec2eb8f16cc6732f3ff7765d188c86edaa664f",
-      "extracted_sha256": "f61a9fce046034ec1fe2feff3225f5fd486d6d350d2cf0887b06b56ae14eabfb",
+      "extracted_sha256": "3073e399e37c9edb5831c0b0ee7dbf4acfe9bb301c6df04c743a163afae8d259",
       "declarations": [
         "RiemannGaussian.DerivativePowerStep.argument",
         "RiemannGaussian.DerivativePowerStep.argument_le",
@@ -563,7 +564,7 @@
       "upstream_module": "RiemannGaussian.DerivativeRecursionBudget",
       "upstream_file": "RiemannGaussian/DerivativeRecursionBudget.lean",
       "upstream_sha256": "76725ecdadd141ae727798029cda8baf91068c6a2a9c80f1216c6cd814940615",
-      "extracted_sha256": "8593ef50158b4d76d495ca5aaaaa17ba336608a09317a8c4ab6abd9e6472c7aa",
+      "extracted_sha256": "d18aab42201970a011553726b67206fe04096af63f68ca5fb1c9d9392dfa16ae",
       "declarations": [
         "RiemannGaussian.DerivativeRecursionBudget.Cutoffs",
         "RiemannGaussian.DerivativeRecursionBudget.base_le",
@@ -595,7 +596,7 @@
       "upstream_module": "RiemannGaussian.DirichletBlockPowerProfile",
       "upstream_file": "RiemannGaussian/DirichletBlockPowerProfile.lean",
       "upstream_sha256": "9f02d1dba591a37dad0f174da5380dfcae9fb1f494d539d566c3309cf00707cc",
-      "extracted_sha256": "e3c23ec1d663c99718c19d57b3b831ba35726eafe4de817b6c8f3e093f5b1731",
+      "extracted_sha256": "4982f388c9a0ef77eb8bd302e2f5debfd97ad35af4990f58f034721fabec4ac7",
       "declarations": [
         "RiemannGaussian.DirichletBlockPowerProfile.bound",
         "RiemannGaussian.DirichletBlockPowerProfile.exactProfile",
@@ -771,7 +772,7 @@
       "upstream_module": "RiemannGaussian.DirichletCriticalRange",
       "upstream_file": "RiemannGaussian/DirichletCriticalRange.lean",
       "upstream_sha256": "c1ec3a2596b5cee8b71cfa2aa4a59944bd87b91d787fdabffa63fe0c7661b202",
-      "extracted_sha256": "d6c47a382eefd4e8b3f72f914df28d587cd23b8b3f0f910a81f1a17d6a238fe5",
+      "extracted_sha256": "9d1c0a8cea169a1628d043ba65c5092e625d86db3f8a1cb938b68a4947946bf6",
       "declarations": [
         "RiemannGaussian.DirichletCriticalRange.profile_le_on_range",
         "RiemannGaussian.DirichletCriticalRange.profile_on_line"
@@ -941,7 +942,7 @@
       "upstream_module": "RiemannGaussian.DirichletDyadicBlocks",
       "upstream_file": "RiemannGaussian/DirichletDyadicBlocks.lean",
       "upstream_sha256": "9e6c51aad80baa85e28fb688714f91898ad59c854a548610653bf8b095986930",
-      "extracted_sha256": "c159048b757eceed832635d6f6151aeed76d5e7c1ace554e7fef98f318e27ac6",
+      "extracted_sha256": "ffb2e24c2967e1cfab02ff17d9bd5aab331c2852625500f5359734b34f755e3e",
       "declarations": [
         "RiemannGaussian.DirichletDyadicBlocks.block",
         "RiemannGaussian.DirichletDyadicBlocks.block_eq_Ico",
@@ -1140,7 +1141,7 @@
       "upstream_module": "RiemannGaussian.DirichletFullRange",
       "upstream_file": "RiemannGaussian/DirichletFullRange.lean",
       "upstream_sha256": "e1dc1676224148a0a32b0d889aaf9e1ef0cd415c578599bedcc373f869418d1f",
-      "extracted_sha256": "68fb6c205d81d39c8843d10c5b92c03fc6e9c2c7fdb78f9e1a803aea0fd3bc39",
+      "extracted_sha256": "5d42b6e7c1c24a0cfaf377b41c3045e6aede5beecfb295137829612b9cbc34b6",
       "declarations": [
         "RiemannGaussian.DirichletFullRange.exists_order_bound",
         "RiemannGaussian.DirichletFullRange.profile_le_above_height"
@@ -1312,7 +1313,7 @@
       "upstream_module": "RiemannGaussian.DirichletHigherDerivativeBound",
       "upstream_file": "RiemannGaussian/DirichletHigherDerivativeBound.lean",
       "upstream_sha256": "aadac7503731afda0167e69712bdd674f6bb65f6bd2051d90aa18019c177456c",
-      "extracted_sha256": "55f137a1fd389f34012f459fbd023a4576d8e7641885212d8712abc8a987e17a",
+      "extracted_sha256": "a38ae049e9004592bf853ee80b755c06390b1b2ecfc936fa3b5b5ea493ff4b95",
       "declarations": [
         "RiemannGaussian.DirichletHigherDerivativeBound.damped_bound",
         "RiemannGaussian.DirichletHigherDerivativeBound.feature_bound"
@@ -1489,7 +1490,7 @@
       "upstream_module": "RiemannGaussian.DirichletPowerCoefficients",
       "upstream_file": "RiemannGaussian/DirichletPowerCoefficients.lean",
       "upstream_sha256": "c0a7387fe842061f122eb8513c6286cfe8c94fe3c4751b87e5fc0772c602711d",
-      "extracted_sha256": "a34a3abddcbb780b2169bcac545510808e30601be36bcef94b382ff8d5216730",
+      "extracted_sha256": "d060745bce08d5e3b329ac0aef9a4e38f85c055b7aabcaecab56e8279db8d4aa",
       "declarations": [
         "RiemannGaussian.DirichletPowerCoefficients.double_power_exponent_le_one",
         "RiemannGaussian.DirichletPowerCoefficients.factor",
@@ -1521,7 +1522,7 @@
       "upstream_module": "RiemannGaussian.DirichletPowerParameters",
       "upstream_file": "RiemannGaussian/DirichletPowerParameters.lean",
       "upstream_sha256": "79bfc8ec12d584d0fd1f74602dd1a6db313c65da2c273e887d0586bd2fdfbf9e",
-      "extracted_sha256": "beccc02dc685360fba2dbfc8cf41245f7e03c038d1b680f2413db34faf368db0",
+      "extracted_sha256": "33d4d19932d43783c1ab378268fcccef538f7c75889b8656dfc08da0628fdc45",
       "declarations": [
         "RiemannGaussian.DirichletPowerParameters.amp_alpha_identity",
         "RiemannGaussian.DirichletPowerParameters.denominator_ge_order",
@@ -1554,7 +1555,7 @@
       "upstream_module": "RiemannGaussian.DirichletSecondDerivativeBound",
       "upstream_file": "RiemannGaussian/DirichletSecondDerivativeBound.lean",
       "upstream_sha256": "fa52bf30f28ca6d1d70c390751a6a0d24b05bb9f616af9e399795a016e2e88da",
-      "extracted_sha256": "cdda985e0d2ba930ca6e004cc06ad5a344d371a3703dc8282c98eaa9a5555986",
+      "extracted_sha256": "68076021cedd2c57440bdd03bb80cfcb1c4a0c229b6767ea609329f4e235609d",
       "declarations": [
         "RiemannGaussian.DirichletSecondDerivativeBound.damped_bound",
         "RiemannGaussian.DirichletSecondDerivativeBound.damping_antitoneOn",
@@ -1729,7 +1730,7 @@
       "upstream_module": "RiemannGaussian.DirichletTransitionWindows",
       "upstream_file": "RiemannGaussian/DirichletTransitionWindows.lean",
       "upstream_sha256": "91c705d456d452588135cab781bca968c91a34493faddc0b7e3b2743c4dba3ef",
-      "extracted_sha256": "fb0b1f285bbd2c1d75fa882563421dff6305ca4f8a0ff7c50c7ee231c6c2509b",
+      "extracted_sha256": "c430e17772ed75255ac514b34eeacf63e3ed6f5935a0921d106c8c572709623d",
       "declarations": [
         "RiemannGaussian.DirichletTransitionWindows.complementary_balance",
         "RiemannGaussian.DirichletTransitionWindows.exists_order_bound",
@@ -1904,7 +1905,7 @@
       "upstream_module": "RiemannGaussian.DiscreteSecondDerivativeTest",
       "upstream_file": "RiemannGaussian/DiscreteSecondDerivativeTest.lean",
       "upstream_sha256": "f51b7a30593769bb4359f8185da0ea02dbcee648adf690b2be9cd10952c1aa78",
-      "extracted_sha256": "eb4979111c6241a4242dd6b0277cc0c245fbce4191eb59efb8ede9f524cb6d77",
+      "extracted_sha256": "6997c4be320b01f9ea64e7ea3c74273fbce533cbdce785b749400859bc9db35c",
       "declarations": [
         "RiemannGaussian.DiscreteSecondDerivativeTest.bound",
         "RiemannGaussian.DiscreteSecondDerivativeTest.cells_card_le_of_separation",
@@ -1931,7 +1932,7 @@
       "upstream_module": "RiemannGaussian.EtaAdjacentRatio",
       "upstream_file": "RiemannGaussian/EtaAdjacentRatio.lean",
       "upstream_sha256": "74837f292ac1ab37731607fcb2f812c2d83b44d53b89ea379593b70043ee7654",
-      "extracted_sha256": "d20af5a25844079ff4a5e31ac3ba6c4e5edb4e601e66b56ddd0d6930e00e0dd5",
+      "extracted_sha256": "ac32fbde4c61177a10b7d5b057dd546eab5e125808d57587817d5d83944b57b4",
       "declarations": [
         "RiemannGaussian.cpow_add_one_eq_pairedEtaAdjacentRatio_mul",
         "RiemannGaussian.norm_exp_sub_exp_le_of_re_nonpos",
@@ -2155,7 +2156,7 @@
       "upstream_module": "RiemannGaussian.EtaCubicBoundaryTest",
       "upstream_file": "RiemannGaussian/EtaCubicBoundaryTest.lean",
       "upstream_sha256": "c9ea62b19d859baeec4fd4d3f43f9ee4570392596647855631aa88efe5e66b56",
-      "extracted_sha256": "0d5574e50d034420618e095f68ad64e2b4946cb6eb4e5fbfd803ae830bea54e2",
+      "extracted_sha256": "307445e9defb3085a83486a5cbd23c8ec9b35917045f1c2af15fff48a8a65cc5",
       "declarations": [
         "RiemannGaussian.norm_exp_ofReal_mul_I_sub_le"
       ],
@@ -2371,7 +2372,7 @@
       "upstream_module": "RiemannGaussian.EtaLogarithmicStrip",
       "upstream_file": "RiemannGaussian/EtaLogarithmicStrip.lean",
       "upstream_sha256": "8143edc24bab0b995c73632aefedaaec322605bbe804bfd4d4462ab106e58338",
-      "extracted_sha256": "09b9c552a264f14cc053675f74c1de4a87bb4e72c806121fdc1bd9dce32c2f73",
+      "extracted_sha256": "ca64ba13359433d3d42c96d3345c1961989383b9b192e6b378df71cf5bf02052",
       "declarations": [
         "RiemannGaussian.etaLogHeight",
         "RiemannGaussian.two_lt_etaLogHeight"
@@ -2626,7 +2627,7 @@
       "upstream_module": "RiemannGaussian.EtaOddPowerQuadrature",
       "upstream_file": "RiemannGaussian/EtaOddPowerQuadrature.lean",
       "upstream_sha256": "bbf9267e17401a5f50aac5102f2f1edd70de8f866f812453dfcaf03aaea9ce73",
-      "extracted_sha256": "f50e8aa7e66a4a1c0cc7e952be1ab993c2b99079bcc889114d578ea07cb2da36",
+      "extracted_sha256": "e2e39e421a8aea054b73e95e6d276c7814535174590e171925d65477caaabc98",
       "declarations": [
         "RiemannGaussian.norm_cpow_sub_cpow_le_above"
       ],
@@ -2870,7 +2871,7 @@
       "upstream_module": "RiemannGaussian.EtaThinStripFactor",
       "upstream_file": "RiemannGaussian/EtaThinStripFactor.lean",
       "upstream_sha256": "7002d59d3b2012f9fd519df77eac9d4303ab2918a449d994b8b5273580ad2e32",
-      "extracted_sha256": "524be3532863787c1a091884119b50d6cb678827ad1763adc237ee790888831f",
+      "extracted_sha256": "d4d035e600c877bd9844c698427aad4e1b95c5a465a8eac369d60fbffb8c84de",
       "declarations": [
         "RiemannGaussian.norm_pairedEtaCore_ofReal_le_one",
         "RiemannGaussian.norm_riemannZeta_one_add_le_four_div",
@@ -2992,7 +2993,7 @@
       "upstream_module": "RiemannGaussian.EtaUniformTailBound",
       "upstream_file": "RiemannGaussian/EtaUniformTailBound.lean",
       "upstream_sha256": "0fa44416eb4b462bba73f8f3b7e75626a701a1d0dc0a9b2efc1e844c27685a1a",
-      "extracted_sha256": "d40e41e1bcf9433198c00031146927ed133a0c4d3e1f75091c046d49c5b84729",
+      "extracted_sha256": "e30f01cd34aa362230ec01d4d05b40af87ca448063bc3d9aaebbe96b1f414816",
       "declarations": [
         "RiemannGaussian.cpow_pair_eq_adjacent_boundary_add_defect",
         "RiemannGaussian.norm_pairedEtaAdjacentBoundary_le",
@@ -3129,7 +3130,7 @@
       "upstream_module": "RiemannGaussian.EtaZetaDyadicRectangle",
       "upstream_file": "RiemannGaussian/EtaZetaDyadicRectangle.lean",
       "upstream_sha256": "6f18694ca7e973e4930e9ef087371672640288442a90891b5b9219361e89ce0a",
-      "extracted_sha256": "1120c20a4a0c8633236a7122b0b317d9d1b72951af2c07f5ef781a21eaf1b457",
+      "extracted_sha256": "e5f30b8732271939e0c8598c97ef0e22423b737a2742efb4b3082a79b87463c3",
       "declarations": [
         "RiemannGaussian.cos_log_two_mul_etaDyadicRectangle_boundary",
         "RiemannGaussian.etaDyadicImaginaryPeriod",
@@ -3253,7 +3254,7 @@
       "upstream_module": "RiemannGaussian.EtaZetaMultiplicitySchwarz",
       "upstream_file": "RiemannGaussian/EtaZetaMultiplicitySchwarz.lean",
       "upstream_sha256": "ecfdf881ca37fb71102ba92c4cb0b2041bf64396a8fa07a3d5d88fe9462db192",
-      "extracted_sha256": "fee6ac3508e00df431297184bf4c4c98708b981d149745184208d52e990726a2",
+      "extracted_sha256": "dc0e46afe4b93aa6e0f1c12f909a6a3a36925426fa5539ac9d8106c17930a137",
       "declarations": [
         "RiemannGaussian.riemannZeta₁_eq_sub_one_mul"
       ],
@@ -3469,7 +3470,7 @@
       "upstream_module": "RiemannGaussian.EtaZetaPoleBounds",
       "upstream_file": "RiemannGaussian/EtaZetaPoleBounds.lean",
       "upstream_sha256": "6ea9870fbd1ff165f882f1bee4ccc9c05f4842d1e249abedac7210192cb20391",
-      "extracted_sha256": "463827b6cef3c27bc96a4eeb7a8c2422324e7e2f43a1763d0e93b720b2680eea",
+      "extracted_sha256": "83c04e30065613abe11ceb3a9595e87e062a235f8b31c909ab8f92d3818db42f",
       "declarations": [
         "RiemannGaussian.norm_pairedEtaCore_le_div_re",
         "RiemannGaussian.norm_riemannZeta₁_le_of_etaFactor_lower",
@@ -3590,7 +3591,7 @@
       "upstream_module": "RiemannGaussian.EtaZetaPrimeProduct",
       "upstream_file": "RiemannGaussian/EtaZetaPrimeProduct.lean",
       "upstream_sha256": "f22fba1944f7b86f9062311fec966edfb7a3d199017d7fa6152ccb894c3c1f68",
-      "extracted_sha256": "4dd6f810d70cb12c20f9ba9b300b2b1e194bca88a4aaa53e187f79f36c5f02ac",
+      "extracted_sha256": "e114b1fa61ca859cb35afa3380e1207ddb2d4bf1eb539b6f7cfd58f57626eace",
       "declarations": [
         "RiemannGaussian.NontrivialZetaZero.im_ne_zero_of_eta_mass"
       ],
@@ -3712,7 +3713,7 @@
       "upstream_module": "RiemannGaussian.FiniteAbelVariation",
       "upstream_file": "RiemannGaussian/FiniteAbelVariation.lean",
       "upstream_sha256": "cb23c463ac3f6f8471c9d12531307680cfd439e7573586e4a9012cc02c67dc6d",
-      "extracted_sha256": "aa051c89e0a1190f91e64994fd0856209f53d37417fd8a96908dbadcfe23e903",
+      "extracted_sha256": "01c45ce8414881a3a9e5aa361f8b3f378ad882de43f0b5b1a2a247826fad2b2e",
       "declarations": [
         "RiemannGaussian.FiniteAbelVariation.decreasing_bound",
         "RiemannGaussian.FiniteAbelVariation.decreasing_budget",
@@ -3735,7 +3736,7 @@
       "upstream_module": "RiemannGaussian.FiniteDiscreteSobolev",
       "upstream_file": "RiemannGaussian/FiniteDiscreteSobolev.lean",
       "upstream_sha256": "45b143fe3cb4a198b7c76ad9296ae4dea932ed9be75204ccf19d5b08fff41d62",
-      "extracted_sha256": "e1986ed66050df01b8cdc2a2b14e1d6a121c7b5ef7c76d5dcb0117cf6fa9d2a3",
+      "extracted_sha256": "815f1256c114d0c82326130d59d9af156051351a88136cd35d862699d76c7722",
       "declarations": [
         "RiemannGaussian.norm_sum_sq_le_card_mul_sum_norm_sq"
       ],
@@ -3983,7 +3984,7 @@
       "upstream_module": "RiemannGaussian.FiniteKuzminLandau",
       "upstream_file": "RiemannGaussian/FiniteKuzminLandau.lean",
       "upstream_sha256": "9ea10a0c702fe1ef057115f1ad85afca704e1db944f770ea70e7c2b69ed9e7b9",
-      "extracted_sha256": "0baa6cc8e63aaf24a16ec39ddcc00f1c0fe56f51c0fcf22b60b868ce0754d40d",
+      "extracted_sha256": "f316cb48eeed4ddd8b8c0749d297499977aa76d0b26c7931467423b18e8a632a",
       "declarations": [
         "RiemannGaussian.FiniteKuzminLandau.bound",
         "RiemannGaussian.FiniteKuzminLandau.increment",
@@ -4011,7 +4012,7 @@
       "upstream_module": "RiemannGaussian.FiniteKuzminLandauPeriodic",
       "upstream_file": "RiemannGaussian/FiniteKuzminLandauPeriodic.lean",
       "upstream_sha256": "b3e6bd82bec51f74c38614cfcfd50860c7f75439f2c264442ba6115247f2b721",
-      "extracted_sha256": "fca13955e80ec1a6ffe57b364e786a82618f1c49842fa314dc362b988ac18939",
+      "extracted_sha256": "607609da477bc05a73931f4e9ab65e2da6a6b483bf654f1cb245416ab8c0786c",
       "declarations": [
         "RiemannGaussian.FiniteKuzminLandauPeriodic.bound_Ico",
         "RiemannGaussian.FiniteKuzminLandauPeriodic.bound_period",
@@ -4037,7 +4038,7 @@
       "upstream_module": "RiemannGaussian.FiniteLagPowerBounds",
       "upstream_file": "RiemannGaussian/FiniteLagPowerBounds.lean",
       "upstream_sha256": "f80edff3d6e3477c628a8eda17c0300521cba00c778a27c09f4ef5d3c84d6c3d",
-      "extracted_sha256": "787634e3b11bccde6b7270daae7763e8aa3b56c2acfefceb1b691c5e50a353a7",
+      "extracted_sha256": "cc33840ef4a484031f2c042a08d4b5a1764563a2a4c5d90093b2cc4f21ededd2",
       "declarations": [
         "RiemannGaussian.FiniteLagPowerBounds.negative_sum",
         "RiemannGaussian.FiniteLagPowerBounds.negative_sum_integral",
@@ -4063,7 +4064,7 @@
       "upstream_module": "RiemannGaussian.FiniteResonancePartition",
       "upstream_file": "RiemannGaussian/FiniteResonancePartition.lean",
       "upstream_sha256": "f97f1651ffc3af9650d11c421c3016bb3ffd274e51a21d0d05e260683e6fcbef",
-      "extracted_sha256": "2109341acec27f87f691f18466432aeb272340fd55e4f2b524ea112d61b7950e",
+      "extracted_sha256": "00304da5fec5a475151c582a9301334231c922f615f6151c2c909651c766c971",
       "declarations": [
         "RiemannGaussian.FiniteResonancePartition.band_sum_split",
         "RiemannGaussian.FiniteResonancePartition.cellIndex",
@@ -4094,7 +4095,7 @@
       "upstream_module": "RiemannGaussian.FiniteShiftCorrelation",
       "upstream_file": "RiemannGaussian/FiniteShiftCorrelation.lean",
       "upstream_sha256": "5935a6e00ad5bdd0cd092cae4ed6e92c68e6541c9bd9a188f472c32bfe6a885b",
-      "extracted_sha256": "4f6ffd11f1f0a53abec83a54664f6a5542fa84221e9efdf85ea34a5a42c7e002",
+      "extracted_sha256": "3492dd091f153f7c90fd067c40dfda6a60747c12892604b60018c79814006f37",
       "declarations": [
         "RiemannGaussian.FiniteShiftCorrelation.correlation",
         "RiemannGaussian.FiniteShiftCorrelation.correlation_neg",
@@ -4248,7 +4249,7 @@
       "upstream_module": "RiemannGaussian.FiniteVanDerCorput",
       "upstream_file": "RiemannGaussian/FiniteVanDerCorput.lean",
       "upstream_sha256": "a7a39bf36efe93299389bd3114290b16b7f9ff24b12fdf111ca06d137223d690",
-      "extracted_sha256": "6432f853cadc3be617a8f5f4d54d52d6c555d4eb9c80ea423a920711ca1116ce",
+      "extracted_sha256": "c903c6c431c0410001baa0a2f0f33a2458cd0af6a18065e8583eed0fbcfdf9f8",
       "declarations": [
         "RiemannGaussian.FiniteVanDerCorput.absolute_bound",
         "RiemannGaussian.FiniteVanDerCorput.signed_bound",
@@ -4387,7 +4388,7 @@
       "upstream_module": "RiemannGaussian.FiniteVanDerCorputPhase",
       "upstream_file": "RiemannGaussian/FiniteVanDerCorputPhase.lean",
       "upstream_sha256": "7f24d1740e95ec4df09dda3b89e1e22953434f31fba06a89799c1d8644ff1b79",
-      "extracted_sha256": "1dedd53a2698ca8d7e15619c8fda2cdf17bf45f24985de10d74ce3fbb42a236b",
+      "extracted_sha256": "c8f3227669542ab36fa6d6d8a141f1155e67153cad342b8b7dafdee786b6722d",
       "declarations": [
         "RiemannGaussian.FiniteVanDerCorputPhase.absolute_phase_bound",
         "RiemannGaussian.FiniteVanDerCorputPhase.absolute_window_bound",
@@ -4535,7 +4536,7 @@
       "upstream_module": "RiemannGaussian.FirstDerivativeTest",
       "upstream_file": "RiemannGaussian/FirstDerivativeTest.lean",
       "upstream_sha256": "b573f215647e2104b7b416fc0a5bfb7d34f58a8cd1f0ed618603fbc2fb0ff282",
-      "extracted_sha256": "d055c21dbfbcb304aea898d19ed37d3029ff7dfb71dc0d8917bd0836088e73db",
+      "extracted_sha256": "2e2b1355181a746b346a2d869b01872635d21af257ddaeeaf7031ee2186d8301",
       "declarations": [
         "RiemannGaussian.FirstDerivativeTest.bound",
         "RiemannGaussian.FirstDerivativeTest.bound_succ",
@@ -4560,7 +4561,7 @@
       "upstream_module": "RiemannGaussian.GaussianCompletedLogDerivative",
       "upstream_file": "RiemannGaussian/GaussianCompletedLogDerivative.lean",
       "upstream_sha256": "e2d3ea111e314c6b30985923d32439e3cdae6c9c7724cfd21ae7b4ec6432dd29",
-      "extracted_sha256": "f17b2a3ce0210ec456e0bec7d1eec25a8c05fa4f4ab4e16ba580be62fa770d36",
+      "extracted_sha256": "31496da5609a2826de5a334c62ba6e58194289e22093765ce2afc02d1b9e2c03",
       "declarations": [
         "RiemannGaussian.Gammaℝ_ne_zero_of_re_pos",
         "RiemannGaussian.differentiableAt_Gammaℝ_of_re_pos",
@@ -4610,7 +4611,7 @@
       "upstream_module": "RiemannGaussian.GaussianDigammaGauss",
       "upstream_file": "RiemannGaussian/GaussianDigammaGauss.lean",
       "upstream_sha256": "0c100a05612c04c45b9b7f2ab609c7a6e5f0ce5357bc22c7c6ed452d89e80815",
-      "extracted_sha256": "6fb378d9b540a743198da8fb0aaedb74b4fe0436d490a67048b3f46e56450bb5",
+      "extracted_sha256": "48a829e88931b55f50dfa54ff0372090a8978ca8c135b2ea942efd0b9e6f50c2",
       "declarations": [
         "Complex.GammaSeq_ne_zero_of_re_pos",
         "Complex.add_natCast_ne_zero_of_re_pos",
@@ -4699,7 +4700,7 @@
       "upstream_module": "RiemannGaussian.GaussianSpectral",
       "upstream_file": "RiemannGaussian/GaussianSpectral.lean",
       "upstream_sha256": "dae363f31a8f6ff572e2b24f29db13944e871f11279ecd93c9b020bf9fef32df",
-      "extracted_sha256": "a37bcbf92910ac8cf80fb4dc30bd67ad17ca02fe13d26eb84df2a096a0bc9897",
+      "extracted_sha256": "aae6fd442d15ee6957edf09ef1b5351224e01e67722419c6081b6a5b28cc6bda",
       "declarations": [
         "RiemannGaussian.zetaSpectralCoordinate",
         "RiemannGaussian.zetaSpectralCoordinate_re"
@@ -4724,7 +4725,7 @@
       "upstream_module": "RiemannGaussian.GaussianXiDivisorContour",
       "upstream_file": "RiemannGaussian/GaussianXiDivisorContour.lean",
       "upstream_sha256": "3dc82129edc711d62f6528d2d5032d1c49440b9da0c43df308c651a61a93b4f6",
-      "extracted_sha256": "564dd76b4ae2c65a42b89d9fb0375eae7e1bbf1439138b29b2698ee8a2d5e61c",
+      "extracted_sha256": "bfa06698b1b6c5e7fe6cfd2340cffc0e750d6b0b20d3580fc494e9219c9c4dfd",
       "declarations": [
         "RiemannGaussian.deriv_riemannXi_one_sub",
         "RiemannGaussian.mem_spectralZetaZeroWindow",
@@ -4774,7 +4775,7 @@
       "upstream_module": "RiemannGaussian.GaussianXiGrowth",
       "upstream_file": "RiemannGaussian/GaussianXiGrowth.lean",
       "upstream_sha256": "7f0bab4af9941c0f03b4bb3e98c61301b4ff3af8a0a3d81f112510e687cc6e10",
-      "extracted_sha256": "d22eb3095ac0d4a4919ad23693add7fe2e428d60b8e45ecdef4a976f49602ef3",
+      "extracted_sha256": "7ea0671afa098f73d459e2863ec74e80fa2b21a834e15ab5befc91f06c4653da",
       "declarations": [
         "RiemannGaussian.completedRiemannZeta₀_eq_upperMellin",
         "RiemannGaussian.continuousOn_riemannThetaTail",
@@ -4828,7 +4829,7 @@
       "upstream_module": "RiemannGaussian.GaussianXiInverseSquareSummability",
       "upstream_file": "RiemannGaussian/GaussianXiInverseSquareSummability.lean",
       "upstream_sha256": "81dddb3aa8779138af6818acb99cb076c62726e4d613a53543e7a48ec43dc876",
-      "extracted_sha256": "a02aab260eb9b54150b8c54b9a7a12c0093e61769588048a302ecfc5f5ec8996",
+      "extracted_sha256": "38edd3e8c3d8a6904ac6434d70b45962ea04860ff6e627345210b7b6d11676d6",
       "declarations": [
         "RiemannGaussian.norm_lt_two_pow_zetaZeroNormDyadicIndex",
         "RiemannGaussian.riemannXiInverseSquareDyadicMajorant",
@@ -4871,7 +4872,7 @@
       "upstream_module": "RiemannGaussian.GaussianXiLogDerivativeGrowth",
       "upstream_file": "RiemannGaussian/GaussianXiLogDerivativeGrowth.lean",
       "upstream_sha256": "de1c28479eddcbb27c198e3005b1f257bbb0f815ec9072f5aef9449d3a4f7853",
-      "extracted_sha256": "71f0ae1b27239a85ad91dbd9838b590de0a22829636d541adf9ff43add731d55",
+      "extracted_sha256": "036dfb788581ed8068434098fbf4a0f92df5da1564986cd3d8d5affdd42f0ecd",
       "declarations": [
         "RiemannGaussian.divisor_riemannXi_ball_eq_closedBall",
         "RiemannGaussian.divisor_riemannXi_sphere_xiCanonicalRadius_eq_zero",
@@ -4913,7 +4914,8 @@
         "Mathlib.Analysis.SpecialFunctions.Gamma.Digamma",
         "Mathlib.Analysis.SpecialFunctions.Gaussian.FourierTransform",
         "Mathlib.Analysis.SpecialFunctions.Pow.Deriv",
-        "Mathlib.NumberTheory.LSeries.Dirichlet"
+        "Mathlib.NumberTheory.LSeries.Dirichlet",
+        "Mathlib.Analysis.Meromorphic.RCLike"
       ],
       "original_mathlib_environment": [
         "Mathlib.Analysis.Analytic.Order",
@@ -4947,7 +4949,7 @@
       "upstream_module": "RiemannGaussian.GaussianXiMellinSubquadratic",
       "upstream_file": "RiemannGaussian/GaussianXiMellinSubquadratic.lean",
       "upstream_sha256": "d02e75489b538cb8c2cabc4a692ae5bf31a7425d3e9c755f2c1f7333a9fabbf5",
-      "extracted_sha256": "99411b865c6834fee70dbd14bd63f5cfadd62cabbe5a9de23b0c0346ccc0ed6d",
+      "extracted_sha256": "62f8ac07f0095bbabd7cc97245f20917c43921d5d876d6732a042f92cbf4f29d",
       "declarations": [
         "RiemannGaussian.four_mul_mul_rpow_quarter_le_mellinFourThirdsCost_add_half",
         "RiemannGaussian.holderConjugate_four_thirds_four",
@@ -4984,7 +4986,7 @@
       "upstream_module": "RiemannGaussian.GaussianXiSubquadraticCounting",
       "upstream_file": "RiemannGaussian/GaussianXiSubquadraticCounting.lean",
       "upstream_sha256": "ff2898cc59e73cd860f2738dd6f59b173bb4534460ff5ecf949ec465e116cb3b",
-      "extracted_sha256": "578baeed77ebfb2d0ba7a328b1dcb0f184873e41878bcde62260d542d88ba029",
+      "extracted_sha256": "17cb5184e4429a901c3ea31107596ed8181f42d07d159725f42b57f253595f9d",
       "declarations": [
         "RiemannGaussian.jensen_riemannXi_divisor_le_threeHalves"
       ],
@@ -5015,7 +5017,7 @@
       "upstream_module": "RiemannGaussian.GaussianXiSubquadraticGrowth",
       "upstream_file": "RiemannGaussian/GaussianXiSubquadraticGrowth.lean",
       "upstream_sha256": "3d86043ad5a058dfe3328a3cfc78db8b90dc3823b0100dc662052e03f8c70708",
-      "extracted_sha256": "342accb09a5820d4908a51e4525e78a2310d2a61192a97d0590c707d18fe40cc",
+      "extracted_sha256": "b113bdd179568d63810bf694b73ddb579a03651acaca4b04534b219b029d1737",
       "declarations": [
         "RiemannGaussian.RiemannXiThreeHalvesGrowth",
         "RiemannGaussian.mellinFourThirdsCoefficient",
@@ -5052,7 +5054,7 @@
       "upstream_module": "RiemannGaussian.GaussianZetaBridge",
       "upstream_file": "RiemannGaussian/GaussianZetaBridge.lean",
       "upstream_sha256": "8c863acf9d537e7d6a2740378cad6fbfb78160771381eae9326847dc49e3416b",
-      "extracted_sha256": "92277b8d1792aa846edf4f701dd8fab603e88bc7c140c1dbe6e32f193b6b5d22",
+      "extracted_sha256": "dff6e25741ef969d9fc8e8458a65848a7cd2317f22bb58dd8dc869bcee6a2a5c",
       "declarations": [
         "RiemannGaussian.IsCompact.inter_nontrivialZetaZeroSet_finite",
         "RiemannGaussian.IsNontrivialZetaZero",
@@ -5093,7 +5095,8 @@
         "Mathlib.Analysis.SpecificLimits.Basic",
         "Mathlib.NumberTheory.Harmonic.ZetaAsymp",
         "Mathlib.NumberTheory.LSeries.RiemannZeta",
-        "Mathlib.NumberTheory.LSeries.ZetaZeros"
+        "Mathlib.NumberTheory.LSeries.ZetaZeros",
+        "Mathlib.Analysis.Calculus.Deriv.Star"
       ],
       "original_mathlib_environment": [
         "Mathlib.Analysis.Analytic.Order",
@@ -5112,7 +5115,7 @@
       "upstream_module": "RiemannGaussian.GaussianZetaCounting",
       "upstream_file": "RiemannGaussian/GaussianZetaCounting.lean",
       "upstream_sha256": "23d4d12fd1e89e0f0f5912d09d681fd068a9f6e89545998014f9ce17eae32f7e",
-      "extracted_sha256": "2428b84a48b006548c0371dbea28518348ee3df29854b893de55ae845555f404",
+      "extracted_sha256": "6a438fe82bd68e88b4d2a33dd18774200e7bc829a65ac5624f8735a2130b4dd7",
       "declarations": [
         "RiemannGaussian.analyticAt_riemannXi",
         "RiemannGaussian.analyticOnNhd_riemannXi",
@@ -5155,7 +5158,7 @@
       "upstream_module": "RiemannGaussian.GaussianZetaGeometry",
       "upstream_file": "RiemannGaussian/GaussianZetaGeometry.lean",
       "upstream_sha256": "fed98da3de3da06a9dde17599aa83512efcc712c4eec2c7b356f55bd7ceaa36b",
-      "extracted_sha256": "ba57b4a3220656d1874b909e2b24910c4ab0a7cd86881a80d5ad863e92b09da7",
+      "extracted_sha256": "634b8d47296cf47daaba6e1eab000c022510a1d5b392a345d69671544f14f0cc",
       "declarations": [
         "RiemannGaussian.NontrivialZetaZero.re_lt_one",
         "RiemannGaussian.NontrivialZetaZero.zero_lt_re",
@@ -5188,7 +5191,7 @@
       "upstream_module": "RiemannGaussian.HigherDerivativeTest",
       "upstream_file": "RiemannGaussian/HigherDerivativeTest.lean",
       "upstream_sha256": "d136b23b5430124443e250f950884630cd54c4b3946b4fdf3c721a9cece60238",
-      "extracted_sha256": "87b5d350522cadb14155a42e921bac92c83df74064a9c7af8d087b3dd3f7c4f0",
+      "extracted_sha256": "78ae57555c4f3ed208345c2c9150bfcfb26854d414cdd506f3880e8736fcb01b",
       "declarations": [
         "RiemannGaussian.HigherDerivativeTest.bound"
       ],
@@ -5331,7 +5334,7 @@
       "upstream_module": "RiemannGaussian.HigherLogarithmicDerivativeBound",
       "upstream_file": "RiemannGaussian/HigherLogarithmicDerivativeBound.lean",
       "upstream_sha256": "66bbb1e6ed66c365b44be7f55c8fc28df7f5cabaa1f624271905db079eb93fc6",
-      "extracted_sha256": "2612263b290a279d7b56637e055d10ede7d78505f8d8835aed52d60f0543a50e",
+      "extracted_sha256": "33994cf9d584cbc6c827649a99cde41e48bec47518e62b918b7a67aa90f1a136",
       "declarations": [
         "RiemannGaussian.HigherLogarithmicDerivativeBound.bound"
       ],
@@ -5476,7 +5479,7 @@
       "upstream_module": "RiemannGaussian.LogLogDerivativeSchedule",
       "upstream_file": "RiemannGaussian/LogLogDerivativeSchedule.lean",
       "upstream_sha256": "ba0c3bd6e46da2ce8feb835c24f5d59ae62beb8362d28547f2b87186226fc957",
-      "extracted_sha256": "b1f9236e5c16d11a857e90a851b977e669e88bbc64db5e12390701d97c6be099",
+      "extracted_sha256": "4e87b5feb1d043eefd67a78f088e3f71dcaa7fff4b550303f4be0a5408703565",
       "declarations": [
         "RiemannGaussian.LogLogDerivativeSchedule.delta_le_one",
         "RiemannGaussian.LogLogDerivativeSchedule.exponent",
@@ -5515,7 +5518,7 @@
       "upstream_module": "RiemannGaussian.LogarithmicDerivativeFamily",
       "upstream_file": "RiemannGaussian/LogarithmicDerivativeFamily.lean",
       "upstream_sha256": "fa5dc6e710aeeda5c5c4726fd6eb7ef6f114c0087bccbc4d12f2b16f47e8b39a",
-      "extracted_sha256": "ebcb47856cf82591535c8628545ba82b7bf7f09ce53da77b366db0659993d4d9",
+      "extracted_sha256": "09385f999cb32dcd3dfc8b11bfce214f2890f3f748844f5cc5fd59428a5103c6",
       "declarations": [
         "RiemannGaussian.LogarithmicDerivativeFamily.dyadic_bounds",
         "RiemannGaussian.LogarithmicDerivativeFamily.hasDerivAt_jet",
@@ -5546,7 +5549,7 @@
       "upstream_module": "RiemannGaussian.LogarithmicSecondDerivativeTest",
       "upstream_file": "RiemannGaussian/LogarithmicSecondDerivativeTest.lean",
       "upstream_sha256": "719f3578ce32d94bd20a27224f3760adef3b7f5eabfe436c5bb66bffa71f25ef",
-      "extracted_sha256": "9f2be8b45564f0d4fb50725ee03dc2ba9d6047ab75226afcd21fc72b59bf8a3e",
+      "extracted_sha256": "d145da63952aca86c418c37d7042e12438371cd1e23cfdabd06ffbfd83f07490",
       "declarations": [
         "RiemannGaussian.LogarithmicSecondDerivativeTest.curvature_bounds",
         "RiemannGaussian.LogarithmicSecondDerivativeTest.hasDerivAt_first",
@@ -5572,7 +5575,7 @@
       "upstream_module": "RiemannGaussian.LogarithmicShiftPhase",
       "upstream_file": "RiemannGaussian/LogarithmicShiftPhase.lean",
       "upstream_sha256": "69fdc51f3ac18b5be9a9b8a69e1854234f4338c936af47c4797daa67882f8be5",
-      "extracted_sha256": "34b6346fc2887df03666fae9e9c532f760110d80f869d1f8b768c1ea16e6025a",
+      "extracted_sha256": "954325a0b18f309d232db024dc95537271fd44798b1cba6c20c06f11e7497812",
       "declarations": [
         "RiemannGaussian.LogarithmicShiftPhase.hasDerivAt_phase",
         "RiemannGaussian.LogarithmicShiftPhase.phase"
@@ -5595,7 +5598,7 @@
       "upstream_module": "RiemannGaussian.MonotonePhaseBlocks",
       "upstream_file": "RiemannGaussian/MonotonePhaseBlocks.lean",
       "upstream_sha256": "a6c6aa0a715a99444be92ef68b1b86377d2f96b1469db8d8cfde0ca8ff2b1657",
-      "extracted_sha256": "6b6d25cf3c58ffecefba719ad665b48b726ead2d88f915b868d2e122c267960b",
+      "extracted_sha256": "e55b8b9e6b64d887493707285168e1bce3b9c8559e9e6554f450d51f04554dd0",
       "declarations": [
         "RiemannGaussian.MonotonePhaseBlocks.band",
         "RiemannGaussian.MonotonePhaseBlocks.band_card_le",
@@ -5620,7 +5623,7 @@
       "upstream_module": "RiemannGaussian.NatPhaseDifferencing",
       "upstream_file": "RiemannGaussian/NatPhaseDifferencing.lean",
       "upstream_sha256": "475e4bdcf303da71a3ae88ea8efa3992a152561f45958771670dad427cd0109e",
-      "extracted_sha256": "8384adf30c887a60cf8402da5f75e2dc8051de82b2fa195ba9c68abe78153e8c",
+      "extracted_sha256": "e570c2dc10149b3707922efa5930b500bda86a74297c62ae23260e1729e25811",
       "declarations": [
         "RiemannGaussian.NatPhaseDifferencing.bound",
         "RiemannGaussian.NatPhaseDifferencing.overlap_eq",
@@ -5761,7 +5764,7 @@
       "upstream_module": "RiemannGaussian.OscillatoryPowerPrimitive",
       "upstream_file": "RiemannGaussian/OscillatoryPowerPrimitive.lean",
       "upstream_sha256": "a5e8c5f94df1082b294e6802757e35157f0b0399b232c63e00d77aaad0156b1d",
-      "extracted_sha256": "05f4cfbf85258f0ea3618e4d6811f3566c78dd3b4bc12acc2c812aa281f98634",
+      "extracted_sha256": "17c4b285641c20179d225c106c0126fdaaa4c8973ac023f73ad4ce0a0b1671db",
       "declarations": [
         "RiemannGaussian.OscillatoryPowerPrimitive.cosine_eq_modes",
         "RiemannGaussian.OscillatoryPowerPrimitive.denominator",
@@ -6020,7 +6023,7 @@
       "upstream_module": "RiemannGaussian.PhaseConjugation",
       "upstream_file": "RiemannGaussian/PhaseConjugation.lean",
       "upstream_sha256": "90090f2be61d484e75689d230e12ebee5145f055ca3fb11371832a275b647496",
-      "extracted_sha256": "78086dddbaeb10ad6b072c0a04110ef41ee2e9f2040d02be4615ed448edde07f",
+      "extracted_sha256": "c487b92a50c0cdc69cd5cba2c863f9b5214e836110e9b1dcfc9aac21d12d468e",
       "declarations": [
         "RiemannGaussian.PhaseConjugation.neg_one_pow_mul_self",
         "RiemannGaussian.PhaseConjugation.norm_sum_neg",
@@ -6042,7 +6045,7 @@
       "upstream_module": "RiemannGaussian.PhaseIncrementInverse",
       "upstream_file": "RiemannGaussian/PhaseIncrementInverse.lean",
       "upstream_sha256": "0eafc8e5b9a153f92195733a9f9aa1d4d369b5b52650d1eafba716e4e89b3d8d",
-      "extracted_sha256": "c4b8e70949f9fad46e1657303604b2449b35d5b68bdea7b9fa7e7dfcca78ad8f",
+      "extracted_sha256": "1f9db690149616ccd8235bbdab6ba8aa42eab55043741d1385e2319f893480b1",
       "declarations": [
         "RiemannGaussian.PhaseIncrementInverse.cot_antitoneOn",
         "RiemannGaussian.PhaseIncrementInverse.inverseStep",
@@ -6075,7 +6078,7 @@
       "upstream_module": "RiemannGaussian.RiemannXiCanonicalCauchy",
       "upstream_file": "RiemannGaussian/RiemannXiCanonicalCauchy.lean",
       "upstream_sha256": "3fe17b8446a24c153741a4d31002557a6eafe0d4c9701e35103b65bed11945bc",
-      "extracted_sha256": "9059fcb31954cdcd2f45267a8fb734ad859fcdea0466076b0c5112112062c8a6",
+      "extracted_sha256": "cca12707ab8ef45d46b6f5d5003af42f8e199f6e48a640c735ea247db86362f7",
       "declarations": [
         "RiemannGaussian.logDeriv_riemannXi_sub_eq_canonicalCauchy_add_remainders",
         "RiemannGaussian.mirror_denominator_lower",
@@ -6195,7 +6198,7 @@
       "upstream_module": "RiemannGaussian.RiemannXiCanonicalLogVariation",
       "upstream_file": "RiemannGaussian/RiemannXiCanonicalLogVariation.lean",
       "upstream_sha256": "b2ed794dad959ef4a9ffd3a932646ee16ca2818a238d5aa83edeb5a0fcc3acae",
-      "extracted_sha256": "d1b495165d9317fdf957d6d992748b8c261742492c6f3dc60e6c8b68d444d711",
+      "extracted_sha256": "9373045a6eea8b6289e296f609237ce9a8e409168ebea64555f7e31669acd4f2",
       "declarations": [
         "RiemannGaussian.analyticAt_canonicalResidual_logDeriv",
         "RiemannGaussian.norm_deriv_logDeriv_riemannXiCanonicalResidual_le_of_threeHalves_growth",
@@ -6313,7 +6316,7 @@
       "upstream_module": "RiemannGaussian.RiemannXiGlobalLogDerivative",
       "upstream_file": "RiemannGaussian/RiemannXiGlobalLogDerivative.lean",
       "upstream_sha256": "07de05956622080026c9c0e7c789c3633e051a5d081e3cd10a45a5f01267f6d4",
-      "extracted_sha256": "ff47beb025c2462a163970aa24b537da6e43f92a4b5211ec44d3ec7883d77e3e",
+      "extracted_sha256": "c134498c230a8342f74229f7eb65ad732cdc4bead40227e835ca856fe67576b7",
       "declarations": [
         "RiemannGaussian.bounded_zetaZero_norm_finite",
         "RiemannGaussian.cauchy_difference_norm_le",
@@ -6438,7 +6441,7 @@
       "upstream_module": "RiemannGaussian.RiemannXiSuzukiPointwiseChebyshevEnvelope",
       "upstream_file": "RiemannGaussian/RiemannXiSuzukiPointwiseChebyshevEnvelope.lean",
       "upstream_sha256": "ecd0b88d5b37d9bb79bbb64281e5d30fc64c642d5cd3009b673c53b55e6e2ead",
-      "extracted_sha256": "b1de1b4284f76fb7ffff43a0eb7006ae2b16b276041f52179f77d6de4dd1a357",
+      "extracted_sha256": "643d2b476e7b478fbbad6936818853924b6c06199449ba7e4fb8e6d2dd270157",
       "declarations": [
         "RiemannGaussian.chebyshevPsi_le_six_mul_self_of_one_le"
       ],
@@ -6612,7 +6615,7 @@
       "upstream_module": "RiemannGaussian.RiemannXiSuzukiPointwiseChebyshevLogAverageMellinTransform",
       "upstream_file": "RiemannGaussian/RiemannXiSuzukiPointwiseChebyshevLogAverageMellinTransform.lean",
       "upstream_sha256": "aaab6d1d6593953dc318d7e97464ccc6b1f5ea6cc568560e5b8e1e93a4b99077",
-      "extracted_sha256": "a7db96c1ab2dda12f4c125f38b48fd547886108bc60ad6bc485df836f6843ab7",
+      "extracted_sha256": "d1c07839e6771d25d08473621de5b57736ad48fb42f65be1491d272e7b8c8d98",
       "declarations": [
         "RiemannGaussian.ofReal_vonMangoldt_mul_rpow_neg_eq_LSeries_term",
         "RiemannGaussian.summable_vonMangoldt_mul_rpow_neg_of_one_lt"
@@ -6789,7 +6792,7 @@
       "upstream_module": "RiemannGaussian.RiemannXiSuzukiPositiveCriticalStripEta",
       "upstream_file": "RiemannGaussian/RiemannXiSuzukiPositiveCriticalStripEta.lean",
       "upstream_sha256": "b4aa1aa54f5fd37f5f8c8dfe3fce191325ec44932d6dcd6cea25a4b494d8e818",
-      "extracted_sha256": "8d2a1c6b3fb2544e78dfb23097cf1b1388aa85772f7f4ca7400e7fa02193778c",
+      "extracted_sha256": "ee18423a3a4a46215192b6dcd27157e7ff32cd72b490bb8895e4b585807fad04",
       "declarations": [
         "RiemannGaussian.pairedEtaCoreSummand_conj",
         "RiemannGaussian.pairedEtaCore_conj",
@@ -6900,7 +6903,7 @@
       "upstream_module": "RiemannGaussian.RiemannXiSuzukiPositiveCriticalStripEtaFiniteApproximation",
       "upstream_file": "RiemannGaussian/RiemannXiSuzukiPositiveCriticalStripEtaFiniteApproximation.lean",
       "upstream_sha256": "e12fec7b953a81fce57dbe0ac5a8a5b2cfef13906312303dd558196d09eff3b2",
-      "extracted_sha256": "0b8997d314d079c23bb415ae962b4b4ab983a55abd53f5bf42c8fea8c1e188cc",
+      "extracted_sha256": "4f906d426507fd19fe143ee3ddaa49540d4d04d129a6f0551a38b5085618bb81",
       "declarations": [
         "RiemannGaussian.pairedEtaCorePartialSum"
       ],
@@ -7019,7 +7022,7 @@
       "upstream_module": "RiemannGaussian.RiemannXiSuzukiPositiveCriticalStripEtaFiniteLaplacePartition",
       "upstream_file": "RiemannGaussian/RiemannXiSuzukiPositiveCriticalStripEtaFiniteLaplacePartition.lean",
       "upstream_sha256": "c6ce2be647a98f5e5fca66f39e8fe955ab8b5f56975902ff32930068881a9151",
-      "extracted_sha256": "3fa46c892cc338fbdf468a89c9182ff45c1c6fc914ed60513d5fd00971ffc513",
+      "extracted_sha256": "f4badcabc3a8fda60529576e02d57bcc338b00762ea40921d1b2e489e934d6e5",
       "declarations": [
         "RiemannGaussian.pairedEtaCorePartialSum_eq_mul_finiteLaplacePartition",
         "RiemannGaussian.pairedEtaCoreSummand_eq_mul_logLaplaceInterval",
@@ -7138,7 +7141,7 @@
       "upstream_module": "RiemannGaussian.RiemannXiSuzukiPositiveCriticalStripEtaHorizontalDefectGapFinite",
       "upstream_file": "RiemannGaussian/RiemannXiSuzukiPositiveCriticalStripEtaHorizontalDefectGapFinite.lean",
       "upstream_sha256": "b3b60b82d3cad34220ab61987460cde094b0b27029017157e4f4fee69d3bd259",
-      "extracted_sha256": "16e2c0a36d7e10efdd1d94ff38182fe8b75963973c931c7c67a0431b23ab4c1e",
+      "extracted_sha256": "233a50aee56248e2f4a8c8a075464654462177ae24cc09340d8796fde83516cb",
       "declarations": [
         "RiemannGaussian.integrable_exp_neg_mul_pairedEtaLogTailMeasure",
         "RiemannGaussian.integral_exp_neg_mul_Ioi_log_odd",
@@ -7266,7 +7269,7 @@
       "upstream_module": "RiemannGaussian.RiemannXiSuzukiPositiveCriticalStripEtaInfiniteLaplaceMeasure",
       "upstream_file": "RiemannGaussian/RiemannXiSuzukiPositiveCriticalStripEtaInfiniteLaplaceMeasure.lean",
       "upstream_sha256": "e175a35200521b00179d14b29de1a997f385fb70d5e1ce34ea26528e7efea2cd",
-      "extracted_sha256": "e4388685f191497e7b39949cb9e1dbc8d50e0e68bde5166dee0c5f77063aeb62",
+      "extracted_sha256": "a29d82ca6052e401e000d2fb4e5325d968eff545a8b05902798d3ebfddc138da",
       "declarations": [
         "RiemannGaussian.integrable_exp_neg_mul_pairedEtaLogMeasure",
         "RiemannGaussian.integrable_pairedEtaTiltedCosineKernel",
@@ -7405,7 +7408,7 @@
       "upstream_module": "RiemannGaussian.RiemannXiSuzukiRealAxisCompletedLog",
       "upstream_file": "RiemannGaussian/RiemannXiSuzukiRealAxisCompletedLog.lean",
       "upstream_sha256": "425714608ae184a3ec9be09ca56d6308059ef66c7a68daea84156e92c18b009b",
-      "extracted_sha256": "51a96cc80fff40c9baf374244caacd4cfce6035e813363e3021191ec2758c87d",
+      "extracted_sha256": "94c02d59704621ab5b720788487be3d78dcf64151b3aead784d39b2265329de4",
       "declarations": [
         "RiemannGaussian.logDeriv_riemannXi_of_re_pos_of_riemannZeta_ne_zero",
         "RiemannGaussian.riemannXi_eq_mul_Gammaℝ_riemannZeta_of_re_pos"
@@ -7569,7 +7572,7 @@
       "upstream_module": "RiemannGaussian.RiemannXiSuzukiSpectralStaticContourCriticalZetaLowerSubquadratic",
       "upstream_file": "RiemannGaussian/RiemannXiSuzukiSpectralStaticContourCriticalZetaLowerSubquadratic.lean",
       "upstream_sha256": "d00a51674e0f2e03a821aa71e8deeee5ac46b43bdf15dcf4885039c48d32c4f5",
-      "extracted_sha256": "d777e5366bf42411ed83a1f3617f30981784556659c78064fd1c0f43a39893e0",
+      "extracted_sha256": "ff000616950f55836dc629c73dd68b8e6dcb7eeb162a689e967877308a29d434",
       "declarations": [
         "RiemannGaussian.norm_riemannXiCanonicalLog_le_of_threeHalves_growth",
         "RiemannGaussian.norm_riemannXiCanonicalResidual_le_of_threeHalves_growth",
@@ -7745,7 +7748,7 @@
       "upstream_module": "RiemannGaussian.RiemannXiSuzukiSpectralStaticContourCriticalZetaUpper",
       "upstream_file": "RiemannGaussian/RiemannXiSuzukiSpectralStaticContourCriticalZetaUpper.lean",
       "upstream_sha256": "167df52f6e6ee18dd70c122740ad9370453c393d9bf9615948df24940295ed68",
-      "extracted_sha256": "f659f878ca5851e0bc2d82d808d14cd3e364684260d95601f36c81898a10c5a7",
+      "extracted_sha256": "85ae922bedcbd6a7ccaaa9f9c451623c3ef372c788d79ba91b24820ee596a3c9",
       "declarations": [
         "RiemannGaussian.analyticOnNhd_pairedEtaCore",
         "RiemannGaussian.differentiableOn_pairedEtaCore",
@@ -7851,7 +7854,8 @@
         "Mathlib.Topology.Algebra.Module.Cardinality",
         "Mathlib.Topology.LocallyConstant.Basic",
         "Mathlib.Topology.MetricSpace.Infsep",
-        "Mathlib.Topology.UniformSpace.UniformApproximation"
+        "Mathlib.Topology.UniformSpace.UniformApproximation",
+        "Mathlib.Analysis.Complex.HalfPlane"
       ],
       "original_mathlib_environment": [
         "Mathlib.Algebra.Polynomial.Degree.IsMonicOfDegree",
@@ -7951,7 +7955,7 @@
       "upstream_module": "RiemannGaussian.RiemannXiSuzukiSpectralStaticContourDeformation",
       "upstream_file": "RiemannGaussian/RiemannXiSuzukiSpectralStaticContourDeformation.lean",
       "upstream_sha256": "c5446eeb3e1b1142e606f5b808c33046d2245fbccc8869306071a9ba3022e4bb",
-      "extracted_sha256": "9a3bc3b43712917837a6a7a954e0addf1ef28042940498160b602d3df8de05da",
+      "extracted_sha256": "0fa414ff90c688bf33bf03b0e8bc203441f1f6124b7670c0107e8c80a75dab7c",
       "declarations": [
         "RiemannGaussian.SuzukiXiUpperContourBottomAdmissible.mono"
       ],
@@ -8059,7 +8063,7 @@
       "upstream_module": "RiemannGaussian.RiemannXiSuzukiSpectralStaticContourSafeZeta",
       "upstream_file": "RiemannGaussian/RiemannXiSuzukiSpectralStaticContourSafeZeta.lean",
       "upstream_sha256": "dac89e713ef5609de00902190880967453c249f5d2de31612186ffdf03515220",
-      "extracted_sha256": "7451eb1282d15fe0d4cc41f9028b0a21f69f9d28f6edcb123bbfa8c23bc9df34",
+      "extracted_sha256": "38050becb01db5f5acb1217e14f217f61ad4140cd44cf7df654c9813928a4dd9",
       "declarations": [
         "RiemannGaussian.norm_inv_riemannZeta_safeLine_le_mass",
         "RiemannGaussian.norm_moebius_LSeries_safeLine_le_mass",
@@ -8259,7 +8263,7 @@
       "upstream_module": "RiemannGaussian.RiemannXiSuzukiSpectralUpperContourProjection",
       "upstream_file": "RiemannGaussian/RiemannXiSuzukiSpectralUpperContourProjection.lean",
       "upstream_sha256": "5c7e07c010455e940cb6a7167a46a3fec42d94bb061227355fd783855236a1fe",
-      "extracted_sha256": "ec78da03116d3de6db82dbed21665bcc78249425aa85441e696538ca3d2d7950",
+      "extracted_sha256": "ebb54f263f4a7f528f1d08f46d313288d84cdf13335e150c33bfd13640ad9025",
       "declarations": [
         "RiemannGaussian.SuzukiXiUpperContourBottomAdmissible"
       ],
@@ -8436,7 +8440,7 @@
       "upstream_module": "RiemannGaussian.RiemannXiSuzukiWeilArchimedean",
       "upstream_file": "RiemannGaussian/RiemannXiSuzukiWeilArchimedean.lean",
       "upstream_sha256": "f7ff0478d930e7e42795acff3a0dcddba81ecd7362953387d17d25777eabd917",
-      "extracted_sha256": "e5c0ae47ccd9f842dfedf001e326379fac1e787128ea44fca40221c5cf087a9a",
+      "extracted_sha256": "58edcdff7a9a91a8f819106c05e0286d06c8691cec503586305659753c17a1e0",
       "declarations": [
         "RiemannGaussian.hasSum_suzukiWeilDigammaDifferenceSummand",
         "RiemannGaussian.summable_norm_suzukiWeilDigammaDifferenceSummand",
@@ -8578,7 +8582,7 @@
       "upstream_module": "RiemannGaussian.RiemannXiSuzukiWeilVertical",
       "upstream_file": "RiemannGaussian/RiemannXiSuzukiWeilVertical.lean",
       "upstream_sha256": "bff98a2a204aaba2dc70ec442a295f6ee2380bf12bc5e8e54649639350ce11a9",
-      "extracted_sha256": "e5e1679a5ce58c0a6175ac2a015fe87440e77d5c6f20f8ba1d581147b5aa82ac",
+      "extracted_sha256": "26e81c1f4ddcc0fa7effb9f6b77fbe6847b8387ce2925ccb37b5faa25e65f339",
       "declarations": [
         "RiemannGaussian.sum_divisor_riemannXi_ball_le_threeHalves_of_growth"
       ],
@@ -8730,7 +8734,7 @@
       "upstream_module": "RiemannGaussian.RosserSchoenfeldEulerConstant",
       "upstream_file": "RiemannGaussian/RosserSchoenfeldEulerConstant.lean",
       "upstream_sha256": "5eaf50a40003f40fb025a9388437d23e74b855058da0371953d7f818534fba2b",
-      "extracted_sha256": "8584964a029abd32aad7e29acb33b3b03fdce24466088d359fb6d8b6ac76ad16",
+      "extracted_sha256": "c75346c3ebb5e58dd2e60fd26b00033fe822d44441599d59c60571918aa822bb",
       "declarations": [
         "RiemannGaussian.RosserSchoenfeldEulerConstant.massConstant"
       ],
@@ -8754,7 +8758,7 @@
       "upstream_module": "RiemannGaussian.RosserSchoenfeldExplicitFormula",
       "upstream_file": "RiemannGaussian/RosserSchoenfeldExplicitFormula.lean",
       "upstream_sha256": "7df489138000328a7521ae9460c133be7cd1dbcb7e0e97b55b66a484aba832f4",
-      "extracted_sha256": "9b40c84e8804dd1dedec854b9ad7dee927bdce347dc2849a6bb748e5d3b598fc",
+      "extracted_sha256": "0710fbdd4f1772861af191acebe281eb33dbc2ef073addcc7b039c54f862074e",
       "declarations": [
         "RiemannGaussian.RosserSchoenfeldExplicitFormula.continuousOn_spectral",
         "RiemannGaussian.RosserSchoenfeldExplicitFormula.finite_prime_explicitFormula",
@@ -8970,7 +8974,7 @@
       "upstream_module": "RiemannGaussian.RosserSchoenfeldLaplace",
       "upstream_file": "RiemannGaussian/RosserSchoenfeldLaplace.lean",
       "upstream_sha256": "e4ff9138c9aa25ce1f4fc06ea0787ff2713905be29be6c18b2218e5cd1f02f18",
-      "extracted_sha256": "46765f93a75332cea5e1872b25f008ff26b753297b19175bd7765a215b375915",
+      "extracted_sha256": "c565003dde69f39354fa2a2fd07a996b91ce017f49e4882382431d28cdf2e0dc",
       "declarations": [
         "RiemannGaussian.RosserSchoenfeldLaplace.integrable_exponential",
         "RiemannGaussian.RosserSchoenfeldLaplace.transform",
@@ -8993,7 +8997,7 @@
       "upstream_module": "RiemannGaussian.RosserSchoenfeldPrimeKernel",
       "upstream_file": "RiemannGaussian/RosserSchoenfeldPrimeKernel.lean",
       "upstream_sha256": "197381f09aded61306701ceac0e798306a09e40db4d37b91674e88c221ec2d32",
-      "extracted_sha256": "e1d7d48765683094d5a074ccbbd0e2bdaed44d659f4d4973891f409ff87c3acf",
+      "extracted_sha256": "0eb49704f286779e1406ff488c820350a4dbef21b44580e144e256c0285c417f",
       "declarations": [
         "RiemannGaussian.RosserSchoenfeldPrimeKernel.integrable_hinge",
         "RiemannGaussian.RosserSchoenfeldPrimeKernel.integrable_time_exponential",
@@ -9021,7 +9025,7 @@
       "upstream_module": "RiemannGaussian.RosserSchoenfeldPrimePrimitive",
       "upstream_file": "RiemannGaussian/RosserSchoenfeldPrimePrimitive.lean",
       "upstream_sha256": "c79454f6bcd56bd232dd1d88cadf79e935e1818a2bcdb534455a09461840f231",
-      "extracted_sha256": "d9a499b00e3a53df9991010b2bb5ff46a1dbab60afe5cbfaf766b00066707561",
+      "extracted_sha256": "e43c56e5930c95d9a753838547bf7e5208baaca716ddd0f439472a45aef17292",
       "declarations": [
         "RiemannGaussian.RosserSchoenfeldPrimePrimitive.continuous_term",
         "RiemannGaussian.RosserSchoenfeldPrimePrimitive.continuous_value",
@@ -9142,7 +9146,7 @@
       "upstream_module": "RiemannGaussian.RosserSchoenfeldTrivialPrimitive",
       "upstream_file": "RiemannGaussian/RosserSchoenfeldTrivialPrimitive.lean",
       "upstream_sha256": "e13f382e94e2ae00fa95aebba4b0896595ea1c3ceff24630357e059f336fa6eb",
-      "extracted_sha256": "ea4cade08c1b4cd792c11137562b8daa2b2a48a532a91d5359f7a1b9dd182e7f",
+      "extracted_sha256": "75ada61dc2e2cd15eca99bf8732ab72eb8dfc62d44bf83ccbf389d8ce141fd3b",
       "declarations": [
         "RiemannGaussian.RosserSchoenfeldTrivialPrimitive.continuousOn_value",
         "RiemannGaussian.RosserSchoenfeldTrivialPrimitive.hasSum_weight",
@@ -9352,7 +9356,7 @@
       "upstream_module": "RiemannGaussian.RosserSchoenfeldZeroMass",
       "upstream_file": "RiemannGaussian/RosserSchoenfeldZeroMass.lean",
       "upstream_sha256": "4cad12d3c182be8be8b2f478bad1751a8d4a872bf5d8f97e0fe5525404c50c7d",
-      "extracted_sha256": "cdc4511f19c675033d762186f430ef57a29c7f822da93e9da93aa880261e2d70",
+      "extracted_sha256": "58e2dbeae9914e185684d5779400761d366bc072c637e9dbe7fe5919aaedc90e",
       "declarations": [
         "RiemannGaussian.RosserSchoenfeldZeroMass.hasSum_poisson",
         "RiemannGaussian.RosserSchoenfeldZeroMass.norm_square_mass_summable",
@@ -9396,7 +9400,8 @@
         "Mathlib.NumberTheory.ZetaValues",
         "Mathlib.Topology.Algebra.InfiniteSum.Basic",
         "Mathlib.Topology.Algebra.InfiniteSum.Group",
-        "Mathlib.Topology.MetricSpace.Contracting"
+        "Mathlib.Topology.MetricSpace.Contracting",
+        "Mathlib.Analysis.Complex.HalfPlane"
       ],
       "original_mathlib_environment": [
         "Mathlib.Algebra.BigOperators.Intervals",
@@ -9583,7 +9588,7 @@
       "upstream_module": "RiemannGaussian.RosserSchoenfeldZeroPrimitive",
       "upstream_file": "RiemannGaussian/RosserSchoenfeldZeroPrimitive.lean",
       "upstream_sha256": "a1462ac8e96e5e1ecb63011a61d18c204f13a471567cfabd8e4d0a9b93392ced",
-      "extracted_sha256": "2088ef04606e5a7584eaa467654b2ff81aa3edab8daf50b3fbe863642cd742dc",
+      "extracted_sha256": "4dccf658c6bb32a5f702312fd92c3de57f0155360ba2d9292289d2a9e017219b",
       "declarations": [
         "RiemannGaussian.RosserSchoenfeldZeroPrimitive.atom",
         "RiemannGaussian.RosserSchoenfeldZeroPrimitive.atom_rewrite",
@@ -9802,7 +9807,7 @@
       "upstream_module": "RiemannGaussian.SechVerticalKernel",
       "upstream_file": "RiemannGaussian/SechVerticalKernel.lean",
       "upstream_sha256": "93745a4b4b7d7b14c67886b2f26dece2bcfd8dd8f4f10296a287be4c79966773",
-      "extracted_sha256": "73bd0e92cfb768d6abf2024421da428591e3ce654b941bfa140c6cccd8262722",
+      "extracted_sha256": "85e439728b7f7ebdb34d3ad6a9224a3098a51d933cd4708d5de6d04a3f95c72c",
       "declarations": [
         "RiemannGaussian.SechVerticalKernel.continuous_density",
         "RiemannGaussian.SechVerticalKernel.density",
@@ -9830,7 +9835,7 @@
       "upstream_module": "RiemannGaussian.SechVerticalMoments",
       "upstream_file": "RiemannGaussian/SechVerticalMoments.lean",
       "upstream_sha256": "5ca87d61a1aafd3a1f73c0e73e1cebe1ed2f201fead289a6d897a09aa1ce4d81",
-      "extracted_sha256": "de39dbd3ead56f1e153f16621dd7d2f67d027bd7580ee8feb5281d2cd2e4fa4b",
+      "extracted_sha256": "8ced0c81aa3271fdfba12dc964d586196bc372e9f8f1739c7ed4bf8341674bdc",
       "declarations": [
         "RiemannGaussian.SechVerticalMoments.integrable_abs_mul_density",
         "RiemannGaussian.SechVerticalMoments.integrable_affine_density",
@@ -9852,7 +9857,7 @@
       "upstream_module": "RiemannGaussian.SecondDerivativeIncrements",
       "upstream_file": "RiemannGaussian/SecondDerivativeIncrements.lean",
       "upstream_sha256": "10c4645652b65b35ad9ec532756df5d0e9163e88a1693e90932867a8cd3e9abe",
-      "extracted_sha256": "5b038dbfe3b01a0d69d930757e9151b0040bf892067ff955a0128079028bec0d",
+      "extracted_sha256": "623986f77e22bdbac2202e706cec96fc0099912fc16095d6f822a0e16a3af24f",
       "declarations": [
         "RiemannGaussian.SecondDerivativeIncrements.difference_bounds",
         "RiemannGaussian.SecondDerivativeIncrements.hasDerivAt_unitIncrement",
@@ -9879,7 +9884,7 @@
       "upstream_module": "RiemannGaussian.SecondDerivativeTest",
       "upstream_file": "RiemannGaussian/SecondDerivativeTest.lean",
       "upstream_sha256": "30a02193c1ecb0beacf4431c7125808dd5acc22489a71f71a21bbe8c8116b690",
-      "extracted_sha256": "ddd89b3e97869e60a94e065e6ba948aa0313d82c108daa7fdd6c0f27ac6b51c7",
+      "extracted_sha256": "b0fa4f08c4d176795f9966e672afa9907b63e921a8ea404cab4edd555b653c0a",
       "declarations": [
         "RiemannGaussian.SecondDerivativeTest.bound",
         "RiemannGaussian.SecondDerivativeTest.square_root_bound"
@@ -9903,7 +9908,7 @@
       "upstream_module": "RiemannGaussian.ShiftedDerivativeFamily",
       "upstream_file": "RiemannGaussian/ShiftedDerivativeFamily.lean",
       "upstream_sha256": "876d9d2db424584c9a651e9dc5028292f9ac0edb94afcc2644c9910758e561ab",
-      "extracted_sha256": "7539523ac28136b654fafe75511c9ac84716bcd642eb11be2a6ad5f1cb5a967e",
+      "extracted_sha256": "e9ae6587434f8676147e36c3d00a2e7f168ab6221e72e60548d19b1fb94e39e6",
       "declarations": [
         "RiemannGaussian.ShiftedDerivativeFamily.derivative_family",
         "RiemannGaussian.ShiftedDerivativeFamily.difference",
@@ -9928,7 +9933,7 @@
       "upstream_module": "RiemannGaussian.SignedCircleProjection",
       "upstream_file": "RiemannGaussian/SignedCircleProjection.lean",
       "upstream_sha256": "3ea973326aed7b191e0e09d12523ec2e82ded8bcd49f4689859e24d0d55a71f4",
-      "extracted_sha256": "ea43fb2be21c837ae6e9bb898424b01593461b393d8e778e19224c4ac9aea108",
+      "extracted_sha256": "bd97e2dcc37c47d979eb5f496847b228406b63fc470960212b791d6b1c97bacf",
       "declarations": [
         "RiemannGaussian.SignedCircleProjection.average_negative_re",
         "RiemannGaussian.SignedCircleProjection.average_positive_re",
@@ -9952,7 +9957,7 @@
       "upstream_module": "RiemannGaussian.SuzukiGammaShift",
       "upstream_file": "RiemannGaussian/SuzukiGammaShift.lean",
       "upstream_sha256": "f904dcf6504ea3ada65a5523f04c6477d5ebe177f1e906100b587151e1410dcf",
-      "extracted_sha256": "b9524d7a8635449cda1212802a4666e8eb25691e61301b8e812fca2c7de9f126",
+      "extracted_sha256": "c2732cb40fa01c96d186cffacc82bfb226b8212043536a90c3c5718f1aee88db",
       "declarations": [
         "RiemannGaussian.shift_ne_zero",
         "RiemannGaussian.suzukiGammaShiftFactor",
@@ -10174,7 +10179,7 @@
       "upstream_module": "RiemannGaussian.SuzukiProperPrimePowerWork",
       "upstream_file": "RiemannGaussian/SuzukiProperPrimePowerWork.lean",
       "upstream_sha256": "4b531c30b9cc15d6bd67d84c823056b954dfbeecca48aaa0648c30bee041a750",
-      "extracted_sha256": "9257b10214104dccdce26ff243c80e844a2b0e81be9edff10c061caebbf9ccb7",
+      "extracted_sha256": "f9964c99ce9315f2fc12b28d53cd8a12cfcf9599b5b65191ee3d7ed290792890",
       "declarations": [
         "RiemannGaussian.chebyshevPsi_sub_theta_le_eighteen_sqrt"
       ],
@@ -10359,7 +10364,7 @@
       "upstream_module": "RiemannGaussian.UniformDerivativePowerBound",
       "upstream_file": "RiemannGaussian/UniformDerivativePowerBound.lean",
       "upstream_sha256": "4036153f3017f3f27a7b86249d0daf259431c7742abf0e5f495f947bd0c16ea6",
-      "extracted_sha256": "9abf7b4e3adc39f6b368acc5460eb62b569b8089387a6a9196e9e2c77a7816eb",
+      "extracted_sha256": "7fa82d28d79a927582ab37aa01b0d1996d6a7f6d7badc5bd96c4c8bf876f04be",
       "declarations": [
         "RiemannGaussian.UniformDerivativePowerBound.budget_bound"
       ],
@@ -10619,7 +10624,7 @@
       "upstream_module": "RiemannGaussian.UniformDirichletPowerBound",
       "upstream_file": "RiemannGaussian/UniformDirichletPowerBound.lean",
       "upstream_sha256": "9002b5cf1bb41fecffaa7b893da3b507ccbd315a7212f035d35c67e713164d54",
-      "extracted_sha256": "5a9973d23f32afde54c59f98e50c308fbbbb27bf3c3e18a6bad1d788374648eb",
+      "extracted_sha256": "8e1bdf13a1c5a19791aa1a34396f7e17b782c34ffc2e1d1145bc632b610b543b",
       "declarations": [
         "RiemannGaussian.UniformDirichletPowerBound.feature_bound",
         "RiemannGaussian.UniformDirichletPowerBound.ratio_amp_le_four",
@@ -10795,7 +10800,7 @@
       "upstream_module": "RiemannGaussian.VinogradovAffineMoment",
       "upstream_file": "RiemannGaussian/VinogradovAffineMoment.lean",
       "upstream_sha256": "cd8e20fe060c1a6fae5190bfbb59143399b1db81fc3f919fafd2fa22060696cb",
-      "extracted_sha256": "2ee53abf104eb3006f28ad97b28ad6172214f4ef86f42aed85218057f55dca1b",
+      "extracted_sha256": "c36d424fdb3133aad1fbd311ff88337c0ffdaca4bfdcdce9c5c40e4b9d62871c",
       "declarations": [
         "RiemannGaussian.VinogradovAffineMoment.affine_frequency_collision_iff",
         "RiemannGaussian.VinogradovAffineMoment.frequency_sum_eq_iff",
@@ -10826,7 +10831,7 @@
       "upstream_module": "RiemannGaussian.VinogradovAnisotropicCongruence",
       "upstream_file": "RiemannGaussian/VinogradovAnisotropicCongruence.lean",
       "upstream_sha256": "4aca984fafef310b6575db9a1e9ef8c380c580f8d423fd30e3b5ef03c6971c98",
-      "extracted_sha256": "699f27b5cdbce155a59bdcf48d27b1b1755435c5b417ff1b53c771aae2b09e6c",
+      "extracted_sha256": "a2bbbea69082e2b088005406a4a038c60516a5b07f64cab6ee6297f6e5d90f42",
       "declarations": [
         "RiemannGaussian.VinogradovAnisotropicCongruence.actual_anisotropic_card_le",
         "RiemannGaussian.VinogradovAnisotropicCongruence.degree_precision_cost",
@@ -10859,7 +10864,7 @@
       "upstream_module": "RiemannGaussian.VinogradovBinomialRows",
       "upstream_file": "RiemannGaussian/VinogradovBinomialRows.lean",
       "upstream_sha256": "aba63a0a7f73591ddc05b6394a6effb8b3978c44efaf5b142b4bf9e2cefe95fe",
-      "extracted_sha256": "716c028103ff4c30045e0b8f45d3ffd00606b233f80b3e782beb4185d7e60fcc",
+      "extracted_sha256": "05b5938681a4b027ddcbac359d7853cf0f600f652844ee5494500f04c9258b05",
       "declarations": [
         "RiemannGaussian.VinogradovBinomialRows.fullSystem",
         "RiemannGaussian.VinogradovBinomialRows.fullSystem_active",
@@ -10904,7 +10909,7 @@
       "upstream_module": "RiemannGaussian.VinogradovCoarseCongruence",
       "upstream_file": "RiemannGaussian/VinogradovCoarseCongruence.lean",
       "upstream_sha256": "9e49cea79918f7d06a5706deb6246a8cc189fc30b6af33e21fc8a1407ecc0806",
-      "extracted_sha256": "9f9a1fe5222a81cefb233253020a48017b6cf87079ed332bd2b7d08036e43990",
+      "extracted_sha256": "22aec5b3fcf12eb213b33bfa50f9651744b0dd39586f4f80c243fb7149761e46",
       "declarations": [
         "RiemannGaussian.VinogradovCoarseCongruence.coarsePowerSums",
         "RiemannGaussian.VinogradovCoarseCongruence.coarseQuotient",
@@ -10947,7 +10952,7 @@
       "upstream_module": "RiemannGaussian.VinogradovColourProducts",
       "upstream_file": "RiemannGaussian/VinogradovColourProducts.lean",
       "upstream_sha256": "bbcfd92dcaf766648a5300b7a72a053fe3fd4362658a50c0fa9996d184b7f7a3",
-      "extracted_sha256": "5ddf4f096793c9e07561d39b20c3949c41d85b8e20e400e008ac76e998b252fd",
+      "extracted_sha256": "f0bc92a3dd97ffd6bf9230214f730edfb4ea905f004762c4d7893a4b6123458e",
       "declarations": [
         "RiemannGaussian.VinogradovColourProducts.polynomial_subtype_eq",
         "RiemannGaussian.VinogradovColourProducts.tupleLabel",
@@ -10992,7 +10997,7 @@
       "upstream_module": "RiemannGaussian.VinogradovConditionedCompletion",
       "upstream_file": "RiemannGaussian/VinogradovConditionedCompletion.lean",
       "upstream_sha256": "0ebb79c8dcc53ec3031baec2f88e4e25f44751f8d5d914cb94027cbfa3f00d92",
-      "extracted_sha256": "69999b92a75411e100b4a30c33ce8d0f256b9cab7ad9526a10e2a4f95104bdd3",
+      "extracted_sha256": "98811b1085d26ba8a4c2f134dc31d7c6a85c8d6b3906a8e178304ade5960b038",
       "declarations": [
         "RiemannGaussian.VinogradovConditionedCompletion.PrimeTailWindow"
       ],
@@ -11018,7 +11023,7 @@
       "upstream_module": "RiemannGaussian.VinogradovConditionedMoment",
       "upstream_file": "RiemannGaussian/VinogradovConditionedMoment.lean",
       "upstream_sha256": "828870f93012639962f48b3c7637fdd5bde19d26e38886a38fdf3d48260efbc4",
-      "extracted_sha256": "94c41e5c66c876df9ff70c29c3bbec020b2b30b117dd2057b6a30ede58f5ec70",
+      "extracted_sha256": "783148b78082943f660f676536c668ed63c59b1247e64256063fd5653880dca1",
       "declarations": [
         "RiemannGaussian.VinogradovConditionedMoment.translated_weighted_power_sum"
       ],
@@ -11052,7 +11057,7 @@
       "upstream_module": "RiemannGaussian.VinogradovCongruenceEnergy",
       "upstream_file": "RiemannGaussian/VinogradovCongruenceEnergy.lean",
       "upstream_sha256": "c64eacebec1869b72de38c88adf8aee6fdb763b38b8b6a5d6aedbd13bb433710",
-      "extracted_sha256": "767163681a8236e9f729d21828cbc7867e1eccb3469ce239ab3cbffe1fe6eb4d",
+      "extracted_sha256": "fd81d05d0ea478d6cc2887a46fd1d84d75bf05a66af1b38225ed3f811afe9a0b",
       "declarations": [
         "RiemannGaussian.VinogradovCongruenceEnergy.sum_energy_le_card_mul"
       ],
@@ -11086,7 +11091,7 @@
       "upstream_module": "RiemannGaussian.VinogradovCriticalKorobov",
       "upstream_file": "RiemannGaussian/VinogradovCriticalKorobov.lean",
       "upstream_sha256": "189fd06153662c8fe5e3cca66fd0b553f17c886256b09af4c08f782525fa6aac",
-      "extracted_sha256": "44a542a1cc91eaf78a43c6c9b0c24ac3796b72f0aa7f19decb90cbb7f2372889",
+      "extracted_sha256": "1c146ded25f3b7f8cfd42aa0f5799320f76d1741faceec0f5b8389dd29ba8111",
       "declarations": [
         "RiemannGaussian.VinogradovCriticalKorobov.finite_moment_le_interval",
         "RiemannGaussian.VinogradovCriticalKorobov.moment_le_of_frequency_embedding"
@@ -11323,7 +11328,7 @@
       "upstream_module": "RiemannGaussian.VinogradovCrossMoment",
       "upstream_file": "RiemannGaussian/VinogradovCrossMoment.lean",
       "upstream_sha256": "18b0f9b0054cbf81642f763458928e5c4aff8dd42e1a0db81d392372573f01c4",
-      "extracted_sha256": "728a99d880ee2e3073d6639214fc01d61b436b6560763c376f34944bcf92a89d",
+      "extracted_sha256": "05f40f115b8b539d56eea2023a6f3f0109b4f9663c3a3726439897404e50b6e9",
       "declarations": [
         "RiemannGaussian.VinogradovCrossMoment.crossCount",
         "RiemannGaussian.VinogradovCrossMoment.crossGram",
@@ -11358,7 +11363,7 @@
       "upstream_module": "RiemannGaussian.VinogradovCubicBudget",
       "upstream_file": "RiemannGaussian/VinogradovCubicBudget.lean",
       "upstream_sha256": "580f8c80a6868b0ff7dd30a8a45db3dfaab9b6db83dbc8846846847df6b3e115",
-      "extracted_sha256": "8e36a93d3343630fe3ea421ee128f3ad7ea0597e56b9ea77291f62fb3c7ab819",
+      "extracted_sha256": "e09123798fe8efa1181f5e306b47f6b0692291a84df495519ad85e312bc94d54",
       "declarations": [
         "RiemannGaussian.VinogradovCubicBudget.block_bound",
         "RiemannGaussian.VinogradovCubicBudget.growth",
@@ -11560,7 +11565,7 @@
       "upstream_module": "RiemannGaussian.VinogradovCubicDecay",
       "upstream_file": "RiemannGaussian/VinogradovCubicDecay.lean",
       "upstream_sha256": "8cca3371e613e6cfeac439bf057f0e8dbd3c910f43e26e5e1d55bf6869acff6d",
-      "extracted_sha256": "1e9461eb97ebedf822872d1910209686b8a8c66e25f131d4131f74d78f62bf64",
+      "extracted_sha256": "12403e7c44c2635fcb3b35632ad85eb6a02a3385514d2c4073eb447e762e28e4",
       "declarations": [
         "RiemannGaussian.VinogradovCubicDecay.block_bound",
         "RiemannGaussian.VinogradovCubicDecay.cubic_reserve",
@@ -11767,7 +11772,7 @@
       "upstream_module": "RiemannGaussian.VinogradovCubicSaving",
       "upstream_file": "RiemannGaussian/VinogradovCubicSaving.lean",
       "upstream_sha256": "6cf5497d3bf5c781cae92c83cd260c3d247dac1c48e8858333016cb63c0131ee",
-      "extracted_sha256": "2cce1d66660562876bb81275c192f2a1dbd90b46243f0602d4a34f32c5179003",
+      "extracted_sha256": "62a450e93f8eea44a41a4fc0424e3ccf30e62c30f08a33f675a42c8888bdd308",
       "declarations": [
         "RiemannGaussian.VinogradovCubicSaving.cubic_le",
         "RiemannGaussian.VinogradovCubicSaving.degree_log_bound",
@@ -11983,7 +11988,7 @@
       "upstream_module": "RiemannGaussian.VinogradovCubicSchedule",
       "upstream_file": "RiemannGaussian/VinogradovCubicSchedule.lean",
       "upstream_sha256": "386c55224efb01919fefd5c80dfb4c78eadd48d262526a0b3f6eff216a648328",
-      "extracted_sha256": "858057a834e8894ca1d1e6f8e152a4fc193693005498c664d5576ef8c12380cf",
+      "extracted_sha256": "f6bf64200d0917feccd4df9963f191f3c68fd300b828150b260ff4bbabfaad38",
       "declarations": [
         "RiemannGaussian.VinogradovCubicSchedule.eight_degree_le_index",
         "RiemannGaussian.VinogradovCubicSchedule.growth_normalized",
@@ -12177,7 +12182,7 @@
       "upstream_module": "RiemannGaussian.VinogradovCubicSummation",
       "upstream_file": "RiemannGaussian/VinogradovCubicSummation.lean",
       "upstream_sha256": "b474e07ce5711682a5daacf1516ed7419322bcbf682d7b841c090448902cc982",
-      "extracted_sha256": "fb075a6f4791f107febba2ae6b7c1edbf29701e0ab7457f24cbd8b0699e05fef",
+      "extracted_sha256": "02de1abeff6530ae321b4308d508a69796ccb22fafb299196481bf3733c555a8",
       "declarations": [
         "RiemannGaussian.VinogradovCubicSummation.cubic_ge_square_sub_one",
         "RiemannGaussian.VinogradovCubicSummation.sum_le"
@@ -12206,7 +12211,7 @@
       "upstream_module": "RiemannGaussian.VinogradovDampedSaving",
       "upstream_file": "RiemannGaussian/VinogradovDampedSaving.lean",
       "upstream_sha256": "11a138456a563cf34a7b2bda03c550a2714a47af3a93204ef044cde86e0204d1",
-      "extracted_sha256": "780a7e06692f289c5f434d56d089fa89e4a99bd1ae87abd611decb15efc48a68",
+      "extracted_sha256": "139329497cdf07ce0656701d25290617a376e7d0139bd905ac2f7e5cbf47ad0a",
       "declarations": [
         "RiemannGaussian.VinogradovDampedSaving.abelTransform_norm_affine_le"
       ],
@@ -12402,7 +12407,7 @@
       "upstream_module": "RiemannGaussian.VinogradovDegreeWindow",
       "upstream_file": "RiemannGaussian/VinogradovDegreeWindow.lean",
       "upstream_sha256": "09233b9b46dba1eb18df50891df1eeb8b0292b83121642f4975b1890d984dcf7",
-      "extracted_sha256": "872b3cfde548c6a5a58ee736a4cdc36344792edfc7be2f25dd9e2a4fb33926d5",
+      "extracted_sha256": "38a01ead04ee1af78d01b74030d79cb53c582e1693a124f4e58798cc52c5f86c",
       "declarations": [
         "RiemannGaussian.VinogradovDegreeWindow.descending_gain_sum"
       ],
@@ -12652,7 +12657,7 @@
       "upstream_module": "RiemannGaussian.VinogradovDiagonalCost",
       "upstream_file": "RiemannGaussian/VinogradovDiagonalCost.lean",
       "upstream_sha256": "f4fe6d23ebf123f0c92fdccbdce46cb451ceed1d250bb09d7c4b2e45cfea02a7",
-      "extracted_sha256": "2b4d768cc26a2efddbed451099fe045dcfb6c1ca14fc79baeae575a9aae4f47d",
+      "extracted_sha256": "80b07a768b3de1f0e3df652f38d02924f7e33b44a06f44bf3fbdcc0f0acb0504",
       "declarations": [
         "RiemannGaussian.VinogradovDiagonalCost.base_le_binary_cube",
         "RiemannGaussian.VinogradovDiagonalCost.base_mono",
@@ -12702,7 +12707,7 @@
       "upstream_module": "RiemannGaussian.VinogradovDiagonalExponent",
       "upstream_file": "RiemannGaussian/VinogradovDiagonalExponent.lean",
       "upstream_sha256": "7d4f022d4c669261f5cf5e590899d9024f9146af4508449bf5d0b68eb0d0bb32",
-      "extracted_sha256": "0aff557b3726ebaee8332bbeeacee2ccdd7b7af8ac42becd501f278109d97ed7",
+      "extracted_sha256": "03bbd5cea89afaa2de75ef26c1978acfc00b6082d222f83538a8bb1d07022c4b",
       "declarations": [
         "RiemannGaussian.VinogradovDiagonalExponent.degreeWeight",
         "RiemannGaussian.VinogradovDiagonalExponent.diagonal_power_le",
@@ -12749,7 +12754,7 @@
       "upstream_module": "RiemannGaussian.VinogradovDiagonalIteration",
       "upstream_file": "RiemannGaussian/VinogradovDiagonalIteration.lean",
       "upstream_sha256": "09280762d60b3bce6c72ebe0373a89c8160db862426531d2a9c90696c1f8da49",
-      "extracted_sha256": "f90f1bdd670b02e4f657bf6815350c5c2fcee020cf38a46b683095d1b7395693",
+      "extracted_sha256": "8a218efc0a70e3c1e906892b4d187840ee80e28993c0c2bbdc9b60fdc2d933f7",
       "declarations": [
         "RiemannGaussian.VinogradovDiagonalIteration.coefficient",
         "RiemannGaussian.VinogradovDiagonalIteration.defect",
@@ -12804,7 +12809,7 @@
       "upstream_module": "RiemannGaussian.VinogradovDiagonalMoment",
       "upstream_file": "RiemannGaussian/VinogradovDiagonalMoment.lean",
       "upstream_sha256": "887bc160e783f463090542dbfc0185b43706d570b82441810d1157bbfbd1f4d4",
-      "extracted_sha256": "4683f90d463a15960c10682a85d1cea762be7d80f82076dbdef46ef5a6abe1e4",
+      "extracted_sha256": "6177204dcbf99ef05813f1c8929b3b6a683019ddaf71663e8b3c09b273f19cc0",
       "declarations": [
         "RiemannGaussian.VinogradovDiagonalMoment.exists_diagonal_moment_step_of_packet",
         "RiemannGaussian.VinogradovDiagonalMoment.initial_count_eq",
@@ -12854,7 +12859,7 @@
       "upstream_module": "RiemannGaussian.VinogradovDiagonalThreshold",
       "upstream_file": "RiemannGaussian/VinogradovDiagonalThreshold.lean",
       "upstream_sha256": "57ffb0aeab496d7ab721ca8488ecbd544c57327d1e7b6bdcf0b229ab0e4f094d",
-      "extracted_sha256": "0381c38938de27ab3a7bdadcd74dd6ff3ce84ac0954a8cb986c24f9dfab591ff",
+      "extracted_sha256": "2d9e003cf33ffda172da26976376832cebd758f264c3e221271f11f11720c626",
       "declarations": [
         "RiemannGaussian.VinogradovDiagonalThreshold.all_endpoint_defect_step",
         "RiemannGaussian.VinogradovDiagonalThreshold.base",
@@ -12902,7 +12907,7 @@
       "upstream_module": "RiemannGaussian.VinogradovDifferenceEnergy",
       "upstream_file": "RiemannGaussian/VinogradovDifferenceEnergy.lean",
       "upstream_sha256": "3b50b5d22510ce6a005e182d29fa7a6f2a36b13797b5d81f2cd3f41ebefc02d4",
-      "extracted_sha256": "1e5d9d3e6a7c5e0148ebd2f211743c47b1ac3eea149d0a370a72a16403434697",
+      "extracted_sha256": "4476fac2edbf01ef43010a76efe21dc027774d8bd802a91f50e905a493894335",
       "declarations": [
         "RiemannGaussian.VinogradovDifferenceEnergy.boundaryWeight",
         "RiemannGaussian.VinogradovDifferenceEnergy.colourEnergy",
@@ -12943,7 +12948,7 @@
       "upstream_module": "RiemannGaussian.VinogradovDirichletSaving",
       "upstream_file": "RiemannGaussian/VinogradovDirichletSaving.lean",
       "upstream_sha256": "46837321faead8adbfe786453eda508bff1d92abf30dee8cf600f403b782306f",
-      "extracted_sha256": "3c1403a618851a996b5ebf9da560698ca602b203a6bf1db21e235a869dc22733",
+      "extracted_sha256": "fc14526a21e62dc3dd0322346bf3b4a0d2ed5c83db67cdd168b7ad998fcd8697",
       "declarations": [
         "RiemannGaussian.VinogradovDirichletSaving.block_bound_of_product_bound"
       ],
@@ -13095,7 +13100,7 @@
       "upstream_module": "RiemannGaussian.VinogradovDyadic",
       "upstream_file": "RiemannGaussian/VinogradovDyadic.lean",
       "upstream_sha256": "bfcac16ae5f76999f3f6351decebfb60140c4228a158b9bd72ad7c043b9acd7e",
-      "extracted_sha256": "56436921bf9ac95a3dd0997df9f0c43dc0a805d5ab6c91c241620e26dd0c9edc",
+      "extracted_sha256": "824b9ecf5860c28c18cb0740b2a71552a9521933359231a4cf22565d6c3a9ceb",
       "declarations": [
         "RiemannGaussian.VinogradovDyadic.dyadic_block_bound",
         "RiemannGaussian.VinogradovDyadic.fourth_root_window",
@@ -13287,7 +13292,7 @@
       "upstream_module": "RiemannGaussian.VinogradovEndpointDeletion",
       "upstream_file": "RiemannGaussian/VinogradovEndpointDeletion.lean",
       "upstream_sha256": "4c6b64350c1f2c2268ddb2d21ab67165933ad78a115e4812e774e4b0ed608872",
-      "extracted_sha256": "1f15a27b0393387159d6e66009e4a2746d38ce7833131fda3caffd059d1d20f8",
+      "extracted_sha256": "e85e6aadfe70e3acf5e29db227a1620acaa8082b78a7041df41da9ccec3f7e48",
       "declarations": [
         "RiemannGaussian.VinogradovEndpointDeletion.add_one_power_le",
         "RiemannGaussian.VinogradovEndpointDeletion.diagonal_tail_le",
@@ -13336,7 +13341,7 @@
       "upstream_module": "RiemannGaussian.VinogradovExplicitKorobov",
       "upstream_file": "RiemannGaussian/VinogradovExplicitKorobov.lean",
       "upstream_sha256": "5e2274aea9cf93b60c6875ab05d8949f75a9ec8a23b36283d0741fb4591a6e13",
-      "extracted_sha256": "18880a93ed288131c130a8d67368d3ccf510ec61226bca3ca8b7b09980562836",
+      "extracted_sha256": "2f92f2d33dd6f37fea6068c7ad41ac4cee283a2fdcac589c774c4fa6fbfcaf38",
       "declarations": [
         "RiemannGaussian.VinogradovExplicitKorobov.abs_phaseCoefficients"
       ],
@@ -13483,7 +13488,7 @@
       "upstream_module": "RiemannGaussian.VinogradovExponentialDefect",
       "upstream_file": "RiemannGaussian/VinogradovExponentialDefect.lean",
       "upstream_sha256": "7a2a7bad605494e80b73f735f239c7a3796b256219a991e5860c88ebc78b545d",
-      "extracted_sha256": "380506df227f7ca9d00996bb1889c231617933477988de4a841ad5b933d2e4ad",
+      "extracted_sha256": "eb57f357fd88fba4328773f92b38ef34b25bdcf414aecab6c2dd4d1b287aa400",
       "declarations": [
         "RiemannGaussian.VinogradovExponentialDefect.defect_four_degree_le",
         "RiemannGaussian.VinogradovExponentialDefect.defect_le_exp",
@@ -13766,7 +13771,7 @@
       "upstream_module": "RiemannGaussian.VinogradovFirstExponent",
       "upstream_file": "RiemannGaussian/VinogradovFirstExponent.lean",
       "upstream_sha256": "fed7acf594632e266b0fb8d2e8e8c9f27ace1aab9b1d88fb2dbc7f190a87d630",
-      "extracted_sha256": "b91aeb22964c2dcd4716154de28018cc5d73325ce075f3c630f44c8932163fea",
+      "extracted_sha256": "6bbcc79b0809491f85159ece74a48ce207beab8c0f0111511b95cc8d27242a4b",
       "declarations": [
         "RiemannGaussian.VinogradovFirstExponent.crossCount_le_of_embedding"
       ],
@@ -13808,7 +13813,7 @@
       "upstream_module": "RiemannGaussian.VinogradovGaussianBounds",
       "upstream_file": "RiemannGaussian/VinogradovGaussianBounds.lean",
       "upstream_sha256": "5c8f289f888d7922f4eb7b4926dd83cd6184fd7edcb62ec09a3c643aaf2f7504",
-      "extracted_sha256": "7ce9008e6afad8b14f672060986dd70c5aa80e7e63497ded587662813701c55d",
+      "extracted_sha256": "8e778152ae36bcf451a0d9a36b87ad1d6ce517d38f8a2d3cf511a4ff5fea7dc1",
       "declarations": [
         "RiemannGaussian.VinogradovGaussianBounds.integerDistance",
         "RiemannGaussian.VinogradovGaussianBounds.integerDistance_nonneg",
@@ -13846,7 +13851,7 @@
       "upstream_module": "RiemannGaussian.VinogradovGaussianCentering",
       "upstream_file": "RiemannGaussian/VinogradovGaussianCentering.lean",
       "upstream_sha256": "d96eac44a7c12b51c5452e61e43c7647209486c53b76238c8c37c3e7c79154e7",
-      "extracted_sha256": "92ac86c86dbb20f06a05c51ed812ba14fcfc8e0def669c50d0a95517187738a7",
+      "extracted_sha256": "228a7e61ad1c513bc42db1bbb4e2ed5b11a5ac3d95f3f0284a8a419775e3cf93",
       "declarations": [
         "RiemannGaussian.VinogradovGaussianCentering.centeredSupport",
         "RiemannGaussian.VinogradovGaussianCentering.centered_cost_le",
@@ -13882,7 +13887,7 @@
       "upstream_module": "RiemannGaussian.VinogradovGaussianCost",
       "upstream_file": "RiemannGaussian/VinogradovGaussianCost.lean",
       "upstream_sha256": "87de1323239fd3573c23a7d56e59479c617226ca38ee5abaaf7269a606f3fa29",
-      "extracted_sha256": "0935a5c698bec16b82fd9395dd935805a6debd7b33c583f7124a9edded7a05dc",
+      "extracted_sha256": "bc47d0ef42696f6a7e8cd1085abc85d19413fb6aa5e43e750bd9da18e63daab6",
       "declarations": [
         "RiemannGaussian.VinogradovGaussianCost.actual_gaussian_resonance_le",
         "RiemannGaussian.VinogradovGaussianCost.complete_gaussian_constant_le",
@@ -14027,7 +14032,7 @@
       "upstream_module": "RiemannGaussian.VinogradovGaussianKernel",
       "upstream_file": "RiemannGaussian/VinogradovGaussianKernel.lean",
       "upstream_sha256": "07523163a1abdd335e98cc6144e49398f7a2a1dc1ddd27153240b15859163151",
-      "extracted_sha256": "75fc9b4be21093b4b5af2cd73e28b71c8a617f7b611eeaf33c9f5a247e183a06",
+      "extracted_sha256": "884b5df89296978c7f21432b67e4a342ef54c80fc296b8cab78a4a187273e8f2",
       "declarations": [
         "RiemannGaussian.VinogradovGaussianKernel.energy_eq_gram",
         "RiemannGaussian.VinogradovGaussianKernel.finite_energy_le_gram",
@@ -14069,7 +14074,8 @@
       ],
       "mathlib_imports": [
         "Mathlib.Analysis.MeanInequalitiesPow",
-        "Mathlib.Analysis.SpecialFunctions.Gaussian.PoissonSummation"
+        "Mathlib.Analysis.SpecialFunctions.Gaussian.PoissonSummation",
+        "Mathlib.Analysis.PSeries"
       ],
       "original_mathlib_environment": [
         "Mathlib.Analysis.Fourier.AddCircleMulti",
@@ -14084,7 +14090,7 @@
       "upstream_module": "RiemannGaussian.VinogradovGaussianResonance",
       "upstream_file": "RiemannGaussian/VinogradovGaussianResonance.lean",
       "upstream_sha256": "380ede0482f4a8b3fc4bf4812c14617246f90fd09ca32ae8a667b16b95da26c1",
-      "extracted_sha256": "9c2b3c802263e2a5055c5715cb04f9f9d6b845794ab950c924a34231cc17623b",
+      "extracted_sha256": "55fc2f476ed006a4a8c37103ea086e18af48ea1b990d499cb213df4a913c7ea7",
       "declarations": [
         "RiemannGaussian.VinogradovGaussianResonance.differenceSupport",
         "RiemannGaussian.VinogradovGaussianResonance.linearSample",
@@ -14114,7 +14120,7 @@
       "upstream_module": "RiemannGaussian.VinogradovGaussianSpacing",
       "upstream_file": "RiemannGaussian/VinogradovGaussianSpacing.lean",
       "upstream_sha256": "0f88fefc0f9ef089f273376a46675bf04f485e70a8a5501b821cc69258e75378",
-      "extracted_sha256": "5340d5777f2a1a2439d791a3fd078eea6f2392b3d19211a7aaa71ef45e6fc650",
+      "extracted_sha256": "90188389777519b1889672382c9193010267244b73bb7dd460b80dce1c36f8b8",
       "declarations": [
         "RiemannGaussian.VinogradovGaussianSpacing.finite_envelope_le",
         "RiemannGaussian.VinogradovGaussianSpacing.finite_envelope_le_width",
@@ -14151,7 +14157,7 @@
       "upstream_module": "RiemannGaussian.VinogradovHeightSchedule",
       "upstream_file": "RiemannGaussian/VinogradovHeightSchedule.lean",
       "upstream_sha256": "eb79bb19e31815e2e1998ee1ec1f0f6bba13b07fc4a5ce2627b703e3537111d2",
-      "extracted_sha256": "9535113025039080581a3c39ed1d6e9906087945e937a8d99189b518bc414abc",
+      "extracted_sha256": "87c010d696b79c7ac76b294d0da8c956e5694a36bf441921cd3e56ddd6c9cfda",
       "declarations": [
         "RiemannGaussian.VinogradovHeightSchedule.balanced_identity",
         "RiemannGaussian.VinogradovHeightSchedule.eventually_threshold",
@@ -14354,7 +14360,7 @@
       "upstream_module": "RiemannGaussian.VinogradovInitialExceptional",
       "upstream_file": "RiemannGaussian/VinogradovInitialExceptional.lean",
       "upstream_sha256": "050bf466724fb4e08b29e86708ce5c91a13aaf786566ea33c36f44c5b19cf814",
-      "extracted_sha256": "4d562e3b79a9861bb77076b85768e21adba1c278a39fa5abfb84cfdd6c19953b",
+      "extracted_sha256": "4f7d906f27fbeff464b8bfc1dd69d4fea92b0d5df0e003ad867b615cae516fa3",
       "declarations": [
         "RiemannGaussian.VinogradovInitialExceptional.moment_eq_crossCount"
       ],
@@ -14384,7 +14390,7 @@
       "upstream_module": "RiemannGaussian.VinogradovInterpolation",
       "upstream_file": "RiemannGaussian/VinogradovInterpolation.lean",
       "upstream_sha256": "7ec2dd8a248b056fc498ad707ee2b5ab72a7b5ae439ad76ee583289ed45ab757",
-      "extracted_sha256": "542557e025763327851a11b137776b9858955ea71c93212adf70b671da80438e",
+      "extracted_sha256": "d190d6ef223c423d71d09d963bcd49378755ee9df3a63f3f9b5a54e8d0444dcf",
       "declarations": [
         "RiemannGaussian.VinogradovInterpolation.integral_geometric_le"
       ],
@@ -14420,7 +14426,7 @@
       "upstream_module": "RiemannGaussian.VinogradovIntervalResonance",
       "upstream_file": "RiemannGaussian/VinogradovIntervalResonance.lean",
       "upstream_sha256": "e3c79754a0e7457a5e6d9ffc839a435c87416e5f32714e3dfc98ddf330d39f38",
-      "extracted_sha256": "27f87adf9c18e91f8a7b5cb0fcc34d7947ec3313089bd13075fc87cd3ff39c44",
+      "extracted_sha256": "dedbaae03acb160364972bde628e666acbba47d024a79d1f733b092d49c31a09",
       "declarations": [
         "RiemannGaussian.VinogradovIntervalResonance.actual_difference_in_box",
         "RiemannGaussian.VinogradovIntervalResonance.actual_resonance_le_selected_widths",
@@ -14449,7 +14455,7 @@
       "upstream_module": "RiemannGaussian.VinogradovKorobovBilinearPhase",
       "upstream_file": "RiemannGaussian/VinogradovKorobovBilinearPhase.lean",
       "upstream_sha256": "b71480b1de947a1e180d4499f5fea7a0b12f72a617e6dcb119ecf0a7d4e10fb7",
-      "extracted_sha256": "e123a952d0df26b8109dfafa37c255114983614f8b1a1c1f506fdea89fbf4329",
+      "extracted_sha256": "a9a7434ce67c743d0df833be043afbea6798d72f732064151984d9bba14ffd96",
       "declarations": [
         "RiemannGaussian.VinogradovKorobovBilinearPhase.logarithmicPhase",
         "RiemannGaussian.VinogradovKorobovBilinearPhase.phase_error_le",
@@ -14573,7 +14579,7 @@
       "upstream_module": "RiemannGaussian.VinogradovKorobovBlock",
       "upstream_file": "RiemannGaussian/VinogradovKorobovBlock.lean",
       "upstream_sha256": "7eea16330a6526af70e7ca61fb8f53ef803a11029490db1d9bb1463e38f39efb",
-      "extracted_sha256": "c1764e21ef5d6adabae906c5f0cf5f1901b58a88d084e81b31b97344e8b49d9c",
+      "extracted_sha256": "c74d948606fd6f65b6703d56a7749c09b74fe1d6b212af9994eedd55a1d1cc46",
       "declarations": [
         "RiemannGaussian.VinogradovKorobovBlock.basePhase",
         "RiemannGaussian.VinogradovKorobovBlock.block",
@@ -14701,7 +14707,7 @@
       "upstream_module": "RiemannGaussian.VinogradovKorobovDamping",
       "upstream_file": "RiemannGaussian/VinogradovKorobovDamping.lean",
       "upstream_sha256": "4515643aab11282a76dfbcc979a36a81f54285112deaee404b05c3716330af0f",
-      "extracted_sha256": "b5fc0e70ac7de1aab98db4db10e7fb765a6c8a0461cfcb14484521e2c7593663",
+      "extracted_sha256": "dfa93307013ff578a98ceeb8f7d8ef55bb1cfebddee077cf725e96da056f4f03",
       "declarations": [
         "RiemannGaussian.VinogradovKorobovDamping.abelTransform",
         "RiemannGaussian.VinogradovKorobovDamping.abel_length_mass",
@@ -14878,7 +14884,7 @@
       "upstream_module": "RiemannGaussian.VinogradovKorobovLogPhase",
       "upstream_file": "RiemannGaussian/VinogradovKorobovLogPhase.lean",
       "upstream_sha256": "51d4fcc34c48410a12213858a47567f098c3754cacddc53a2ced4e4397dc8cc7",
-      "extracted_sha256": "da7f3ffa7462f5afd65559c834948561de5527087c0a9ea320ca74b940bef584",
+      "extracted_sha256": "bcb7dce44ed515571559328ce64386b4fcf37fd566c77f9b6779e00f51e205fb",
       "declarations": [
         "RiemannGaussian.VinogradovKorobovLogPhase.abs_logarithm_sub_polynomial_le",
         "RiemannGaussian.VinogradovKorobovLogPhase.intervalIntegrable_remainder",
@@ -15004,7 +15010,7 @@
       "upstream_module": "RiemannGaussian.VinogradovKorobovMoment",
       "upstream_file": "RiemannGaussian/VinogradovKorobovMoment.lean",
       "upstream_sha256": "4da6ed34470ea3e6d974c46c694171592784efc12a34bb0fd0d6982b650edc73",
-      "extracted_sha256": "65793c3b62bd089ff6ef7e770c0114f933dd88fa597d62eab0fa23132e0cbcf6",
+      "extracted_sha256": "19d2b2d4ef45291d16080263c4b67c4e6e86a56331b3a51afb526dd64dfae22b",
       "declarations": [
         "RiemannGaussian.VinogradovKorobovMoment.coordinates",
         "RiemannGaussian.VinogradovKorobovMoment.coordinates_eq_linearSample",
@@ -15149,7 +15155,7 @@
       "upstream_module": "RiemannGaussian.VinogradovKorobovPowerSaving",
       "upstream_file": "RiemannGaussian/VinogradovKorobovPowerSaving.lean",
       "upstream_sha256": "267a314a9dd006c8e6fec0cad88ef26eaa0677b3a053ec3b809832911dd57566",
-      "extracted_sha256": "d2f7f1970d5f75b28b4dd24133c0a085df349d794c6c20c2cbec9f88366fa2f9",
+      "extracted_sha256": "d054fe94d0d607030ad62db0383d3f0c981462043cc3f3791bcbdad18b348376",
       "declarations": [
         "RiemannGaussian.VinogradovKorobovPowerSaving.reciprocal_support_cost"
       ],
@@ -15288,7 +15294,7 @@
       "upstream_module": "RiemannGaussian.VinogradovLongBlocks",
       "upstream_file": "RiemannGaussian/VinogradovLongBlocks.lean",
       "upstream_sha256": "070a87b2e0f7d4bd136e42c4eb0f67870163aa759d3d66ed866148d491fd35e2",
-      "extracted_sha256": "75c8a70f048424fa83e0fddabcc00958ab525c71758c8c43eaa8fd228e70065a",
+      "extracted_sha256": "f709db1eb4d21d5805d18af65f7958f064a530a35295a15e4530f7f002659483",
       "declarations": [
         "RiemannGaussian.VinogradovLongBlocks.fourth_profile_le",
         "RiemannGaussian.VinogradovLongBlocks.profile_antitone_sigma",
@@ -15458,7 +15464,7 @@
       "upstream_module": "RiemannGaussian.VinogradovLowDegreeTail",
       "upstream_file": "RiemannGaussian/VinogradovLowDegreeTail.lean",
       "upstream_sha256": "21c4d331cf45ff5d44b27b6c1f4f56c3e9c4a3c0480d294e3cc6fa739856965a",
-      "extracted_sha256": "61ce852e756f5df85262f9b855a58132b0eecbd99d02bb1a7a22dab169fac5ad",
+      "extracted_sha256": "d6587a3049e0784753ed59110ab262a6d64848a94b73f93b9abc1ed9e579861e",
       "declarations": [
         "RiemannGaussian.VinogradovLowDegreeTail.collision_lowSignature",
         "RiemannGaussian.VinogradovLowDegreeTail.complete_fibre_le",
@@ -15509,7 +15515,7 @@
       "upstream_module": "RiemannGaussian.VinogradovMeanValue",
       "upstream_file": "RiemannGaussian/VinogradovMeanValue.lean",
       "upstream_sha256": "26a505712508c1e95e56facdb88fd713a050ceb3c794931dd99cee9352d1bad6",
-      "extracted_sha256": "038b28a6c4398f68773bd91426dc8d39b3169048a50ab9c8f1e41159e7246790",
+      "extracted_sha256": "cddef95f89c94c462f6cab20ad52ebe5d78930b06d9e65f5c1410a71753dafc2",
       "declarations": [
         "RiemannGaussian.VinogradovMeanValue.collisionCount",
         "RiemannGaussian.VinogradovMeanValue.integral_pair",
@@ -15539,7 +15545,7 @@
       "upstream_module": "RiemannGaussian.VinogradovMixedDifferencing",
       "upstream_file": "RiemannGaussian/VinogradovMixedDifferencing.lean",
       "upstream_sha256": "97575731a5846b87aa693a25c38144ef7da5794cc47381ea13b0494dc1f4270e",
-      "extracted_sha256": "823d7814aacf9f0dd759079e07c448d767fe7947bebb1392d6338ff207c1deac",
+      "extracted_sha256": "f3fb0ea8dfa1a1d1d0ef7592555c1325d56bf1484f7db69ccd6c6dc7a945117f",
       "declarations": [
         "RiemannGaussian.VinogradovMixedDifferencing.residueMixedMoment",
         "RiemannGaussian.VinogradovMixedDifferencing.residueMixedMoment_eq_diagonal"
@@ -15573,7 +15579,7 @@
       "upstream_module": "RiemannGaussian.VinogradovMixedExceptional",
       "upstream_file": "RiemannGaussian/VinogradovMixedExceptional.lean",
       "upstream_sha256": "37f2b1060acdc6f723876382845520251d867119e2255871c47d7bcef900f511",
-      "extracted_sha256": "884c76c39f609524e9274fbff80cee5f1fb44a394d1c64b1f243eb07c967690f",
+      "extracted_sha256": "3f45c744fb69d363786df9619def0329d1695bf6a6260d7b95acc15adf9dd992",
       "declarations": [
         "RiemannGaussian.VinogradovMixedExceptional.configuration_comp_perm",
         "RiemannGaussian.VinogradovMixedExceptional.diagonal_block_le",
@@ -15629,7 +15635,7 @@
       "upstream_module": "RiemannGaussian.VinogradovMixedMoments",
       "upstream_file": "RiemannGaussian/VinogradovMixedMoments.lean",
       "upstream_sha256": "f8925c31f1d96fcec1d5fccfb99313dcd262718aa26d4c62b61d42f0323628aa",
-      "extracted_sha256": "b10341594a719c8336be835c517fd2419e3ee4bb6894156996f69cc66efc31bd",
+      "extracted_sha256": "94e8894c2b3550d69f1ca15a005af5b6d6913f7cdecacf5390661c216f4da2ce",
       "declarations": [
         "RiemannGaussian.VinogradovMixedMoments.configurationFrequency",
         "RiemannGaussian.VinogradovMixedMoments.configuration_polynomial",
@@ -15666,7 +15672,7 @@
       "upstream_module": "RiemannGaussian.VinogradovMixedRepeated",
       "upstream_file": "RiemannGaussian/VinogradovMixedRepeated.lean",
       "upstream_sha256": "dae3a26525567c504296e0493388df23d3d5d69701dd39dd534974e1dc185974",
-      "extracted_sha256": "040d925c8099c30012bbedf133a73ea26bd0e59ce518cc98468c4ef1374cee47",
+      "extracted_sha256": "c96ba8045d461e5a4ba9445a3734bda41a4bed244ffe4b6b248d198296b739bd",
       "declarations": [
         "RiemannGaussian.VinogradovMixedRepeated.integral_triple_geometric_le",
         "RiemannGaussian.VinogradovMixedRepeated.repeated_atom",
@@ -15710,7 +15716,7 @@
       "upstream_module": "RiemannGaussian.VinogradovMomentPartition",
       "upstream_file": "RiemannGaussian/VinogradovMomentPartition.lean",
       "upstream_sha256": "a24277cc00f350797a70c8c91bc8dfc0c50275887e1c6e4d9d3e4ba5d6450273",
-      "extracted_sha256": "f7b41023eeb5863a37f229f2abc38e13ffcc7f18f69e99866919ca7f285508a4",
+      "extracted_sha256": "540bc6c4cf56b6c2c29a00451b7ac1768226082b63089bf1647ac800dd6afb95",
       "declarations": [
         "RiemannGaussian.VinogradovMomentPartition.blockSignature",
         "RiemannGaussian.VinogradovMomentPartition.mixedFrequency",
@@ -15747,7 +15753,7 @@
       "upstream_module": "RiemannGaussian.VinogradovMomentReduction",
       "upstream_file": "RiemannGaussian/VinogradovMomentReduction.lean",
       "upstream_sha256": "363d00793d12b8a4c617afda3294c5c515596ca7226356b597a10f0f51b930ed",
-      "extracted_sha256": "cb6702a9d0e00a5de3e8d490e6fe58dd75c6c4a67e0265d217bf10fc1dd1dade",
+      "extracted_sha256": "78b65532d54c243de91c2b9dae68439d7126daf07643fed477c8accc236157bb",
       "declarations": [
         "RiemannGaussian.VinogradovMomentReduction.alignmentWeights",
         "RiemannGaussian.VinogradovMomentReduction.dualMoment",
@@ -15787,7 +15793,7 @@
       "upstream_module": "RiemannGaussian.VinogradovNarrowCost",
       "upstream_file": "RiemannGaussian/VinogradovNarrowCost.lean",
       "upstream_sha256": "932069f7cc50fbc0e1f97830c6d1ac955c1d59564014375add93505cddb8db1a",
-      "extracted_sha256": "5943dc4866c5e0887c915d5fd56ca51cd53d526b24c1ce9114781d7f1999b26b",
+      "extracted_sha256": "7d2c17f0d69d086689f435b9ee2c5bb8c9386a35dee181c791ea05235d293b16",
       "declarations": [
         "RiemannGaussian.VinogradovNarrowCost.base_le_polynomial",
         "RiemannGaussian.VinogradovNarrowCost.base_mono",
@@ -15959,7 +15965,7 @@
       "upstream_module": "RiemannGaussian.VinogradovNarrowDirichlet",
       "upstream_file": "RiemannGaussian/VinogradovNarrowDirichlet.lean",
       "upstream_sha256": "f9acda89998c216e7e32aa6ce56f1bd68e5c5d5977f510e846595414c7bf8ba6",
-      "extracted_sha256": "0523e456cc8d9c2414a5c634ae7b509a63c1d1b9ff75cffd7f2d68c2d462c02c",
+      "extracted_sha256": "7777b105e66feb61274e705588081856b2cc17ca958a95802e4a58d19ab0eefe",
       "declarations": [
         "RiemannGaussian.VinogradovNarrowDirichlet.feature_block_bound",
         "RiemannGaussian.VinogradovNarrowDirichlet.partial_block_bound",
@@ -16157,7 +16163,7 @@
       "upstream_module": "RiemannGaussian.VinogradovNarrowGaussian",
       "upstream_file": "RiemannGaussian/VinogradovNarrowGaussian.lean",
       "upstream_sha256": "a2e552244e394de6ff84f9a399825ed722b55b611dd2e92b9184f69c655e545b",
-      "extracted_sha256": "39b2472b80b58eaf869e5ebc2279baf0f18a4fabd1efbfad8c55020ada8413d0",
+      "extracted_sha256": "085dd7ac68c370c16767f2d6b0b972d350d7777b3582e2331321b82940aa2533",
       "declarations": [
         "RiemannGaussian.VinogradovNarrowGaussian.actual_gaussian_resonance_le",
         "RiemannGaussian.VinogradovNarrowGaussian.complete_gaussian_constant_le",
@@ -16299,7 +16305,7 @@
       "upstream_module": "RiemannGaussian.VinogradovNarrowIteration",
       "upstream_file": "RiemannGaussian/VinogradovNarrowIteration.lean",
       "upstream_sha256": "c0f3d4c949f4677c98d84e671b0dc33eb2c5ce2e4354d582c8672919a6131ac9",
-      "extracted_sha256": "624885c32b5683774287dcfd50f2ac7198313fe8b64b6867c1a194b98ad15708",
+      "extracted_sha256": "0423297f8135be57fc90eae8b42e13fdfd07de34a5d4890519685c2c9b6e8f38",
       "declarations": [
         "RiemannGaussian.VinogradovNarrowIteration.coefficient",
         "RiemannGaussian.VinogradovNarrowIteration.iterated_moment_bound",
@@ -16462,7 +16468,7 @@
       "upstream_module": "RiemannGaussian.VinogradovNarrowResonance",
       "upstream_file": "RiemannGaussian/VinogradovNarrowResonance.lean",
       "upstream_sha256": "7fbd5ca7ff5df549550dcd46adae01d0c39f0d0b8b29f829c3d00f2127507df6",
-      "extracted_sha256": "77b6c67eafb92be58a86b9935465483306f2aa0c914995ad9f00b7d485d5b36c",
+      "extracted_sha256": "8d8c601d077647d9982c19cff31ae1303a2b7443371976aeaea8c450922f7e7d",
       "declarations": [
         "RiemannGaussian.VinogradovNarrowResonance.inverse_square_le_ratio",
         "RiemannGaussian.VinogradovNarrowResonance.polynomial_bound",
@@ -16636,7 +16642,7 @@
       "upstream_module": "RiemannGaussian.VinogradovNarrowThreshold",
       "upstream_file": "RiemannGaussian/VinogradovNarrowThreshold.lean",
       "upstream_sha256": "edba7ce56230c9beabf8b6c9ecb0c2059a88e973a6334441fa2cf609dbc69636",
-      "extracted_sha256": "182d34946a8e66c5088b0ba551b3cba69c15639ccb57031e0b1610b3a5d5bc05",
+      "extracted_sha256": "0f7c0d1d825f87dc4d7b674fb405e72118a88b13d205bbe1881e75709aa3a1f7",
       "declarations": [
         "RiemannGaussian.VinogradovNarrowThreshold.all_endpoint_defect_step",
         "RiemannGaussian.VinogradovNarrowThreshold.base",
@@ -16802,7 +16808,7 @@
       "upstream_module": "RiemannGaussian.VinogradovNearOneBudget",
       "upstream_file": "RiemannGaussian/VinogradovNearOneBudget.lean",
       "upstream_sha256": "7af4b2d73febfd2e1f08ad2b1f426b6e9b9b13ed0f048475793e02b28e87a9a9",
-      "extracted_sha256": "4a2bef192f642648235cd6fa484fd15a4ee36f0e4c31a87a05f6ba496fa08f3e",
+      "extracted_sha256": "cb36c835f75011e9a0694d9d15c72d86cdeaeb0c03282b443d779d47737aaaad",
       "declarations": [
         "RiemannGaussian.VinogradovNearOneBudget.block_bound",
         "RiemannGaussian.VinogradovNearOneBudget.canonical_block_bound",
@@ -17008,7 +17014,7 @@
       "upstream_module": "RiemannGaussian.VinogradovNonsingularDescent",
       "upstream_file": "RiemannGaussian/VinogradovNonsingularDescent.lean",
       "upstream_sha256": "41e8176db9c9030f8f26705306ca20d7305e384d088b274b7df25b27e7874073",
-      "extracted_sha256": "77cfd61e01ea0adfd8625418043aa96accba613c413193fd0a9fba75c215b224",
+      "extracted_sha256": "f033e26510efe0c87f0068fc43ba2742b776eb61f148a9fd695d09a53b5c8030",
       "declarations": [
         "RiemannGaussian.VinogradovNonsingularDescent.moment_reindex",
         "RiemannGaussian.VinogradovNonsingularDescent.monomialTail_moment"
@@ -17044,7 +17050,7 @@
       "upstream_module": "RiemannGaussian.VinogradovPartitionEnergy",
       "upstream_file": "RiemannGaussian/VinogradovPartitionEnergy.lean",
       "upstream_sha256": "9b12d93155911319e8e5be2db708ce9311db19d36eb8c88b44845f326b925b03",
-      "extracted_sha256": "23728ba87e411a7fac9e984f96254b006e721ddd4c1eb79142f8aee94d250605",
+      "extracted_sha256": "4ef1e9e2808eb48477f4e04948796a5969c09e4e8c8b004c747677ca876dac16",
       "declarations": [
         "RiemannGaussian.VinogradovPartitionEnergy.continuous_polynomial",
         "RiemannGaussian.VinogradovPartitionEnergy.integrable_polynomial_energy",
@@ -17078,7 +17084,7 @@
       "upstream_module": "RiemannGaussian.VinogradovPhaseRectangle",
       "upstream_file": "RiemannGaussian/VinogradovPhaseRectangle.lean",
       "upstream_sha256": "1ce7471cd154d35d148c16787d02a2fb3ac2e9c1f327f1bd45e81a1412f6023a",
-      "extracted_sha256": "bcc0eb530222bded836992dd07ea0081558f015a5aa4319fb52768f6dabb8bfd",
+      "extracted_sha256": "3ccc69259110e7792ab7f34547f01ff22c51debf1184bd0cac6a37e577960687",
       "declarations": [
         "RiemannGaussian.VinogradovPhaseRectangle.coefficient_band_nonzero",
         "RiemannGaussian.VinogradovPhaseRectangle.coefficient_rectangle_bounds",
@@ -17219,7 +17225,7 @@
       "upstream_module": "RiemannGaussian.VinogradovPolynomialConditionedDescent",
       "upstream_file": "RiemannGaussian/VinogradovPolynomialConditionedDescent.lean",
       "upstream_sha256": "d821e3eb4875c70eb313e837205921a145f4f645815a976b84df6806be8e386c",
-      "extracted_sha256": "8fc9fa9582489c8868c1c2c03e1239c5bf3563de4be1d07a11a3f30020ab5c06",
+      "extracted_sha256": "da6bd973f2c5fc944a2610014637bfc17429188aa710f8c899a89390579f6862",
       "declarations": [
         "RiemannGaussian.VinogradovPolynomialConditionedDescent.exists_conditioning"
       ],
@@ -17257,7 +17263,7 @@
       "upstream_module": "RiemannGaussian.VinogradovPolynomialConditioning",
       "upstream_file": "RiemannGaussian/VinogradovPolynomialConditioning.lean",
       "upstream_sha256": "99cbc25124cfa7cf82aacd62d5c7ea8399043e4be576bd30f2924f2b88cb9e7e",
-      "extracted_sha256": "227b68d34ce5d7ab9c726f165c12edc6a79da04c7e6e67a02678c1adbb973608",
+      "extracted_sha256": "8edb4fa1d7df5f151d1bfbf32613d277f2a95794fb525b8f96904fe53cacf41a",
       "declarations": [
         "RiemannGaussian.VinogradovPolynomialConditioning.GoodResidue",
         "RiemannGaussian.VinogradovPolynomialConditioning.blockFrequency",
@@ -17304,7 +17310,7 @@
       "upstream_module": "RiemannGaussian.VinogradovPolynomialDifferencing",
       "upstream_file": "RiemannGaussian/VinogradovPolynomialDifferencing.lean",
       "upstream_sha256": "0aa06fa3e6210c98827c48e792a87baa4bd36a97fa5d2bf67cd949f1dec433d9",
-      "extracted_sha256": "25aee55e33836f4f22c6be296027e0565d45e2deccb552db203ba02c70bdb4ff",
+      "extracted_sha256": "28336b70b791836c957d40309a598766df5d2d626b569843fd563cb01b992743",
       "declarations": [
         "RiemannGaussian.VinogradovPolynomialDifferencing.fullFrequency"
       ],
@@ -17350,7 +17356,7 @@
       "upstream_module": "RiemannGaussian.VinogradovPolynomialExceptional",
       "upstream_file": "RiemannGaussian/VinogradovPolynomialExceptional.lean",
       "upstream_sha256": "0251c860c3afb30eebd9795be17d0003f9216a274cff8f181267346ee01b0d19",
-      "extracted_sha256": "fd01227e6c40623f327458f767b349a94d923ac869994b1ace4286bb7bd47577",
+      "extracted_sha256": "4f2a3be31b6151e61496fd83dd7e4fa6a45c3a2e1301dee8f2ffc78dbfaa927d",
       "declarations": [
         "RiemannGaussian.VinogradovPolynomialExceptional.exists_count_reduction",
         "RiemannGaussian.VinogradovPolynomialExceptional.exists_distinct_reduction"
@@ -17388,7 +17394,7 @@
       "upstream_module": "RiemannGaussian.VinogradovPolynomialNonsingular",
       "upstream_file": "RiemannGaussian/VinogradovPolynomialNonsingular.lean",
       "upstream_sha256": "4dc99729517ad06162962a7a165e73c32e7f078f73a21a06c17e59053525de46",
-      "extracted_sha256": "930a4027097a954ba5c564922bed24a9398faf313c6b970cf90b3556d2bcab35",
+      "extracted_sha256": "910a42fb4d60e924f3b063e7414a14b088669415debbea527421e4300b4c12cd",
       "declarations": [
         "RiemannGaussian.VinogradovPolynomialNonsingular.Window",
         "RiemannGaussian.VinogradovPolynomialNonsingular.configurationFrequency",
@@ -17447,7 +17453,7 @@
       "upstream_module": "RiemannGaussian.VinogradovPolynomialPrimeTransfer",
       "upstream_file": "RiemannGaussian/VinogradovPolynomialPrimeTransfer.lean",
       "upstream_sha256": "15242c8c71b64b330b3c6eb0cfc3a2ca6731f03795cd4cacc41172e47bcce432",
-      "extracted_sha256": "72ea31ca3496b4441e26bd7e928ce26ca609e3ce6f22f1b1151a50d2f03f72d2",
+      "extracted_sha256": "2f84ce18cb663d054d18e4a381d1b49bcee0b46f90e5ebcd09da745e2efee987",
       "declarations": [
         "RiemannGaussian.VinogradovPolynomialPrimeTransfer.distinct_le_separated_sum",
         "RiemannGaussian.VinogradovPolynomialPrimeTransfer.exists_prime_carrying_count_of_packet",
@@ -17496,7 +17502,7 @@
       "upstream_module": "RiemannGaussian.VinogradovPolynomialRigidity",
       "upstream_file": "RiemannGaussian/VinogradovPolynomialRigidity.lean",
       "upstream_sha256": "9415fcc13b4bb914c80efadc48910b308afaf0daa3827afb89213c41706e041e",
-      "extracted_sha256": "2c93f0680f3cefa348f7abb7a5d7e2dd711f2f5476926e49abcb516b6a8229a4",
+      "extracted_sha256": "64f8a4d42a2c4bb1247f4e9339967fe9bf24bc534b60cb9a1ab65a928df40ea7",
       "declarations": [
         "RiemannGaussian.VinogradovPolynomialRigidity.RegularTriangular",
         "RiemannGaussian.VinogradovPolynomialRigidity.frequency_collision_iff",
@@ -17534,7 +17540,7 @@
       "upstream_module": "RiemannGaussian.VinogradovPolynomialSystems",
       "upstream_file": "RiemannGaussian/VinogradovPolynomialSystems.lean",
       "upstream_sha256": "43b66fa02b81e896f1aca143e0cbd3d764c5f2ab1415549425069c32e28e636f",
-      "extracted_sha256": "74bbfb285afd73660c186360a9e1471313f6c6ae527c9578245a0fb85970d28f",
+      "extracted_sha256": "873339348b34f2ad768bd1fb8edb26284ac325dad69ef9880838e8b121e0080a",
       "declarations": [
         "RiemannGaussian.VinogradovPolynomialSystems.HasType",
         "RiemannGaussian.VinogradovPolynomialSystems.type_degree_moduli_card_le",
@@ -17572,7 +17578,7 @@
       "upstream_module": "RiemannGaussian.VinogradovPowerSumRigidity",
       "upstream_file": "RiemannGaussian/VinogradovPowerSumRigidity.lean",
       "upstream_sha256": "deeb4aa1eb053a3415fc4d79d978774db8e419cf487cacec290066014ead5be6",
-      "extracted_sha256": "b06118c04b1cdec6865dfb98f2d4b4efa4c28dd2853ea73db665bcffd789eb9a",
+      "extracted_sha256": "bf80faa066ab653d575e22b2a2f790630bd626755ce0dc7f86ce3cf78a9cb56c",
       "declarations": [
         "RiemannGaussian.VinogradovPowerSumRigidity.collisionCount_le",
         "RiemannGaussian.VinogradovPowerSumRigidity.collision_fibre_le_factorial",
@@ -17609,7 +17615,7 @@
       "upstream_module": "RiemannGaussian.VinogradovPrimePacket",
       "upstream_file": "RiemannGaussian/VinogradovPrimePacket.lean",
       "upstream_sha256": "5fac4fc01ffe5909c9a3c0776ebde03e90759cb1001d4ed994bb2fbaca9d14d9",
-      "extracted_sha256": "7b40d0fc1ec38854d428b25d994c45565f5ea222f58c36b027fb05f93ae9e018",
+      "extracted_sha256": "2968a78d658eaf2bdef7780f813d9b7b04ef9935be279f633ac1e8de0f2aac6f",
       "declarations": [
         "RiemannGaussian.VinogradovPrimePacket.dist_dvd_separationProduct",
         "RiemannGaussian.VinogradovPrimePacket.exists_prime_not_dvd",
@@ -17656,7 +17662,7 @@
       "upstream_module": "RiemannGaussian.VinogradovPrimePowerRigidity",
       "upstream_file": "RiemannGaussian/VinogradovPrimePowerRigidity.lean",
       "upstream_sha256": "12f8b1899f4ae762b14b84753e4ff1b75c20a197d34591b9184464d68e3d4c64",
-      "extracted_sha256": "bb7da19d3decf814f445c0b3c2a7b9fc5dbbaa37bbdfb0b464a4b5a84e246763",
+      "extracted_sha256": "983a7976e5bb052e5b3b977ec5981dcba66c4f87d2a90b79c64e923d8fd85424",
       "declarations": [
         "RiemannGaussian.VinogradovPrimePowerRigidity.determinant_ne_zero",
         "RiemannGaussian.VinogradovPrimePowerRigidity.exists_perm_of_multiset_eq",
@@ -17703,7 +17709,7 @@
       "upstream_module": "RiemannGaussian.VinogradovProductEnergy",
       "upstream_file": "RiemannGaussian/VinogradovProductEnergy.lean",
       "upstream_sha256": "7acec5fa6de297ed0d6ba256e43b2296a5310098714acaeb7f11d45b0478e07e",
-      "extracted_sha256": "3b342b386d40939e53108a1616be8eccbbba3b49dee8015966942608c598fb88",
+      "extracted_sha256": "13d68fd91bd550d0a231a0db05bb194c95174ad928c6ccff891718703cceb4b4",
       "declarations": [
         "RiemannGaussian.VinogradovProductEnergy.blockFrequency",
         "RiemannGaussian.VinogradovProductEnergy.polynomial_prod"
@@ -17732,7 +17738,7 @@
       "upstream_module": "RiemannGaussian.VinogradovRectanglePowerSaving",
       "upstream_file": "RiemannGaussian/VinogradovRectanglePowerSaving.lean",
       "upstream_sha256": "c9ae03898d7d43627a2c789506fb1f00446ff64c805e4bc66e2a0694a2f4a3f0",
-      "extracted_sha256": "672bc44abf73cc8ce5e9377091935cf59d0ef6e84d4f206f6762597922fd477d",
+      "extracted_sha256": "aaae88cc1894cb7149004402d836030351d67a8969e18fd92f77889db1e106fd",
       "declarations": [
         "RiemannGaussian.VinogradovRectanglePowerSaving.one_lt_rectangleSaving",
         "RiemannGaussian.VinogradovRectanglePowerSaving.rectangleSaving_le_dimension",
@@ -17869,7 +17875,7 @@
       "upstream_module": "RiemannGaussian.VinogradovRectangleResonance",
       "upstream_file": "RiemannGaussian/VinogradovRectangleResonance.lean",
       "upstream_sha256": "1893a4fd9cbb710c9d0a0e03b50d11816dd43d6c6179f150b0f901895c2e64f9",
-      "extracted_sha256": "32ea60ab5b6c1aca38c3d160d55adc2f20f3d81764b59b2a50d2506bf3f95101",
+      "extracted_sha256": "b93936a1702e209268115077d06c1b479991556e676294dbd566201b654c716e",
       "declarations": [
         "RiemannGaussian.VinogradovRectangleResonance.actual_resonance_le_explicit",
         "RiemannGaussian.VinogradovRectangleResonance.rectangleSaving",
@@ -18016,7 +18022,7 @@
       "upstream_module": "RiemannGaussian.VinogradovRelativeResonance",
       "upstream_file": "RiemannGaussian/VinogradovRelativeResonance.lean",
       "upstream_sha256": "2039893f0078ed10a990cacb2af1d0af84a85dae817055cb89421d820c017886",
-      "extracted_sha256": "65db89a349ef5e4d8af982e7f1d81c4a194633e63daf1362f0202fdac8fc3ed3",
+      "extracted_sha256": "8b835e7954e605004758c35d1ff8a7f35e7763c0270b864c4381d1ffaf2af0b9",
       "declarations": [
         "RiemannGaussian.VinogradovRelativeResonance.product_moment_bound_with_defect"
       ],
@@ -18160,7 +18166,7 @@
       "upstream_module": "RiemannGaussian.VinogradovRepeatedSolutions",
       "upstream_file": "RiemannGaussian/VinogradovRepeatedSolutions.lean",
       "upstream_sha256": "872ce9dca00d68386f7569bdce6908cbbddfca4fae566015b7fd383e5c98b6ed",
-      "extracted_sha256": "59850ebba136ecfe1f8c6ccc6deacbabedbcb9e0e7d2706960e14dbb7a45d1ef",
+      "extracted_sha256": "c94611829a24fbd1d1d352f8dc28228af2d3a5b9689ebda18e8f1d55c645b5e0",
       "declarations": [
         "RiemannGaussian.VinogradovRepeatedSolutions.Pairs.exists_pair_permutation",
         "RiemannGaussian.VinogradovRepeatedSolutions.Pairs.tupleFrequency_comp_perm",
@@ -18196,7 +18202,7 @@
       "upstream_module": "RiemannGaussian.VinogradovResidueEndpoint",
       "upstream_file": "RiemannGaussian/VinogradovResidueEndpoint.lean",
       "upstream_sha256": "1f3a8b67aa43ae79d60e30fd2eb38e1ac59bb515e9aa377812f5e2dc656087d7",
-      "extracted_sha256": "110cb7dc6d5a3e5673c99fdb27fa5c58731d84a63bf6ed06a7e5fd2cd270b828",
+      "extracted_sha256": "f9151f3816ae0a0a10a559e9b035c895032a66abb4db00ac7bb73cdbde05decf",
       "declarations": [
         "RiemannGaussian.VinogradovResidueEndpoint.class_polynomial",
         "RiemannGaussian.VinogradovResidueEndpoint.exists_floor_tail_bound",
@@ -18242,7 +18248,7 @@
       "upstream_module": "RiemannGaussian.VinogradovResidueEnergy",
       "upstream_file": "RiemannGaussian/VinogradovResidueEnergy.lean",
       "upstream_sha256": "b51b4995f1ee19011b80f0cff4461a58dd43e223ba4ede2d065b649d2ed0cfd8",
-      "extracted_sha256": "d94642eb13fe0c2e1d016da2a093a0fe97f19ef735a8ce5afb332dd13561549e",
+      "extracted_sha256": "b1823b35f402f11bc3217543ec377ab67a259454fdfb96d7178238144954ccb1",
       "declarations": [
         "RiemannGaussian.VinogradovResidueEnergy.ConditionedWindow",
         "RiemannGaussian.VinogradovResidueEnergy.GoodResidue",
@@ -18278,7 +18284,7 @@
       "upstream_module": "RiemannGaussian.VinogradovResidueMoment",
       "upstream_file": "RiemannGaussian/VinogradovResidueMoment.lean",
       "upstream_sha256": "f3d958a19d9eca49bcf74cdc58c42d8bafaf890d69257c67e1072bc46b165c4b",
-      "extracted_sha256": "fac58d2deb9c2c21446d40c73c30b5fbb5342fd07eaf9fe9a5d2b4e522401569",
+      "extracted_sha256": "987f953526c3449d5d8c0f24ee5066cf83cce8572d8f03649b71db4b78799efb",
       "declarations": [
         "RiemannGaussian.VinogradovResidueMoment.ResidueWindow",
         "RiemannGaussian.VinogradovResidueMoment.differenceCount_map_le",
@@ -18316,7 +18322,7 @@
       "upstream_module": "RiemannGaussian.VinogradovResonancePower",
       "upstream_file": "RiemannGaussian/VinogradovResonancePower.lean",
       "upstream_sha256": "9c48ac6478e1544ac49bf17391405e8cbdbf68b1c2b906f447bde60cc1e8f952",
-      "extracted_sha256": "046c78dae483e728d9c9d316e47fd776f2851398d2a2eabb42ad4b09cd36cf00",
+      "extracted_sha256": "0bf6e36a15267c27f4d2cff826656470cf4fe37b9d23fd225b5aa4fe72fbc264",
       "declarations": [
         "RiemannGaussian.VinogradovResonancePower.doubled_degree_sum",
         "RiemannGaussian.VinogradovResonancePower.full_coordinate_power_le"
@@ -18452,7 +18458,7 @@
       "upstream_module": "RiemannGaussian.VinogradovResonanceScaling",
       "upstream_file": "RiemannGaussian/VinogradovResonanceScaling.lean",
       "upstream_sha256": "1a6aab7bad0fb2f4d26b59b2f741c032396000de9fb18de79d185b6eb7ab6175",
-      "extracted_sha256": "4237bd2ee2fe5938dd81d5600f9a4524e0e65a6f168796a197e6272b519dcef6",
+      "extracted_sha256": "19704dcf85c59f22dbc65a3e3ce3dbfa7e00acad25d128684ae6e55abc2e716e",
       "declarations": [
         "RiemannGaussian.VinogradovResonanceScaling.power_phase_width_identity",
         "RiemannGaussian.VinogradovResonanceScaling.reciprocalScale",
@@ -18593,7 +18599,7 @@
       "upstream_module": "RiemannGaussian.VinogradovResonanceWindow",
       "upstream_file": "RiemannGaussian/VinogradovResonanceWindow.lean",
       "upstream_sha256": "46223bcbeb632685d6afc40c7b179f429d590f575c41e29518ece55dd55daca7",
-      "extracted_sha256": "943799e5ab0ea26705e960512c8d481e7407dc9e571d103291e17d297d890cf2",
+      "extracted_sha256": "816a1fdbbb4daa0b7e219b73462deae19f0eca58621c8b0811141258a30e3647",
       "declarations": [
         "RiemannGaussian.VinogradovResonanceWindow.power_phase_nonzero",
         "RiemannGaussian.VinogradovResonanceWindow.power_phase_range_identity",
@@ -18733,7 +18739,7 @@
       "upstream_module": "RiemannGaussian.VinogradovRowTransport",
       "upstream_file": "RiemannGaussian/VinogradovRowTransport.lean",
       "upstream_sha256": "9a92e173f924ba22c9de73dab052821bb5af78fe9eb744122e34bf6c9be37048",
-      "extracted_sha256": "04ef6b987c4a9a2bbb928b11609b52bfdaf801fa52a17bcd1a5593866a33cbc4",
+      "extracted_sha256": "d627acf830a4f06f89105f16f77fa5e0eb1434c53e8510833d4a55a70a8c546c",
       "declarations": [
         "RiemannGaussian.VinogradovRowTransport.frequency_eq_iff_shift",
         "RiemannGaussian.VinogradovRowTransport.naturalConfiguration",
@@ -18778,7 +18784,7 @@
       "upstream_module": "RiemannGaussian.VinogradovScaleSelection",
       "upstream_file": "RiemannGaussian/VinogradovScaleSelection.lean",
       "upstream_sha256": "bf94945dd677c11edce7362522592a28d6f7d242b00956b364eb313427e64aac",
-      "extracted_sha256": "a526617bb4ddf34341f40fd45ed935662507d7ebb997535b07cfc0df1ca142b5",
+      "extracted_sha256": "4a6f69aaa8a493aa63fae4d2e78a486e8bae5a7421e9877c0ef40f63aef79280",
       "declarations": [
         "RiemannGaussian.VinogradovScaleSelection.exists_degree",
         "RiemannGaussian.VinogradovScaleSelection.exists_window_parameters",
@@ -18969,7 +18975,7 @@
       "upstream_module": "RiemannGaussian.VinogradovScaledSchedule",
       "upstream_file": "RiemannGaussian/VinogradovScaledSchedule.lean",
       "upstream_sha256": "ab5604d50345635a31cf58487e4f86e7f0c5cf78d9ec9d14ae003c25b29135a1",
-      "extracted_sha256": "01dc8c62b50c395c4efb4eb9b751e011dee275465f9df5aa9ab8328d9378727c",
+      "extracted_sha256": "ce92e5c5b576fa6f2033a970311c89a44fd1f3900f125d6be4e7b81fbb319cd0",
       "declarations": [
         "RiemannGaussian.VinogradovScaledSchedule.affine_ratio",
         "RiemannGaussian.VinogradovScaledSchedule.degree",
@@ -19167,7 +19173,7 @@
       "upstream_module": "RiemannGaussian.VinogradovSharperBudget",
       "upstream_file": "RiemannGaussian/VinogradovSharperBudget.lean",
       "upstream_sha256": "2296ded529b818da1bae6a90fed7e60325efbda3731762c4aa4e6eb2d41c974b",
-      "extracted_sha256": "1e1ee63fcfbd174e0b2a99a294b24ceb9fbc00c87b3cee9f775ae2d89327d478",
+      "extracted_sha256": "d36218b6cab2f8e5a9582866f8264a58d2926dbe0a453412800b16462ab72908",
       "declarations": [
         "RiemannGaussian.VinogradovSharperBudget.block_bound",
         "RiemannGaussian.VinogradovSharperBudget.delta",
@@ -19371,7 +19377,7 @@
       "upstream_module": "RiemannGaussian.VinogradovShiftedMoment",
       "upstream_file": "RiemannGaussian/VinogradovShiftedMoment.lean",
       "upstream_sha256": "82605a80528eef953f9360b67c27022c6b97c8420bcf8f5c2ef17670066b04cc",
-      "extracted_sha256": "9ef81e33de9ec262e73b30f74558a21c8b8400649e849d42a86355daa61a97eb",
+      "extracted_sha256": "b16080f0dfd43b51737cde31647d1cbef95ac0cae78e738ce90ebd0d0cc113fe",
       "declarations": [
         "RiemannGaussian.VinogradovShiftedMoment.differenceCount",
         "RiemannGaussian.VinogradovShiftedMoment.differenceCount_le_zero",
@@ -19405,7 +19411,7 @@
       "upstream_module": "RiemannGaussian.VinogradovShortDirichlet",
       "upstream_file": "RiemannGaussian/VinogradovShortDirichlet.lean",
       "upstream_sha256": "881646ce0d2f06b88af910134c522daf32d53abcb6814a1278807206732254db",
-      "extracted_sha256": "48c03991eea54bf72205f0f60f14e01eab2b7b10af6591d0e781ad2183bcf2b0",
+      "extracted_sha256": "ed63e7c10ac5bbce7d09449aa74350bee541c08604bb96698164de7cc4f468de",
       "declarations": [
         "RiemannGaussian.VinogradovShortDirichlet.feature_block_bound",
         "RiemannGaussian.VinogradovShortDirichlet.partial_block_bound",
@@ -19603,7 +19609,7 @@
       "upstream_module": "RiemannGaussian.VinogradovShortDyadic",
       "upstream_file": "RiemannGaussian/VinogradovShortDyadic.lean",
       "upstream_sha256": "76048781cdc2adfea0f8e5acb603552da5f9636160ac9354e07f5b8ffb1a9afc",
-      "extracted_sha256": "f5ce71cf1f2a39ed24684726f07a51ee02de7a9367181a15dff40b2145437eec",
+      "extracted_sha256": "b927c6ce95fb985923248833e80c81b0552a367968e3d9882feb4b58d3343e6e",
       "declarations": [
         "RiemannGaussian.VinogradovShortDyadic.dyadic_block_bound",
         "RiemannGaussian.VinogradovShortDyadic.original_block_bound"
@@ -19795,7 +19801,7 @@
       "upstream_module": "RiemannGaussian.VinogradovShortMoment",
       "upstream_file": "RiemannGaussian/VinogradovShortMoment.lean",
       "upstream_sha256": "9fea283a4375fe29c12d26686a28bf2ed5cb2cdf1f5aeae34a34b485c5218067",
-      "extracted_sha256": "15c07b430f7ab78d4019586deae671a7108bb3957aaedac89e32085ae71cbb1e",
+      "extracted_sha256": "b6c0f9c0feebb788bc1e9e4a3e3af7fb3e84542a2f864298d607678c179ed2b8",
       "declarations": [
         "RiemannGaussian.VinogradovShortMoment.coefficient",
         "RiemannGaussian.VinogradovShortMoment.coefficient_le_binary",
@@ -19965,7 +19971,7 @@
       "upstream_module": "RiemannGaussian.VinogradovShortPacket",
       "upstream_file": "RiemannGaussian/VinogradovShortPacket.lean",
       "upstream_sha256": "c7af9a4380878eaaf7dff283b7a42be3e4f74425d8e84c02b3ebe3650323aa85",
-      "extracted_sha256": "85f8c71d4a6f45e7b26d7504139f853b3c66c84edfae7cca5c4bd8e53324ff72",
+      "extracted_sha256": "08e61bc3f28d372c0f735751cdd9736cdd260220695823c10207dd6dbeb2d51e",
       "declarations": [
         "RiemannGaussian.VinogradovShortPacket.exists_short_packet",
         "RiemannGaussian.VinogradovShortPacket.log_le_two_sqrt",
@@ -20107,7 +20113,7 @@
       "upstream_module": "RiemannGaussian.VinogradovShortResonance",
       "upstream_file": "RiemannGaussian/VinogradovShortResonance.lean",
       "upstream_sha256": "6ce6d7302f5c059b421f1146adc1e20b0263e21be72a90059a63dc4472caa734",
-      "extracted_sha256": "d898ce1bf7b90ad4451dd3b17c2d2376f7fe0d5eb03de0f0356a9ba77406bb27",
+      "extracted_sha256": "f445cc72b156aa9a0c2857376503544e2a89ef3a26ce8049910ed660c3d506eb",
       "declarations": [
         "RiemannGaussian.VinogradovShortResonance.four_ratio",
         "RiemannGaussian.VinogradovShortResonance.polynomial_bound",
@@ -20286,7 +20292,7 @@
       "upstream_module": "RiemannGaussian.VinogradovSignedCongruence",
       "upstream_file": "RiemannGaussian/VinogradovSignedCongruence.lean",
       "upstream_sha256": "ed6738942408c0445d6af3b1325cf6709d4371fba26f3e8fcd80474b80da6b0b",
-      "extracted_sha256": "3e71287e5e0ee0474fdf49efef5b267b1a72be70887dd9a41c9584e7d471464d",
+      "extracted_sha256": "89b0441a8547c8a0a1f7f173112e6ef9c1e2d441456557d168814a96f94e8163",
       "declarations": [
         "RiemannGaussian.VinogradovSignedCongruence.actual_anisotropic_card_le",
         "RiemannGaussian.VinogradovSignedCongruence.cast_sign",
@@ -20329,7 +20335,7 @@
       "upstream_module": "RiemannGaussian.VinogradovSignedRigidity",
       "upstream_file": "RiemannGaussian/VinogradovSignedRigidity.lean",
       "upstream_sha256": "dbc4f4471b45465c5a3668aa5102674c620f37fe5d0c355610f50bc4b3c93a18",
-      "extracted_sha256": "2a93d1ed14f4f90a229faabba9a8f9d3e13d845c2169c65f0e711dc7a37345f7",
+      "extracted_sha256": "df98adb9924071f8b650a8ba51e5d936899f7c008d4be15f677814f1e5290d0e",
       "declarations": [
         "RiemannGaussian.VinogradovSignedRigidity.PreservingPerm",
         "RiemannGaussian.VinogradovSignedRigidity.card_preservingPerm",
@@ -20363,7 +20369,7 @@
       "upstream_module": "RiemannGaussian.VinogradovTwoBlockPacket",
       "upstream_file": "RiemannGaussian/VinogradovTwoBlockPacket.lean",
       "upstream_sha256": "c5d5e68e60a4c797f768f625326a8b1b2f2a6d74c5030f56546c27114a20c2cc",
-      "extracted_sha256": "71a80f0f4d0c36a395ad7655288c3f54addecc93e8802723d8f52767d927f481",
+      "extracted_sha256": "8df306aed0d2a8a998c3c339a697d1972b44d19fd7ebc5ecefc0920cc4964c2c",
       "declarations": [
         "RiemannGaussian.VinogradovTwoBlockPacket.dist_dvd_pairProduct",
         "RiemannGaussian.VinogradovTwoBlockPacket.exists_eligible_separating_prime",
@@ -20402,7 +20408,7 @@
       "upstream_module": "RiemannGaussian.VinogradovTypeMaximum",
       "upstream_file": "RiemannGaussian/VinogradovTypeMaximum.lean",
       "upstream_sha256": "1a1fb37942209f1c5582d3fb041ab639ba5b2f8eee42aaf49f5b76fa6be4c338",
-      "extracted_sha256": "1f8afd9f40318c8e32353cc04d27ddad499855e23c6dad89307b3ffbc208fe62",
+      "extracted_sha256": "2a14ad05263475118ec033b3d36de75198ae2db31d1158b27571368268fa3850",
       "declarations": [
         "RiemannGaussian.VinogradovTypeMaximum.exists_doubling_dominant",
         "RiemannGaussian.VinogradovTypeMaximum.exists_maximizer",
@@ -20445,7 +20451,7 @@
       "upstream_module": "RiemannGaussian.VinogradovUnrestrictedConditioning",
       "upstream_file": "RiemannGaussian/VinogradovUnrestrictedConditioning.lean",
       "upstream_sha256": "5a24a9fcbb5d6a411494310759801eae6fa29e5a065d3fda0ea51f1a68d2272a",
-      "extracted_sha256": "8887b0e39908e0eede1f7e7df1e30420ea71957e10c342b9bcccc800334c8e72",
+      "extracted_sha256": "74cf85d62e8a3e88eb1428203cea8e2d9242e6449c5233541970564b129247a4",
       "declarations": [
         "RiemannGaussian.VinogradovUnrestrictedConditioning.exists_conditioning_of_packet"
       ],
@@ -20489,7 +20495,7 @@
       "upstream_module": "RiemannGaussian.VinogradovVariableGaussian",
       "upstream_file": "RiemannGaussian/VinogradovVariableGaussian.lean",
       "upstream_sha256": "523ea4d7edaba5e9b7f33c0980adc94300069d5e8ffdc987f86a74866454908d",
-      "extracted_sha256": "1c71827ff2e88d7a2daa3e77defa85b1eec32377f4a8f4b0e2e24ca3ff8e3941",
+      "extracted_sha256": "4c3d1efcfe8b8cb269bb28f17ffcc1226c0e2cbb32edf9ab65e1480e766bf79f",
       "declarations": [
         "RiemannGaussian.VinogradovVariableGaussian.actual_gaussian_resonance_le",
         "RiemannGaussian.VinogradovVariableGaussian.complete_gaussian_constant_le",
@@ -20631,7 +20637,7 @@
       "upstream_module": "RiemannGaussian.VinogradovWeightedLifting",
       "upstream_file": "RiemannGaussian/VinogradovWeightedLifting.lean",
       "upstream_sha256": "a5bf92a67ea2847033ec25b83bc48e808edd967e23cb4f0d23a5a72cf9e27b10",
-      "extracted_sha256": "6a93e3a69c0b53f96501d2b9fa1fcb1fa3e1129ddc3fcb313e9e094f25344dc7",
+      "extracted_sha256": "5bfbc48d00229f64522016aeebd367c597a2162a945b15e469902422e4cc08cb",
       "declarations": [
         "RiemannGaussian.VinogradovWeightedLifting.weighted_linearized_divisibility",
         "RiemannGaussian.VinogradovWeightedLifting.weighted_power_remainder",
@@ -20660,7 +20666,7 @@
       "upstream_module": "RiemannGaussian.ZetaAngularDiscBudget",
       "upstream_file": "RiemannGaussian/ZetaAngularDiscBudget.lean",
       "upstream_sha256": "2d53de8e0a064de45a7e06229926a052c63fc0456299872138db2cc7c4a1fe05",
-      "extracted_sha256": "4a2b4b99a83a6db370163f35529fefc21d4d567c8322223ed24ebb13ba7b8cc9",
+      "extracted_sha256": "dbf28da3b3c19bea1f6f5558ef6eef4e96dc54dfe8dfacd3b4bdb142537fb0d8",
       "declarations": [
         "RiemannGaussian.ZetaAngularDiscBudget.boundary_moment_le",
         "RiemannGaussian.ZetaAngularDiscBudget.budget",
@@ -20876,7 +20882,7 @@
       "upstream_module": "RiemannGaussian.ZetaAngularPrimeBudget",
       "upstream_file": "RiemannGaussian/ZetaAngularPrimeBudget.lean",
       "upstream_sha256": "e20dbaa1d144eb5da31234a6c2de951866ede1e5f26949f2e5583392a38b6d49",
-      "extracted_sha256": "fda8a7de0b52d3e776d6a1bba8b9cbad64f344c146d4ff0b52f3bea0360e7894",
+      "extracted_sha256": "eaed14165814ee325aca181ee985cf3c0ecc8e6689e6c00b0a3e98793e0e24e7",
       "declarations": [
         "RiemannGaussian.ZetaAngularPrimeBudget.budget"
       ],
@@ -21060,7 +21066,7 @@
       "upstream_module": "RiemannGaussian.ZetaClippedEulerMean",
       "upstream_file": "RiemannGaussian/ZetaClippedEulerMean.lean",
       "upstream_sha256": "8302323f61ef6ad059ce0bc9f3b7741464c9de52892ac3a5d94f714669d58980",
-      "extracted_sha256": "42aa5a21ecfbfc8a9d74c32cd57d508a538bafac2803d7f83845799a849a7c6d",
+      "extracted_sha256": "41cfa283658ee6671d427182f96c1b095be880980712bc2b35998985ca8bf5f8",
       "declarations": [
         "RiemannGaussian.ZetaClippedEulerMean.abs_value_shift_le",
         "RiemannGaussian.ZetaClippedEulerMean.continuous_value",
@@ -21251,7 +21257,7 @@
       "upstream_module": "RiemannGaussian.ZetaDyadicPowerBound",
       "upstream_file": "RiemannGaussian/ZetaDyadicPowerBound.lean",
       "upstream_sha256": "cd1ef0a0f5d43d6df9cb1957df077f689c8dd5812477e298abe52cfe5d2c3c97",
-      "extracted_sha256": "142fe44e5fa25e3f8395909d018d2f96ef5749e688c0d80c842d082371f75bae",
+      "extracted_sha256": "1833742b5a21e38eb58e234250ed8d5a7e548fa5c0f7198aa83c404242c2c51a",
       "declarations": [
         "RiemannGaussian.ZetaDyadicPowerBound.blockBudget",
         "RiemannGaussian.ZetaDyadicPowerBound.blockBudget_nonneg",
@@ -21436,7 +21442,7 @@
       "upstream_module": "RiemannGaussian.ZetaDyadicTruncation",
       "upstream_file": "RiemannGaussian/ZetaDyadicTruncation.lean",
       "upstream_sha256": "492b52e599289e0d523eeed8bfd3b5038236631b0c06f522a80785d651f3297d",
-      "extracted_sha256": "db4b94712bbb45f0749a048b31bd4edb247bf1027b97825d0147a0ff0b75845b",
+      "extracted_sha256": "bc93358129678eb396e6dc3dba311cae4230d54b7e6890acfb60c9e820d15a98",
       "declarations": [
         "RiemannGaussian.ZetaDyadicTruncation.depth",
         "RiemannGaussian.ZetaDyadicTruncation.depth_le_log",
@@ -21624,7 +21630,7 @@
       "upstream_module": "RiemannGaussian.ZetaEulerBernoulli",
       "upstream_file": "RiemannGaussian/ZetaEulerBernoulli.lean",
       "upstream_sha256": "7a5e84a12b3b9d7871d38c32197c308844039827bce125a1f092469509ec9c32",
-      "extracted_sha256": "ab1773d028274912d0f32a3fa724b0d73a62badc8306b99d1b5a106fa7765eae",
+      "extracted_sha256": "06eb93512c9f925496f4b1d567d6d2ad96b2a2fe8fdf204b64a2c5d493a70086",
       "declarations": [
         "RiemannGaussian.ZetaEulerBernoulli.abs_kernel_le",
         "RiemannGaussian.ZetaEulerBernoulli.block",
@@ -21772,7 +21778,7 @@
       "upstream_module": "RiemannGaussian.ZetaEulerCell",
       "upstream_file": "RiemannGaussian/ZetaEulerCell.lean",
       "upstream_sha256": "a6d6da89551983062d986c83af1e04fee86efe5033efd68435453e53ee3818b2",
-      "extracted_sha256": "df67da73278a3bcfa77af691dacae3c2c109b52d219b0bdcc1321406ab4792d2",
+      "extracted_sha256": "b889ff6e6a2e86247434cb34f53e76507952ebfa186f2105150f3fae68941d13",
       "declarations": [
         "RiemannGaussian.ZetaEulerCell.cell",
         "RiemannGaussian.ZetaEulerCell.differentiable_regularizedCell",
@@ -21914,7 +21920,7 @@
       "upstream_module": "RiemannGaussian.ZetaEulerContinuation",
       "upstream_file": "RiemannGaussian/ZetaEulerContinuation.lean",
       "upstream_sha256": "27efa420eaef16b1d5da038ebfb5ec4953e20f04beff72f0cf4625e87e274efe",
-      "extracted_sha256": "25f25071c3a28b4b47a5876bf9a35c96cbfa903660b0f8c09f7dd3fcd040a68f",
+      "extracted_sha256": "dfe1af1232f44cadd30763e10f82468db4c214b4f2c248729e62d67476fb6bb9",
       "declarations": [
         "RiemannGaussian.ZetaEulerContinuation.analyticOnNhd_regularizedSum",
         "RiemannGaussian.ZetaEulerContinuation.differentiableOn_regularizedSum",
@@ -22052,7 +22058,7 @@
       "upstream_module": "RiemannGaussian.ZetaEulerFourier",
       "upstream_file": "RiemannGaussian/ZetaEulerFourier.lean",
       "upstream_sha256": "dcf33a6a8e6e9c0bdd6af1a81ef060dc8ea3545832202b7d4fbfa90c8f4e28b5",
-      "extracted_sha256": "01141daafe5ce0dcbb76b3b5808468dbdfae7127f64c37725e4f27da3b5ff7c8",
+      "extracted_sha256": "5fa1c4fc34e2d56dc8a10391d60918a966a82049eb19dcadfd555a95c30df153",
       "declarations": [
         "RiemannGaussian.ZetaEulerFourier.channel",
         "RiemannGaussian.ZetaEulerFourier.cosine_cell_shift",
@@ -22198,7 +22204,7 @@
       "upstream_module": "RiemannGaussian.ZetaEulerLineBound",
       "upstream_file": "RiemannGaussian/ZetaEulerLineBound.lean",
       "upstream_sha256": "89e7fca5309ba311f83b49ef9c6d8e2cddb221219181a473bab05f56131fd443",
-      "extracted_sha256": "549f298c9a831a038fd413881ff70540c7aa93a96bc534842d98c1be2c2b0e33",
+      "extracted_sha256": "54ed5919aaf9a9563aba53f913948859ffa63e112ae523c358bf2905a2c1e848",
       "declarations": [
         "RiemannGaussian.ZetaEulerLineBound.bound",
         "RiemannGaussian.ZetaEulerLineBound.bound_abs",
@@ -22381,7 +22387,7 @@
       "upstream_module": "RiemannGaussian.ZetaEulerLogProfile",
       "upstream_file": "RiemannGaussian/ZetaEulerLogProfile.lean",
       "upstream_sha256": "5bd7dccd8a70f970ddbcb87c4e0c437a3d1c2c821bdcf820d4868f6c6c947f8e",
-      "extracted_sha256": "b0f54b8385cadeba0feb49d5684cbf6450ff409dcff07d83f51313039db9fe95",
+      "extracted_sha256": "29f786c2de30a392c246a61734d7f392271b72c2e0833c07364f1abc0782cbbc",
       "declarations": [
         "RiemannGaussian.ZetaEulerLogProfile.gain",
         "RiemannGaussian.ZetaEulerLogProfile.low_height_bound",
@@ -22571,7 +22577,7 @@
       "upstream_module": "RiemannGaussian.ZetaEulerOscillation",
       "upstream_file": "RiemannGaussian/ZetaEulerOscillation.lean",
       "upstream_sha256": "8d9ef4b249b21b183640e339ae203b0620eef2b75b6f948351a6a1b93824a4a3",
-      "extracted_sha256": "75fc1ac6125c0a142f840115ef2d6f0e9cff42a3a65e43ef36debc8a5e90e31d",
+      "extracted_sha256": "748a96364527c26086c51085cc0e66f204fe68c67e9cdf877333bf364ac90bdc",
       "declarations": [
         "RiemannGaussian.ZetaEulerOscillation.envelope",
         "RiemannGaussian.ZetaEulerOscillation.norm_blocks_le",
@@ -22709,7 +22715,7 @@
       "upstream_module": "RiemannGaussian.ZetaEulerReciprocalAllowance",
       "upstream_file": "RiemannGaussian/ZetaEulerReciprocalAllowance.lean",
       "upstream_sha256": "d040c02bf3db9a53c695795279332232f9dd8f58d1231ae30191e5c87ba7edca",
-      "extracted_sha256": "6fe9a84d7116421799b08e5d105f1542b151de613f7b7e44b23d6626a877bff1",
+      "extracted_sha256": "c08c379c7357b0898d9a9f5899841b33fe6020205345eedc7e43b7c1caf6f61a",
       "declarations": [
         "RiemannGaussian.ZetaEulerReciprocalAllowance.inverse_eq_moebius",
         "RiemannGaussian.ZetaEulerReciprocalAllowance.inverse_zeta_bound",
@@ -22909,7 +22915,7 @@
       "upstream_module": "RiemannGaussian.ZetaEulerRightStrip",
       "upstream_file": "RiemannGaussian/ZetaEulerRightStrip.lean",
       "upstream_sha256": "7da488dad8559b323a9c385093b1e6aaf1b008a0c72da3ef1835f66a2d04759a",
-      "extracted_sha256": "701f45c28670008feda0b4abe90742a660d81d4b96c6471f03de5848c5801c17",
+      "extracted_sha256": "fcf8adbd40c885d52fe447597a2279148effda5cf44e47a3969c8a4102e49ce5",
       "declarations": [
         "RiemannGaussian.ZetaEulerRightStrip.bound",
         "RiemannGaussian.ZetaEulerRightStrip.bound_abs",
@@ -23043,7 +23049,7 @@
       "upstream_module": "RiemannGaussian.ZetaEulerTruncation",
       "upstream_file": "RiemannGaussian/ZetaEulerTruncation.lean",
       "upstream_sha256": "d5596bfd730b43c2692f1d8146b0700048badac2b882bf74b133b7b280b9449a",
-      "extracted_sha256": "7af52624d4d71fb13a348f42abf3050fbbe38a373abff1896dbc3403e341255c",
+      "extracted_sha256": "ec98400314d2f1385c0e6c748f2675277e89f067c595dc6638ba0c0949f8c573",
       "declarations": [
         "RiemannGaussian.ZetaEulerTruncation.norm_remainder_le",
         "RiemannGaussian.ZetaEulerTruncation.norm_zeta_sub_partialSum_le",
@@ -23181,7 +23187,7 @@
       "upstream_module": "RiemannGaussian.ZetaEulerUniformRemainder",
       "upstream_file": "RiemannGaussian/ZetaEulerUniformRemainder.lean",
       "upstream_sha256": "dd6dcd5a4124a2d6a269f32e4c11d49d6aba795bb1286150df715144a90c7be1",
-      "extracted_sha256": "0b03f7a9af1df41993658304f886f51b1a17ed206314c67e672f2c8ff46b1ae5",
+      "extracted_sha256": "fadb77d751549c1955b09c07e1048403de9ad8df2f4878e7382c7bf9ce738eea",
       "declarations": [
         "RiemannGaussian.ZetaEulerUniformRemainder.norm_bounds",
         "RiemannGaussian.ZetaEulerUniformRemainder.norm_remainder_le_power",
@@ -23319,7 +23325,7 @@
       "upstream_module": "RiemannGaussian.ZetaFiniteDifferencing",
       "upstream_file": "RiemannGaussian/ZetaFiniteDifferencing.lean",
       "upstream_sha256": "f9849dd64c0e8a7805df438b20600b0cb0b3ae3c79a6c6efaa9ee864dc1d6d97",
-      "extracted_sha256": "d3ef3b73e65ee685205bda2343ee7a1f439ca118929a1d4a33e5f0dcdcb01d52",
+      "extracted_sha256": "5d707ff2ed8bc1e09273e6dbf2078d0ea0ef137fbea46742785cec688e2b6756",
       "declarations": [
         "RiemannGaussian.ZetaFiniteDifferencing.feature_polar"
       ],
@@ -23500,7 +23506,7 @@
       "upstream_module": "RiemannGaussian.ZetaFiniteDirichlet",
       "upstream_file": "RiemannGaussian/ZetaFiniteDirichlet.lean",
       "upstream_sha256": "5e79ac38204ca04577c8aa96a2ca703090f991a609c7e105de577aafad69ff54",
-      "extracted_sha256": "bd779f522c71ec2082b516f4be843a2a15a1f213053d926ef4762aa59c9c3d32",
+      "extracted_sha256": "2c1d1809011b7d3865da39f0d9fc2f814b02e87c4c8edd2c0eae4d0f02dadd55",
       "declarations": [
         "RiemannGaussian.norm_zetaPrimeFeature_le_one"
       ],
@@ -23669,7 +23675,7 @@
       "upstream_module": "RiemannGaussian.ZetaGaussianLocalizer",
       "upstream_file": "RiemannGaussian/ZetaGaussianLocalizer.lean",
       "upstream_sha256": "3616181102c443952d7f4cccfece3a343b2cea46b66dcca374ffbf10ae8b7370",
-      "extracted_sha256": "f100aadf7cc142e7aec92eab3d9af47eb12220d9cd212a5a6a898390a1b28dab",
+      "extracted_sha256": "5f2eb873e1e000f5334c82dcd99db5c2819b179ef8e3ff00a26bd6a52898f789",
       "declarations": [
         "RiemannGaussian.ZetaGaussianLocalizer.add_one_ne_zero",
         "RiemannGaussian.ZetaGaussianLocalizer.carrier",
@@ -23798,7 +23804,7 @@
       "upstream_module": "RiemannGaussian.ZetaGaussianStrip",
       "upstream_file": "RiemannGaussian/ZetaGaussianStrip.lean",
       "upstream_sha256": "bd2d54c23f36b11ac291441d4d33e6ac09f83040cf91449e447d9a42eef49c59",
-      "extracted_sha256": "897223e73dae975a8124413c987cf7244ffdd79501ca1ba690e494de46e37508",
+      "extracted_sha256": "b30b84f8f528c9c78c2a41a8b310e099b91f1a2dd708df2f65e73d186368bdb7",
       "declarations": [
         "RiemannGaussian.ZetaGaussianStrip.carrier_bound",
         "RiemannGaussian.ZetaGaussianStrip.carrier_growth",
@@ -23981,7 +23987,7 @@
       "upstream_module": "RiemannGaussian.ZetaGlobalSignedBudget",
       "upstream_file": "RiemannGaussian/ZetaGlobalSignedBudget.lean",
       "upstream_sha256": "09c854cec9ad1004b0b3272e9145ada92e34607dabff88a83d505d0b9058e36e",
-      "extracted_sha256": "ce57d1dd835d70ba94de721402597d48337d8b7023d36a21d2dee6d7b45b3821",
+      "extracted_sha256": "3e21de51b9989cd360eb45e2b13a7fa9ff97056bae0191e0afa757023517cecd",
       "declarations": [
         "RiemannGaussian.zetaGlobalRegularCorrection",
         "RiemannGaussian.zeta_global_complex_budget"
@@ -24161,7 +24167,7 @@
       "upstream_module": "RiemannGaussian.ZetaLocalCanonical",
       "upstream_file": "RiemannGaussian/ZetaLocalCanonical.lean",
       "upstream_sha256": "e90eaff27ef6bf3e443bbfbd926a411915c78a2faf23e3177d41aa5740987632",
-      "extracted_sha256": "0eb7b7316bc23eccce9046e548c853eb7adca4b5ffc8fe179d8663595d1d46f0",
+      "extracted_sha256": "bbc5bd0895702b197b3fb35825e3af11f85f11e2920fff6283a71f776219fe9e",
       "declarations": [
         "RiemannGaussian.analyticOnNhd_localZetaPoleRemoved_canonicalDisc",
         "RiemannGaussian.analyticOnNhd_localZetaPoleRemoved_unitDisc",
@@ -24289,7 +24295,7 @@
       "upstream_module": "RiemannGaussian.ZetaLocalDiscBounds",
       "upstream_file": "RiemannGaussian/ZetaLocalDiscBounds.lean",
       "upstream_sha256": "5bdc5138d8b189c9a4c1f34e987bcfcb0dabb3a49f492de10f14158415ae96ea",
-      "extracted_sha256": "d7ce07c482c2d579f6e9dacd4f493e49d8db8f8e2b39e04addfdbfef6b46f71f",
+      "extracted_sha256": "ab61dbab84722b98cb685d98825c0b066194fe04d3117afba66441d437beb4a3",
       "declarations": [
         "RiemannGaussian.differentiable_localZetaPoleRemoved",
         "RiemannGaussian.localZetaPoleRemoved",
@@ -24416,7 +24422,7 @@
       "upstream_module": "RiemannGaussian.ZetaLocalJensen",
       "upstream_file": "RiemannGaussian/ZetaLocalJensen.lean",
       "upstream_sha256": "7b2cafabc57746e7edf95784d79cda82cf4c9f146572ada461f9b2df95e10696",
-      "extracted_sha256": "63f88f08b50749f5b45169220a0f40775df788bf0adbd9148891738f417c9bf4",
+      "extracted_sha256": "0461306bb54f0095d94980ad7747a5e1e91010b684a7aaac8170be5529047b26",
       "declarations": [
         "RiemannGaussian.sum_divisor_localZetaPoleRemoved_canonicalBall_le",
         "RiemannGaussian.sum_divisor_localZetaPoleRemoved_innerDisc_le"
@@ -24555,7 +24561,7 @@
       "upstream_module": "RiemannGaussian.ZetaLocalLogDerivative",
       "upstream_file": "RiemannGaussian/ZetaLocalLogDerivative.lean",
       "upstream_sha256": "55cbf3050767876407de195a18d73b97f5e5d87994cae08d6f40d6b8232efc56",
-      "extracted_sha256": "a5f701a53b4096e7f7cc5ee441d0397fba050dfe276c66e5d18fbc2438c05ef0",
+      "extracted_sha256": "1ecf678dd23d5e46d99c9a5801e5994b1a8de46cc19eef6e309fd1be95c90e3d",
       "declarations": [
         "RiemannGaussian.localZetaLogRemainder",
         "RiemannGaussian.localZetaPoleRemoved_eq_zero_of_divisor_ne_zero",
@@ -24703,7 +24709,7 @@
       "upstream_module": "RiemannGaussian.ZetaLocalResidualBounds",
       "upstream_file": "RiemannGaussian/ZetaLocalResidualBounds.lean",
       "upstream_sha256": "edcffecd442454fb06f3447a45274398b30066f373e77b53e31cb92c2c5434db",
-      "extracted_sha256": "2bb4050ecb24a6dce5d9964e083dbf5c76d8a591beee5321d57331d6e33d4060",
+      "extracted_sha256": "b252892f4fcb68d9b78d98fe8e6ea13044bbf0f9061d90acd238e072cfe66366",
       "declarations": [
         "RiemannGaussian.norm_localZetaCanonicalResidual_eq_on_sphere",
         "RiemannGaussian.norm_localZetaCanonicalResidual_le",
@@ -24825,7 +24831,7 @@
       "upstream_module": "RiemannGaussian.ZetaLocalResidualLog",
       "upstream_file": "RiemannGaussian/ZetaLocalResidualLog.lean",
       "upstream_sha256": "152cacbe21858f5f96ab63323c19a1f0bf79c4d23dde80aec959dc921d3c8ee9",
-      "extracted_sha256": "5c035e9fd0ff7cd333fc4d87787e69be3aa570143a676dcb5c2b793fa75ba288",
+      "extracted_sha256": "d7cc4dbac17e409992572029efdec6cf72938f41c32cec4867d97ae013771490",
       "declarations": [
         "RiemannGaussian.exists_localZetaCanonicalLog",
         "RiemannGaussian.exp_localZetaCanonicalLog_mul_zero_eq",
@@ -24972,7 +24978,7 @@
       "upstream_module": "RiemannGaussian.ZetaLogLogBudget",
       "upstream_file": "RiemannGaussian/ZetaLogLogBudget.lean",
       "upstream_sha256": "40e83b14007e3227f56a6a2f3f642545787d535590e1ac578365823969596bb2",
-      "extracted_sha256": "362d7421e5d574c871476d7b8f2119618918912a08dfeb42f59a5e8308a5a946",
+      "extracted_sha256": "de73c30b53737a916626a837afcb12e9b41831c6a9a9ed7c0274a67ce78cbef4",
       "declarations": [
         "RiemannGaussian.ZetaLogLogBudget.leading_identity",
         "RiemannGaussian.ZetaLogLogBudget.normalized_allowance_tendsto",
@@ -25159,7 +25165,7 @@
       "upstream_module": "RiemannGaussian.ZetaLogLogCorrection",
       "upstream_file": "RiemannGaussian/ZetaLogLogCorrection.lean",
       "upstream_sha256": "d8b12f4cab9dd126ac191e33f4e0b7a61883a657141ceb7d0780abe2a002af05",
-      "extracted_sha256": "d98f92eecb97773c064626edde299e5f76b32157f65a53846fbea58e724c48bf",
+      "extracted_sha256": "0d8ef2e9cc8f98a010b52966037adebbcecf50566f5b85088e3dbbc46642f571",
       "declarations": [
         "RiemannGaussian.ZetaLogLogCorrection.allowance_eq",
         "RiemannGaussian.ZetaLogLogCorrection.center_log_le",
@@ -25344,7 +25350,7 @@
       "upstream_module": "RiemannGaussian.ZetaLogLogScale",
       "upstream_file": "RiemannGaussian/ZetaLogLogScale.lean",
       "upstream_sha256": "2f5ec31c2dde5db738b16cd2fbcf6b0493b5af4c0e38f233694e4d486511dc7f",
-      "extracted_sha256": "1d1ccd93d47b217744d7024f0df11d940db3364cb180f605229c574a4f348858",
+      "extracted_sha256": "af182b11b5fb1f02ddb9802d0b0691cbd652a955098cf6653d6c731dc0a83e6f",
       "declarations": [
         "RiemannGaussian.ZetaLogLogScale.level",
         "RiemannGaussian.ZetaLogLogScale.level_atTop",
@@ -25529,7 +25535,7 @@
       "upstream_module": "RiemannGaussian.ZetaLogLogZeroFree",
       "upstream_file": "RiemannGaussian/ZetaLogLogZeroFree.lean",
       "upstream_sha256": "4623ccb46ceb2dc857367fa20fe6b6389de4753e328df7946dc6579af8ecbe0b",
-      "extracted_sha256": "f68fa4a40e7c3b63cbc230c85778c71fc7f09b4513a406599fa332c5112d92df",
+      "extracted_sha256": "c3000ddc974038bd9e05a52c07c3254ade01a1fd893f0d1823fed942406be452",
       "declarations": [
         "RiemannGaussian.ZetaLogLogZeroFree.coefficientLimit"
       ],
@@ -25901,7 +25907,7 @@
       "upstream_module": "RiemannGaussian.ZetaLogarithmicShiftAllowance",
       "upstream_file": "RiemannGaussian/ZetaLogarithmicShiftAllowance.lean",
       "upstream_sha256": "c459209334a0600e82a9e2f0c820fa69323a08a123c3bad9ec4fe6d114b07863",
-      "extracted_sha256": "659152b9aec624aef7ff4475d3c830eb93dc866e20bd122108e3e940f47ca213",
+      "extracted_sha256": "7f9df0035dfec5aee51221a1f6cac6ff34e8a13d5cb8bf71abf4008857cd3877",
       "declarations": [
         "RiemannGaussian.ZetaLogarithmicShiftAllowance.height_shift_le",
         "RiemannGaussian.ZetaLogarithmicShiftAllowance.log_le_tangent",
@@ -26079,7 +26085,7 @@
       "upstream_module": "RiemannGaussian.ZetaMoebiusWronskian",
       "upstream_file": "RiemannGaussian/ZetaMoebiusWronskian.lean",
       "upstream_sha256": "eb6c15b69fad06623ad087370c266393f07ed02a47f0fa31f807d369ac57303e",
-      "extracted_sha256": "84f816f72dc79aa7a1713cb3a791ba5b12ec06d9b20ed59244a57ecb2f4268b0",
+      "extracted_sha256": "4f143563a172c1f2a2ec7a0bc3362c9a7b3c1212a18f444ce7d9190b94450573",
       "declarations": [
         "RiemannGaussian.meromorphicOrderAt_riemannZeta_nontrivialZero"
       ],
@@ -26375,7 +26381,7 @@
       "upstream_module": "RiemannGaussian.ZetaNearOneAngularBound",
       "upstream_file": "RiemannGaussian/ZetaNearOneAngularBound.lean",
       "upstream_sha256": "134ad0479513559f8dac443289ff2dec34a9726778623bbe2c08f5d3981c418c",
-      "extracted_sha256": "7eb66d0e1912e9f7a57fe8cf021641c12595ea3a238b6c952a5480baa465ef69",
+      "extracted_sha256": "53d4688bcd0b23c4aea087c0022e2ce216cc7cf51395cdc1b774b1b500821ccc",
       "declarations": [
         "RiemannGaussian.ZetaNearOneAngularBound.boundary_moment_le",
         "RiemannGaussian.ZetaNearOneAngularBound.logDeriv_eq_boundary_moment_add_sum",
@@ -26561,7 +26567,7 @@
       "upstream_module": "RiemannGaussian.ZetaNearOneBudgetLimit",
       "upstream_file": "RiemannGaussian/ZetaNearOneBudgetLimit.lean",
       "upstream_sha256": "04278e6ffcb970dfb313848732d07fea37e9d4abff0d802e0371560515089a69",
-      "extracted_sha256": "ef5a714632adaf74caeace5d8b9721c573a9ed693bf00243ac664da45da362f7",
+      "extracted_sha256": "b9023953197c3a75ddcc4bf77a3e3356aa3e59179a0594c80b5a090d868d54ab",
       "declarations": [
         "RiemannGaussian.ZetaNearOneBudgetLimit.scale",
         "RiemannGaussian.ZetaNearOneBudgetLimit.scale_atTop",
@@ -26740,7 +26746,7 @@
       "upstream_module": "RiemannGaussian.ZetaNearOneCanonical",
       "upstream_file": "RiemannGaussian/ZetaNearOneCanonical.lean",
       "upstream_sha256": "3862fb2751ed7e3cfbf5f286bf9d41f3021daa62f36de657eaaa715a614e78ea",
-      "extracted_sha256": "a4b016df69ca2c3448bc49a59d60ec732f0a754db510db77aa4bc8a4d83c93c7",
+      "extracted_sha256": "5edd84313bf466db3dab5d6033c744500b6e74437ebfda132b2c4a29ff18167b",
       "declarations": [
         "RiemannGaussian.ZetaNearOneCanonical.allowance_pos",
         "RiemannGaussian.ZetaNearOneCanonical.analyticOnNhd_translated",
@@ -26923,7 +26929,7 @@
       "upstream_module": "RiemannGaussian.ZetaNearOneFullDisc",
       "upstream_file": "RiemannGaussian/ZetaNearOneFullDisc.lean",
       "upstream_sha256": "b9e24ae24d115a6b14dbe5581277b8e00fe0d5fa3865473cf9b17cbfd738083d",
-      "extracted_sha256": "288260d75a280c7779e65634d0d3184a9da020074b0a222dfcc3f6f835aa3df6",
+      "extracted_sha256": "3cef2206df9ebf2bca6931b58e0db9917580b45108123e990ff38cb458eac59a",
       "declarations": [
         "RiemannGaussian.ZetaNearOneFullDisc.analyticOnNhd_translated",
         "RiemannGaussian.ZetaNearOneFullDisc.delta_le_two_sevenths",
@@ -27102,7 +27108,7 @@
       "upstream_module": "RiemannGaussian.ZetaNearOneJensen",
       "upstream_file": "RiemannGaussian/ZetaNearOneJensen.lean",
       "upstream_sha256": "6c49f0498fa25a874da8625f42616b7d88f35d0d3e924fe423ccd22463baaa38",
-      "extracted_sha256": "718f79795d4e3dc2e968704f6a64bed945a30e14e8a88a71ddd98a0350512614",
+      "extracted_sha256": "5ae1603a43996f244e5ed41698908b335fcaa0dbae21aa3b2b7ebf1007f6f2a2",
       "declarations": [
         "RiemannGaussian.ZetaNearOneJensen.allowance",
         "RiemannGaussian.ZetaNearOneJensen.center_log_bound",
@@ -27277,7 +27283,7 @@
       "upstream_module": "RiemannGaussian.ZetaNearOneLineBound",
       "upstream_file": "RiemannGaussian/ZetaNearOneLineBound.lean",
       "upstream_sha256": "0b720660a320b81b6230230ee3c24b76334a85ed75593962ef20e5dc523d2833",
-      "extracted_sha256": "299fcc5d1cbd1646c73b2f33e50be8f7eecb643f7104bd45db60820ee9ea9c9d",
+      "extracted_sha256": "1ba568a50164d9cfd6e25ac8c9670a8040bda5d88175c57180f4093f26d0714e",
       "declarations": [
         "RiemannGaussian.ZetaNearOneLineBound.bound",
         "RiemannGaussian.ZetaNearOneLineBound.bound_abs",
@@ -27453,7 +27459,7 @@
       "upstream_module": "RiemannGaussian.ZetaNearOneLineBudget",
       "upstream_file": "RiemannGaussian/ZetaNearOneLineBudget.lean",
       "upstream_sha256": "5f9fe4abb5a2a7b8501e3d103bf796c505e11c5bb300c63adf2777169eaba19f",
-      "extracted_sha256": "8942268325e4cbd78f2cd5ee9364f8d1a8d817e70d53dbb26219dabcf48b4e98",
+      "extracted_sha256": "324fca4e07d8f27620ee8852e6e8c3a200788369a059042f178cab3f28f2423c",
       "declarations": [
         "RiemannGaussian.ZetaNearOneLineBudget.canonical_count_le",
         "RiemannGaussian.ZetaNearOneLineBudget.canonical_scale_le",
@@ -27631,7 +27637,7 @@
       "upstream_module": "RiemannGaussian.ZetaNearOneLocalDisc",
       "upstream_file": "RiemannGaussian/ZetaNearOneLocalDisc.lean",
       "upstream_sha256": "5a46ef6bdbb13a86750012bd9c88a893772407101f4a9519b06182d289b707c0",
-      "extracted_sha256": "ef6ce38fe78791ac3a0a36a5873663e6dd2745736ccd141d1b9a0af2b52078a5",
+      "extracted_sha256": "a802af8a96485f22f3645004d8f4408e89a7922e56b148bdb6008dd86d385e34",
       "declarations": [
         "RiemannGaussian.ZetaNearOneLocalDisc.analyticOnNhd_disc",
         "RiemannGaussian.ZetaNearOneLocalDisc.center",
@@ -27815,7 +27821,7 @@
       "upstream_module": "RiemannGaussian.ZetaNearOneLogProfile",
       "upstream_file": "RiemannGaussian/ZetaNearOneLogProfile.lean",
       "upstream_sha256": "bee53c80ed12b38c1c67d1d9fabd2a03747e56af561816f353aa43a05ffe2405",
-      "extracted_sha256": "8d6045b7de8042ae143d9029dd725b90dd102c4c5aa3ff95a3654407aa9e5910",
+      "extracted_sha256": "2fb55a5943f866c77b29ccbe3c2547b6ec7eca5cbf5107fd5cbb20b1ac18a871",
       "declarations": [
         "RiemannGaussian.ZetaNearOneLogProfile.all_height_bound",
         "RiemannGaussian.ZetaNearOneLogProfile.coefficient_ge_two",
@@ -28009,7 +28015,7 @@
       "upstream_module": "RiemannGaussian.ZetaNearOneSignedBound",
       "upstream_file": "RiemannGaussian/ZetaNearOneSignedBound.lean",
       "upstream_sha256": "a6a2aab810ba7616571853a1b6b2ac030f61b175e7177e613e04c9e243fb84b3",
-      "extracted_sha256": "a2f4c3dd1354b48e4102e7c6181eeaf146fc6b4f075ed6801b48b245abe12887",
+      "extracted_sha256": "9d841094b98bf1f13ba293d1d2cec43974839b409ca21c25bad6dad4a72c2c29",
       "declarations": [
         "RiemannGaussian.ZetaNearOneSignedBound.coupledSum",
         "RiemannGaussian.ZetaNearOneSignedBound.coupledSum_nonneg",
@@ -28197,7 +28203,7 @@
       "upstream_module": "RiemannGaussian.ZetaPrimeGram",
       "upstream_file": "RiemannGaussian/ZetaPrimeGram.lean",
       "upstream_sha256": "dd8077f2d8bd04227f9aec2f313c5a032d612910d709caf2e8d5bd7ce5ccbe96",
-      "extracted_sha256": "be50f677186e240a3b8dc0b1be19d67b3d25d6eb1c37fbb29c26bfc41c21544d",
+      "extracted_sha256": "8d6e3d6ce4319916c6e4052cfa51b37b149f64b7cbecd4a612632c7c4137d234",
       "declarations": [
         "RiemannGaussian.zetaPrimeFeature"
       ],
@@ -28473,7 +28479,7 @@
       "upstream_module": "RiemannGaussian.ZetaPrimeMomentEnvelope",
       "upstream_file": "RiemannGaussian/ZetaPrimeMomentEnvelope.lean",
       "upstream_sha256": "fa365028df97a9587baad8cafd84f787df047d9330ff4e9b183b1a475a7fe07e",
-      "extracted_sha256": "5149c797ec623476a78f5538e63c9743bcbfc00e4a129471a67474dfdd68bcee",
+      "extracted_sha256": "42bc2e9c969e07aea68da24d3f770ad308860b7d44ed9ca8ce4d9875e50aa8ec",
       "declarations": [
         "RiemannGaussian.norm_zetaPrimeFeature",
         "RiemannGaussian.zetaPrimeExpWeight"
@@ -28626,7 +28632,7 @@
       "upstream_module": "RiemannGaussian.ZetaSignedExactPole",
       "upstream_file": "RiemannGaussian/ZetaSignedExactPole.lean",
       "upstream_sha256": "c41991208729c1ef125a34c3405490cfbb72f8bcad28db79a3f170ab288eca33",
-      "extracted_sha256": "00b6dd96ea7fdf1f230500a7be2048d0bb08048a5e03f30bfa74bc7841b1455c",
+      "extracted_sha256": "36a53ca840d2e657c0501ff857245ce27fd895627ca944a7c61216dfa9374abf",
       "declarations": [
         "RiemannGaussian.neg_logDeriv_riemannZeta_re_le_exactPole_sub_poleSum",
         "RiemannGaussian.neg_logDeriv_riemannZeta_real_le_local",
@@ -28766,7 +28772,7 @@
       "upstream_module": "RiemannGaussian.ZetaSignedLocalEstimate",
       "upstream_file": "RiemannGaussian/ZetaSignedLocalEstimate.lean",
       "upstream_sha256": "9f94cfb8260b17ce3cf0ff7e6139a3a7da660940d553a310fc160b6a2b3f132c",
-      "extracted_sha256": "5e7e0f21981aff109ea857efe2594edad81e41f4f86594498d143b989088d7ad",
+      "extracted_sha256": "67d1c7c6dac0384cd9ebef9b353a2834bbb1435956be04e0e58589f0aa3a2235",
       "declarations": [
         "RiemannGaussian.localZetaPoleSum_re_eq",
         "RiemannGaussian.localZetaPoleSum_re_nonneg",
@@ -28908,7 +28914,7 @@
       "upstream_module": "RiemannGaussian.ZetaSignedPoleControl",
       "upstream_file": "RiemannGaussian/ZetaSignedPoleControl.lean",
       "upstream_sha256": "9bc3c95456be9e771c2c0fa666556ed4c645117dab08a265c72e9bd28ff7f61b",
-      "extracted_sha256": "d6165afc7c39a00b2613a78ed6f8d576b72a86a067357711e1f1e5dbb289e237",
+      "extracted_sha256": "414ab122d6e34f0ecbc3433c3b1d6d8f9d8b7314759a7db27b91b7957315bdf2",
       "declarations": [
         "RiemannGaussian.localZetaDivisor_re_lt_neg_half",
         "RiemannGaussian.logDeriv_localZetaPoleRemoved_eq",
@@ -29050,7 +29056,7 @@
       "upstream_module": "RiemannGaussian.ZetaSignedPrimeSeries",
       "upstream_file": "RiemannGaussian/ZetaSignedPrimeSeries.lean",
       "upstream_sha256": "38aeffedb1c80fc7d99481ea0cedf56a236ca59fae5a52493cf1c7e3ca7ab082",
-      "extracted_sha256": "245b9b58471f0237fdc87ffaa1a7e4f36f78fb29dc1b4394f0e5fc378ba8bd2c",
+      "extracted_sha256": "f3c1cd3183bf5c158b1a04a06cde650c57a98e7a500bfe96b0895875a2f0cbda",
       "declarations": [
         "RiemannGaussian.neg_logDeriv_riemannZeta_eq_vonMangoldt",
         "RiemannGaussian.neg_logDeriv_riemannZeta_three_height_nonneg",
@@ -29265,7 +29271,7 @@
       "upstream_module": "RiemannGaussian.ZetaStripDisc",
       "upstream_file": "RiemannGaussian/ZetaStripDisc.lean",
       "upstream_sha256": "bb4247353458a675384b7946410efdeb3e6a7e0f264f11e4ed3733d94cc53028",
-      "extracted_sha256": "80e777e56213aa4f190112c35c539499f5c828ef262cf9ac4fa8a31194aeafec",
+      "extracted_sha256": "c152a48896a8ce97501910c7cc711b54150a2a325eb20ab205691f21da0245a3",
       "declarations": [
         "RiemannGaussian.ZetaStripDisc.analyticAt_regularized"
       ],
@@ -29501,7 +29507,7 @@
       "upstream_module": "RiemannGaussian.ZetaVinogradovAngularBound",
       "upstream_file": "RiemannGaussian/ZetaVinogradovAngularBound.lean",
       "upstream_sha256": "8e780500e0cc4cd3913bab2d91a27229fc915e894508e3cfdf8c51878f7abdb2",
-      "extracted_sha256": "b048553a63f2cef4d4be7382731077cbddeb0c1786c06b2a42ff81c4e2f27106",
+      "extracted_sha256": "dbc94a0eb654cdaa56d4a6a797b06b5e6a45eb407c0337274abc07a3e473411a",
       "declarations": [
         "RiemannGaussian.ZetaVinogradovAngularBound.boundary_moment_le",
         "RiemannGaussian.ZetaVinogradovAngularBound.logDeriv_eq_boundary_moment_add_sum",
@@ -29714,7 +29720,7 @@
       "upstream_module": "RiemannGaussian.ZetaVinogradovAngularBudget",
       "upstream_file": "RiemannGaussian/ZetaVinogradovAngularBudget.lean",
       "upstream_sha256": "270018e8f2a6e261d43c3e07acaba866015dc3a9b1b20ec64466652a7e0db4e1",
-      "extracted_sha256": "e9b9222d2072912dde82d224f11b5789421a87042faf2029b0564e2c6692cd4c",
+      "extracted_sha256": "d41397857f72453046b99c80009340244454bbb2c32a4f4d1d9f78943659465d",
       "declarations": [
         "RiemannGaussian.ZetaVinogradovAngularBudget.budget",
         "RiemannGaussian.ZetaVinogradovAngularBudget.margin_of_budget",
@@ -29922,7 +29928,7 @@
       "upstream_module": "RiemannGaussian.ZetaVinogradovAngularZeroFree",
       "upstream_file": "RiemannGaussian/ZetaVinogradovAngularZeroFree.lean",
       "upstream_sha256": "2f10b41224f64ebd89fc723e846615b9a0f63a5ef07eacc3731569a3c93aa1a6",
-      "extracted_sha256": "51b358bcda01e73697190c928c1a11da2eb91322f471cbebe66e6eada3285a02",
+      "extracted_sha256": "6f8b4d1385c1e7cc2cf1bb6c1a360e83f6ce89706bd0ec0befaea682724ab11e",
       "declarations": [
         "RiemannGaussian.ZetaVinogradovAngularZeroFree.coefficientLimit",
         "RiemannGaussian.ZetaVinogradovAngularZeroFree.cost_abs",
@@ -30172,7 +30178,7 @@
       "upstream_module": "RiemannGaussian.ZetaVinogradovBalancedBudget",
       "upstream_file": "RiemannGaussian/ZetaVinogradovBalancedBudget.lean",
       "upstream_sha256": "14642c14d93feebe25f6bca4aef0e92044b2808a4663663b2e501e183e59b973",
-      "extracted_sha256": "e910ecd8496fcca9d4b45569ca7f5c86a74e79c434f4312d03ee7b92203fce6b",
+      "extracted_sha256": "cee8b0d4cde4a101048643b78b7c5a48bd4469f857d5bb8fc61cb18556bbeff9",
       "declarations": [
         "RiemannGaussian.ZetaVinogradovBalancedBudget.allowance_normalized",
         "RiemannGaussian.ZetaVinogradovBalancedBudget.center_log_normalized",
@@ -30381,7 +30387,7 @@
       "upstream_module": "RiemannGaussian.ZetaVinogradovBalancedScale",
       "upstream_file": "RiemannGaussian/ZetaVinogradovBalancedScale.lean",
       "upstream_sha256": "fd702138499104ac3c2750dfe3d1d3a1923abe6e8b0d6f9011f8150a06b699e8",
-      "extracted_sha256": "3a2ce1e9ccd665e95f35fb3da413fb590a32352439db5bdc52ef9f82ab91d056",
+      "extracted_sha256": "18c30be846c5ef2ae38b17c6e6e8c89fb1d556001b0d35a554fc7f5d62267ae4",
       "declarations": [
         "RiemannGaussian.ZetaVinogradovBalancedScale.abs_invariance",
         "RiemannGaussian.ZetaVinogradovBalancedScale.eventually_parameters",
@@ -30598,7 +30604,7 @@
       "upstream_module": "RiemannGaussian.ZetaVinogradovBound",
       "upstream_file": "RiemannGaussian/ZetaVinogradovBound.lean",
       "upstream_sha256": "69d1682312ecd0944c8daf1b7a237058ebecf673cde7caa7877914f88593409b",
-      "extracted_sha256": "a6904633634e554aa37583529bb026775a98832e23b66b7ad06c027b71a3e137",
+      "extracted_sha256": "d501730e027dc17b54730aa83d6759957ad4f3f417ca55b78254e6995afea621",
       "declarations": [
         "RiemannGaussian.ZetaVinogradovBound.bound_strip",
         "RiemannGaussian.ZetaVinogradovBound.bound_strip_abs",
@@ -30795,7 +30801,7 @@
       "upstream_module": "RiemannGaussian.ZetaVinogradovCanonical",
       "upstream_file": "RiemannGaussian/ZetaVinogradovCanonical.lean",
       "upstream_sha256": "f694948ca025577ba4b31d9085ee7ee4fe9edc777807dd116327b5e2f87a3d14",
-      "extracted_sha256": "b4fea112a7b264e314fcff20ea76318a2a6befdfa40920bd5657050e1739af1b",
+      "extracted_sha256": "bed64daa93a520429a5c5df052e6855f971ce075d056400ac45bb2f51d844a75",
       "declarations": [
         "RiemannGaussian.ZetaVinogradovCanonical.allowance",
         "RiemannGaussian.ZetaVinogradovCanonical.logDeriv_translated"
@@ -30992,7 +30998,7 @@
       "upstream_module": "RiemannGaussian.ZetaVinogradovCubicDisc",
       "upstream_file": "RiemannGaussian/ZetaVinogradovCubicDisc.lean",
       "upstream_sha256": "8e1021473cc49e30323a1f67bd6c69e10b459cd355c7e97ed4f6b55029dffd32",
-      "extracted_sha256": "7b6a6d6ebc0de45307f77c28608f31c8d5127c915284abc8e8ba231648a2df8d",
+      "extracted_sha256": "5fc50683b208cbd683d8260bca68fc1480fbeda8afcf5d3698c74dd83f605302",
       "declarations": [
         "RiemannGaussian.ZetaVinogradovCubicDisc.analyticOnNhd_translated",
         "RiemannGaussian.ZetaVinogradovCubicDisc.disc_geometry"
@@ -31189,7 +31195,7 @@
       "upstream_module": "RiemannGaussian.ZetaVinogradovCubicScale",
       "upstream_file": "RiemannGaussian/ZetaVinogradovCubicScale.lean",
       "upstream_sha256": "dc23bdd06a88faa41adb4aa07528811483cccf0fa1fbdc8ae697ebbbef97fd57",
-      "extracted_sha256": "886e49c25f4d2d67b61e0f029e35a2d020c48e2f77864f2fbe46e71f9a685f8e",
+      "extracted_sha256": "af26c34ef85f3cbcc7c555ffe260ff4e6b44b49217281eb91c399fe1b600fa73",
       "declarations": [
         "RiemannGaussian.ZetaVinogradovCubicScale.abs_invariance",
         "RiemannGaussian.ZetaVinogradovCubicScale.eventually_parameters",
@@ -31401,7 +31407,7 @@
       "upstream_module": "RiemannGaussian.ZetaVinogradovEulerBound",
       "upstream_file": "RiemannGaussian/ZetaVinogradovEulerBound.lean",
       "upstream_sha256": "908d4dc398a65cea3ac1f4d4699c1a1869ec29ad47801009938881ed0b27d28c",
-      "extracted_sha256": "9a72db56c7b23a98d25fcbfdf896e4b911defa8a859bb5d19a868ceacc91b250",
+      "extracted_sha256": "791cee98ea9dd4a3f9440cef2ffb2c3343a36e6ced549e3363e098f35234962a",
       "declarations": [
         "RiemannGaussian.ZetaVinogradovEulerBound.bound_strip",
         "RiemannGaussian.ZetaVinogradovEulerBound.bound_strip_abs"
@@ -31597,7 +31603,7 @@
       "upstream_module": "RiemannGaussian.ZetaVinogradovFullDisc",
       "upstream_file": "RiemannGaussian/ZetaVinogradovFullDisc.lean",
       "upstream_sha256": "b743b29d6e7e9342a8603c5ff9c6d6cde7bdaf26c12e187d249a6f920232e805",
-      "extracted_sha256": "9b4b2b90d662f43882d5f9b9589c8210ce820c44e0ddc768ac9b2324b4bd825d",
+      "extracted_sha256": "c0b62be9e7d21d7e84f11833ac866e03a65f7717f6201320d114f2deb56c0928",
       "declarations": [
         "RiemannGaussian.ZetaVinogradovFullDisc.analyticOnNhd_translated",
         "RiemannGaussian.ZetaVinogradovFullDisc.disc_geometry",
@@ -31794,7 +31800,7 @@
       "upstream_module": "RiemannGaussian.ZetaVinogradovLocalDisc",
       "upstream_file": "RiemannGaussian/ZetaVinogradovLocalDisc.lean",
       "upstream_sha256": "bb152147fc7a684aa89ace5a3d7a6a68274f4c25c934a995678c81c8a3e3ef27",
-      "extracted_sha256": "4c8e6ce470d7fbc321a96b59c067c280a84b116b5741cc43435c239ca491f2dd",
+      "extracted_sha256": "fdde835a40920d60259a01e09b168c771cb92e931094ef0325b0860fd22c326f",
       "declarations": [
         "RiemannGaussian.ZetaVinogradovLocalDisc.analyticOnNhd_disc",
         "RiemannGaussian.ZetaVinogradovLocalDisc.disc_geometry",
@@ -31996,7 +32002,7 @@
       "upstream_module": "RiemannGaussian.ZetaVinogradovMargin",
       "upstream_file": "RiemannGaussian/ZetaVinogradovMargin.lean",
       "upstream_sha256": "3f9701933ce4453d7ede59ed0fb934d0e23f95778cfcf798af263e3c7a889f1f",
-      "extracted_sha256": "d0087e45e7ccb2c165d087558303b1034bca12057dbe0c9563e311ff2b40820d",
+      "extracted_sha256": "1fd049ac0aaba98877cb3cc53c23c7ca89e6565972238b4918bd64344c82f3cd",
       "declarations": [
         "RiemannGaussian.ZetaVinogradovMargin.reserve",
         "RiemannGaussian.ZetaVinogradovMargin.reserve_bounds",
@@ -32196,7 +32202,7 @@
       "upstream_module": "RiemannGaussian.ZetaVinogradovScheduledMargin",
       "upstream_file": "RiemannGaussian/ZetaVinogradovScheduledMargin.lean",
       "upstream_sha256": "4842aefd103d97654ee986cdbc31c0438f53223d06d0facdb7d35dec14b98a6a",
-      "extracted_sha256": "54a7bbf7e904dc98c810eb5a6cc605e783590803b52702e163325f97c3081399",
+      "extracted_sha256": "2b3d9dda9690457d5eec95217fc7e464524b2b0a316ff7d443c46d5702746066",
       "declarations": [
         "RiemannGaussian.ZetaVinogradovScheduledMargin.eventually_parameters",
         "RiemannGaussian.ZetaVinogradovScheduledMargin.order",
@@ -32406,7 +32412,7 @@
       "upstream_module": "RiemannGaussian.ZetaVinogradovSummedBound",
       "upstream_file": "RiemannGaussian/ZetaVinogradovSummedBound.lean",
       "upstream_sha256": "890a68fdf71b719a06f7ff37f80a9fb55cbd51412d187715c25af133837b7b94",
-      "extracted_sha256": "1967825d64cda6e5ac1713fe665b7a45ef06c47d607c3c03d25ab5b098b023e2",
+      "extracted_sha256": "0675fc0825d6acb1701f5506f331b3e52da52fb0a1902e8f6b26ee7cb4f27b03",
       "declarations": [
         "RiemannGaussian.ZetaVinogradovSummedBound.bound_strip",
         "RiemannGaussian.ZetaVinogradovSummedBound.bound_strip_abs",
@@ -32608,7 +32614,7 @@
       "upstream_module": "RiemannGaussian.ZetaVinogradovSummedCost",
       "upstream_file": "RiemannGaussian/ZetaVinogradovSummedCost.lean",
       "upstream_sha256": "048c11743fe526a8c2dfe4add7419d3bad729cfea2d962f771e08a259a96ff35",
-      "extracted_sha256": "1d3e412554bd1d6d474ee961fef16707ef8bba2a3d0a92a19ba523ba84ef410d",
+      "extracted_sha256": "3ce8a786c59a27262559ba27f8d5b2f454a818f1debdc54eb0c48bef861392a3",
       "declarations": [
         "RiemannGaussian.ZetaVinogradovSummedCost.allowance",
         "RiemannGaussian.ZetaVinogradovSummedCost.allowance_normalized",
@@ -32823,7 +32829,7 @@
       "upstream_module": "RiemannGaussian.ZetaVinogradovSummedDisc",
       "upstream_file": "RiemannGaussian/ZetaVinogradovSummedDisc.lean",
       "upstream_sha256": "fdddb0fb13b7f4288a812020778ff61666b5787dae6dc9fcc3bc9f6e550d0d38",
-      "extracted_sha256": "a55b6b391493cd8904a9052302374488cfc8aaaeabf1195719bb3ee9e50c2a93",
+      "extracted_sha256": "4a0237d468d735536e2649ec6b50d59c79301c6e136315636792e5dcb5f2d958",
       "declarations": [
         "RiemannGaussian.ZetaVinogradovSummedDisc.local_norm_bound",
         "RiemannGaussian.ZetaVinogradovSummedDisc.norm_translated_le",
@@ -33024,7 +33030,7 @@
       "upstream_module": "RiemannGaussian.ZetaVinogradovSummedZeroFree",
       "upstream_file": "RiemannGaussian/ZetaVinogradovSummedZeroFree.lean",
       "upstream_sha256": "32490304da36cd4971191372833aebc3382a6a30434d1e499445c1659aa1b228",
-      "extracted_sha256": "36e78236303c0075931e341320215049b68af1f1f3f8424f34a4256491ee8e38",
+      "extracted_sha256": "a44b7294b591cefcbf5437e05aff61ae3fdb7e3e277cd625ba5e1d50ff307b25",
       "declarations": [
         "RiemannGaussian.ZetaVinogradovSummedZeroFree.coefficientLimit",
         "RiemannGaussian.ZetaVinogradovSummedZeroFree.cost_abs",

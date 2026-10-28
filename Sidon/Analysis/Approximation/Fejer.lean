@@ -1,6 +1,10 @@
-import Sidon.Analysis.FejerClosedForm
-import Sidon.Analysis.TorusConvolution
-import Sidon.Equidistribution.Progressions
+module
+
+public import Sidon.Analysis.FejerClosedForm
+public import Sidon.Analysis.TorusConvolution
+public import Sidon.Equidistribution.Progressions
+
+@[expose] public section
 
 /-! # Continuous Fejér kernels on the unit circle -/
 

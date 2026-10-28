@@ -1,3 +1,5 @@
+module
+
 /-
 Copyright (c) 2026 David Sanftenberg. All rights reserved.
 Released under Apache 2.0 license as described in LICENSES/Apache-2.0.txt.
@@ -5,14 +7,16 @@ Authors: David Sanftenberg
 -/
 /- Adapted from dbsanfte/RiemannGaussian; provenance and modifications are
 recorded in docs/rg-extraction-manifest.json. -/
-import Sidon.NumberTheory.RiemannGaussian.VinogradovNearOneBudget
-import Sidon.NumberTheory.RiemannGaussian.ZetaLocalResidualLog
-import Sidon.NumberTheory.RiemannGaussian.ZetaLogLogBudget
-import Sidon.NumberTheory.RiemannGaussian.ZetaNearOneBudgetLimit
-import Sidon.NumberTheory.RiemannGaussian.ZetaVinogradovAngularBudget
-import Sidon.NumberTheory.RiemannGaussian.ZetaVinogradovBalancedScale
-import Sidon.NumberTheory.RiemannGaussian.ZetaVinogradovCanonical
-import Sidon.NumberTheory.RiemannGaussian.ZetaVinogradovLocalDisc
+public import Sidon.NumberTheory.RiemannGaussian.VinogradovNearOneBudget
+public import Sidon.NumberTheory.RiemannGaussian.ZetaLocalResidualLog
+public import Sidon.NumberTheory.RiemannGaussian.ZetaLogLogBudget
+public import Sidon.NumberTheory.RiemannGaussian.ZetaNearOneBudgetLimit
+public import Sidon.NumberTheory.RiemannGaussian.ZetaVinogradovAngularBudget
+public import Sidon.NumberTheory.RiemannGaussian.ZetaVinogradovBalancedScale
+public import Sidon.NumberTheory.RiemannGaussian.ZetaVinogradovCanonical
+public import Sidon.NumberTheory.RiemannGaussian.ZetaVinogradovLocalDisc
+
+@[expose] public section
 
 namespace RiemannGaussian.ZetaVinogradovBalancedBudget
 noncomputable section

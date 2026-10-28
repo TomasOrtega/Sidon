@@ -1,5 +1,9 @@
-import Sidon.NumberTheory.LogarithmicMeanSquare
-import Sidon.NumberTheory.HarmonicGaps
+module
+
+public import Sidon.NumberTheory.LogarithmicMeanSquare
+public import Sidon.NumberTheory.HarmonicGaps
+
+@[expose] public section
 
 /-! # A logarithmic off-diagonal bound uniform in the polynomial length -/
 

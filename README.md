@@ -4,45 +4,60 @@ A Lean formalization of Miquel Ortega and Sean Prendiville,
 [*Extremal Sidon sets are Fourier uniform, with applications to partition
 regularity*](https://arxiv.org/abs/2110.13447).
 
-The expanded [blueprint](blueprint/src/content.tex) gives detailed natural-language
-proofs before their Lean implementation. It records rounding, empty-set cases,
-normalizations, explicit constants, and dependencies. A blueprint proof is not a
-claim of completed formalization: only checked declarations receive `leanok`.
+Near-maximal Sidon sets have small Fourier discrepancy. This gives
+bounds for counts in progressions and Bohr sets, and monochromatic solutions
+to partition regular linear equations in at least five variables.
+The project also proves the largest-set Fourier rate and sharp obstruction
+constructions. These results concern additive combinatorics and Ramsey theory.
 
-- [Project website and blueprint](https://TomasOrtega.github.io/Sidon/)
-- [Reusable Lean results and remaining gaps](docs/reuse-scout.md)
-- [Core implementation plan](docs/core-formalization-plan.md)
-- [Applications implementation plan](docs/applications-formalization-plan.md)
-- [Measured usage and elapsed time](docs/usage.md), with [pricing assumptions](docs/pricing.md)
+- [Challenge.lean](Challenge.lean): the 12 submitted statements and their definitions.
+- [Solution.lean](Solution.lean): connects the statements to the checked proofs in `Sidon/`.
+- [comparator.json](comparator.json): the declarations checked by Comparator.
+- [formalization.yaml](formalization.yaml): sources, authorship, AI use, and review status.
+- [Website and blueprint](https://TomasOrtega.github.io/Sidon/): detailed proof accounts.
+- [Proof status](docs/progress.md) and [reuse notes](THIRD_PARTY_NOTICES.md).
 
-The project uses the latest stable Lean and mathlib releases, `v4.35.0`,
-with matching doc-gen4 and leanblueprint `0.0.20`. Exact revisions are recorded in
-`lake-manifest.json` and the [tooling audit](docs/blueprint-upgrade-research.md). Project proofs use neither option overrides nor native
-evaluation to discharge theorems. There are no proof placeholders or added axioms.
+The formalization gives explicit constants. It corrects the small cases in
+Lemma 3.2 and the dimension dependence in Lemma 4.1. A separate smoothing
+proof recovers the Bohr corollaries. The Challenge states the conventions;
+solution tuples may repeat entries. No independent human mathematical review
+is recorded.
+
+The repo uses [Apache 2.0](LICENSE). Cite it with [CITATION.cff](CITATION.cff).
+[Recorded AI usage](docs/usage.md) covers the original formalization.
+
+## Check the project
+
+Lean and Mathlib are pinned to `v4.35.0`. `lake-manifest.json` records exact
+dependency revisions.
 
 ```bash
-lake build
+python3 scripts/check_lean_sources.py
 python3 -m unittest discover -s tests -p 'test_*.py'
-leanblueprint pdf
-leanblueprint web
-lake exe checkdecls blueprint/lean_decls
+lake exe cache get
+lake build
 lake env lean scripts/CheckAxioms.lean
 ```
 
-The main Fourier-uniformity theorem (Theorem 1.2, with constant 16), its finite
-combinatorial foundations, the sharp Appendix A interval bound, Cilleruelo's
-interval estimate, improved Fourier bound (constant 36), and progression
-equidistribution (Theorem 3.1) are checked. The smooth and regular Bohr
-corollaries also check with absolute constants. Partition regularity
-(Theorem 1.15) is checked end to end, including quantitative Rado counting and
-the colouring dense model. Bose–Chowla and the sharp asymptotic obstruction constructions are checked.
-The largest-set rate in Corollary 1.4 is checked unconditionally through a proved
-prime-interval theorem, with all analytic zeta inputs included. See the
-[status table](docs/progress.md) for the distinction between expanded arguments
-and checked Lean results. Work is checkpointed at least every two hours while active.
-
-The blueprint declaration list can also be checked without a native Lake executable:
+`Challenge.lean` has deliberate theorem holes. The proof library and Solution
+have no proof holes or added axioms. CI checks the source rules and allowed axioms.
+On Linux, with `bubblewrap` installed, also run:
 
 ```bash
-lake env lean --run scripts/CheckDeclarations.lean blueprint/lean_decls
+bash scripts/verify-comparator.sh
 ```
+
+This checks the Challenge against the Solution with Lean, NanoDa, and con-ron.
+It also runs in CI. It cannot run on macOS.
+
+To build the blueprint, install `leanblueprint==0.0.20`, then run
+`leanblueprint pdf`, `leanblueprint web`, and
+`lake exe checkdecls blueprint/lean_decls`.
+
+## Submit to Palomar
+
+Follow [Palomar's submission guide](https://palomar-registry.org/how-to-submit).
+Commit and push the final changes, then wait for all CI checks to pass. Submit
+`TomasOrtega/Sidon` with the full SHA from `git rev-parse HEAD`. Use the root
+project, `comparator.json`, and `formalization.yaml`; the form's default paths
+already select them. Uncommitted or unpushed changes are not part of a submission.

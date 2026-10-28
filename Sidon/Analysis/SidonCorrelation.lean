@@ -1,6 +1,10 @@
-import Sidon.Analysis.VanDerCorput
-import Sidon.Combinatorics.IntervalSize
-import Mathlib.Tactic
+module
+
+public import Sidon.Analysis.VanDerCorput
+public import Sidon.Combinatorics.IntervalSize
+public import Mathlib.Tactic
+
+@[expose] public section
 
 /-! # Correlation estimates for a Sidon set and its interval model -/
 

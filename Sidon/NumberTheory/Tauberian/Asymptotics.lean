@@ -1,10 +1,17 @@
+module
+
 /-
 Adapted from PrimeNumberTheoremAnd/Mathlib/Analysis/Asymptotics/Asymptotics.lean,
 commit 127b50e33f6033e2147921167a117af96d9ba4ea.
 Released under Apache 2.0; original authors: PrimeNumberTheoremAnd contributors.
 -/
-import Mathlib.Analysis.Asymptotics.Lemmas
-import Mathlib.Topology.Order.Compact
+public import Mathlib.Analysis.Asymptotics.Lemmas
+public import Mathlib.Topology.Order.Compact
+
+public import Mathlib.Analysis.Normed.Group.Bounded
+public import Mathlib.Order.Filter.AtTopBot.Archimedean
+
+@[expose] public section
 
 open Filter Topology
 

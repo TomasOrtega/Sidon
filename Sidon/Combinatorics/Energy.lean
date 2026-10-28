@@ -1,6 +1,10 @@
-import Sidon.Combinatorics.Differences
-import Mathlib.Combinatorics.Additive.Energy
-import Mathlib.Tactic
+module
+
+public import Sidon.Combinatorics.Differences
+public import Mathlib.Combinatorics.Additive.Energy
+public import Mathlib.Tactic
+
+@[expose] public section
 
 /-! # The additive energy of a Sidon set -/
 

@@ -1,5 +1,9 @@
-import Sidon.NumberTheory.BSplineKernel
-import Mathlib.Analysis.SpecialFunctions.Integrals.Basic
+module
+
+public import Sidon.NumberTheory.BSplineKernel
+public import Mathlib.Analysis.SpecialFunctions.Integrals.Basic
+
+@[expose] public section
 
 /-! Closed forms for the integrated step function used by the prime detector. -/
 

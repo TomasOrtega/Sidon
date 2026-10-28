@@ -1,4 +1,8 @@
-import Sidon.NumberTheory.SpectralKernelBounds
+module
+
+public import Sidon.NumberTheory.SpectralKernelBounds
+
+@[expose] public section
 
 /-! A reciprocal-square bound for the smoothed trivial-zero terms. -/
 

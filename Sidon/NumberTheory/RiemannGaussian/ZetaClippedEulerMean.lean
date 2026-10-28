@@ -1,3 +1,5 @@
+module
+
 /-
 Copyright (c) 2026 David Sanftenberg. All rights reserved.
 Released under Apache 2.0 license as described in LICENSES/Apache-2.0.txt.
@@ -5,15 +7,17 @@ Authors: David Sanftenberg
 -/
 /- Adapted from dbsanfte/RiemannGaussian; provenance and modifications are
 recorded in docs/rg-extraction-manifest.json. -/
-import Sidon.NumberTheory.RiemannGaussian.ClippedLogNorm
-import Sidon.NumberTheory.RiemannGaussian.DerivativeOrderComparison
-import Sidon.NumberTheory.RiemannGaussian.DirichletPowerParameters
-import Sidon.NumberTheory.RiemannGaussian.SechVerticalKernel
-import Sidon.NumberTheory.RiemannGaussian.SechVerticalMoments
-import Sidon.NumberTheory.RiemannGaussian.ZetaEulerLogProfile
-import Sidon.NumberTheory.RiemannGaussian.ZetaGaussianLocalizer
-import Sidon.NumberTheory.RiemannGaussian.ZetaLogarithmicShiftAllowance
-import Sidon.NumberTheory.RiemannGaussian.ZetaStripDisc
+public import Sidon.NumberTheory.RiemannGaussian.ClippedLogNorm
+public import Sidon.NumberTheory.RiemannGaussian.DerivativeOrderComparison
+public import Sidon.NumberTheory.RiemannGaussian.DirichletPowerParameters
+public import Sidon.NumberTheory.RiemannGaussian.SechVerticalKernel
+public import Sidon.NumberTheory.RiemannGaussian.SechVerticalMoments
+public import Sidon.NumberTheory.RiemannGaussian.ZetaEulerLogProfile
+public import Sidon.NumberTheory.RiemannGaussian.ZetaGaussianLocalizer
+public import Sidon.NumberTheory.RiemannGaussian.ZetaLogarithmicShiftAllowance
+public import Sidon.NumberTheory.RiemannGaussian.ZetaStripDisc
+
+@[expose] public section
 
 namespace RiemannGaussian.ZetaClippedEulerMean
 noncomputable section

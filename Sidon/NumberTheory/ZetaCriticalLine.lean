@@ -1,6 +1,10 @@
-import Mathlib.Analysis.SpecialFunctions.Pow.Real
-import Mathlib.NumberTheory.LSeries.RiemannZeta
-import Mathlib.Analysis.Normed.Group.Bounded
+module
+
+public import Mathlib.Analysis.SpecialFunctions.Pow.Real
+public import Mathlib.NumberTheory.LSeries.RiemannZeta
+public import Mathlib.Analysis.Normed.Group.Bounded
+
+@[expose] public section
 
 /-! # Critical-line growth estimates for zeta -/
 

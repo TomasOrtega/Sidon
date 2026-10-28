@@ -1,3 +1,5 @@
+module
+
 /-
 Copyright (c) 2026 David Sanftenberg. All rights reserved.
 Released under Apache 2.0 license as described in LICENSES/Apache-2.0.txt.
@@ -5,18 +7,20 @@ Authors: David Sanftenberg
 -/
 /- Adapted from dbsanfte/RiemannGaussian; provenance and modifications are
 recorded in docs/rg-extraction-manifest.json. -/
-import Sidon.NumberTheory.RiemannGaussian.GaussianZetaBridge
-import Sidon.NumberTheory.RiemannGaussian.VinogradovCubicBudget
-import Sidon.NumberTheory.RiemannGaussian.VinogradovScaleSelection
-import Sidon.NumberTheory.RiemannGaussian.VinogradovSharperBudget
-import Sidon.NumberTheory.RiemannGaussian.ZetaAngularDiscBudget
-import Sidon.NumberTheory.RiemannGaussian.ZetaLocalResidualLog
-import Sidon.NumberTheory.RiemannGaussian.ZetaNearOneBudgetLimit
-import Sidon.NumberTheory.RiemannGaussian.ZetaVinogradovBalancedBudget
-import Sidon.NumberTheory.RiemannGaussian.ZetaVinogradovBalancedScale
-import Sidon.NumberTheory.RiemannGaussian.ZetaVinogradovCubicDisc
-import Sidon.NumberTheory.RiemannGaussian.ZetaVinogradovCubicScale
-import Sidon.NumberTheory.RiemannGaussian.ZetaVinogradovSummedDisc
+public import Sidon.NumberTheory.RiemannGaussian.GaussianZetaBridge
+public import Sidon.NumberTheory.RiemannGaussian.VinogradovCubicBudget
+public import Sidon.NumberTheory.RiemannGaussian.VinogradovScaleSelection
+public import Sidon.NumberTheory.RiemannGaussian.VinogradovSharperBudget
+public import Sidon.NumberTheory.RiemannGaussian.ZetaAngularDiscBudget
+public import Sidon.NumberTheory.RiemannGaussian.ZetaLocalResidualLog
+public import Sidon.NumberTheory.RiemannGaussian.ZetaNearOneBudgetLimit
+public import Sidon.NumberTheory.RiemannGaussian.ZetaVinogradovBalancedBudget
+public import Sidon.NumberTheory.RiemannGaussian.ZetaVinogradovBalancedScale
+public import Sidon.NumberTheory.RiemannGaussian.ZetaVinogradovCubicDisc
+public import Sidon.NumberTheory.RiemannGaussian.ZetaVinogradovCubicScale
+public import Sidon.NumberTheory.RiemannGaussian.ZetaVinogradovSummedDisc
+
+@[expose] public section
 
 namespace RiemannGaussian.ZetaVinogradovSummedCost
 noncomputable section

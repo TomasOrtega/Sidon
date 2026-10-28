@@ -1,8 +1,12 @@
-import Sidon.NumberTheory.LogSmoothedMangoldt
-import Sidon.NumberTheory.SmoothingSeries
-import Sidon.NumberTheory.SpectralTailBounds
-import Sidon.NumberTheory.NegativeSpectralBounds
-import Sidon.NumberTheory.RiemannGaussian.RosserSchoenfeldExplicitFormula
+module
+
+public import Sidon.NumberTheory.LogSmoothedMangoldt
+public import Sidon.NumberTheory.SmoothingSeries
+public import Sidon.NumberTheory.SpectralTailBounds
+public import Sidon.NumberTheory.NegativeSpectralBounds
+public import Sidon.NumberTheory.RiemannGaussian.RosserSchoenfeldExplicitFormula
+
+@[expose] public section
 
 /-! Finite-difference smoothing of the literal logarithmic explicit formula. -/
 

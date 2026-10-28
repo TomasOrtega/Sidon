@@ -1,0 +1,24 @@
+{
+  "challenge_module": "Challenge",
+  "solution_module": "Solution",
+  "theorem_names": [
+    "SidonSubmission.sidon_fourier_uniformity",
+    "SidonSubmission.sidon_improved_fourier_uniformity",
+    "SidonSubmission.largest_sidon_fourier_uniformity",
+    "SidonSubmission.sidon_progression_equidistribution",
+    "SidonSubmission.sidon_smooth_equidistribution",
+    "SidonSubmission.sidon_regular_bohr_equidistribution",
+    "SidonSubmission.sidon_partition_regularity",
+    "SidonSubmission.eventually_exists_sharp_odd_obstruction",
+    "SidonSubmission.exists_eventually_sharp_residue_obstruction",
+    "SidonSubmission.QuantitativeRado.exists_integer_colouring_without_positive_monochromatic_linearSolution",
+    "SidonSubmission.BandwidthCounterexample.not_exists_uniform_dimension_bandwidth",
+    "SidonSubmission.IsSidonSet.card_le_sqrt_add_four_mul_rpow"
+  ],
+  "definition_names": [],
+  "permitted_axioms": [
+    "propext",
+    "Quot.sound",
+    "Classical.choice"
+  ]
+}

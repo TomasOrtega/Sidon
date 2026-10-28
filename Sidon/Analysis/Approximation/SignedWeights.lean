@@ -1,6 +1,10 @@
-import Mathlib.Analysis.Fourier.AddCircle
-import Mathlib.Algebra.BigOperators.Option
-import Mathlib.Tactic
+module
+
+public import Mathlib.Analysis.Fourier.AddCircle
+public import Mathlib.Algebra.BigOperators.Option
+public import Mathlib.Tactic
+
+@[expose] public section
 
 /-! # Probability weights from signed Fourier interpolation -/
 

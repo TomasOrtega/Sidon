@@ -1,6 +1,10 @@
-import Sidon.NumberTheory.DirichletMeanSquare
-import Mathlib.NumberTheory.ArithmeticFunction.Moebius
-import Mathlib.NumberTheory.Harmonic.Bounds
+module
+
+public import Sidon.NumberTheory.DirichletMeanSquare
+public import Mathlib.NumberTheory.ArithmeticFunction.Moebius
+public import Mathlib.NumberTheory.Harmonic.Bounds
+
+@[expose] public section
 
 /-! # Logarithmic frequencies and harmonic majorants -/
 

@@ -1,3 +1,5 @@
+module
+
 /-
 Copyright (c) 2026 David Sanftenberg. All rights reserved.
 Released under Apache 2.0 license as described in LICENSES/Apache-2.0.txt.
@@ -5,15 +7,17 @@ Authors: David Sanftenberg
 -/
 /- Adapted from dbsanfte/RiemannGaussian; provenance and modifications are
 recorded in docs/rg-extraction-manifest.json. -/
-import Mathlib.Algebra.BigOperators.Intervals
-import Mathlib.Algebra.Field.ZMod
-import Mathlib.Analysis.Fourier.AddCircleMulti
-import Mathlib.Analysis.SpecialFunctions.Integrals.Basic
-import Mathlib.Data.Fintype.Perm
-import Mathlib.Data.List.Permutation
-import Mathlib.LinearAlgebra.Vandermonde
-import Mathlib.RingTheory.MvPolynomial.Symmetric.NewtonIdentities
-import Mathlib.RingTheory.Polynomial.Vieta
+public import Mathlib.Algebra.BigOperators.Intervals
+public import Mathlib.Algebra.Field.ZMod
+public import Mathlib.Analysis.Fourier.AddCircleMulti
+public import Mathlib.Analysis.SpecialFunctions.Integrals.Basic
+public import Mathlib.Data.Fintype.Perm
+public import Mathlib.Data.List.Permutation
+public import Mathlib.LinearAlgebra.Vandermonde
+public import Mathlib.RingTheory.MvPolynomial.Symmetric.NewtonIdentities
+public import Mathlib.RingTheory.Polynomial.Vieta
+
+@[expose] public section
 
 namespace RiemannGaussian.VinogradovConditionedMoment
 noncomputable section

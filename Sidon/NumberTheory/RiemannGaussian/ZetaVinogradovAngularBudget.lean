@@ -1,3 +1,5 @@
+module
+
 /-
 Copyright (c) 2026 David Sanftenberg. All rights reserved.
 Released under Apache 2.0 license as described in LICENSES/Apache-2.0.txt.
@@ -5,17 +7,19 @@ Authors: David Sanftenberg
 -/
 /- Adapted from dbsanfte/RiemannGaussian; provenance and modifications are
 recorded in docs/rg-extraction-manifest.json. -/
-import Sidon.NumberTheory.RiemannGaussian.DerivativeRecursionBudget
-import Sidon.NumberTheory.RiemannGaussian.GaussianZetaBridge
-import Sidon.NumberTheory.RiemannGaussian.GaussianZetaGeometry
-import Sidon.NumberTheory.RiemannGaussian.VinogradovNearOneBudget
-import Sidon.NumberTheory.RiemannGaussian.VinogradovScaleSelection
-import Sidon.NumberTheory.RiemannGaussian.ZetaLocalResidualLog
-import Sidon.NumberTheory.RiemannGaussian.ZetaNearOneLocalDisc
-import Sidon.NumberTheory.RiemannGaussian.ZetaSignedExactPole
-import Sidon.NumberTheory.RiemannGaussian.ZetaSignedPrimeSeries
-import Sidon.NumberTheory.RiemannGaussian.ZetaVinogradovAngularBound
-import Sidon.NumberTheory.RiemannGaussian.ZetaVinogradovCanonical
+public import Sidon.NumberTheory.RiemannGaussian.DerivativeRecursionBudget
+public import Sidon.NumberTheory.RiemannGaussian.GaussianZetaBridge
+public import Sidon.NumberTheory.RiemannGaussian.GaussianZetaGeometry
+public import Sidon.NumberTheory.RiemannGaussian.VinogradovNearOneBudget
+public import Sidon.NumberTheory.RiemannGaussian.VinogradovScaleSelection
+public import Sidon.NumberTheory.RiemannGaussian.ZetaLocalResidualLog
+public import Sidon.NumberTheory.RiemannGaussian.ZetaNearOneLocalDisc
+public import Sidon.NumberTheory.RiemannGaussian.ZetaSignedExactPole
+public import Sidon.NumberTheory.RiemannGaussian.ZetaSignedPrimeSeries
+public import Sidon.NumberTheory.RiemannGaussian.ZetaVinogradovAngularBound
+public import Sidon.NumberTheory.RiemannGaussian.ZetaVinogradovCanonical
+
+@[expose] public section
 
 namespace RiemannGaussian.ZetaVinogradovAngularBudget
 noncomputable section

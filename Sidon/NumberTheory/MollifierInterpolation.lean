@@ -1,6 +1,10 @@
-import Sidon.NumberTheory.MollifierGaussian
-import Sidon.NumberTheory.MollifierLeftEndpoint
-import Sidon.NumberTheory.GaussianCumulative
+module
+
+public import Sidon.NumberTheory.MollifierGaussian
+public import Sidon.NumberTheory.MollifierLeftEndpoint
+public import Sidon.NumberTheory.GaussianCumulative
+
+@[expose] public section
 
 /-! # Unconditional interpolation of the actual balanced mollifier's mean squares -/
 

@@ -1,7 +1,11 @@
-import Sidon.NumberTheory.MollifierSymmetry
-import Sidon.NumberTheory.VerticalL2Interpolation
-import Sidon.NumberTheory.RiemannGaussian.ZetaGaussianLocalizer
-import Mathlib.Analysis.SpecialFunctions.Gaussian.GaussianIntegral
+module
+
+public import Sidon.NumberTheory.MollifierSymmetry
+public import Sidon.NumberTheory.VerticalL2Interpolation
+public import Sidon.NumberTheory.RiemannGaussian.ZetaGaussianLocalizer
+public import Mathlib.Analysis.SpecialFunctions.Gaussian.GaussianIntegral
+
+@[expose] public section
 
 /-! # An analytic Gaussian carrier across the zeta pole -/
 

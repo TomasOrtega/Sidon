@@ -1,5 +1,9 @@
-import Sidon.Constructions.Extremal
-import Sidon.NumberTheory.PrimeGapTwoThirds
+module
+
+public import Sidon.Constructions.Extremal
+public import Sidon.NumberTheory.PrimeGapTwoThirds
+
+@[expose] public section
 
 /-! # The unconditional Fourier rate for maximum Sidon sets -/
 

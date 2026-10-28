@@ -1,5 +1,9 @@
-import Sidon.Analysis.PowerWindow
-import Mathlib.Tactic
+module
+
+public import Sidon.Analysis.PowerWindow
+public import Mathlib.Tactic
+
+@[expose] public section
 
 /-! # Arithmetic estimates for the Fourier-uniformity argument -/
 

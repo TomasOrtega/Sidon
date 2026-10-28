@@ -1,6 +1,10 @@
-import Mathlib.Algebra.Group.ForwardDiff
-import Mathlib.MeasureTheory.Integral.DominatedConvergence
-import Mathlib.MeasureTheory.Integral.IntervalIntegral.Basic
+module
+
+public import Mathlib.Algebra.Group.ForwardDiff
+public import Mathlib.MeasureTheory.Integral.DominatedConvergence
+public import Mathlib.MeasureTheory.Integral.IntervalIntegral.Basic
+
+@[expose] public section
 
 /-! # Positive compactly supported kernels from finite differences -/
 

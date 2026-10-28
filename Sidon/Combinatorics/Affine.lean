@@ -1,4 +1,8 @@
-import Sidon.Combinatorics.Intervals
+module
+
+public import Sidon.Combinatorics.Intervals
+
+@[expose] public section
 
 /-! # Affine images and the parity obstruction -/
 

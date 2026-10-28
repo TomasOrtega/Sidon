@@ -1,6 +1,10 @@
-import Sidon.Combinatorics.Affine
-import Sidon.Constructions.Cyclic
-import Mathlib.FieldTheory.Finite.GaloisField
+module
+
+public import Sidon.Combinatorics.Affine
+public import Sidon.Constructions.Cyclic
+public import Mathlib.FieldTheory.Finite.GaloisField
+
+@[expose] public section
 
 /-! # The Bose–Chowla construction from a finite field extension -/
 

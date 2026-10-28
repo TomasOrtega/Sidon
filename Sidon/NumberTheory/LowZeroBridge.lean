@@ -1,5 +1,9 @@
-import Sidon.NumberTheory.ZetaZeroCount
-import Sidon.NumberTheory.RiemannGaussian.EtaZetaPrimeProduct
+module
+
+public import Sidon.NumberTheory.ZetaZeroCount
+public import Sidon.NumberTheory.RiemannGaussian.EtaZetaPrimeProduct
+
+@[expose] public section
 
 /-! Comparing both signs of the actual zero spectrum to positive-height occurrences. -/
 

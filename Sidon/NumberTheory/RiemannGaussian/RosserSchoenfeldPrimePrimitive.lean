@@ -1,3 +1,5 @@
+module
+
 /-
 Copyright (c) 2026 David Sanftenberg. All rights reserved.
 Released under Apache 2.0 license as described in LICENSES/Apache-2.0.txt.
@@ -5,9 +7,11 @@ Authors: David Sanftenberg
 -/
 /- Adapted from dbsanfte/RiemannGaussian; provenance and modifications are
 recorded in docs/rg-extraction-manifest.json. -/
-import Sidon.NumberTheory.RiemannGaussian.RiemannXiSuzukiPointwiseChebyshevLogAverageMellinTransform
-import Sidon.NumberTheory.RiemannGaussian.RosserSchoenfeldLaplace
-import Sidon.NumberTheory.RiemannGaussian.RosserSchoenfeldPrimeKernel
+public import Sidon.NumberTheory.RiemannGaussian.RiemannXiSuzukiPointwiseChebyshevLogAverageMellinTransform
+public import Sidon.NumberTheory.RiemannGaussian.RosserSchoenfeldLaplace
+public import Sidon.NumberTheory.RiemannGaussian.RosserSchoenfeldPrimeKernel
+
+@[expose] public section
 
 namespace RiemannGaussian.RosserSchoenfeldPrimePrimitive
 noncomputable section

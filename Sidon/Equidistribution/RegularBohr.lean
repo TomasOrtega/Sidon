@@ -1,5 +1,9 @@
-import Sidon.Equidistribution.BohrCutoffs
-import Sidon.Analysis.BohrOptimization
+module
+
+public import Sidon.Equidistribution.BohrCutoffs
+public import Sidon.Analysis.BohrOptimization
+
+@[expose] public section
 
 /-! # From smooth orbit estimates to regular Bohr-set equidistribution -/
 

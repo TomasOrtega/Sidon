@@ -1,3 +1,5 @@
+module
+
 /-
 Copyright (c) 2026 David Sanftenberg. All rights reserved.
 Released under Apache 2.0 license as described in LICENSES/Apache-2.0.txt.
@@ -5,17 +7,19 @@ Authors: David Sanftenberg
 -/
 /- Adapted from dbsanfte/RiemannGaussian; provenance and modifications are
 recorded in docs/rg-extraction-manifest.json. -/
-import Mathlib.Analysis.Calculus.Deriv.Star
-import Mathlib.Analysis.Complex.RemovableSingularity
-import Mathlib.Analysis.Meromorphic.LogDeriv
-import Mathlib.Analysis.SpecialFunctions.Gamma.Digamma
-import Mathlib.Analysis.SpecialFunctions.Gaussian.FourierTransform
-import Mathlib.Analysis.SpecialFunctions.Pow.Deriv
-import Mathlib.NumberTheory.LSeries.Dirichlet
-import Sidon.NumberTheory.RiemannGaussian.GaussianSpectral
-import Sidon.NumberTheory.RiemannGaussian.GaussianZetaBridge
-import Sidon.NumberTheory.RiemannGaussian.GaussianZetaCounting
-import Sidon.NumberTheory.RiemannGaussian.GaussianZetaGeometry
+public import Mathlib.Analysis.Calculus.Deriv.Star
+public import Mathlib.Analysis.Complex.RemovableSingularity
+public import Mathlib.Analysis.Meromorphic.LogDeriv
+public import Mathlib.Analysis.SpecialFunctions.Gamma.Digamma
+public import Mathlib.Analysis.SpecialFunctions.Gaussian.FourierTransform
+public import Mathlib.Analysis.SpecialFunctions.Pow.Deriv
+public import Mathlib.NumberTheory.LSeries.Dirichlet
+public import Sidon.NumberTheory.RiemannGaussian.GaussianSpectral
+public import Sidon.NumberTheory.RiemannGaussian.GaussianZetaBridge
+public import Sidon.NumberTheory.RiemannGaussian.GaussianZetaCounting
+public import Sidon.NumberTheory.RiemannGaussian.GaussianZetaGeometry
+
+@[expose] public section
 
 namespace RiemannGaussian
 

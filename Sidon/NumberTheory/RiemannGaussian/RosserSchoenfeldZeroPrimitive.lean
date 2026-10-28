@@ -1,3 +1,5 @@
+module
+
 /-
 Copyright (c) 2026 David Sanftenberg. All rights reserved.
 Released under Apache 2.0 license as described in LICENSES/Apache-2.0.txt.
@@ -5,13 +7,15 @@ Authors: David Sanftenberg
 -/
 /- Adapted from dbsanfte/RiemannGaussian; provenance and modifications are
 recorded in docs/rg-extraction-manifest.json. -/
-import Sidon.NumberTheory.RiemannGaussian.GaussianZetaBridge
-import Sidon.NumberTheory.RiemannGaussian.GaussianZetaCounting
-import Sidon.NumberTheory.RiemannGaussian.GaussianZetaGeometry
-import Sidon.NumberTheory.RiemannGaussian.RiemannXiGlobalLogDerivative
-import Sidon.NumberTheory.RiemannGaussian.RosserSchoenfeldLaplace
-import Sidon.NumberTheory.RiemannGaussian.RosserSchoenfeldZeroMass
-import Sidon.NumberTheory.RiemannGaussian.ZetaClippedEulerMean
+public import Sidon.NumberTheory.RiemannGaussian.GaussianZetaBridge
+public import Sidon.NumberTheory.RiemannGaussian.GaussianZetaCounting
+public import Sidon.NumberTheory.RiemannGaussian.GaussianZetaGeometry
+public import Sidon.NumberTheory.RiemannGaussian.RiemannXiGlobalLogDerivative
+public import Sidon.NumberTheory.RiemannGaussian.RosserSchoenfeldLaplace
+public import Sidon.NumberTheory.RiemannGaussian.RosserSchoenfeldZeroMass
+public import Sidon.NumberTheory.RiemannGaussian.ZetaClippedEulerMean
+
+@[expose] public section
 
 namespace RiemannGaussian.RosserSchoenfeldZeroPrimitive
 noncomputable section

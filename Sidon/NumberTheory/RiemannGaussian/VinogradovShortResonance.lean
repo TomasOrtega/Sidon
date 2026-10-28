@@ -1,3 +1,5 @@
+module
+
 /-
 Copyright (c) 2026 David Sanftenberg. All rights reserved.
 Released under Apache 2.0 license as described in LICENSES/Apache-2.0.txt.
@@ -5,18 +7,20 @@ Authors: David Sanftenberg
 -/
 /- Adapted from dbsanfte/RiemannGaussian; provenance and modifications are
 recorded in docs/rg-extraction-manifest.json. -/
-import Sidon.NumberTheory.RiemannGaussian.VinogradovCriticalKorobov
-import Sidon.NumberTheory.RiemannGaussian.VinogradovGaussianBounds
-import Sidon.NumberTheory.RiemannGaussian.VinogradovKorobovBilinearPhase
-import Sidon.NumberTheory.RiemannGaussian.VinogradovKorobovMoment
-import Sidon.NumberTheory.RiemannGaussian.VinogradovKorobovPowerSaving
-import Sidon.NumberTheory.RiemannGaussian.VinogradovMeanValue
-import Sidon.NumberTheory.RiemannGaussian.VinogradovRectanglePowerSaving
-import Sidon.NumberTheory.RiemannGaussian.VinogradovRectangleResonance
-import Sidon.NumberTheory.RiemannGaussian.VinogradovRelativeResonance
-import Sidon.NumberTheory.RiemannGaussian.VinogradovResonanceScaling
-import Sidon.NumberTheory.RiemannGaussian.VinogradovShortMoment
-import Sidon.NumberTheory.RiemannGaussian.VinogradovVariableGaussian
+public import Sidon.NumberTheory.RiemannGaussian.VinogradovCriticalKorobov
+public import Sidon.NumberTheory.RiemannGaussian.VinogradovGaussianBounds
+public import Sidon.NumberTheory.RiemannGaussian.VinogradovKorobovBilinearPhase
+public import Sidon.NumberTheory.RiemannGaussian.VinogradovKorobovMoment
+public import Sidon.NumberTheory.RiemannGaussian.VinogradovKorobovPowerSaving
+public import Sidon.NumberTheory.RiemannGaussian.VinogradovMeanValue
+public import Sidon.NumberTheory.RiemannGaussian.VinogradovRectanglePowerSaving
+public import Sidon.NumberTheory.RiemannGaussian.VinogradovRectangleResonance
+public import Sidon.NumberTheory.RiemannGaussian.VinogradovRelativeResonance
+public import Sidon.NumberTheory.RiemannGaussian.VinogradovResonanceScaling
+public import Sidon.NumberTheory.RiemannGaussian.VinogradovShortMoment
+public import Sidon.NumberTheory.RiemannGaussian.VinogradovVariableGaussian
+
+@[expose] public section
 
 namespace RiemannGaussian.VinogradovShortResonance
 noncomputable section

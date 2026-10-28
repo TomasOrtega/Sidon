@@ -1,4 +1,8 @@
-import Sidon.NumberTheory.LogSmoothing
+module
+
+public import Sidon.NumberTheory.LogSmoothing
+
+@[expose] public section
 
 /-! Absolute convergence justifications for smoothing a complex series. -/
 

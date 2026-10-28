@@ -1,6 +1,10 @@
-import Sidon.Analysis.FourierIntegral
-import Sidon.Combinatorics.Intervals
-import Mathlib.Algebra.BigOperators.Ring.Finset
+module
+
+public import Sidon.Analysis.FourierIntegral
+public import Sidon.Combinatorics.Intervals
+public import Mathlib.Algebra.BigOperators.Ring.Finset
+
+@[expose] public section
 
 /-! # Finite weighted counts for one homogeneous linear equation -/
 

@@ -1,3 +1,5 @@
+module
+
 /-
 Copyright (c) 2026 David Sanftenberg. All rights reserved.
 Released under Apache 2.0 license as described in LICENSES/Apache-2.0.txt.
@@ -5,27 +7,29 @@ Authors: David Sanftenberg
 -/
 /- Adapted from dbsanfte/RiemannGaussian; provenance and modifications are
 recorded in docs/rg-extraction-manifest.json. -/
-import Mathlib.Analysis.Analytic.IsolatedZeros
-import Mathlib.Analysis.Complex.ReImTopology
-import Mathlib.Analysis.SpecialFunctions.Complex.Analytic
-import Mathlib.Analysis.SpecialFunctions.Complex.Arctan
-import Mathlib.Analysis.SpecialFunctions.Complex.LogDeriv
-import Mathlib.Analysis.SpecialFunctions.Gamma.Basic
-import Mathlib.Analysis.SpecialFunctions.Log.Basic
-import Mathlib.Analysis.SpecialFunctions.Trigonometric.Complex
-import Mathlib.Data.Nat.Choose.Cast
-import Mathlib.NumberTheory.EulerProduct.DirichletLSeries
-import Mathlib.Topology.Algebra.Polynomial
-import Sidon.NumberTheory.RiemannGaussian.GaussianZetaBridge
-import Sidon.NumberTheory.RiemannGaussian.VinogradovNearOneBudget
-import Sidon.NumberTheory.RiemannGaussian.VinogradovScaleSelection
-import Sidon.NumberTheory.RiemannGaussian.ZetaLogLogZeroFree
-import Sidon.NumberTheory.RiemannGaussian.ZetaNearOneLogProfile
-import Sidon.NumberTheory.RiemannGaussian.ZetaVinogradovAngularBudget
-import Sidon.NumberTheory.RiemannGaussian.ZetaVinogradovBalancedBudget
-import Sidon.NumberTheory.RiemannGaussian.ZetaVinogradovBalancedScale
-import Sidon.NumberTheory.RiemannGaussian.ZetaVinogradovCanonical
-import Sidon.NumberTheory.RiemannGaussian.ZetaVinogradovLocalDisc
+public import Mathlib.Analysis.Analytic.IsolatedZeros
+public import Mathlib.Analysis.Complex.ReImTopology
+public import Mathlib.Analysis.SpecialFunctions.Complex.Analytic
+public import Mathlib.Analysis.SpecialFunctions.Complex.Arctan
+public import Mathlib.Analysis.SpecialFunctions.Complex.LogDeriv
+public import Mathlib.Analysis.SpecialFunctions.Gamma.Basic
+public import Mathlib.Analysis.SpecialFunctions.Log.Basic
+public import Mathlib.Analysis.SpecialFunctions.Trigonometric.Complex
+public import Mathlib.Data.Nat.Choose.Cast
+public import Mathlib.NumberTheory.EulerProduct.DirichletLSeries
+public import Mathlib.Topology.Algebra.Polynomial
+public import Sidon.NumberTheory.RiemannGaussian.GaussianZetaBridge
+public import Sidon.NumberTheory.RiemannGaussian.VinogradovNearOneBudget
+public import Sidon.NumberTheory.RiemannGaussian.VinogradovScaleSelection
+public import Sidon.NumberTheory.RiemannGaussian.ZetaLogLogZeroFree
+public import Sidon.NumberTheory.RiemannGaussian.ZetaNearOneLogProfile
+public import Sidon.NumberTheory.RiemannGaussian.ZetaVinogradovAngularBudget
+public import Sidon.NumberTheory.RiemannGaussian.ZetaVinogradovBalancedBudget
+public import Sidon.NumberTheory.RiemannGaussian.ZetaVinogradovBalancedScale
+public import Sidon.NumberTheory.RiemannGaussian.ZetaVinogradovCanonical
+public import Sidon.NumberTheory.RiemannGaussian.ZetaVinogradovLocalDisc
+
+@[expose] public section
 
 namespace RiemannGaussian.ZetaVinogradovAngularZeroFree
 noncomputable section

@@ -1,5 +1,9 @@
-import Sidon.Analysis.Approximation.Polynomial
-import Mathlib.LinearAlgebra.Lagrange
+module
+
+public import Sidon.Analysis.Approximation.Polynomial
+public import Mathlib.LinearAlgebra.Lagrange
+
+@[expose] public section
 
 /-! # Finite real interpolation of bounded circle frequencies -/
 

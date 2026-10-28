@@ -1,8 +1,12 @@
-import Mathlib.Data.Nat.PadicValNat
-import Mathlib.Data.Int.NatPrime
-import Mathlib.Data.Nat.Prime.Infinite
-import Mathlib.Data.ZMod.Basic
-import Mathlib.Tactic
+module
+
+public import Mathlib.Data.Nat.PadicValNat
+public import Mathlib.Data.Int.NatPrime
+public import Mathlib.Data.Nat.Prime.Infinite
+public import Mathlib.Data.ZMod.Basic
+public import Mathlib.Tactic
+
+@[expose] public section
 
 /-! # A finite colouring when no coefficient subsum vanishes -/
 

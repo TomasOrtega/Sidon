@@ -1,3 +1,5 @@
+module
+
 /-
 Copyright (c) 2026 David Sanftenberg. All rights reserved.
 Released under Apache 2.0 license as described in LICENSES/Apache-2.0.txt.
@@ -5,14 +7,16 @@ Authors: David Sanftenberg
 -/
 /- Adapted from dbsanfte/RiemannGaussian; provenance and modifications are
 recorded in docs/rg-extraction-manifest.json. -/
-import Sidon.NumberTheory.RiemannGaussian.GaussianSpectral
-import Sidon.NumberTheory.RiemannGaussian.GaussianXiDivisorContour
-import Sidon.NumberTheory.RiemannGaussian.GaussianXiInverseSquareSummability
-import Sidon.NumberTheory.RiemannGaussian.GaussianXiLogDerivativeGrowth
-import Sidon.NumberTheory.RiemannGaussian.GaussianZetaBridge
-import Sidon.NumberTheory.RiemannGaussian.GaussianZetaCounting
-import Sidon.NumberTheory.RiemannGaussian.RiemannXiCanonicalCauchy
-import Sidon.NumberTheory.RiemannGaussian.RiemannXiCanonicalLogVariation
+public import Sidon.NumberTheory.RiemannGaussian.GaussianSpectral
+public import Sidon.NumberTheory.RiemannGaussian.GaussianXiDivisorContour
+public import Sidon.NumberTheory.RiemannGaussian.GaussianXiInverseSquareSummability
+public import Sidon.NumberTheory.RiemannGaussian.GaussianXiLogDerivativeGrowth
+public import Sidon.NumberTheory.RiemannGaussian.GaussianZetaBridge
+public import Sidon.NumberTheory.RiemannGaussian.GaussianZetaCounting
+public import Sidon.NumberTheory.RiemannGaussian.RiemannXiCanonicalCauchy
+public import Sidon.NumberTheory.RiemannGaussian.RiemannXiCanonicalLogVariation
+
+@[expose] public section
 
 open Complex Filter MeromorphicOn Metric Set Topology
 open scoped Topology

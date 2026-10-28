@@ -1,5 +1,9 @@
-import Sidon.Combinatorics.Differences
-import Mathlib.Data.Int.Interval
+module
+
+public import Sidon.Combinatorics.Differences
+public import Mathlib.Data.Int.Interval
+
+@[expose] public section
 
 /-! # Integer intervals and elementary invariances -/
 

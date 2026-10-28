@@ -1,5 +1,9 @@
-import Mathlib.NumberTheory.ArithmeticFunction.Misc
-import Mathlib.Tactic
+module
+
+public import Mathlib.NumberTheory.ArithmeticFunction.Misc
+public import Mathlib.Tactic
+
+@[expose] public section
 
 /-! # Finite normalized Dirichlet-convolution bounds -/
 

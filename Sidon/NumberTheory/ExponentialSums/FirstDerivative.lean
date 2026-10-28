@@ -1,6 +1,10 @@
-import Sidon.Equidistribution.Progressions
-import Mathlib.Analysis.Fourier.FourierTransformDeriv
-import Mathlib.Analysis.Calculus.MeanValue
+module
+
+public import Sidon.Equidistribution.Progressions
+public import Mathlib.Analysis.Fourier.FourierTransformDeriv
+public import Mathlib.Analysis.Calculus.MeanValue
+
+@[expose] public section
 
 /-! # A quadratic-gap first derivative estimate for exponential sums -/
 

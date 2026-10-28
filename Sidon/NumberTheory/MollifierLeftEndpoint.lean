@@ -1,5 +1,9 @@
-import Sidon.NumberTheory.MollifierSymmetry
-import Sidon.NumberTheory.WeylZeta
+module
+
+public import Sidon.NumberTheory.MollifierSymmetry
+public import Sidon.NumberTheory.WeylZeta
+
+@[expose] public section
 
 /-! # Weyl growth and the critical-line mollifier mean square -/
 

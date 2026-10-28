@@ -1,5 +1,9 @@
-import Sidon.Combinatorics.QuantitativeRado.Assembly
-import Sidon.Combinatorics.QuantitativeRado.KernelMatrix
+module
+
+public import Sidon.Combinatorics.QuantitativeRado.Assembly
+public import Sidon.Combinatorics.QuantitativeRado.KernelMatrix
+
+@[expose] public section
 
 /-! # Quantitative Rado theorem for one homogeneous equation -/
 

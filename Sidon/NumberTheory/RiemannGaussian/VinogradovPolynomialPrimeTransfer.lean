@@ -1,3 +1,5 @@
+module
+
 /-
 Copyright (c) 2026 David Sanftenberg. All rights reserved.
 Released under Apache 2.0 license as described in LICENSES/Apache-2.0.txt.
@@ -5,17 +7,19 @@ Authors: David Sanftenberg
 -/
 /- Adapted from dbsanfte/RiemannGaussian; provenance and modifications are
 recorded in docs/rg-extraction-manifest.json. -/
-import Sidon.NumberTheory.RiemannGaussian.VinogradovMixedExceptional
-import Sidon.NumberTheory.RiemannGaussian.VinogradovMixedMoments
-import Sidon.NumberTheory.RiemannGaussian.VinogradovPolynomialConditioning
-import Sidon.NumberTheory.RiemannGaussian.VinogradovPolynomialDifferencing
-import Sidon.NumberTheory.RiemannGaussian.VinogradovPolynomialExceptional
-import Sidon.NumberTheory.RiemannGaussian.VinogradovPolynomialNonsingular
-import Sidon.NumberTheory.RiemannGaussian.VinogradovPolynomialSystems
-import Sidon.NumberTheory.RiemannGaussian.VinogradovPrimePacket
-import Sidon.NumberTheory.RiemannGaussian.VinogradovShiftedMoment
-import Sidon.NumberTheory.RiemannGaussian.VinogradovTwoBlockPacket
-import Sidon.NumberTheory.RiemannGaussian.VinogradovTypeMaximum
+public import Sidon.NumberTheory.RiemannGaussian.VinogradovMixedExceptional
+public import Sidon.NumberTheory.RiemannGaussian.VinogradovMixedMoments
+public import Sidon.NumberTheory.RiemannGaussian.VinogradovPolynomialConditioning
+public import Sidon.NumberTheory.RiemannGaussian.VinogradovPolynomialDifferencing
+public import Sidon.NumberTheory.RiemannGaussian.VinogradovPolynomialExceptional
+public import Sidon.NumberTheory.RiemannGaussian.VinogradovPolynomialNonsingular
+public import Sidon.NumberTheory.RiemannGaussian.VinogradovPolynomialSystems
+public import Sidon.NumberTheory.RiemannGaussian.VinogradovPrimePacket
+public import Sidon.NumberTheory.RiemannGaussian.VinogradovShiftedMoment
+public import Sidon.NumberTheory.RiemannGaussian.VinogradovTwoBlockPacket
+public import Sidon.NumberTheory.RiemannGaussian.VinogradovTypeMaximum
+
+@[expose] public section
 
 namespace RiemannGaussian.VinogradovPolynomialPrimeTransfer
 noncomputable section

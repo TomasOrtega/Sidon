@@ -1,4 +1,9 @@
-import Sidon.Analysis.Approximation.Fejer
+module
+
+public import Sidon.Analysis.Approximation.Fejer
+public import Mathlib.MeasureTheory.Integral.Pi
+
+@[expose] public section
 
 /-! # Finite-bandwidth tensor Fejér kernels -/
 

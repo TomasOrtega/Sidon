@@ -1,4 +1,8 @@
-import Sidon.Combinatorics.SharpIntervalSize
+module
+
+public import Sidon.Combinatorics.SharpIntervalSize
+
+@[expose] public section
 
 /-! # Finite window counts and their variance -/
 

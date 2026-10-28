@@ -1,5 +1,9 @@
-import Sidon.Analysis.FiniteFourier
-import Mathlib.Algebra.Group.Pointwise.Finset.Basic
+module
+
+public import Sidon.Analysis.FiniteFourier
+public import Mathlib.Algebra.Group.Pointwise.Finset.Basic
+
+@[expose] public section
 
 /-! # Finite correlations and integer translations -/
 

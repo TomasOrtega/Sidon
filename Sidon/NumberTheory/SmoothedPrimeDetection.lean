@@ -1,5 +1,9 @@
-import Sidon.NumberTheory.SmoothedMangoldt
-import Sidon.NumberTheory.PrimePowerError
+module
+
+public import Sidon.NumberTheory.SmoothedMangoldt
+public import Sidon.NumberTheory.PrimePowerError
+
+@[expose] public section
 
 /-! Removing the nonprime prime powers from a positive compact detector. -/
 

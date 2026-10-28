@@ -1,4 +1,8 @@
-import Sidon.Transference.PolynomialMax
+module
+
+public import Sidon.Transference.PolynomialMax
+
+@[expose] public section
 
 /-! # Compact convex sets for the colouring dense model -/
 

@@ -1,3 +1,5 @@
+module
+
 /-
 Copyright (c) 2026 David Sanftenberg. All rights reserved.
 Released under Apache 2.0 license as described in LICENSES/Apache-2.0.txt.
@@ -5,10 +7,12 @@ Authors: David Sanftenberg
 -/
 /- Adapted from dbsanfte/RiemannGaussian; provenance and modifications are
 recorded in docs/rg-extraction-manifest.json. -/
-import Sidon.NumberTheory.RiemannGaussian.DerivativeRecursionBudget
-import Sidon.NumberTheory.RiemannGaussian.NatPhaseDifferencing
-import Sidon.NumberTheory.RiemannGaussian.SecondDerivativeTest
-import Sidon.NumberTheory.RiemannGaussian.ShiftedDerivativeFamily
+public import Sidon.NumberTheory.RiemannGaussian.DerivativeRecursionBudget
+public import Sidon.NumberTheory.RiemannGaussian.NatPhaseDifferencing
+public import Sidon.NumberTheory.RiemannGaussian.SecondDerivativeTest
+public import Sidon.NumberTheory.RiemannGaussian.ShiftedDerivativeFamily
+
+@[expose] public section
 
 namespace RiemannGaussian.HigherDerivativeTest
 noncomputable section
