@@ -53,11 +53,3 @@ It also runs in CI. It cannot run on macOS.
 To build the blueprint, install `leanblueprint==0.0.20`, then run
 `leanblueprint pdf`, `leanblueprint web`, and
 `lake exe checkdecls blueprint/lean_decls`.
-
-## Submit to Palomar
-
-Follow [Palomar's submission guide](https://palomar-registry.org/how-to-submit).
-Commit and push the final changes, then wait for all CI checks to pass. Submit
-`TomasOrtega/Sidon` with the full SHA from `git rev-parse HEAD`. Use the root
-project, `comparator.json`, and `formalization.yaml`; the form's default paths
-already select them. Uncommitted or unpushed changes are not part of a submission.
